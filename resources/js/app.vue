@@ -1,9 +1,9 @@
 <template>
     <div>
         <!-- Componente Header con los componentes:  -->
-        <!-- <headervue></headervue> -->
+        <headervue class="container mx-auto sticky top-0"></headervue>
+        <router-view class="container mx-auto"></router-view>
 
-        <router-view></router-view>
 
     </div>
 
@@ -11,11 +11,11 @@
 
 <script>
 
-// import headervue from './components/header.vue'
+import headervue from './components/header.vue'
 
 export default {
     components: {
-        // headervue
+        headervue
     },
     name: 'app',
     data(){

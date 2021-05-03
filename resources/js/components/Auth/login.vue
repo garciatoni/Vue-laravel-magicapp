@@ -1,7 +1,6 @@
 <template>
     <div>
-        <headervue></headervue>
-        <router-link to="/">Atras</router-link>
+        <!-- <headervue></headervue> -->
         <!-- component -->
         <section class="min-h-screen flex flex-col">
             <div class="flex flex-1 items-center justify-center">
@@ -47,14 +46,14 @@
 </template>
 
 <script>
-import headervue from '../header.vue'
+// import headervue from '../header.vue'
 import axios from 'axios';
 axios.defaults.withCredentials = true;
-// axios.defaults.baseURL = 'https://dawjavi.insjoaquimmir.cat/agarcia/Liber/public';
+axios.defaults.baseURL = '/agarcia/LiberLogin/public';
 
 export default {
     components: {
-        headervue
+        // headervue
     },
     name: 'login',
     data(){
@@ -77,7 +76,7 @@ export default {
                 }).catch(() => {
                     this.$store.commit("SET_USER", null)
                 })
-                this.$router.push('/');
+                this.$router.push('/agarcia/LiberLogin/public/');
             }).catch((errors) => {
                 this.errors = errors.response.data.errors
             })

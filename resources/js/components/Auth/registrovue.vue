@@ -31,7 +31,8 @@
 </template>
 
 <script>
-
+import axios from 'axios';
+axios.defaults.baseURL = '/agarcia/LiberLogin/public';
 export default {
 
     data(){
@@ -47,16 +48,12 @@ export default {
     },
     methods: {
         registerUser(){
-            console.log(this.formData);
             axios.post('/api/register', this.formData).then((response)=>{
-                console.log(response.data);
                 this.formData.name = this.formData.email = this.formData.password = this.formData.password_confirmation = ''
                 this.errors = {}
-                this.$router.push('/login')
+                this.$router.push('/agarcia/LiberLogin/public/login')
             }).catch((errors)=>{
-                console.log(this.formData);
                 this.errors = errors.response.data.errors
-                console.log(errors.response.data.errors)
             })
         }
 

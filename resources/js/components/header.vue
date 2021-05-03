@@ -2,7 +2,7 @@
     <div class="bg-blue-700">
         <div class="container mx-auto">
             <div class="flex flex-row">
-                <div v-if="this.token">
+                <div v-if="this.$store.state.auth" class="flex flex-row">
                     <button @click.prevent="logout">Logout</button>
                     <p v-if="this.$store.state.user" class="text-center">{{this.$store.state.user.name}}</p>
                 </div>
@@ -38,13 +38,21 @@ export default {
             axios.post('api/logout').then((response) => {
                 localStorage.removeItem('token');
                 this.$store.commit("SET_USER", null)
-                this.$router.push('/login')
+                this.$router.push('/agarcia/LiberLogin/public/login')
             }).catch((errors) =>{
                 console.log(errors)
             })
         }
     },
-
+    // computed: {
+    //     Auth: function () {
+    //         if (localStorage.getItem('token')){
+    //             return true;
+    //         }else{
+    //             return false;
+    //         }
+    //     },
+    // },
     created(){
         if(!this.$store.state.auth && this.token != null){
             window.axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
