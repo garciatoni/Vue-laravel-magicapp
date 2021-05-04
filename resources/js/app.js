@@ -50,7 +50,7 @@ const router = new VueRouter({
             path: '/agarcia/LiberLogin/public/',
             name: 'home',
             component: home,
-            meta: { requiresAuth: true }
+            // meta: { requiresAuth: true }
         },
 
 

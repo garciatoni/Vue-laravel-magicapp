@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
@@ -34,9 +35,12 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function show($id)
     {
-        //
+
+        $data["book"] = DB::table('books')->where('isbn', '=', $id)->get();
+        $data["id"] = $id;
+        return   $data;
     }
 
     /**
@@ -45,9 +49,8 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function store($id)
     {
-        //
     }
 
     /**

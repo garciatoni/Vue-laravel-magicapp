@@ -11,7 +11,7 @@
       </form> -->
 
     <div id="books_searched">
-        <ul class="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 mt-3 gap-3">
+        <ul class="grid grid-cols-1 lg:grid-cols-5 md:grid-cols-2 mt-3 gap-3">
             <li v-for="b in booksFilter" :key="b.isbn" id="b.isbn" class="border">
                 <div @click="BookInformation(b.isbn)" class="">
                     <h1>Titulo: {{ b.title }}</h1>

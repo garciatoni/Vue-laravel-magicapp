@@ -24,9 +24,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 //Rutas publicas
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/register', [AuthController::class, 'register']);
-Route::get('books', [BookController::class, 'index']);
+Route::post('/login', [AuthController::class, 'login']); //RUTA PARA REALIZAR EL LOGIN
+Route::post('/register', [AuthController::class, 'register']); //RUTA PARA REALIZAR UN REGISTRO
+Route::get('/books', [BookController::class, 'index']);//RUTA PARA MOSTRAR TODOS LOS LIBROS DE LA BASE DE DATOS
+Route::post('/libro/{id}', [BookController::class, 'show']);//RUTA PARA MOSTRAR UN LIBRO CON UNA ID ESPECIFICA
 
 //Rutas privadas
-Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');//RUTA PARA HACER LOGOUT, REQUIERE ESTAR AUTENTICADO.
+Route::post('/editUser/{id}', [AuthController::class, 'edit']);//RUTA PARA EDITAR DATOS DE LA CUENTA.

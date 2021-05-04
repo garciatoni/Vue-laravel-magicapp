@@ -3878,24 +3878,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-// import headervue from '../header.vue'
 
 (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.withCredentials) = true;
 (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.baseURL) = '/agarcia/LiberLogin/public';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  components: {// headervue
-  },
   name: 'login',
   data: function data() {
     return {
@@ -4031,13 +4017,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['isbn'],
   data: function data() {
     return {
-      rating: 0
+      rating: 0,
+      book: {}
     };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.post('api/libro/' + this.$route.params.isbn).then(function (response) {
+      // console.log(response.data.id);
+      _this.book = response.data.book[0];
+      console.log(_this.book);
+    })["catch"](function (errors) {
+      console.log(errors);
+    });
   }
 });
 
@@ -4131,6 +4132,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* provided dependency */ var process = __webpack_require__(/*! process/browser */ "./node_modules/process/browser.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4158,12 +4194,22 @@ __webpack_require__.r(__webpack_exports__);
     return {
       currentUser: {},
       token: localStorage.getItem('token'),
-      open: false
+      isOpen: false
     };
   },
+  watch: {
+    isOpen: {
+      immediate: true,
+      handler: function handler(isOpen) {
+        if (process.client) {
+          if (isOpen) document.body.style.setProperty("overflow", "hidden");else document.body.style.removeProperty("overflow");
+        }
+      }
+    }
+  },
   methods: {
-    toggle: function toggle() {
-      this.open = !this.open;
+    drawer: function drawer() {
+      this.isOpen = !this.isOpen;
     },
     logout: function logout() {
       var _this = this;
@@ -4177,26 +4223,29 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (errors) {
         console.log(errors);
       });
+    },
+    editUser: function editUser() {
+      axios.post('api/editUser/' + this.$store.state.user.id, 'toni').then(function (respon) {
+        console.log(respon.data[0]);
+      });
     }
   },
-  // computed: {
-  //     Auth: function () {
-  //         if (localStorage.getItem('token')){
-  //             return true;
-  //         }else{
-  //             return false;
-  //         }
-  //     },
-  // },
-  created: function created() {
+  mounted: function mounted() {
     var _this2 = this;
+
+    document.addEventListener("keydown", function (e) {
+      if (e.keyCode == 27 && _this2.isOpen) _this2.isOpen = false;
+    });
+  },
+  created: function created() {
+    var _this3 = this;
 
     if (!this.$store.state.auth && this.token != null) {
       window.axios.defaults.headers.common['Authorization'] = "Bearer ".concat(this.token);
       axios.get('/api/user').then(function (res) {
-        _this2.$store.commit("SET_USER", res.data);
+        _this3.$store.commit("SET_USER", res.data);
       })["catch"](function () {
-        _this2.$store.commit("SET_USER", null);
+        _this3.$store.commit("SET_USER", null);
       });
     }
   }
@@ -4291,10 +4340,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__.default({
   }, {
     path: '/agarcia/LiberLogin/public/',
     name: 'home',
-    component: _components_Home_vue__WEBPACK_IMPORTED_MODULE_7__.default,
-    meta: {
-      requiresAuth: true
-    }
+    component: _components_Home_vue__WEBPACK_IMPORTED_MODULE_7__.default // meta: { requiresAuth: true }
+
   }, //este siempre abajo del todo.
   {
     path: "/agarcia/LiberLogin/public/:catchAll(.*)",
@@ -22513,12 +22560,6 @@ var render = function() {
               "div",
               { staticClass: "text-center mt-12" },
               [
-                _c("span", [
-                  _vm._v(
-                    "\n                        Don't have an account?\n                    "
-                  )
-                ]),
-                _vm._v(" "),
                 _c(
                   "router-link",
                   {
@@ -22784,20 +22825,34 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("p", [
-        _vm._v("Soy el libro con el isbn " + _vm._s(_vm.isbn) + ", que chulo")
+      _c("div", { staticClass: "container mx-auto" }, [
+        _c("div", { attrs: { id: _vm.book.isbn } }, [
+          _c("h1", [_vm._v(_vm._s(_vm.book.title))]),
+          _vm._v(" "),
+          _c("h2", [_vm._v(_vm._s(_vm.book.author))]),
+          _vm._v(" "),
+          _c("img", { attrs: { src: _vm.book.cover, alt: _vm.book.title } }),
+          _vm._v(" "),
+          _c(
+            "a",
+            { attrs: { target: "_blank", href: "https://amzn.to/2RnKxOw" } },
+            [_vm._v("COMPRAR")]
+          )
+        ])
       ]),
       _vm._v(" "),
-      _c("star-rating", {
-        attrs: { rating: _vm.rating, "show-rating": true },
-        model: {
-          value: _vm.rating,
-          callback: function($$v) {
-            _vm.rating = $$v
-          },
-          expression: "rating"
-        }
-      })
+      this.$store.state.auth
+        ? _c("star-rating", {
+            attrs: { rating: _vm.rating, "show-rating": false },
+            model: {
+              value: _vm.rating,
+              callback: function($$v) {
+                _vm.rating = $$v
+              },
+              expression: "rating"
+            }
+          })
+        : _vm._e()
     ],
     1
   )
@@ -22831,7 +22886,7 @@ var render = function() {
         "ul",
         {
           staticClass:
-            "grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 mt-3 gap-3"
+            "grid grid-cols-1 lg:grid-cols-5 md:grid-cols-2 mt-3 gap-3"
         },
         _vm._l(_vm.booksFilter, function(b) {
           return _c(
@@ -22902,7 +22957,170 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "bg-blue-700" }, [
+  return _c("div", [
+    _c(
+      "nav",
+      {
+        staticClass:
+          "flex w-full items-center justify-between px-6 h-16 bg-white text-gray-700 border-b border-gray-200 z-10"
+      },
+      [
+        _c("img", {
+          staticClass: "h-auto w-24",
+          attrs: {
+            src:
+              "https://dawjavi.insjoaquimmir.cat/agarcia/LiberLogin/resources/js/img/Liber.png",
+            alt: "Logo"
+          }
+        }),
+        _vm._v(" "),
+        this.$store.state.auth
+          ? _c("div", { staticClass: "flex justify-end" }, [
+              this.$store.state.user
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "mr-2 bg-blue-200",
+                      attrs: { "aria-label": "Open Menu" },
+                      on: { click: _vm.drawer }
+                    },
+                    [_vm._v(_vm._s(this.$store.state.user.name))]
+                  )
+                : _vm._e()
+            ])
+          : _c(
+              "div",
+              { staticClass: "space-x-2 flex flex-row justify-end" },
+              [
+                _c("router-link", { attrs: { to: { name: "login" } } }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "bg-blue-700 hover:bg-blue-200 px-3 py-1 rounded"
+                    },
+                    [
+                      _c(
+                        "p",
+                        {
+                          staticClass: "text-white font-bold hover:text-black"
+                        },
+                        [_vm._v("Login")]
+                      )
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("router-link", { attrs: { to: { name: "register" } } }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "bg-blue-700 hover:bg-blue-200 px-3 py-1 rounded"
+                    },
+                    [
+                      _c(
+                        "p",
+                        {
+                          staticClass: "text-white font-bold hover:text-black"
+                        },
+                        [_vm._v("Registrate")]
+                      )
+                    ]
+                  )
+                ])
+              ],
+              1
+            ),
+        _vm._v(" "),
+        _c(
+          "transition",
+          {
+            attrs: {
+              "enter-class": "opacity-0",
+              "enter-active-class": "ease-out transition-medium",
+              "enter-to-class": "opacity-100",
+              "leave-class": "opacity-100",
+              "leave-active-class": "ease-out transition-medium",
+              "leave-to-class": "opacity-0"
+            }
+          },
+          [
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.isOpen,
+                    expression: "isOpen"
+                  }
+                ],
+                staticClass: "z-10 fixed inset-0 transition-opacity",
+                on: {
+                  keydown: function($event) {
+                    if (
+                      !$event.type.indexOf("key") &&
+                      _vm._k($event.keyCode, "esc", 27, $event.key, [
+                        "Esc",
+                        "Escape"
+                      ])
+                    ) {
+                      return null
+                    }
+                    _vm.isOpen = false
+                  }
+                }
+              },
+              [
+                _c("div", {
+                  staticClass: "absolute inset-0 bg-black opacity-50",
+                  attrs: { tabindex: "0" },
+                  on: {
+                    click: function($event) {
+                      _vm.isOpen = false
+                    }
+                  }
+                })
+              ]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "aside",
+          {
+            staticClass:
+              "transform top-0 right-0 w-3/4 sm:w-4/12 xl:w-1/5 bg-blue-100 fixed h-full overflow-auto ease-in-out transition-all duration-300 z-30",
+            class: _vm.isOpen ? "translate-x-0" : "translate-x-full"
+          },
+          [
+            _c(
+              "span",
+              {
+                on: {
+                  click: function($event) {
+                    _vm.isOpen = false
+                  }
+                }
+              },
+              [_vm._v("Home")]
+            ),
+            _vm._v(" "),
+            _c("span", { on: { click: _vm.editUser } }, [
+              _vm._v("Trending Globally")
+            ]),
+            _vm._v(" "),
+            _c("span", [_vm._v("Wishlist")]),
+            _vm._v(" "),
+            _c("span", [_vm._v("Contact")])
+          ]
+        )
+      ],
+      1
+    ),
+    _vm._v(" "),
     _c("div", { staticClass: "container mx-auto" }, [
       _c("div", { staticClass: "flex flex-row" }, [
         this.$store.state.auth
@@ -22926,30 +23144,7 @@ var render = function() {
                   ])
                 : _vm._e()
             ])
-          : _c(
-              "div",
-              { staticClass: "flex flex-row" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "text-right",
-                    attrs: { to: { name: "login" } }
-                  },
-                  [_vm._v("login")]
-                ),
-                _vm._v(" |\n                    "),
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "text-right",
-                    attrs: { to: { name: "register" } }
-                  },
-                  [_vm._v(" Registro")]
-                )
-              ],
-              1
-            )
+          : _vm._e()
       ])
     ])
   ])

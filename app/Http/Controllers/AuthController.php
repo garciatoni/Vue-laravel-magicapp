@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+// use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 // use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -51,5 +53,19 @@ class AuthController extends Controller
     {
         $request->user()->currentAccessToken()->delete();
         return response()->json(['msg' => 'Logout Successfull']);
+    }
+
+    public function edit(Request $request, $id)
+    {
+        $request->validate([
+            'name'                  => ['required'],
+            'password'              => ['required', 'min:8', 'confirmed'],
+            'password_confirmation' => ['required'],
+        ]);
+
+        $user = DB::table('users')->where('id', '=', $id)->get();
+        $user->name = $request->name;
+        $user->update();
+        return $user;
     }
 }
