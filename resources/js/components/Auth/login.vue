@@ -55,15 +55,10 @@ export default {
     methods: {
         login(){
             axios.post('api/login', this.formData).then((response) => {
-                localStorage.setItem('token', response.data);
-                window.axios.defaults.headers.common['Authorization'] = `Bearer ${response.data}`
-                axios.get('/api/user').then((res) => {
-                    this.$store.commit("SET_USER", res.data)
-                }).catch(() => {
-                    this.$store.commit("SET_USER", null)
-                })
+                this.$store.commit("login", response.data)
                 this.$router.push('/agarcia/LiberLogin/public/');
             }).catch((errors) => {
+                console.log(errors.response.data.errors);
                 this.errors = errors.response.data.errors
             })
         },

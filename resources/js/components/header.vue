@@ -1,12 +1,18 @@
 <template>
     <div>
-        <nav class="flex w-full items-center justify-between px-6 h-16 bg-white text-gray-700 border-b border-gray-200 z-10">
+        <nav class=" flex w-full items-center justify-between px-6 h-16 bg-white text-gray-700 border-b border-gray-200 z-10">
+            <router-link :to="{ name: 'home' }">
+                <div class="flex flex-row">
+                    <img src="https://dawjavi.insjoaquimmir.cat/agarcia/LiberLogin/resources/js/img/Liber.png" alt="Logo" class="h-10 w-10" />
+                    <p class="flex items-end pl-2">iber</p>
+                </div>
+            </router-link>
 
-            <img src="https://dawjavi.insjoaquimmir.cat/agarcia/LiberLogin/resources/js/img/Liber.png" alt="Logo" class="h-auto w-24" />
-
-
-            <div v-if="this.$store.state.auth" class="flex justify-end">
-                <button v-if="this.$store.state.user" class="mr-2 bg-blue-200" aria-label="Open Menu" @click="drawer">{{this.$store.state.user.name}}</button>
+            <div v-if="vuex.auth" class="flex justify-end">
+                <button v-if="vuex.user" class="flex flex-row" aria-label="Open Menu" @click="drawer">
+                    <p class="font-bold">{{vuex.user.name}}</p>
+                    <p>X</p>
+                </button>
             </div>
 
             <div v-else class="space-x-2 flex flex-row justify-end">
@@ -29,24 +35,35 @@
                 </div>
             </transition>
 
-            <aside class="transform top-0 right-0 w-3/4 sm:w-4/12 xl:w-1/5 bg-blue-100 fixed h-full overflow-auto ease-in-out transition-all duration-300 z-30" :class="isOpen ? 'translate-x-0' : 'translate-x-full'">
-                <span @click="isOpen = false">Home</span>
-                <span @click="editUser">Trending Globally</span>
-                <span>Wishlist</span>
-                <span>Contact</span>
-            </aside>
-        </nav>
+            <aside v-if="vuex.auth" class="border-2 border-opacity-50 border-light-blue-400 text-xl transform top-0 right-0 w-3/4 sm:w-5/12 xl:w-80 bg-gradient-to-t from-blue-200 via-blue-100 to-white fixed h-full overflow-auto ease-in-out transition-all duration-300 z-30" :class="isOpen ? 'translate-x-0' : 'translate-x-full'">
 
-        <div class="container mx-auto">
-            <div class="flex flex-row">
-                <div v-if="this.$store.state.auth" class="flex flex-row">
-                    <button @click.prevent="logout">Logout</button>
-                    <p v-if="this.$store.state.user" class="text-center">{{this.$store.state.user.name}}</p>
+                <div class="flex flex-col">
+                    <div class="px-3 pt-3">
+                        <div class="border-b-2 pb-3 border-black">
+                            <p>{{vuex.user.email}}</p>
+                            <div class="flex justify-between flex-row pt-2">
+                                <p class="">{{vuex.user.name}}</p>
+                                <button class="" @click="logout" >Logout</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="mt-3 border-gray-300 focus:outline-none mx-8 rounded-full p-3 font-bold border hover:border-black
+                    hover:bg-gray-300" @click="isOpen = false">
+                        Cerrar
+                    </button>
+
+                    <router-link :to="{ name: 'edicion' }">test</router-link>
+                        <button @click="UserEdition" class="mt-3 border-gray-300 focus:outline-none mx-8 rounded-full p-3  border hover:border-black
+                        hover:bg-gray-300">
+                            <span class="font-bold">Editar Perfil de Usuario</span>
+                        </button>
+                    <button>
+                        <span class="focus:border-0">Trending Globally</span>
+                    </button>
                 </div>
 
-            </div>
-        </div>
-
+            </aside>
+        </nav>
 	</div>
 </template>
 
@@ -55,13 +72,16 @@
 export default {
     name: 'headervue',
     components:{
-        // menuuser
+
     },
+
     data(){
+        // var store = this.$store;
+        // console.log(store.user)
         return{
             currentUser:{},
-            token: localStorage.getItem('token'),
-            isOpen: false
+            isOpen: false,
+            vuex: this.$store.state,
         }
     },
     watch: {
@@ -80,35 +100,26 @@ export default {
             this.isOpen = !this.isOpen;
         },
         logout(){
-            axios.post('api/logout').then((response) => {
+            axios.post('api/logout', ).then(() => {
+                console.log(localStorage.getItem('token'));
+                this.$store.commit("SET_USER", null, false)
                 localStorage.removeItem('token');
-                this.$store.commit("SET_USER", null)
-                this.$router.push('/agarcia/LiberLogin/public/login')
+                this.$router.push('/agarcia/LiberLogin/public/')
             }).catch((errors) =>{
                 console.log(errors)
-            })
+            });
+            this.isOpen = false;
         },
-        editUser(){
-            axios.post('api/editUser/' + this.$store.state.user.id, 'toni').then((respon) => {
-                console.log(respon.data[0])
-            })
-        }
+        UserEdition() {
+            this.$router.push('/agarcia/LiberLogin/public/edicion/');
+        },
     },
     mounted() {
         document.addEventListener("keydown", e => {
             if (e.keyCode == 27 && this.isOpen) this.isOpen = false;
         });
     },
-    created(){
-        if(!this.$store.state.auth && this.token != null){
-            window.axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
-            axios.get('/api/user').then((res) => {
-                this.$store.commit("SET_USER", res.data)
-            }).catch(() => {
-                this.$store.commit("SET_USER", null)
-            })
-        }
-    }
+
 }
 
 

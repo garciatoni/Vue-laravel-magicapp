@@ -26,6 +26,8 @@
         "vuex": "^3.6.2"
     },
     "dependencies": {
-        "tailwindcss": "^2.1.2"
+        "tailwindcss": "^2.1.2",
+        "vue-owl-carousel": "^2.0.3",
+        "vue-slick-carousel": "^1.0.6"
     }
 }

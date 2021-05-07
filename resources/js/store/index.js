@@ -8,12 +8,29 @@ const store = new Vuex.Store({
     state: {
         user: null,
         auth: false,
+        token: localStorage.getItem('token')
+
     },
     mutations: {
-        SET_USER(state, user) {
+        SET_USER(state, user, token) {
             state.user = user;
             state.auth = Boolean(user);
+            state.token = token;
         },
+
+        login(state, token) {
+            window.axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+            axios.get('/api/user').then((res) => {
+                let user = res.data;
+                state.user = user;
+                state.auth = Boolean(user);
+                state.token = token;
+                localStorage.setItem('token', token);
+            }).catch(() => {
+                console.log('fallo al logear');
+                // this.$store.commit("SET_USER", null, null)
+            })
+        }
     },
     actions: {
         // login({ commit }, { dispatch }, formData) {

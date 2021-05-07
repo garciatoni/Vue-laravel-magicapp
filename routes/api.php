@@ -31,4 +31,4 @@ Route::post('/libro/{id}', [BookController::class, 'show']);//RUTA PARA MOSTRAR 
 
 //Rutas privadas
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');//RUTA PARA HACER LOGOUT, REQUIERE ESTAR AUTENTICADO.
-Route::post('/editUser/{id}', [AuthController::class, 'edit']);//RUTA PARA EDITAR DATOS DE LA CUENTA.
+Route::post('/editUser/{id}', [AuthController::class, 'edit'])->middleware('auth:sanctum');//RUTA PARA EDITAR DATOS DE LA CUENTA.

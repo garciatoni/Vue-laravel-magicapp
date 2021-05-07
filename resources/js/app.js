@@ -13,16 +13,15 @@ Vue.component('star-rating', StarRating);
 
 
 //Componentes importados
-
 import app from './app.vue'
-import login from './components/Auth/login.vue'
-
-import register from './components/Auth/registrovue.vue'
-import noencontradavue from './components/noencontradavue.vue'
-// Vue.component('testvue', require('./components/vuetest.vue').default);  OTRA FORMA DE LLAMAR A LOS COMPONENTES
-
+// import login from './components/Auth/login.vue'
+// import register from './components/Auth/registrovue.vue'
+import noencontradavue from './components/404.vue'
 import home from './components/Home.vue';
 import book from './components/Book.vue';
+import edicion from './components/EditUser.vue'
+import auth from './components/AuthComponent.vue'
+// Vue.component('testvue', require('./components/vuetest.vue').default);  OTRA FORMA DE LLAMAR A LOS COMPONENTES
 
 
 // Rutas
@@ -31,7 +30,7 @@ const router = new VueRouter({
     routes: [{
             path: '/agarcia/LiberLogin/public/login',
             name: 'login',
-            component: login,
+            component: auth,
             meta: { guest: true }
         },
         {
@@ -40,17 +39,23 @@ const router = new VueRouter({
             component: book,
             props: true
         },
-        {
-            path: '/agarcia/LiberLogin/public/register',
-            name: 'register',
-            component: register,
-            meta: { guest: true }
-        },
+        // {
+        //     path: '/agarcia/LiberLogin/public/register',
+        //     name: 'register',
+        //     component: register,
+        //     meta: { guest: true }
+        // },
         {
             path: '/agarcia/LiberLogin/public/',
             name: 'home',
             component: home,
             // meta: { requiresAuth: true }
+        },
+        {
+            path: '/agarcia/LiberLogin/public/edicion',
+            name: 'edicion',
+            component: edicion,
+            meta: { requiresAuth: true }
         },
 
 
@@ -74,7 +79,7 @@ router.beforeEach((to, from, next) => {
         // if not, redirect to login page.
         if (!loggedIn()) {
             next({
-                path: 'agarcia/LiberLogin/public/login',
+                path: '/agarcia/LiberLogin/public/login',
                 query: { redirect: to.fullPath }
             })
         } else {
@@ -83,7 +88,7 @@ router.beforeEach((to, from, next) => {
     } else if (to.matched.some(record => record.meta.guest)) {
         if (loggedIn()) {
             next({
-                path: 'agarcia/LiberLogin/public/',
+                path: '/agarcia/LiberLogin/public',
                 query: { redirect: to.fullPath }
             })
         } else {

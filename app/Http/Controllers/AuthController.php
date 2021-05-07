@@ -27,7 +27,7 @@ class AuthController extends Controller
             'password'      => Hash::make($request->password),
         ]);
 
-        return response()->json(['msg' => 'Registered Successfully']);
+        return response()->json(['msg' => 'Registro satisfactorio.']);
     }
 
     public function login(Request $request)
@@ -42,7 +42,7 @@ class AuthController extends Controller
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
+                'email' => ['Estas credenciales no coinciden con nuestros registros.'],
             ]);
         }
 
@@ -59,13 +59,24 @@ class AuthController extends Controller
     {
         $request->validate([
             'name'                  => ['required'],
-            'password'              => ['required', 'min:8', 'confirmed'],
-            'password_confirmation' => ['required'],
+            'password'              => ['required', 'min:8'],
+            'newPassword'           =>['min:8'],
+            'password_confirmation' =>['min:8', 'same:newPassword']
         ]);
 
-        $user = DB::table('users')->where('id', '=', $id)->get();
-        $user->name = $request->name;
-        $user->update();
-        return $user;
+        $user = User::find($id);
+
+        if(Hash::check($request->password, $user->password)){
+            $user->name = $request->name;
+
+            if(isset($request->newPassword)){
+                $user->password = Hash::make($request->newPassword);
+            }
+            $user->save();
+            return 'Exito';
+        }else{
+            return $user;
+        }
+        // $user = DB::table('users')->where('id', '=', $id)->get();
     }
 }

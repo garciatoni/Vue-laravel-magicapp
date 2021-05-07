@@ -4,7 +4,7 @@
           <div :id="book.isbn">
             <h1>{{book.title}}</h1>
             <h2>{{book.author}}</h2>
-            <img v-bind:src="book.cover" :alt="book.title">
+            <img width="100" v-bind:src="book.cover" :alt="book.title">
             <a target="_blank" href="https://amzn.to/2RnKxOw">COMPRAR</a>
           </div>
       </div>

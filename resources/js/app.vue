@@ -1,10 +1,8 @@
 <template>
     <div>
-        <!-- Componente Header con los componentes:  -->
-        <headervue class="container mx-auto sticky top-0"></headervue>
-        <router-view class="container mx-auto"></router-view>
-
-
+        <!-- Componente Header -->
+        <headervue class="z-10 container mx-auto sticky top-0"></headervue>
+        <router-view class="z-0 container mx-auto"></router-view>
     </div>
 
 </template>
@@ -15,19 +13,18 @@ import headervue from './components/header.vue'
 
 export default {
     components: {
-        headervue
+        headervue,
+        token: localStorage.getItem('token'),
     },
     name: 'app',
-    data(){
-        return{
-
-        }
-    },
-
     mounted(){
-
+            if(!this.$store.state.auth && localStorage.getItem('token') != null){
+                this.$store.commit("login", this.$store.state.token)
+            }else if(localStorage.getItem('token') == null){
+                // console.log('ok')
+            }
+        }
     }
-}
 
 
 
