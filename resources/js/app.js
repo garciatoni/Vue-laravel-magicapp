@@ -21,6 +21,7 @@ import home from './components/Home.vue';
 import book from './components/Book.vue';
 import edicion from './components/EditUser.vue'
 import auth from './components/AuthComponent.vue'
+import wish from './components/Wish.vue'
 // Vue.component('testvue', require('./components/vuetest.vue').default);  OTRA FORMA DE LLAMAR A LOS COMPONENTES
 
 
@@ -38,6 +39,12 @@ const router = new VueRouter({
             name: 'book',
             component: book,
             props: true
+        },
+        {
+            path: '/agarcia/LiberLogin/public/wish',
+            name: 'wish',
+            component: wish,
+            meta: { requiresAuth: true }
         },
         // {
         //     path: '/agarcia/LiberLogin/public/register',

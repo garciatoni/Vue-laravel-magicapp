@@ -13,12 +13,12 @@
 
     <div class="container mx-auto" id="books_searched">
 
-        <carousel class="mt-4 z-0" v-if="books" :autoplay="true" :loop="true" :items=5 :nav="false" :autoplayTimeout="1000">
+        <!-- <carousel class="mt-4 z-0" :autoplay="true" :loop="true" :dots="false" :items=5 :nav="false" :autoplayTimeout="1000" :autoplayHoverPause="true">
             <img v-for="a of 6" :key="a" :id="a" :src="books[a-1].cover" @click="BookInformation(books[a-1].isbn)">
-        </carousel>
+        </carousel> -->
 
 
-        <ul class="grid grid-cols-2 lg:grid-cols-7 md:grid-cols-5 mt-3 gap-3">
+        <ul class="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-7 mt-3 gap-3">
             <li v-for="b in booksFilter" :key="b.isbn" :id="b.isbn" class="border">
                 <div @click="BookInformation(b.isbn)" class="">
                     <h1>{{ b.title }}</h1>
@@ -27,10 +27,11 @@
                         <img :src="b.cover"/>
                     </div>
 
-                    <!-- <star-rating v-model="b.rating" v-bind:rating="b.rating" v-bind:read-only="true" v-bind:show-rating="false"></star-rating> -->
+                <!-- <star-rating v-model="b.rating" v-bind:rating="b.rating" v-bind:read-only="true" v-bind:show-rating="false"></star-rating> -->
                 </div>
             </li>
         </ul>
+
     </div>
 
 </div>

@@ -2,23 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Deseado;
+
 use App\Models\Book;
 use App\Models\Comentario;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class BookController extends Controller
+use Illuminate\Http\Request;
+use LengthException;
+
+class DeseadoController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
-        return Book::all();
+        $books = DB::table('deseados')->where('id_user', '=', $id)->get();
+        $data['wish'] = $books;
+        // $lista = DB::table('books')->where('isbn', '=', $books->id_libro)->get();
+        $lista_libros = [];
+        foreach ($books as $b) {
+
+            $libro = DB::table('books')->where('isbn', '=', $b->id_libro)->get();
+            array_push($lista_libros, $libro);
+        }
+        $data['libros'] = $lista_libros;
+        return  $data;
     }
 
     /**
@@ -28,7 +41,6 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -37,12 +49,19 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function store(Request $request, $id)
     {
-        $data['comentarios'] = DB::table('comentarios')->where('id_libro', '=', $id)->get();
-        $data["book"] = DB::table('books')->where('isbn', '=', $id)->get();
-        // $data["id"] = $id;
-        return   $data;
+        $books = DB::table('deseados')->where('id_user', '=', $id)->where('id_libro', '=', $request->id_libro)->get();
+
+        if (sizeof($books) == 0) {
+            $libro = new Deseado;
+            $libro->id_user = $id;
+            $libro->id_libro = $request->id_libro;
+            $libro->save();
+            return $libro;
+        } else {
+            return 'ya esta';
+        }
     }
 
     /**
@@ -51,25 +70,9 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function store($id)
+    public function show($id)
     {
-    }
-
-    public function añadirComentario($id, Request $request)
-    {
-        $user = User::find($id);
-        $comentario = new Comentario;
-        $comentario->id_user = $id;
-        $comentario->name = $user->name;
-        $comentario->id_libro = $request->id_libro;
-        $comentario->texto_reseña = $request->texto_reseña;
-        $comentario->save();
-        // return $user->name;
-    }
-    public function getComentario($id)
-    {
-        $books = DB::table('comentarios')->where('id_libro', '=', $id)->get();
-        return $books;
+        //
     }
 
     /**
@@ -92,6 +95,7 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //
     }
 
     /**
@@ -100,8 +104,10 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+
+        $book = DB::table('deseados')->where('id_user', '=', $id)->where('id_libro', '=', $request->id)->delete();
+        return response()->noContent();
     }
 }

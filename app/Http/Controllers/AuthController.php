@@ -15,7 +15,7 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'name'                  => ['required'],
+            'name'                  => ['required', 'max:10'],
             'email'                 => ['required', 'email', 'unique:users'],
             'password'              => ['required', 'min:8', 'confirmed'],
             'password_confirmation' => ['required'],
@@ -58,23 +58,23 @@ class AuthController extends Controller
     public function edit(Request $request, $id)
     {
         $request->validate([
-            'name'                  => ['required'],
+            'name'                  => ['required', 'max:10'],
             'password'              => ['required', 'min:8'],
-            'newPassword'           =>['min:8'],
-            'password_confirmation' =>['min:8', 'same:newPassword']
+            'newPassword'           => ['min:8'],
+            'password_confirmation' => ['min:8', 'same:newPassword']
         ]);
 
         $user = User::find($id);
 
-        if(Hash::check($request->password, $user->password)){
+        if (Hash::check($request->password, $user->password)) {
             $user->name = $request->name;
 
-            if(isset($request->newPassword)){
+            if ($request->newPassword != 'NULL') {
                 $user->password = Hash::make($request->newPassword);
             }
             $user->save();
             return 'Exito';
-        }else{
+        } else {
             return $user;
         }
         // $user = DB::table('users')->where('id', '=', $id)->get();

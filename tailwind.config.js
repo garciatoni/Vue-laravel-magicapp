@@ -6,10 +6,12 @@ module.exports = {
             spacing: {
                 '80': '24rem',
             },
+
         },
     },
     variants: {
         extend: {},
     },
     plugins: [],
+
 }
