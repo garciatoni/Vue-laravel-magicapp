@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-red-500 h-52">
-      <p class="">FOOTER</p>
+  <div  class=" h-52">
+      <p class="text-white font-bold">FOOTER</p>
   </div>
 </template>
 
@@ -10,6 +10,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

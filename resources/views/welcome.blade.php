@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Liber</title>
-    <link rel="shortcut icon" type="image/png" href="../resources/js/img/Liber.png" />
+    <link rel="shortcut icon" type="image/png" href="../resources/js/img/Favicon.png" />
 
     <link href="css/app.css" rel="stylesheet">
     <link rel="carousel" href="https://unpkg.com/vue-slick-carousel">

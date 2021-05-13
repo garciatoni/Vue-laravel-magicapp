@@ -26,9 +26,23 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+
+        $libro = DB::table('books')->where('isbn', '=', $request->isbn)->get();
+        if (sizeof($libro) == 0) {
+            $book = new Book;
+            $book->isbn = $request->isbn;
+            $book->title = $request->title;
+            $book->author = $request->author;
+            $book->sinopsis = $request->sinopsis;
+            $book->cover = $request->cover;
+            $book->asin = $request->asin;
+            $book->link = $request->link;
+            $book->save();
+        } else {
+            return 'Ya esta esta en la base de datos';
+        }
     }
 
     /**

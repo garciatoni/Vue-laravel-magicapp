@@ -22,6 +22,15 @@ import book from './components/Book.vue';
 import edicion from './components/EditUser.vue'
 import auth from './components/AuthComponent.vue'
 import wish from './components/Wish.vue'
+
+//GENEROS COMPONENTS
+import generos from './views/Generos.vue'
+import aventura from './views/Aventura.vue'
+import romance from './views/Romance.vue'
+import fantasia from './views/Fantasia.vue'
+import terror from './views/Terror.vue'
+import cifi from './views/cifi.vue'
+
 // Vue.component('testvue', require('./components/vuetest.vue').default);  OTRA FORMA DE LLAMAR A LOS COMPONENTES
 
 
@@ -46,12 +55,36 @@ const router = new VueRouter({
             component: wish,
             meta: { requiresAuth: true }
         },
-        // {
-        //     path: '/agarcia/LiberLogin/public/register',
-        //     name: 'register',
-        //     component: register,
-        //     meta: { guest: true }
-        // },
+        {
+            path: '/agarcia/LiberLogin/public/Genero',
+            name: 'Genero',
+            component: generos,
+        },
+        {
+            path: '/agarcia/LiberLogin/public/Genero/Aventura',
+            name: 'Aventura',
+            component: aventura,
+        },
+        {
+            path: '/agarcia/LiberLogin/public/Genero/Romance',
+            name: 'Romance',
+            component: romance,
+        },
+        {
+            path: '/agarcia/LiberLogin/public/Genero/Fantasia',
+            name: 'Fantasia',
+            component: fantasia,
+        },
+        {
+            path: '/agarcia/LiberLogin/public/Genero/Terror',
+            name: 'Terror',
+            component: terror,
+        },
+        {
+            path: '/agarcia/LiberLogin/public/Genero/cifi',
+            name: 'cifi',
+            component: cifi,
+        },
         {
             path: '/agarcia/LiberLogin/public/',
             name: 'home',

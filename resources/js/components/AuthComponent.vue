@@ -1,9 +1,12 @@
 <template>
 
-    <div class="w-full md:w-11/12 lg:w-9/12 xl:w-8/12 sm:items-center sm:flex">
+    <div class="w-full md:w-11/12 lg:w-9/12 xl:w-8/12 sm:items-center sm:flex container mx-auto">
         <div class="flex flex-col sm:flex-row justify-center w-full sm:h-96">
-            <div class="hidden lg:flex lg:w-5/12    ">
-                <img class="h-full" src="https://besthqwallpapers.com/Uploads/7-4-2020/127856/thumb2-blue-black-wave-abstract-wave-background-creative-blue-black-background-waves-background-black-blue-background.jpg" alt="">
+            <div id="Marcobg" class="hidden lg:flex lg:w-5/12 flex flex-col items-center h-full">
+                <div class="justify-end flex my-10">
+                    <img src="https://dawjavi.insjoaquimmir.cat/agarcia/LiberLogin/resources/js/img/Logo.png" alt="Logo" class="hidden sm:flex h-16 w-44 sm:pl-4 py-1">
+                </div>
+                <p class="px-5 font-bold my-10 text-center">Unete a la web numero 1 en critica de literatura!</p>
             </div>
 
             <div class="flex flex-row sm:flex-col sm:border-r w-full sm:w-5/12 lg:w-4/12 divide-solid divide-x-2 sm:divide-y-2 sm:divide-x-0">
@@ -123,7 +126,6 @@ export default {
                 this.$store.commit("login", response.data)
                 this.$router.push('/agarcia/LiberLogin/public/');
             }).catch((errors) => {
-                console.log(errors.response.data.errors);
                 this.errorslogin = errors.response.data.errors
             })
         },
@@ -140,9 +142,6 @@ export default {
             console.log('hol<');
         },
         ventana(x){
-            // this.errorslogin = {};
-            // this.errorsregister = {};
-            // this.errorsemail = {};
             if(x == 1){
                 this.ventanaActiva = 1
                 this.errorsregister = {};
@@ -165,5 +164,8 @@ export default {
 </script>
 
 <style scoped>
-
+    #Marcobg{
+        background: rgb(0,100,237);
+        background: linear-gradient(340deg, rgba(0,100,237,1) 15%, rgba(118,172,245,1) 33%, rgba(127,177,246,1) 33%, rgba(192,217,250,1) 50%, rgba(222,235,252,1) 55%, rgba(233,242,253,1) 55%, rgba(244,248,254,1) 78%, rgba(255,255,255,1) 100%);
+    }
 </style>

@@ -1,16 +1,22 @@
 <template>
   <div class="">
-        <div :id="book.isbn">
-            <h1>{{book.title}}</h1>
+
+        <div :id="book.isbn" class=" flex flex-row">
+            <div class="w-full sm:w-4/12">
+                <img class="w-full" :src="book.cover" :alt="book.title">
+            </div>
+            <div>
+                <h1>{{book.title}}</h1>
+            </div>
+
+
             <h2>{{book.author}}</h2>
-
-
             <button v-if="vuex.auth" @click="SetFavorito">Añadir a favoritos.</button>
 
-
-            <img width="100" v-bind:src="book.cover" :alt="book.title">
             <a target="_blank" href="https://amzn.to/2RnKxOw">COMPRAR</a>
         </div>
+
+
 
         <div v-if="vuex.auth" id="Comentario">
             <form @submit.prevent="SendComentario">
@@ -82,9 +88,8 @@ export default {
         }).catch((errors) =>{
             console.log(errors)
         })
+    },
 
-
-    }
 };
 </script>
 
