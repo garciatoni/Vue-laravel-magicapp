@@ -18,6 +18,7 @@ const store = new Vuex.Store({
             state.token = token;
         },
 
+        //Mutación que verifica si el usuario esta conectado e inicializa el store de vuex.
         login(state, token) {
             window.axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
             axios.get('/api/user').then((res) => {

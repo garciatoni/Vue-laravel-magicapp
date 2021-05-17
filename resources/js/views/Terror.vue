@@ -28,18 +28,59 @@
             </div>
 
             <div class="sm:w-1/2 px-3 pt-7 sm:pt-0">
-                <div>
+                <div class="space-y-2">
                     <div>
                         <h2 class="text-4xl pb-7">Obras y Autores más famosos</h2>
                     </div>
-                    <div>
-                        
+                    <div class="bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center">
+                        <div class="p-2 sm:3/12">
+                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/81BnDHnF30L.jpg" alt="LibroPortada" @click="BookInformation(8467944595)" >
+                        </div>
+                        <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
+                            <a class="text-2xl" target="_blanck" href="https://amzn.to/2ROrrRZ">Dracula</a>
+                            <a class="text-lg hover:text-red-800" target="_blanck" href="https://www.amazon.es/Bram-Stoker/e/B000AQ3N1C?ref_=dbs_p_pbk_r00_abau_000000">(Bram Stoker)</a>  
+                            <p class="text-justify flex items-center justify-center">
+                                Drácula es una novela publicada en 1897 por el irlandés Bram Stoker, a raíz de la cual, su personaje antagonista, el conde Drácula, se volvió el arquetipo de vampiro occidental por antonomasia, llegando a ser considerado el vampiro más famoso.
+                            </p>
+                        </div>
                     </div>
-                    <p> 
-                    Drácula, Bram Stoker
-                    El Resplandor, Stephen King
-                    La Llamada de Cthulhu, de H. P. Lovecraft
-                    El Retrato de Dorian Grey, Oscar Wilde</p>
+
+                    <div class="bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center">
+                        <div class="p-2 sm:3/12">
+                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/51CvHSxXmnL._SX327_BO1,204,203,200_.jpg" alt="LibroPortada" @click="BookInformation(8490328722)" >
+                        </div>
+                        <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
+                            <a class="text-2xl" target="_blanck" href="https://amzn.to/3tKCtVB">El Resplandor</a>
+                            <a class="text-lg hover:text-red-800" target="_blanck" href="https://www.amazon.es/Stephen-King/e/B000AQ0842?ref_=dbs_p_ebk_r00_abau_000000">(Stephen King)</a>  
+                            <p class="text-justify flex items-center justify-center">
+                                Danny tenía cinco años, y a esa edad poco niños saben que los espejos invierten las imágenes y menos aún saben diferenciar entre realidad y fantasía. Pero Danny tenía pruebas de que sus fantasías relacionadas con el resplandor del espejo acabarían cumpliéndose: REDRUM... MURDER, asesinato.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center">
+                        <div class="p-2 sm:3/12">
+                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/710ZXn+Up2L.jpg" alt="LibroPortada" @click="BookInformation(8415618689)" >
+                        </div>
+                        <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
+                            <a class="text-2xl" target="_blanck" href="https://amzn.to/3eJdduN">La Llamada de Cthulhu</a>
+                            <a class="text-lg hover:text-red-800" target="_blanck" href="https://www.amazon.es/H.P.-Lovecraft/e/B000AQ40D2?ref_=dbs_p_pbk_r00_abau_000000">(H. P. Lovecraft)</a>  
+                            <p class="text-justify flex items-center justify-center">
+                                H. P. Lovecraft ha pasado a la historia de la literatura como uno de los grandes innovadores del relato fantástico y de terror del siglo XX. Niño prodigio empezó a leer y escribir su primer cuento a muy temprana edad. Ya en la adolescencia era de solitaria vida nocturna y vivió atormentado.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center">
+                        <div class="p-2 sm:3/12">
+                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/91KVu+3L8dL.jpg" alt="LibroPortada" @click="BookInformation(8467033932)" >
+                        </div>
+                        <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
+                            <a class="text-2xl" target="_blanck" href="https://amzn.to/3ybgnPq">El Retrato de Dorian Grey</a>
+                            <a class="text-lg hover:text-red-800" target="_blanck" href="https://www.amazon.es/Oscar-Wilde/e/B000AQ0DXI?ref_=dbs_p_pbk_r00_abau_000000  ">(Oscar Wilde)</a>  
+                            <p class="text-justify flex items-center justify-center">
+                               Cuando se publicó El retrato de Dorian Gray, la crítica moralizante acusó a su protagonista de ser una figura satánica, corrompida y corruptora, sin comprender que era el héroe de una novela que reflejaba la fatalidad de los románticos: Oscar Wilde (1854-1900) había querido hacer de la belleza un refinamiento de la inteligencia.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -55,6 +96,11 @@ export default {
             
         }
     },
+    methods: {
+        BookInformation(isbn) {
+            this.$router.push('/agarcia/LiberLogin/public/book/' + isbn);
+        },
+    }
 
 }
 

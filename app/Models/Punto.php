@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Book extends Model
+class Punto extends Model
 {
     use HasFactory;
 }
-//Modelo de la tabla books
+//Modelo de la tabla puntos

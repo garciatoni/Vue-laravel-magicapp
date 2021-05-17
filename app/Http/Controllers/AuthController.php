@@ -10,6 +10,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
+//CONTROLADOR DE AUTENTIFICACIÓN Y GESTIÓN DE USUARIO
+//SE USA LARAVEL SANCTUM PARA LA AUTENTICACIÓN, MÁS INFORMACIÓN EN: https://laravel.com/docs/8.x/sanctum
+
 class AuthController extends Controller
 {
     public function register(Request $request)
@@ -34,13 +37,13 @@ class AuthController extends Controller
     {
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required',
+            'contraseña' => 'required',
             'device_name' => 'required',
         ]);
 
         $user = User::where('email', $request->email)->first();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
+        if (!$user || !Hash::check($request->contraseña, $user->password)) {
             throw ValidationException::withMessages([
                 'email' => ['Estas credenciales no coinciden con nuestros registros.'],
             ]);
@@ -74,8 +77,6 @@ class AuthController extends Controller
             }
             $user->save();
             return 'Exito';
-        } else {
-            return $user;
         }
         // $user = DB::table('users')->where('id', '=', $id)->get();
     }

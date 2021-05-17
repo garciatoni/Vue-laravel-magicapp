@@ -9,3 +9,4 @@ class Deseado extends Model
 {
     use HasFactory;
 }
+//Modelo de la tabla books

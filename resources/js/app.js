@@ -6,16 +6,14 @@ window.Vue = require('vue').default;
 import VueRouter from 'vue-router';
 import store from './store/index.js'
 import StarRating from 'vue-star-rating';
-// import router from './routes/index.js'         ESTO ES PARA TRABAJAR CON LAS RUTAS DESDE OTRA CARPETA!
+import TailablePagination from 'tailable-pagination';
 
 Vue.use(VueRouter);
 Vue.component('star-rating', StarRating);
-
+Vue.use(TailablePagination);
 
 //Componentes importados
 import app from './app.vue'
-// import login from './components/Auth/login.vue'
-// import register from './components/Auth/registrovue.vue'
 import noencontradavue from './components/404.vue'
 import home from './components/Home.vue';
 import book from './components/Book.vue';
@@ -30,14 +28,15 @@ import romance from './views/Romance.vue'
 import fantasia from './views/Fantasia.vue'
 import terror from './views/Terror.vue'
 import cifi from './views/cifi.vue'
-
 // Vue.component('testvue', require('./components/vuetest.vue').default);  OTRA FORMA DE LLAMAR A LOS COMPONENTES
 
 
 // Rutas
 const router = new VueRouter({
     mode: 'history',
-    routes: [{
+    routes: [
+        //{guest: true} = Si esta logueado redirige al home
+        {
             path: '/agarcia/LiberLogin/public/login',
             name: 'login',
             component: auth,
@@ -49,6 +48,7 @@ const router = new VueRouter({
             component: book,
             props: true
         },
+        //{requiresAuth: true} = Si NO esta logueado redirige al home
         {
             path: '/agarcia/LiberLogin/public/wish',
             name: 'wish',
@@ -89,7 +89,6 @@ const router = new VueRouter({
             path: '/agarcia/LiberLogin/public/',
             name: 'home',
             component: home,
-            // meta: { requiresAuth: true }
         },
         {
             path: '/agarcia/LiberLogin/public/edicion',
@@ -99,8 +98,7 @@ const router = new VueRouter({
         },
 
 
-
-        //este siempre abajo del todo.
+        //Esta ruta siempre abajo del todo.
         {
             path: "/agarcia/LiberLogin/public/:catchAll(.*)",
             component: noencontradavue,
@@ -141,7 +139,7 @@ router.beforeEach((to, from, next) => {
 
 
 
-//app view
+//app view, el componente principal
 const appp = new Vue({
     el: '#app',
     components: { app },

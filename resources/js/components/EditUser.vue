@@ -1,39 +1,34 @@
 <template>
-<div>
-    <form @submit.prevent="EditUser" class="mt-8">
+<div class="pt-5">
+    <form @submit.prevent="EditUser">
         <div class="mx-auto max-w-lg " v-if="vuex.auth" >
+            <h2 class="flex justify-center pb-6 font-bold text-xl">Editar datos</h2>
             <div class="py-1">
-                <input v-model="formData.name" name="name" :placeholder="vuex.user.name" type="text" class="text-md block px-3 py-2  w-full bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
+                <input v-model="formData.name" name="name" aria-label="nombre" :placeholder="vuex.user.name" type="text" class="focus:placeholder-gray-300 shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4">
                 <p class="text-red-500" v-text="errors.name"></p>
-
             </div>
             <div class="py-1">
-                <input v-model="vuex.user.email" placeholder="Email" disabled class="text-md block px-3 py-2 w-full border-2 border-gray-300 bg-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none disabled:opacity-50 ">
-                <!-- cursor-not-allowed -->
-
-                <p class="text-red-500" v-text="errors.email"></p>
+                <input v-model="vuex.user.email" placeholder="Email" disabled class="focus:placeholder-gray-300 shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4">
             </div>
             <div class="py-1">
-                <input  v-model="formData.password" placeholder="Contraseña" type="password" class="text-md block px-3 py-2 w-full bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
+                <input  v-model="formData.password" aria-label="contraseña" placeholder="Contraseña" type="password" class="focus:placeholder-gray-300 shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4">
                 <p class="text-red-500" v-text="errors.password"></p>
             </div>
             <div class="py-1">
-                <input  v-model="formData.newPassword" placeholder="Nueva contraseña (Campo opcional)" type="password" class="text-md block px-3 py-2 w-full bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
-                <p class="text-red-500" v-text="errors.password"></p>
+                <input  v-model="formData.newPassword" placeholder="Nueva contraseña" aria-label="nueva contraseña" type="password" class="focus:placeholder-gray-300 shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4">
+                <p class="text-red-500" v-text="errors.newPassword"></p>
             </div>
             <div class="py-1">
-                <input v-model="formData.password_confirmation" placeholder="Confirmar nueva contraseña (Campo opcional)" type="password" class="text-md block px-3 py-2 w-full bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
-                <p class="text-red-500" v-text="errors.password_confirm"></p>
+                <input v-model="formData.password_confirmation" placeholder="Confirmar nueva contraseña" aria-label="Confirmar nueva contraseña" type="password" class="focus:placeholder-gray-300 shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4">
+                <p class="text-red-500" v-text="errors.password_confirmation"></p>
             </div>
             <!-- <input type="text" class="hidden" :value="this.$store.state.user.name"> -->
-            <button class="mt-3 text-lg font-semibold bg-gray-800 w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:text-black hover:bg-white">
+            <button class="hover:bg-blue-400 shadow-md border border-blue-400 bg-blue-200 focus:outline-none block w-full py-2 px-4">
                 Editar
             </button>
         </div>
     </form>
-
 </div>
-
 </template>
 
 <script>
@@ -42,34 +37,32 @@ axios.defaults.baseURL = '/agarcia/LiberLogin/public';
 export default {
 
     data(){
-
         return{
+            //Data del formulario
             formData: {
                 'name': '',
                 'password': '',
                 'newPassword': '',
                 'password_confirmation': ''
             },
+            //Errores del formulario
             errors:{},
             vuex: this.$store.state,
         }
     },
 
     methods: {
-
+        //Metodo para cambiar los datos del usuario.
         EditUser(){
             let vuestore = this.$store.state
             console.log(vuestore.user.id)
             axios.post('api/editUser/' + vuestore.user.id, this.formData).then((response) =>{
-                console.log(response.data);
                 this.$store.commit("login", localStorage.getItem('token'))
             }).catch((errors) =>{
-                console.log(errors)
+                this.errors = errors.response.data.errors
             })
         }
     },
-
-
 }
 
 </script>

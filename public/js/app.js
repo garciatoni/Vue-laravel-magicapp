@@ -3830,33 +3830,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     if (!this.$store.state.auth && localStorage.getItem('token') != null) {
       this.$store.commit("login", this.$store.state.token);
-    } else if (localStorage.getItem('token') == null) {// console.log('ok')
-    }
-
-    var test = {
-      "bestsellers": [{
-        "title": "El Humor De Mi Vida",
-        "asin": "8491396209",
-        "link": "https://www.amazon.es/El-Humor-Vida-Paz-Padilla/dp/8491396209/ref=zg_mw_books_1?_encoding=UTF8&psc=1&refRID=EZ70KCXWC30319DW2N4N",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/61kesI-1wdL._AC_UL200_SR200,200_.jpg"
-      }, {
-        "title": "El mundo de la Antigüedad tardía: De Marco Aurelio a Mahoma (Clásicos Radicales)",
-        "asin": "843062340X",
-        "link": "https://www.amazon.es/El-mundo-Antig%C3%BCedad-tard%C3%ADa-Radicales/dp/843062340X/ref=zg_mw_books_2?_encoding=UTF8&psc=1&refRID=EZ70KCXWC30319DW2N4N",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/81EIENUzjpL._AC_UL200_SR200,200_.jpg"
-      }, {
-        "title": "Cuentos molones para educar en positivo (Emociones, valores y hábitos)",
-        "asin": "8448857747",
-        "link": "https://www.amazon.es/Cuentos-molones-positivo-Emociones-valores/dp/8448857747/ref=zg_mw_books_3?_encoding=UTF8&psc=1&refRID=EZ70KCXWC30319DW2N4N",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/61sAg3WDE7S._AC_UL200_SR200,200_.jpg"
-      }, {
-        "title": "El arte de engañar al karma (SUMA)",
-        "asin": "8491291938",
-        "link": "https://www.amazon.es/El-arte-enga%C3%B1ar-karma-SUMA/dp/8491291938/ref=zg_mw_books_4?_encoding=UTF8&psc=1&refRID=EZ70KCXWC30319DW2N4N",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/91tsnPGROUL._AC_UL200_SR200,200_.jpg"
-      }]
-    };
-    console.log(test.bestsellers);
+    } else if (localStorage.getItem('token') == null) {}
   }
 });
 
@@ -3979,15 +3953,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.withCredentials) = true;
 (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.baseURL) = '/agarcia/LiberLogin/public';
@@ -3997,7 +3962,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       formDataLogin: {
         email: '',
-        password: '',
+        contraseña: '',
         device_name: 'browser'
       },
       errorslogin: {},
@@ -4009,7 +3974,7 @@ __webpack_require__.r(__webpack_exports__);
       },
       errorsregister: {},
       formDataEmail: {
-        'email': ''
+        'email': 'toni@gmail.com'
       },
       errorsemail: {},
       ventanaActiva: 1
@@ -4033,14 +3998,13 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/register', this.formDataRegister).then(function (response) {
         _this2.formDataRegister.name = _this2.formDataRegister.email = _this2.formDataRegister.password = _this2.formDataRegister.password_confirmation = '';
         _this2.errorsregister = {};
-
-        _this2.$router.push('/agarcia/LiberLogin/public/login');
+        _this2.ventanaActiva = 1;
       })["catch"](function (errors) {
         _this2.errorsregister = errors.response.data.errors;
       });
     },
-    RecuperarContraseña: function RecuperarContraseña() {
-      console.log('hol<');
+    recuperar: function recuperar() {
+      console.log('hola');
     },
     ventana: function ventana(x) {
       if (x == 1) {
@@ -4114,13 +4078,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['isbn'],
+  components: {
+    StarRating: (vue_star_rating__WEBPACK_IMPORTED_MODULE_0___default())
+  },
   data: function data() {
     return {
       vuex: this.$store.state,
-      rating: 0,
+      rating: {
+        'puntos': 0,
+        'id_libro': ''
+      },
       book: {},
       comentarios: {},
       formData: {
@@ -4129,7 +4124,8 @@ __webpack_require__.r(__webpack_exports__);
       },
       id_libro: {
         'id_libro': ''
-      }
+      },
+      puntuacion: 0
     };
   },
   methods: {
@@ -4146,6 +4142,22 @@ __webpack_require__.r(__webpack_exports__);
       });
       this.formData.texto_reseña = "";
     },
+    setRating: function setRating(rating) {
+      var _this2 = this;
+
+      var vuestore = this.$store.state;
+      this.rating.puntos = rating;
+      axios.post('api/SetPuntos/' + vuestore.user.id, this.rating).then(function (response) {
+        _this2.puntuacion = response.data.media;
+
+        if (response.data.existe != undefined) {
+          _this2.puntuacion = response.data.existe;
+          _this2.rating.puntos = _this2.puntuacion;
+        }
+      })["catch"](function (errors) {
+        console.log(errors);
+      });
+    },
     SetFavorito: function SetFavorito() {
       var vuestore = this.$store.state;
       axios.post('api/SetWish/' + vuestore.user.id, this.id_libro).then(function (response) {
@@ -4154,13 +4166,26 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this2 = this;
+    var _this3 = this;
 
-    axios.post('api/libro/' + this.$route.params.isbn).then(function (response) {
-      _this2.book = response.data.book[0];
-      _this2.comentarios = response.data.comentarios;
-      _this2.formData.id_libro = response.data.book[0].isbn;
-      _this2.id_libro.id_libro = response.data.book[0].isbn;
+    window.axios.defaults.headers.common['Authorization'] = "Bearer ".concat(this.$store.state.token);
+    axios.get('/api/user').then(function (res) {
+      var userId = res.data.id;
+      var request = {
+        'id_libro': _this3.$route.params.isbn
+      };
+      axios.post('api/GetPuntos/' + userId, request).then(function (response) {
+        if (response.data != undefined) {
+          _this3.rating.puntos = response.data;
+          _this3.puntuacion = response.data;
+        }
+      });
+    }), axios.post('api/libro/' + this.$route.params.isbn).then(function (response) {
+      _this3.book = response.data.book[0];
+      _this3.comentarios = response.data.comentarios;
+      _this3.formData.id_libro = response.data.book[0].isbn;
+      _this3.id_libro.id_libro = response.data.book[0].isbn;
+      _this3.rating.id_libro = response.data.book[0].isbn;
     })["catch"](function (errors) {
       console.log(errors);
     });
@@ -4215,38 +4240,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.baseURL) = '/agarcia/LiberLogin/public';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      //Data del formulario
       formData: {
         'name': '',
         'password': '',
         'newPassword': '',
         'password_confirmation': ''
       },
+      //Errores del formulario
       errors: {},
       vuex: this.$store.state
     };
   },
   methods: {
+    //Metodo para cambiar los datos del usuario.
     EditUser: function EditUser() {
       var _this = this;
 
       var vuestore = this.$store.state;
       console.log(vuestore.user.id);
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('api/editUser/' + vuestore.user.id, this.formData).then(function (response) {
-        console.log(response.data);
-
         _this.$store.commit("login", localStorage.getItem('token'));
       })["catch"](function (errors) {
-        console.log(errors);
+        _this.errors = errors.response.data.errors;
       });
     }
   }
@@ -4313,6 +4334,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -4325,27 +4352,26 @@ __webpack_require__.r(__webpack_exports__);
     return {
       preSearch: "",
       postSearch: "",
-      books: []
+      books: {}
     };
   },
   computed: {
-    destacadosLength: function destacadosLength() {
-      return parseInt(this.books.length, 10);
-    },
+    // destacadosLength: function(){
+    //     return parseInt(this.books.length, 10);
+    // },
     booksFilter: function booksFilter() {
       var search = this.postSearch.toLowerCase();
-      return this.books.filter(function (b) {
+      return this.books.data.filter(function (b) {
         return b.title.toLowerCase().includes(search);
-      } //   b.author.toLowerCase().includes(search)
+      } //b.author.toLowerCase().includes(search)
       );
     }
   },
   mounted: function mounted() {
-    var _this = this;
-
-    axios.get("api/books").then(function (response) {
-      _this.books = response.data;
-    });
+    this.getResults(); // axios.get("api/books").then((response) => {
+    //   this.books = response.data;
+    //   console.log(this.books)
+    // });
   },
   methods: {
     SearchBooks: function SearchBooks() {
@@ -4353,6 +4379,14 @@ __webpack_require__.r(__webpack_exports__);
     },
     BookInformation: function BookInformation(isbn) {
       this.$router.push('/agarcia/LiberLogin/public/book/' + isbn);
+    },
+    getResults: function getResults() {
+      var _this = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get('/api/books?page=' + page).then(function (response) {
+        _this.books = response.data;
+      });
     }
   }
 });
@@ -4376,6 +4410,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
 
 /***/ }),
@@ -4391,6 +4438,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vue_avatar_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-avatar-component */ "./node_modules/vue-avatar-component/Avatar.vue");
 /* provided dependency */ var process = __webpack_require__(/*! process/browser */ "./node_modules/process/browser.js");
 //
 //
@@ -4476,13 +4524,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-// import menuuser from './SideMenu.vue'
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'headervue',
-  components: {},
+  components: {
+    Avatar: vue_avatar_component__WEBPACK_IMPORTED_MODULE_0__.default
+  },
   data: function data() {
-    // var store = this.$store;
-    // console.log(store.user)
     return {
       currentUser: {},
       isOpen: false,
@@ -4545,6 +4617,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4641,10 +4737,84 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Aventura',
   data: function data() {
     return {};
+  },
+  methods: {
+    BookInformation: function BookInformation(isbn) {
+      this.$router.push('/agarcia/LiberLogin/public/book/' + isbn);
+    }
   }
 });
 
@@ -4682,10 +4852,83 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Fantasia',
   data: function data() {
     return {};
+  },
+  methods: {
+    BookInformation: function BookInformation(isbn) {
+      this.$router.push('/agarcia/LiberLogin/public/book/' + isbn);
+    }
   }
 });
 
@@ -4745,10 +4988,84 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Romance',
   data: function data() {
     return {};
+  },
+  methods: {
+    BookInformation: function BookInformation(isbn) {
+      this.$router.push('/agarcia/LiberLogin/public/book/' + isbn);
+    }
   }
 });
 
@@ -4814,10 +5131,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Terror',
   data: function data() {
     return {};
+  },
+  methods: {
+    BookInformation: function BookInformation(isbn) {
+      this.$router.push('/agarcia/LiberLogin/public/book/' + isbn);
+    }
   }
 });
 
@@ -4852,10 +5215,85 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'cifi',
   data: function data() {
     return {};
+  },
+  methods: {
+    BookInformation: function BookInformation(isbn) {
+      this.$router.push('/agarcia/LiberLogin/public/book/' + isbn);
+    }
   }
 });
 
@@ -4869,23 +5307,25 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _store_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./store/index.js */ "./resources/js/store/index.js");
 /* harmony import */ var vue_star_rating__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-star-rating */ "./node_modules/vue-star-rating/dist/VueStarRating.common.js");
 /* harmony import */ var vue_star_rating__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_star_rating__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _app_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app.vue */ "./resources/js/app.vue");
-/* harmony import */ var _components_404_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/404.vue */ "./resources/js/components/404.vue");
-/* harmony import */ var _components_Home_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Home.vue */ "./resources/js/components/Home.vue");
-/* harmony import */ var _components_Book_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Book.vue */ "./resources/js/components/Book.vue");
-/* harmony import */ var _components_EditUser_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/EditUser.vue */ "./resources/js/components/EditUser.vue");
-/* harmony import */ var _components_AuthComponent_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/AuthComponent.vue */ "./resources/js/components/AuthComponent.vue");
-/* harmony import */ var _components_Wish_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Wish.vue */ "./resources/js/components/Wish.vue");
-/* harmony import */ var _views_Generos_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./views/Generos.vue */ "./resources/js/views/Generos.vue");
-/* harmony import */ var _views_Aventura_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./views/Aventura.vue */ "./resources/js/views/Aventura.vue");
-/* harmony import */ var _views_Romance_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./views/Romance.vue */ "./resources/js/views/Romance.vue");
-/* harmony import */ var _views_Fantasia_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./views/Fantasia.vue */ "./resources/js/views/Fantasia.vue");
-/* harmony import */ var _views_Terror_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./views/Terror.vue */ "./resources/js/views/Terror.vue");
-/* harmony import */ var _views_cifi_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./views/cifi.vue */ "./resources/js/views/cifi.vue");
+/* harmony import */ var tailable_pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tailable-pagination */ "./node_modules/tailable-pagination/dist/tailable-pagination.common.js");
+/* harmony import */ var tailable_pagination__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(tailable_pagination__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _app_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app.vue */ "./resources/js/app.vue");
+/* harmony import */ var _components_404_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/404.vue */ "./resources/js/components/404.vue");
+/* harmony import */ var _components_Home_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Home.vue */ "./resources/js/components/Home.vue");
+/* harmony import */ var _components_Book_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Book.vue */ "./resources/js/components/Book.vue");
+/* harmony import */ var _components_EditUser_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/EditUser.vue */ "./resources/js/components/EditUser.vue");
+/* harmony import */ var _components_AuthComponent_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/AuthComponent.vue */ "./resources/js/components/AuthComponent.vue");
+/* harmony import */ var _components_Wish_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Wish.vue */ "./resources/js/components/Wish.vue");
+/* harmony import */ var _views_Generos_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./views/Generos.vue */ "./resources/js/views/Generos.vue");
+/* harmony import */ var _views_Aventura_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./views/Aventura.vue */ "./resources/js/views/Aventura.vue");
+/* harmony import */ var _views_Romance_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./views/Romance.vue */ "./resources/js/views/Romance.vue");
+/* harmony import */ var _views_Fantasia_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./views/Fantasia.vue */ "./resources/js/views/Fantasia.vue");
+/* harmony import */ var _views_Terror_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./views/Terror.vue */ "./resources/js/views/Terror.vue");
+/* harmony import */ var _views_cifi_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./views/cifi.vue */ "./resources/js/views/cifi.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
@@ -4893,13 +5333,12 @@ __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js").default;
 
 
- // import router from './routes/index.js'         ESTO ES PARA TRABAJAR CON LAS RUTAS DESDE OTRA CARPETA!
 
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_2__.default);
-Vue.component('star-rating', (vue_star_rating__WEBPACK_IMPORTED_MODULE_1___default())); //Componentes importados
 
- // import login from './components/Auth/login.vue'
-// import register from './components/Auth/registrovue.vue'
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_3__.default);
+Vue.component('star-rating', (vue_star_rating__WEBPACK_IMPORTED_MODULE_1___default()));
+Vue.use((tailable_pagination__WEBPACK_IMPORTED_MODULE_2___default())); //Componentes importados
+
 
 
 
@@ -4916,67 +5355,68 @@ Vue.component('star-rating', (vue_star_rating__WEBPACK_IMPORTED_MODULE_1___defau
  // Vue.component('testvue', require('./components/vuetest.vue').default);  OTRA FORMA DE LLAMAR A LOS COMPONENTES
 // Rutas
 
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__.default({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_3__.default({
   mode: 'history',
-  routes: [{
+  routes: [//{guest: true} = Si esta logueado redirige al home
+  {
     path: '/agarcia/LiberLogin/public/login',
     name: 'login',
-    component: _components_AuthComponent_vue__WEBPACK_IMPORTED_MODULE_8__.default,
+    component: _components_AuthComponent_vue__WEBPACK_IMPORTED_MODULE_9__.default,
     meta: {
       guest: true
     }
   }, {
     path: '/agarcia/LiberLogin/public/book/:isbn',
     name: 'book',
-    component: _components_Book_vue__WEBPACK_IMPORTED_MODULE_6__.default,
+    component: _components_Book_vue__WEBPACK_IMPORTED_MODULE_7__.default,
     props: true
-  }, {
+  }, //{requiresAuth: true} = Si NO esta logueado redirige al home
+  {
     path: '/agarcia/LiberLogin/public/wish',
     name: 'wish',
-    component: _components_Wish_vue__WEBPACK_IMPORTED_MODULE_9__.default,
+    component: _components_Wish_vue__WEBPACK_IMPORTED_MODULE_10__.default,
     meta: {
       requiresAuth: true
     }
   }, {
     path: '/agarcia/LiberLogin/public/Genero',
     name: 'Genero',
-    component: _views_Generos_vue__WEBPACK_IMPORTED_MODULE_10__.default
+    component: _views_Generos_vue__WEBPACK_IMPORTED_MODULE_11__.default
   }, {
     path: '/agarcia/LiberLogin/public/Genero/Aventura',
     name: 'Aventura',
-    component: _views_Aventura_vue__WEBPACK_IMPORTED_MODULE_11__.default
+    component: _views_Aventura_vue__WEBPACK_IMPORTED_MODULE_12__.default
   }, {
     path: '/agarcia/LiberLogin/public/Genero/Romance',
     name: 'Romance',
-    component: _views_Romance_vue__WEBPACK_IMPORTED_MODULE_12__.default
+    component: _views_Romance_vue__WEBPACK_IMPORTED_MODULE_13__.default
   }, {
     path: '/agarcia/LiberLogin/public/Genero/Fantasia',
     name: 'Fantasia',
-    component: _views_Fantasia_vue__WEBPACK_IMPORTED_MODULE_13__.default
+    component: _views_Fantasia_vue__WEBPACK_IMPORTED_MODULE_14__.default
   }, {
     path: '/agarcia/LiberLogin/public/Genero/Terror',
     name: 'Terror',
-    component: _views_Terror_vue__WEBPACK_IMPORTED_MODULE_14__.default
+    component: _views_Terror_vue__WEBPACK_IMPORTED_MODULE_15__.default
   }, {
     path: '/agarcia/LiberLogin/public/Genero/cifi',
     name: 'cifi',
-    component: _views_cifi_vue__WEBPACK_IMPORTED_MODULE_15__.default
+    component: _views_cifi_vue__WEBPACK_IMPORTED_MODULE_16__.default
   }, {
     path: '/agarcia/LiberLogin/public/',
     name: 'home',
-    component: _components_Home_vue__WEBPACK_IMPORTED_MODULE_5__.default // meta: { requiresAuth: true }
-
+    component: _components_Home_vue__WEBPACK_IMPORTED_MODULE_6__.default
   }, {
     path: '/agarcia/LiberLogin/public/edicion',
     name: 'edicion',
-    component: _components_EditUser_vue__WEBPACK_IMPORTED_MODULE_7__.default,
+    component: _components_EditUser_vue__WEBPACK_IMPORTED_MODULE_8__.default,
     meta: {
       requiresAuth: true
     }
-  }, //este siempre abajo del todo.
+  }, //Esta ruta siempre abajo del todo.
   {
     path: "/agarcia/LiberLogin/public/:catchAll(.*)",
-    component: _components_404_vue__WEBPACK_IMPORTED_MODULE_4__.default
+    component: _components_404_vue__WEBPACK_IMPORTED_MODULE_5__.default
   }]
 }); //Rutas privadas.
 
@@ -5016,12 +5456,12 @@ router.beforeEach(function (to, from, next) {
   } else {
     next(); // make sure to always call next()!
   }
-}); //app view
+}); //app view, el componente principal
 
 var appp = new Vue({
   el: '#app',
   components: {
-    app: _app_vue__WEBPACK_IMPORTED_MODULE_3__.default
+    app: _app_vue__WEBPACK_IMPORTED_MODULE_4__.default
   },
   router: router,
   store: _store_index_js__WEBPACK_IMPORTED_MODULE_0__.default
@@ -5103,6 +5543,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__.default.Store({
       state.auth = Boolean(user);
       state.token = token;
     },
+    //Mutación que verifica si el usuario esta conectado e inicializa el store de vuex.
     login: function login(state, token) {
       window.axios.defaults.headers.common['Authorization'] = "Bearer ".concat(token);
       axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/user').then(function (res) {
@@ -5129,6 +5570,30 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__.default.Store({
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/vue-avatar-component/Avatar.vue?vue&type=style&index=0&id=4ffd1741&scoped=true&lang=css&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/vue-avatar-component/Avatar.vue?vue&type=style&index=0&id=4ffd1741&scoped=true&lang=css& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".avatar[data-v-4ffd1741] {\n  display: inline-block;\n  background-color: black;\n  color: white;\n  width: 48px;\n  height: 48px;\n  font-size: 12px;\n  border-radius: 50%;\n  background-size: cover;\n  background-position: center;\n  background-repeat: no-repeat;\n  background-image: none;\n}\n.avatar table[data-v-4ffd1741] {\n  width: 100%;\n  height: 100%;\n  margin: 0;\n  padding: 0;\n}\n.avatar table td[data-v-4ffd1741] {\n  text-align: center;\n  vertical-align: middle;\n}\n.avatar img[data-v-4ffd1741] {\n  width: 100%;\n  overflow: hidden;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/app.vue?vue&type=style&index=0&lang=css&":
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/app.vue?vue&type=style&index=0&lang=css& ***!
@@ -5146,7 +5611,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "#Content{\n  min-height: calc(100vh - 13em - 4em);\n}\n#contentbg{\n  /* background: rgb(0,100,237);\n        background: linear-gradient(340deg, rgba(0,100,237,1) 15%, rgba(118,172,245,1) 33%, rgba(127,177,246,1) 33%, rgba(192,217,250,1) 50%, rgba(222,235,252,1) 55%, rgba(233,242,253,1) 55%, rgba(244,248,254,1) 78%, rgba(255,255,255,1) 100%); */\n  background: rgb(0,106,255);\n  background: linear-gradient(340deg, rgba(0,106,255,1) 0%, rgba(94,161,255,1) 16%, rgba(116,174,255,1) 17%, rgba(150,195,255,1) 33%, rgba(150,195,255,1) 33%, rgba(164,203,255,1) 34%, rgba(213,231,255,1) 47%, rgba(219,234,255,1) 47%, rgba(235,243,255,1) 55%, rgba(236,243,255,1) 55%, rgba(244,248,254,1) 78%, rgba(255,255,255,1) 100%);\n}\n#Footer{\n  background: rgb(0,100,237);\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "#Content{\n  min-height: calc(100vh - 13em - 4em);\n}\n#contentbg{\n  background: rgb(0,106,255);\n  background: linear-gradient(340deg, rgba(0,106,255,1) 0%, rgba(94,161,255,1) 16%, rgba(116,174,255,1) 17%, rgba(150,195,255,1) 33%, rgba(150,195,255,1) 33%, rgba(164,203,255,1) 34%, rgba(213,231,255,1) 47%, rgba(219,234,255,1) 47%, rgba(235,243,255,1) 55%, rgba(236,243,255,1) 55%, rgba(244,248,254,1) 78%, rgba(255,255,255,1) 100%);\n}\n::-webkit-scrollbar {\n  width: 8px;\n  background: rgba(255, 255, 255, 0);\n}\n::-webkit-scrollbar-track{\n  background: rgba(255, 255, 255, 0);\n}\n::-webkit-scrollbar-thumb {\n  border-radius: 10px;\n  background: rgba(0, 99, 237, 0.301);\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -5177,6 +5642,30 @@ ___CSS_LOADER_EXPORT___.push([module.id, "#Marcobg[data-v-b0e5954c]{\n  backgrou
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Book.vue?vue&type=style&index=0&id=1b1c1554&scoped=true&lang=css&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Book.vue?vue&type=style&index=0&id=1b1c1554&scoped=true&lang=css& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "#amazonButton[data-v-1b1c1554]{\n  background: rgb(255,158,0);\n  background: linear-gradient(0deg, rgba(255,158,0,1) 21%, rgba(247,255,79,1) 100%);\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Home.vue?vue&type=style&index=0&lang=css&":
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Home.vue?vue&type=style&index=0&lang=css& ***!
@@ -5194,7 +5683,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "@media (max-width: 640px) and (min-width: 0px){\n#titulo{\n    display: -webkit-box;\n    -webkit-line-clamp: 2;\n    -webkit-box-orient: vertical;\n    overflow: hidden;\n}\n}\n#titulo{\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n}\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "@media (max-width: 640px) and (min-width: 0px){\n#titulo{\n    display: -webkit-box;\n    -webkit-line-clamp: 2;\n    -webkit-box-orient: vertical;\n    overflow: hidden;\n}\n}\n#titulo{\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n}\n#icono{\n  color: rgb(192, 240, 255);\n}\n#amazonButton{\n  background: rgb(255,158,0);\n  background: linear-gradient(0deg, rgba(255,158,0,1) 21%, rgba(247,255,79,1) 100%);\n}\n.mb3{\n  display: none;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -5218,7 +5707,31 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "#icono[data-v-bb639ff6]{\n  color: rgb(192, 240, 255);\n}\n.tooltip[data-v-bb639ff6]{\n  visibility: hidden;\n  position: absolute;\n  cursor: default;\n}\n.has-tooltip:hover .tooltip[data-v-bb639ff6] {\n  visibility: visible;\n  z-index: 100;\n  left: 75px;\n}\naside[data-v-bb639ff6]{\n  background: rgb(0,100,237);\n  background: linear-gradient(340deg, rgba(0,100,237,1) 15%, rgba(118,172,245,1) 33%, rgba(127,177,246,1) 33%, rgba(192,217,250,1) 50%, rgba(222,235,252,1) 55%, rgba(233,242,253,1) 55%, rgba(244,248,254,1) 78%, rgba(255,255,255,1) 100%);\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".tooltip[data-v-bb639ff6]{\n  visibility: hidden;\n  position: absolute;\n  cursor: default;\n}\n.has-tooltip:hover .tooltip[data-v-bb639ff6] {\n  visibility: visible;\n  z-index: 100;\n  left: 75px;\n}\naside[data-v-bb639ff6]{\n  background: rgb(0,100,237);\n  background: linear-gradient(340deg, rgba(0,100,237,1) 15%, rgba(118,172,245,1) 33%, rgba(127,177,246,1) 33%, rgba(192,217,250,1) 50%, rgba(222,235,252,1) 55%, rgba(233,242,253,1) 55%, rgba(244,248,254,1) 78%, rgba(255,255,255,1) 100%);\n}\n\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Wish.vue?vue&type=style&index=0&id=69d87c12&scoped=true&lang=css&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Wish.vue?vue&type=style&index=0&id=69d87c12&scoped=true&lang=css& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".tooltip[data-v-69d87c12]{\n  visibility: hidden;\n  position: absolute;\n  cursor: default;\n}\n.has-tooltip:hover .tooltip[data-v-69d87c12] {\n  visibility: visible;\n  z-index: 100;\n  left: 75px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -22720,6 +23233,5095 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/tailable-pagination/dist/tailable-pagination.common.js":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/tailable-pagination/dist/tailable-pagination.common.js ***!
+  \*****************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports =
+    /******/
+    (function(modules) { // webpackBootstrap
+        /******/ // The module cache
+        /******/
+        var installedModules = {};
+        /******/
+        /******/ // The require function
+        /******/
+        function __nested_webpack_require_247__(moduleId) {
+            /******/
+            /******/ // Check if module is in cache
+            /******/
+            if (installedModules[moduleId]) {
+                /******/
+                return installedModules[moduleId].exports;
+                /******/
+            }
+            /******/ // Create a new module (and put it into the cache)
+            /******/
+            var module = installedModules[moduleId] = {
+                /******/
+                i: moduleId,
+                /******/
+                l: false,
+                /******/
+                exports: {}
+                /******/
+            };
+            /******/
+            /******/ // Execute the module function
+            /******/
+            modules[moduleId].call(module.exports, module, module.exports, __nested_webpack_require_247__);
+            /******/
+            /******/ // Flag the module as loaded
+            /******/
+            module.l = true;
+            /******/
+            /******/ // Return the exports of the module
+            /******/
+            return module.exports;
+            /******/
+        }
+        /******/
+        /******/
+        /******/ // expose the modules object (__webpack_modules__)
+        /******/
+        __nested_webpack_require_247__.m = modules;
+        /******/
+        /******/ // expose the module cache
+        /******/
+        __nested_webpack_require_247__.c = installedModules;
+        /******/
+        /******/ // define getter function for harmony exports
+        /******/
+        __nested_webpack_require_247__.d = function(exports, name, getter) {
+            /******/
+            if (!__nested_webpack_require_247__.o(exports, name)) {
+                /******/
+                Object.defineProperty(exports, name, { enumerable: true, get: getter });
+                /******/
+            }
+            /******/
+        };
+        /******/
+        /******/ // define __esModule on exports
+        /******/
+        __nested_webpack_require_247__.r = function(exports) {
+            /******/
+            if (typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+                /******/
+                Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+                /******/
+            }
+            /******/
+            Object.defineProperty(exports, '__esModule', { value: true });
+            /******/
+        };
+        /******/
+        /******/ // create a fake namespace object
+        /******/ // mode & 1: value is a module id, require it
+        /******/ // mode & 2: merge all properties of value into the ns
+        /******/ // mode & 4: return value when already ns object
+        /******/ // mode & 8|1: behave like require
+        /******/
+        __nested_webpack_require_247__.t = function(value, mode) {
+            /******/
+            if (mode & 1) value = __nested_webpack_require_247__(value);
+            /******/
+            if (mode & 8) return value;
+            /******/
+            if ((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+            /******/
+            var ns = Object.create(null);
+            /******/
+            __nested_webpack_require_247__.r(ns);
+            /******/
+            Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+            /******/
+            if (mode & 2 && typeof value != 'string')
+                for (var key in value) __nested_webpack_require_247__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+            /******/
+            return ns;
+            /******/
+        };
+        /******/
+        /******/ // getDefaultExport function for compatibility with non-harmony modules
+        /******/
+        __nested_webpack_require_247__.n = function(module) {
+            /******/
+            var getter = module && module.__esModule ?
+                /******/
+                function getDefault() { return module['default']; } :
+                /******/
+                function getModuleExports() { return module; };
+            /******/
+            __nested_webpack_require_247__.d(getter, 'a', getter);
+            /******/
+            return getter;
+            /******/
+        };
+        /******/
+        /******/ // Object.prototype.hasOwnProperty.call
+        /******/
+        __nested_webpack_require_247__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+        /******/
+        /******/ // __webpack_public_path__
+        /******/
+        __nested_webpack_require_247__.p = "";
+        /******/
+        /******/
+        /******/ // Load entry module and return exports
+        /******/
+        return __nested_webpack_require_247__(__nested_webpack_require_247__.s = "fb15");
+        /******/
+    })
+    /************************************************************************/
+    /******/
+    ({
+
+        /***/
+        "00ee":
+        /***/
+            (function(module, exports, __nested_webpack_require_5068__) {
+
+            var wellKnownSymbol = __nested_webpack_require_5068__("b622");
+
+            var TO_STRING_TAG = wellKnownSymbol('toStringTag');
+            var test = {};
+
+            test[TO_STRING_TAG] = 'z';
+
+            module.exports = String(test) === '[object z]';
+
+
+            /***/
+        }),
+
+        /***/
+        "0366":
+        /***/
+            (function(module, exports, __nested_webpack_require_5464__) {
+
+            var aFunction = __nested_webpack_require_5464__("1c0b");
+
+            // optional / simple context binding
+            module.exports = function(fn, that, length) {
+                aFunction(fn);
+                if (that === undefined) return fn;
+                switch (length) {
+                    case 0:
+                        return function() {
+                            return fn.call(that);
+                        };
+                    case 1:
+                        return function(a) {
+                            return fn.call(that, a);
+                        };
+                    case 2:
+                        return function(a, b) {
+                            return fn.call(that, a, b);
+                        };
+                    case 3:
+                        return function(a, b, c) {
+                            return fn.call(that, a, b, c);
+                        };
+                }
+                return function( /* ...args */ ) {
+                    return fn.apply(that, arguments);
+                };
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "0538":
+        /***/
+            (function(module, exports, __nested_webpack_require_6668__) {
+
+            "use strict";
+
+            var aFunction = __nested_webpack_require_6668__("1c0b");
+            var isObject = __nested_webpack_require_6668__("861d");
+
+            var slice = [].slice;
+            var factories = {};
+
+            var construct = function(C, argsLength, args) {
+                if (!(argsLength in factories)) {
+                    for (var list = [], i = 0; i < argsLength; i++) list[i] = 'a[' + i + ']';
+                    // eslint-disable-next-line no-new-func
+                    factories[argsLength] = Function('C,a', 'return new C(' + list.join(',') + ')');
+                }
+                return factories[argsLength](C, args);
+            };
+
+            // `Function.prototype.bind` method implementation
+            // https://tc39.github.io/ecma262/#sec-function.prototype.bind
+            module.exports = Function.bind || function bind(that /* , ...args */ ) {
+                var fn = aFunction(this);
+                var partArgs = slice.call(arguments, 1);
+                var boundFunction = function bound( /* args... */ ) {
+                    var args = partArgs.concat(slice.call(arguments));
+                    return this instanceof boundFunction ? construct(fn, args.length, args) : fn.apply(that, args);
+                };
+                if (isObject(fn.prototype)) boundFunction.prototype = fn.prototype;
+                return boundFunction;
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "057f":
+        /***/
+            (function(module, exports, __nested_webpack_require_8205__) {
+
+            var toIndexedObject = __nested_webpack_require_8205__("fc6a");
+            var nativeGetOwnPropertyNames = __nested_webpack_require_8205__("241c").f;
+
+            var toString = {}.toString;
+
+            var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames ?
+                Object.getOwnPropertyNames(window) : [];
+
+            var getWindowNames = function(it) {
+                try {
+                    return nativeGetOwnPropertyNames(it);
+                } catch (error) {
+                    return windowNames.slice();
+                }
+            };
+
+            // fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
+            module.exports.f = function getOwnPropertyNames(it) {
+                return windowNames && toString.call(it) == '[object Window]' ?
+                    getWindowNames(it) :
+                    nativeGetOwnPropertyNames(toIndexedObject(it));
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "06cf":
+        /***/
+            (function(module, exports, __nested_webpack_require_9283__) {
+
+            var DESCRIPTORS = __nested_webpack_require_9283__("83ab");
+            var propertyIsEnumerableModule = __nested_webpack_require_9283__("d1e7");
+            var createPropertyDescriptor = __nested_webpack_require_9283__("5c6c");
+            var toIndexedObject = __nested_webpack_require_9283__("fc6a");
+            var toPrimitive = __nested_webpack_require_9283__("c04e");
+            var has = __nested_webpack_require_9283__("5135");
+            var IE8_DOM_DEFINE = __nested_webpack_require_9283__("0cfb");
+
+            var nativeGetOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+
+            // `Object.getOwnPropertyDescriptor` method
+            // https://tc39.github.io/ecma262/#sec-object.getownpropertydescriptor
+            exports.f = DESCRIPTORS ? nativeGetOwnPropertyDescriptor : function getOwnPropertyDescriptor(O, P) {
+                O = toIndexedObject(O);
+                P = toPrimitive(P, true);
+                if (IE8_DOM_DEFINE) try {
+                    return nativeGetOwnPropertyDescriptor(O, P);
+                } catch (error) { /* empty */ }
+                if (has(O, P)) return createPropertyDescriptor(!propertyIsEnumerableModule.f.call(O, P), O[P]);
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "0cfb":
+        /***/
+            (function(module, exports, __nested_webpack_require_10563__) {
+
+            var DESCRIPTORS = __nested_webpack_require_10563__("83ab");
+            var fails = __nested_webpack_require_10563__("d039");
+            var createElement = __nested_webpack_require_10563__("cc12");
+
+            // Thank's IE8 for his funny defineProperty
+            module.exports = !DESCRIPTORS && !fails(function() {
+                return Object.defineProperty(createElement('div'), 'a', {
+                    get: function() { return 7; }
+                }).a != 7;
+            });
+
+
+            /***/
+        }),
+
+        /***/
+        "17c2":
+        /***/
+            (function(module, exports, __nested_webpack_require_11165__) {
+
+            "use strict";
+
+            var $forEach = __nested_webpack_require_11165__("b727").forEach;
+            var arrayMethodIsStrict = __nested_webpack_require_11165__("a640");
+            var arrayMethodUsesToLength = __nested_webpack_require_11165__("ae40");
+
+            var STRICT_METHOD = arrayMethodIsStrict('forEach');
+            var USES_TO_LENGTH = arrayMethodUsesToLength('forEach');
+
+            // `Array.prototype.forEach` method implementation
+            // https://tc39.github.io/ecma262/#sec-array.prototype.foreach
+            module.exports = (!STRICT_METHOD || !USES_TO_LENGTH) ? function forEach(callbackfn /* , thisArg */ ) {
+                return $forEach(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+            } : [].forEach;
+
+
+            /***/
+        }),
+
+        /***/
+        "1be4":
+        /***/
+            (function(module, exports, __nested_webpack_require_12050__) {
+
+            var getBuiltIn = __nested_webpack_require_12050__("d066");
+
+            module.exports = getBuiltIn('document', 'documentElement');
+
+
+            /***/
+        }),
+
+        /***/
+        "1c0b":
+        /***/
+            (function(module, exports) {
+
+            module.exports = function(it) {
+                if (typeof it != 'function') {
+                    throw TypeError(String(it) + ' is not a function');
+                }
+                return it;
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "1d80":
+        /***/
+            (function(module, exports) {
+
+            // `RequireObjectCoercible` abstract operation
+            // https://tc39.github.io/ecma262/#sec-requireobjectcoercible
+            module.exports = function(it) {
+                if (it == undefined) throw TypeError("Can't call method on " + it);
+                return it;
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "23cb":
+        /***/
+            (function(module, exports, __nested_webpack_require_13085__) {
+
+            var toInteger = __nested_webpack_require_13085__("a691");
+
+            var max = Math.max;
+            var min = Math.min;
+
+            // Helper for a popular repeating case of the spec:
+            // Let integer be ? ToInteger(index).
+            // If integer < 0, let result be max((length + integer), 0); else let result be min(integer, length).
+            module.exports = function(index, length) {
+                var integer = toInteger(index);
+                return integer < 0 ? max(integer + length, 0) : min(integer, length);
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "23e7":
+        /***/
+            (function(module, exports, __nested_webpack_require_13780__) {
+
+            var global = __nested_webpack_require_13780__("da84");
+            var getOwnPropertyDescriptor = __nested_webpack_require_13780__("06cf").f;
+            var createNonEnumerableProperty = __nested_webpack_require_13780__("9112");
+            var redefine = __nested_webpack_require_13780__("6eeb");
+            var setGlobal = __nested_webpack_require_13780__("ce4e");
+            var copyConstructorProperties = __nested_webpack_require_13780__("e893");
+            var isForced = __nested_webpack_require_13780__("94ca");
+
+            /*
+              options.target      - name of the target object
+              options.global      - target is the global object
+              options.stat        - export as static methods of target
+              options.proto       - export as prototype methods of target
+              options.real        - real prototype method for the `pure` version
+              options.forced      - export even if the native feature is available
+              options.bind        - bind methods to the target, required for the `pure` version
+              options.wrap        - wrap constructors to preventing global pollution, required for the `pure` version
+              options.unsafe      - use the simple assignment of property instead of delete + defineProperty
+              options.sham        - add a flag to not completely full polyfills
+              options.enumerable  - export as enumerable property
+              options.noTargetGet - prevent calling a getter on target
+            */
+            module.exports = function(options, source) {
+                var TARGET = options.target;
+                var GLOBAL = options.global;
+                var STATIC = options.stat;
+                var FORCED, target, key, targetProperty, sourceProperty, descriptor;
+                if (GLOBAL) {
+                    target = global;
+                } else if (STATIC) {
+                    target = global[TARGET] || setGlobal(TARGET, {});
+                } else {
+                    target = (global[TARGET] || {}).prototype;
+                }
+                if (target)
+                    for (key in source) {
+                        sourceProperty = source[key];
+                        if (options.noTargetGet) {
+                            descriptor = getOwnPropertyDescriptor(target, key);
+                            targetProperty = descriptor && descriptor.value;
+                        } else targetProperty = target[key];
+                        FORCED = isForced(GLOBAL ? key : TARGET + (STATIC ? '.' : '#') + key, options.forced);
+                        // contained in target
+                        if (!FORCED && targetProperty !== undefined) {
+                            if (typeof sourceProperty === typeof targetProperty) continue;
+                            copyConstructorProperties(sourceProperty, targetProperty);
+                        }
+                        // add a flag to not completely full polyfills
+                        if (options.sham || (targetProperty && targetProperty.sham)) {
+                            createNonEnumerableProperty(sourceProperty, 'sham', true);
+                        }
+                        // extend global
+                        redefine(target, key, sourceProperty, options);
+                    }
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "241c":
+        /***/
+            (function(module, exports, __nested_webpack_require_17173__) {
+
+            var internalObjectKeys = __nested_webpack_require_17173__("ca84");
+            var enumBugKeys = __nested_webpack_require_17173__("7839");
+
+            var hiddenKeys = enumBugKeys.concat('length', 'prototype');
+
+            // `Object.getOwnPropertyNames` method
+            // https://tc39.github.io/ecma262/#sec-object.getownpropertynames
+            exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
+                return internalObjectKeys(O, hiddenKeys);
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "25f0":
+        /***/
+            (function(module, exports, __nested_webpack_require_17802__) {
+
+            "use strict";
+
+            var redefine = __nested_webpack_require_17802__("6eeb");
+            var anObject = __nested_webpack_require_17802__("825a");
+            var fails = __nested_webpack_require_17802__("d039");
+            var flags = __nested_webpack_require_17802__("ad6d");
+
+            var TO_STRING = 'toString';
+            var RegExpPrototype = RegExp.prototype;
+            var nativeToString = RegExpPrototype[TO_STRING];
+
+            var NOT_GENERIC = fails(function() { return nativeToString.call({ source: 'a', flags: 'b' }) != '/a/b'; });
+            // FF44- RegExp#toString has a wrong name
+            var INCORRECT_NAME = nativeToString.name != TO_STRING;
+
+            // `RegExp.prototype.toString` method
+            // https://tc39.github.io/ecma262/#sec-regexp.prototype.tostring
+            if (NOT_GENERIC || INCORRECT_NAME) {
+                redefine(RegExp.prototype, TO_STRING, function toString() {
+                    var R = anObject(this);
+                    var p = String(R.source);
+                    var rf = R.flags;
+                    var f = String(rf === undefined && R instanceof RegExp && !('flags' in RegExpPrototype) ? flags.call(R) : rf);
+                    return '/' + p + '/' + f;
+                }, { unsafe: true });
+            }
+
+
+            /***/
+        }),
+
+        /***/
+        "3410":
+        /***/
+            (function(module, exports, __nested_webpack_require_19193__) {
+
+            var $ = __nested_webpack_require_19193__("23e7");
+            var fails = __nested_webpack_require_19193__("d039");
+            var toObject = __nested_webpack_require_19193__("7b0b");
+            var nativeGetPrototypeOf = __nested_webpack_require_19193__("e163");
+            var CORRECT_PROTOTYPE_GETTER = __nested_webpack_require_19193__("e177");
+
+            var FAILS_ON_PRIMITIVES = fails(function() { nativeGetPrototypeOf(1); });
+
+            // `Object.getPrototypeOf` method
+            // https://tc39.github.io/ecma262/#sec-object.getprototypeof
+            $({ target: 'Object', stat: true, forced: FAILS_ON_PRIMITIVES, sham: !CORRECT_PROTOTYPE_GETTER }, {
+                getPrototypeOf: function getPrototypeOf(it) {
+                    return nativeGetPrototypeOf(toObject(it));
+                }
+            });
+
+
+
+            /***/
+        }),
+
+        /***/
+        "37e8":
+        /***/
+            (function(module, exports, __nested_webpack_require_20110__) {
+
+            var DESCRIPTORS = __nested_webpack_require_20110__("83ab");
+            var definePropertyModule = __nested_webpack_require_20110__("9bf2");
+            var anObject = __nested_webpack_require_20110__("825a");
+            var objectKeys = __nested_webpack_require_20110__("df75");
+
+            // `Object.defineProperties` method
+            // https://tc39.github.io/ecma262/#sec-object.defineproperties
+            module.exports = DESCRIPTORS ? Object.defineProperties : function defineProperties(O, Properties) {
+                anObject(O);
+                var keys = objectKeys(Properties);
+                var length = keys.length;
+                var index = 0;
+                var key;
+                while (length > index) definePropertyModule.f(O, key = keys[index++], Properties[key]);
+                return O;
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "3bbe":
+        /***/
+            (function(module, exports, __nested_webpack_require_21050__) {
+
+            var isObject = __nested_webpack_require_21050__("861d");
+
+            module.exports = function(it) {
+                if (!isObject(it) && it !== null) {
+                    throw TypeError("Can't set " + String(it) + ' as a prototype');
+                }
+                return it;
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "3ca3":
+        /***/
+            (function(module, exports, __nested_webpack_require_21487__) {
+
+            "use strict";
+
+            var charAt = __nested_webpack_require_21487__("6547").charAt;
+            var InternalStateModule = __nested_webpack_require_21487__("69f3");
+            var defineIterator = __nested_webpack_require_21487__("7dd0");
+
+            var STRING_ITERATOR = 'String Iterator';
+            var setInternalState = InternalStateModule.set;
+            var getInternalState = InternalStateModule.getterFor(STRING_ITERATOR);
+
+            // `String.prototype[@@iterator]` method
+            // https://tc39.github.io/ecma262/#sec-string.prototype-@@iterator
+            defineIterator(String, 'String', function(iterated) {
+                setInternalState(this, {
+                    type: STRING_ITERATOR,
+                    string: String(iterated),
+                    index: 0
+                });
+                // `%StringIteratorPrototype%.next` method
+                // https://tc39.github.io/ecma262/#sec-%stringiteratorprototype%.next
+            }, function next() {
+                var state = getInternalState(this);
+                var string = state.string;
+                var index = state.index;
+                var point;
+                if (index >= string.length) return { value: undefined, done: true };
+                point = charAt(string, index);
+                state.index += point.length;
+                return { value: point, done: false };
+            });
+
+
+            /***/
+        }),
+
+        /***/
+        "3f8c":
+        /***/
+            (function(module, exports) {
+
+            module.exports = {};
+
+
+            /***/
+        }),
+
+        /***/
+        "4160":
+        /***/
+            (function(module, exports, __nested_webpack_require_23159__) {
+
+            "use strict";
+
+            var $ = __nested_webpack_require_23159__("23e7");
+            var forEach = __nested_webpack_require_23159__("17c2");
+
+            // `Array.prototype.forEach` method
+            // https://tc39.github.io/ecma262/#sec-array.prototype.foreach
+            $({ target: 'Array', proto: true, forced: [].forEach != forEach }, {
+                forEach: forEach
+            });
+
+
+            /***/
+        }),
+
+        /***/
+        "428f":
+        /***/
+            (function(module, exports, __nested_webpack_require_23684__) {
+
+            var global = __nested_webpack_require_23684__("da84");
+
+            module.exports = global;
+
+
+            /***/
+        }),
+
+        /***/
+        "44ad":
+        /***/
+            (function(module, exports, __nested_webpack_require_23916__) {
+
+            var fails = __nested_webpack_require_23916__("d039");
+            var classof = __nested_webpack_require_23916__("c6b6");
+
+            var split = ''.split;
+
+            // fallback for non-array-like ES3 and non-enumerable old V8 strings
+            module.exports = fails(function() {
+                // throws an error in rhino, see https://github.com/mozilla/rhino/issues/346
+                // eslint-disable-next-line no-prototype-builtins
+                return !Object('z').propertyIsEnumerable(0);
+            }) ? function(it) {
+                return classof(it) == 'String' ? split.call(it, '') : Object(it);
+            } : Object;
+
+
+            /***/
+        }),
+
+        /***/
+        "44d2":
+        /***/
+            (function(module, exports, __nested_webpack_require_24687__) {
+
+            var wellKnownSymbol = __nested_webpack_require_24687__("b622");
+            var create = __nested_webpack_require_24687__("7c73");
+            var definePropertyModule = __nested_webpack_require_24687__("9bf2");
+
+            var UNSCOPABLES = wellKnownSymbol('unscopables');
+            var ArrayPrototype = Array.prototype;
+
+            // Array.prototype[@@unscopables]
+            // https://tc39.github.io/ecma262/#sec-array.prototype-@@unscopables
+            if (ArrayPrototype[UNSCOPABLES] == undefined) {
+                definePropertyModule.f(ArrayPrototype, UNSCOPABLES, {
+                    configurable: true,
+                    value: create(null)
+                });
+            }
+
+            // add a key to Array.prototype[@@unscopables]
+            module.exports = function(key) {
+                ArrayPrototype[UNSCOPABLES][key] = true;
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "4930":
+        /***/
+            (function(module, exports, __nested_webpack_require_25674__) {
+
+            var fails = __nested_webpack_require_25674__("d039");
+
+            module.exports = !!Object.getOwnPropertySymbols && !fails(function() {
+                // Chrome 38 Symbol has incorrect toString conversion
+                // eslint-disable-next-line no-undef
+                return !String(Symbol());
+            });
+
+
+            /***/
+        }),
+
+        /***/
+        "4ae1":
+        /***/
+            (function(module, exports, __nested_webpack_require_26132__) {
+
+            var $ = __nested_webpack_require_26132__("23e7");
+            var getBuiltIn = __nested_webpack_require_26132__("d066");
+            var aFunction = __nested_webpack_require_26132__("1c0b");
+            var anObject = __nested_webpack_require_26132__("825a");
+            var isObject = __nested_webpack_require_26132__("861d");
+            var create = __nested_webpack_require_26132__("7c73");
+            var bind = __nested_webpack_require_26132__("0538");
+            var fails = __nested_webpack_require_26132__("d039");
+
+            var nativeConstruct = getBuiltIn('Reflect', 'construct');
+
+            // `Reflect.construct` method
+            // https://tc39.github.io/ecma262/#sec-reflect.construct
+            // MS Edge supports only 2 arguments and argumentsList argument is optional
+            // FF Nightly sets third argument as `new.target`, but does not create `this` from it
+            var NEW_TARGET_BUG = fails(function() {
+                function F() { /* empty */ }
+                return !(nativeConstruct(function() { /* empty */ }, [], F) instanceof F);
+            });
+            var ARGS_BUG = !fails(function() {
+                nativeConstruct(function() { /* empty */ });
+            });
+            var FORCED = NEW_TARGET_BUG || ARGS_BUG;
+
+            $({ target: 'Reflect', stat: true, forced: FORCED, sham: FORCED }, {
+                construct: function construct(Target, args /* , newTarget */ ) {
+                    aFunction(Target);
+                    anObject(args);
+                    var newTarget = arguments.length < 3 ? Target : aFunction(arguments[2]);
+                    if (ARGS_BUG && !NEW_TARGET_BUG) return nativeConstruct(Target, args, newTarget);
+                    if (Target == newTarget) {
+                        // w/o altered newTarget, optimization for 0-4 arguments
+                        switch (args.length) {
+                            case 0:
+                                return new Target();
+                            case 1:
+                                return new Target(args[0]);
+                            case 2:
+                                return new Target(args[0], args[1]);
+                            case 3:
+                                return new Target(args[0], args[1], args[2]);
+                            case 4:
+                                return new Target(args[0], args[1], args[2], args[3]);
+                        }
+                        // w/o altered newTarget, lot of arguments case
+                        var $args = [null];
+                        $args.push.apply($args, args);
+                        return new(bind.apply(Target, $args))();
+                    }
+                    // with altered newTarget, not support built-in constructors
+                    var proto = newTarget.prototype;
+                    var instance = create(isObject(proto) ? proto : Object.prototype);
+                    var result = Function.apply.call(Target, instance, args);
+                    return isObject(result) ? result : instance;
+                }
+            });
+
+
+            /***/
+        }),
+
+        /***/
+        "4d64":
+        /***/
+            (function(module, exports, __nested_webpack_require_29274__) {
+
+            var toIndexedObject = __nested_webpack_require_29274__("fc6a");
+            var toLength = __nested_webpack_require_29274__("50c4");
+            var toAbsoluteIndex = __nested_webpack_require_29274__("23cb");
+
+            // `Array.prototype.{ indexOf, includes }` methods implementation
+            var createMethod = function(IS_INCLUDES) {
+                return function($this, el, fromIndex) {
+                    var O = toIndexedObject($this);
+                    var length = toLength(O.length);
+                    var index = toAbsoluteIndex(fromIndex, length);
+                    var value;
+                    // Array#includes uses SameValueZero equality algorithm
+                    // eslint-disable-next-line no-self-compare
+                    if (IS_INCLUDES && el != el)
+                        while (length > index) {
+                            value = O[index++];
+                            // eslint-disable-next-line no-self-compare
+                            if (value != value) return true;
+                            // Array#indexOf ignores holes, Array#includes - not
+                        } else
+                            for (; length > index; index++) {
+                                if ((IS_INCLUDES || index in O) && O[index] === el) return IS_INCLUDES || index || 0;
+                            }
+                    return !IS_INCLUDES && -1;
+                };
+            };
+
+            module.exports = {
+                // `Array.prototype.includes` method
+                // https://tc39.github.io/ecma262/#sec-array.prototype.includes
+                includes: createMethod(true),
+                // `Array.prototype.indexOf` method
+                // https://tc39.github.io/ecma262/#sec-array.prototype.indexof
+                indexOf: createMethod(false)
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "50c4":
+        /***/
+            (function(module, exports, __nested_webpack_require_31214__) {
+
+            var toInteger = __nested_webpack_require_31214__("a691");
+
+            var min = Math.min;
+
+            // `ToLength` abstract operation
+            // https://tc39.github.io/ecma262/#sec-tolength
+            module.exports = function(argument) {
+                return argument > 0 ? min(toInteger(argument), 0x1FFFFFFFFFFFFF) : 0; // 2 ** 53 - 1 == 9007199254740991
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "5135":
+        /***/
+            (function(module, exports) {
+
+            var hasOwnProperty = {}.hasOwnProperty;
+
+            module.exports = function(it, key) {
+                return hasOwnProperty.call(it, key);
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "5692":
+        /***/
+            (function(module, exports, __nested_webpack_require_32025__) {
+
+            var IS_PURE = __nested_webpack_require_32025__("c430");
+            var store = __nested_webpack_require_32025__("c6cd");
+
+            (module.exports = function(key, value) {
+                return store[key] || (store[key] = value !== undefined ? value : {});
+            })('versions', []).push({
+                version: '3.6.5',
+                mode: IS_PURE ? 'pure' : 'global',
+                copyright: '© 2020 Denis Pushkarev (zloirock.ru)'
+            });
+
+
+            /***/
+        }),
+
+        /***/
+        "56ef":
+        /***/
+            (function(module, exports, __nested_webpack_require_32618__) {
+
+            var getBuiltIn = __nested_webpack_require_32618__("d066");
+            var getOwnPropertyNamesModule = __nested_webpack_require_32618__("241c");
+            var getOwnPropertySymbolsModule = __nested_webpack_require_32618__("7418");
+            var anObject = __nested_webpack_require_32618__("825a");
+
+            // all object keys, includes non-enumerable and symbols
+            module.exports = getBuiltIn('Reflect', 'ownKeys') || function ownKeys(it) {
+                var keys = getOwnPropertyNamesModule.f(anObject(it));
+                var getOwnPropertySymbols = getOwnPropertySymbolsModule.f;
+                return getOwnPropertySymbols ? keys.concat(getOwnPropertySymbols(it)) : keys;
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "5899":
+        /***/
+            (function(module, exports) {
+
+            // a string of all valid unicode whitespaces
+            // eslint-disable-next-line max-len
+            module.exports = '\u0009\u000A\u000B\u000C\u000D\u0020\u00A0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF';
+
+
+            /***/
+        }),
+
+        /***/
+        "58a8":
+        /***/
+            (function(module, exports, __nested_webpack_require_33838__) {
+
+            var requireObjectCoercible = __nested_webpack_require_33838__("1d80");
+            var whitespaces = __nested_webpack_require_33838__("5899");
+
+            var whitespace = '[' + whitespaces + ']';
+            var ltrim = RegExp('^' + whitespace + whitespace + '*');
+            var rtrim = RegExp(whitespace + whitespace + '*$');
+
+            // `String.prototype.{ trim, trimStart, trimEnd, trimLeft, trimRight }` methods implementation
+            var createMethod = function(TYPE) {
+                return function($this) {
+                    var string = String(requireObjectCoercible($this));
+                    if (TYPE & 1) string = string.replace(ltrim, '');
+                    if (TYPE & 2) string = string.replace(rtrim, '');
+                    return string;
+                };
+            };
+
+            module.exports = {
+                // `String.prototype.{ trimLeft, trimStart }` methods
+                // https://tc39.github.io/ecma262/#sec-string.prototype.trimstart
+                start: createMethod(1),
+                // `String.prototype.{ trimRight, trimEnd }` methods
+                // https://tc39.github.io/ecma262/#sec-string.prototype.trimend
+                end: createMethod(2),
+                // `String.prototype.trim` method
+                // https://tc39.github.io/ecma262/#sec-string.prototype.trim
+                trim: createMethod(3)
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "5c6c":
+        /***/
+            (function(module, exports) {
+
+            module.exports = function(bitmap, value) {
+                return {
+                    enumerable: !(bitmap & 1),
+                    configurable: !(bitmap & 2),
+                    writable: !(bitmap & 4),
+                    value: value
+                };
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "6547":
+        /***/
+            (function(module, exports, __nested_webpack_require_35771__) {
+
+            var toInteger = __nested_webpack_require_35771__("a691");
+            var requireObjectCoercible = __nested_webpack_require_35771__("1d80");
+
+            // `String.prototype.{ codePointAt, at }` methods implementation
+            var createMethod = function(CONVERT_TO_STRING) {
+                return function($this, pos) {
+                    var S = String(requireObjectCoercible($this));
+                    var position = toInteger(pos);
+                    var size = S.length;
+                    var first, second;
+                    if (position < 0 || position >= size) return CONVERT_TO_STRING ? '' : undefined;
+                    first = S.charCodeAt(position);
+                    return first < 0xD800 || first > 0xDBFF || position + 1 === size ||
+                        (second = S.charCodeAt(position + 1)) < 0xDC00 || second > 0xDFFF ?
+                        CONVERT_TO_STRING ? S.charAt(position) : first :
+                        CONVERT_TO_STRING ? S.slice(position, position + 2) : (first - 0xD800 << 10) + (second - 0xDC00) + 0x10000;
+                };
+            };
+
+            module.exports = {
+                // `String.prototype.codePointAt` method
+                // https://tc39.github.io/ecma262/#sec-string.prototype.codepointat
+                codeAt: createMethod(false),
+                // `String.prototype.at` method
+                // https://github.com/mathiasbynens/String.prototype.at
+                charAt: createMethod(true)
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "65f0":
+        /***/
+            (function(module, exports, __nested_webpack_require_37389__) {
+
+            var isObject = __nested_webpack_require_37389__("861d");
+            var isArray = __nested_webpack_require_37389__("e8b5");
+            var wellKnownSymbol = __nested_webpack_require_37389__("b622");
+
+            var SPECIES = wellKnownSymbol('species');
+
+            // `ArraySpeciesCreate` abstract operation
+            // https://tc39.github.io/ecma262/#sec-arrayspeciescreate
+            module.exports = function(originalArray, length) {
+                var C;
+                if (isArray(originalArray)) {
+                    C = originalArray.constructor;
+                    // cross-realm fallback
+                    if (typeof C == 'function' && (C === Array || isArray(C.prototype))) C = undefined;
+                    else if (isObject(C)) {
+                        C = C[SPECIES];
+                        if (C === null) C = undefined;
+                    }
+                }
+                return new(C === undefined ? Array : C)(length === 0 ? 0 : length);
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "69f3":
+        /***/
+            (function(module, exports, __nested_webpack_require_38493__) {
+
+            var NATIVE_WEAK_MAP = __nested_webpack_require_38493__("7f9a");
+            var global = __nested_webpack_require_38493__("da84");
+            var isObject = __nested_webpack_require_38493__("861d");
+            var createNonEnumerableProperty = __nested_webpack_require_38493__("9112");
+            var objectHas = __nested_webpack_require_38493__("5135");
+            var sharedKey = __nested_webpack_require_38493__("f772");
+            var hiddenKeys = __nested_webpack_require_38493__("d012");
+
+            var WeakMap = global.WeakMap;
+            var set, get, has;
+
+            var enforce = function(it) {
+                return has(it) ? get(it) : set(it, {});
+            };
+
+            var getterFor = function(TYPE) {
+                return function(it) {
+                    var state;
+                    if (!isObject(it) || (state = get(it)).type !== TYPE) {
+                        throw TypeError('Incompatible receiver, ' + TYPE + ' required');
+                    }
+                    return state;
+                };
+            };
+
+            if (NATIVE_WEAK_MAP) {
+                var store = new WeakMap();
+                var wmget = store.get;
+                var wmhas = store.has;
+                var wmset = store.set;
+                set = function(it, metadata) {
+                    wmset.call(store, it, metadata);
+                    return metadata;
+                };
+                get = function(it) {
+                    return wmget.call(store, it) || {};
+                };
+                has = function(it) {
+                    return wmhas.call(store, it);
+                };
+            } else {
+                var STATE = sharedKey('state');
+                hiddenKeys[STATE] = true;
+                set = function(it, metadata) {
+                    createNonEnumerableProperty(it, STATE, metadata);
+                    return metadata;
+                };
+                get = function(it) {
+                    return objectHas(it, STATE) ? it[STATE] : {};
+                };
+                has = function(it) {
+                    return objectHas(it, STATE);
+                };
+            }
+
+            module.exports = {
+                set: set,
+                get: get,
+                has: has,
+                enforce: enforce,
+                getterFor: getterFor
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "6eeb":
+        /***/
+            (function(module, exports, __nested_webpack_require_40901__) {
+
+            var global = __nested_webpack_require_40901__("da84");
+            var createNonEnumerableProperty = __nested_webpack_require_40901__("9112");
+            var has = __nested_webpack_require_40901__("5135");
+            var setGlobal = __nested_webpack_require_40901__("ce4e");
+            var inspectSource = __nested_webpack_require_40901__("8925");
+            var InternalStateModule = __nested_webpack_require_40901__("69f3");
+
+            var getInternalState = InternalStateModule.get;
+            var enforceInternalState = InternalStateModule.enforce;
+            var TEMPLATE = String(String).split('String');
+
+            (module.exports = function(O, key, value, options) {
+                var unsafe = options ? !!options.unsafe : false;
+                var simple = options ? !!options.enumerable : false;
+                var noTargetGet = options ? !!options.noTargetGet : false;
+                if (typeof value == 'function') {
+                    if (typeof key == 'string' && !has(value, 'name')) createNonEnumerableProperty(value, 'name', key);
+                    enforceInternalState(value).source = TEMPLATE.join(typeof key == 'string' ? key : '');
+                }
+                if (O === global) {
+                    if (simple) O[key] = value;
+                    else setGlobal(key, value);
+                    return;
+                } else if (!unsafe) {
+                    delete O[key];
+                } else if (!noTargetGet && O[key]) {
+                    simple = true;
+                }
+                if (simple) O[key] = value;
+                else createNonEnumerableProperty(O, key, value);
+                // add fake Function#toString for correct work wrapped methods / constructors with methods like LoDash isNative
+            })(Function.prototype, 'toString', function toString() {
+                return typeof this == 'function' && getInternalState(this).source || inspectSource(this);
+            });
+
+
+            /***/
+        }),
+
+        /***/
+        "7156":
+        /***/
+            (function(module, exports, __nested_webpack_require_42931__) {
+
+            var isObject = __nested_webpack_require_42931__("861d");
+            var setPrototypeOf = __nested_webpack_require_42931__("d2bb");
+
+            // makes subclassing work correct for wrapped built-ins
+            module.exports = function($this, dummy, Wrapper) {
+                var NewTarget, NewTargetPrototype;
+                if (
+                    // it can work only with native `setPrototypeOf`
+                    setPrototypeOf &&
+                    // we haven't completely correct pre-ES6 way for getting `new.target`, so use this
+                    typeof(NewTarget = dummy.constructor) == 'function' &&
+                    NewTarget !== Wrapper &&
+                    isObject(NewTargetPrototype = NewTarget.prototype) &&
+                    NewTargetPrototype !== Wrapper.prototype
+                ) setPrototypeOf($this, NewTargetPrototype);
+                return $this;
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "7418":
+        /***/
+            (function(module, exports) {
+
+            exports.f = Object.getOwnPropertySymbols;
+
+
+            /***/
+        }),
+
+        /***/
+        "746f":
+        /***/
+            (function(module, exports, __nested_webpack_require_44137__) {
+
+            var path = __nested_webpack_require_44137__("428f");
+            var has = __nested_webpack_require_44137__("5135");
+            var wrappedWellKnownSymbolModule = __nested_webpack_require_44137__("e538");
+            var defineProperty = __nested_webpack_require_44137__("9bf2").f;
+
+            module.exports = function(NAME) {
+                var Symbol = path.Symbol || (path.Symbol = {});
+                if (!has(Symbol, NAME)) defineProperty(Symbol, NAME, {
+                    value: wrappedWellKnownSymbolModule.f(NAME)
+                });
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "7839":
+        /***/
+            (function(module, exports) {
+
+            // IE8- don't enum bug keys
+            module.exports = [
+                'constructor',
+                'hasOwnProperty',
+                'isPrototypeOf',
+                'propertyIsEnumerable',
+                'toLocaleString',
+                'toString',
+                'valueOf'
+            ];
+
+
+            /***/
+        }),
+
+        /***/
+        "7b0b":
+        /***/
+            (function(module, exports, __nested_webpack_require_45232__) {
+
+            var requireObjectCoercible = __nested_webpack_require_45232__("1d80");
+
+            // `ToObject` abstract operation
+            // https://tc39.github.io/ecma262/#sec-toobject
+            module.exports = function(argument) {
+                return Object(requireObjectCoercible(argument));
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "7c73":
+        /***/
+            (function(module, exports, __nested_webpack_require_45678__) {
+
+            var anObject = __nested_webpack_require_45678__("825a");
+            var defineProperties = __nested_webpack_require_45678__("37e8");
+            var enumBugKeys = __nested_webpack_require_45678__("7839");
+            var hiddenKeys = __nested_webpack_require_45678__("d012");
+            var html = __nested_webpack_require_45678__("1be4");
+            var documentCreateElement = __nested_webpack_require_45678__("cc12");
+            var sharedKey = __nested_webpack_require_45678__("f772");
+
+            var GT = '>';
+            var LT = '<';
+            var PROTOTYPE = 'prototype';
+            var SCRIPT = 'script';
+            var IE_PROTO = sharedKey('IE_PROTO');
+
+            var EmptyConstructor = function() { /* empty */ };
+
+            var scriptTag = function(content) {
+                return LT + SCRIPT + GT + content + LT + '/' + SCRIPT + GT;
+            };
+
+            // Create object with fake `null` prototype: use ActiveX Object with cleared prototype
+            var NullProtoObjectViaActiveX = function(activeXDocument) {
+                activeXDocument.write(scriptTag(''));
+                activeXDocument.close();
+                var temp = activeXDocument.parentWindow.Object;
+                activeXDocument = null; // avoid memory leak
+                return temp;
+            };
+
+            // Create object with fake `null` prototype: use iframe Object with cleared prototype
+            var NullProtoObjectViaIFrame = function() {
+                // Thrash, waste and sodomy: IE GC bug
+                var iframe = documentCreateElement('iframe');
+                var JS = 'java' + SCRIPT + ':';
+                var iframeDocument;
+                iframe.style.display = 'none';
+                html.appendChild(iframe);
+                // https://github.com/zloirock/core-js/issues/475
+                iframe.src = String(JS);
+                iframeDocument = iframe.contentWindow.document;
+                iframeDocument.open();
+                iframeDocument.write(scriptTag('document.F=Object'));
+                iframeDocument.close();
+                return iframeDocument.F;
+            };
+
+            // Check for document.domain and active x support
+            // No need to use active x approach when document.domain is not set
+            // see https://github.com/es-shims/es5-shim/issues/150
+            // variation of https://github.com/kitcambridge/es5-shim/commit/4f738ac066346
+            // avoid IE GC bug
+            var activeXDocument;
+            var NullProtoObject = function() {
+                try {
+                    /* global ActiveXObject */
+                    activeXDocument = document.domain && new ActiveXObject('htmlfile');
+                } catch (error) { /* ignore */ }
+                NullProtoObject = activeXDocument ? NullProtoObjectViaActiveX(activeXDocument) : NullProtoObjectViaIFrame();
+                var length = enumBugKeys.length;
+                while (length--) delete NullProtoObject[PROTOTYPE][enumBugKeys[length]];
+                return NullProtoObject();
+            };
+
+            hiddenKeys[IE_PROTO] = true;
+
+            // `Object.create` method
+            // https://tc39.github.io/ecma262/#sec-object.create
+            module.exports = Object.create || function create(O, Properties) {
+                var result;
+                if (O !== null) {
+                    EmptyConstructor[PROTOTYPE] = anObject(O);
+                    result = new EmptyConstructor();
+                    EmptyConstructor[PROTOTYPE] = null;
+                    // add "__proto__" for Object.getPrototypeOf polyfill
+                    result[IE_PROTO] = O;
+                } else result = NullProtoObject();
+                return Properties === undefined ? result : defineProperties(result, Properties);
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "7dd0":
+        /***/
+            (function(module, exports, __nested_webpack_require_49548__) {
+
+            "use strict";
+
+            var $ = __nested_webpack_require_49548__("23e7");
+            var createIteratorConstructor = __nested_webpack_require_49548__("9ed3");
+            var getPrototypeOf = __nested_webpack_require_49548__("e163");
+            var setPrototypeOf = __nested_webpack_require_49548__("d2bb");
+            var setToStringTag = __nested_webpack_require_49548__("d44e");
+            var createNonEnumerableProperty = __nested_webpack_require_49548__("9112");
+            var redefine = __nested_webpack_require_49548__("6eeb");
+            var wellKnownSymbol = __nested_webpack_require_49548__("b622");
+            var IS_PURE = __nested_webpack_require_49548__("c430");
+            var Iterators = __nested_webpack_require_49548__("3f8c");
+            var IteratorsCore = __nested_webpack_require_49548__("ae93");
+
+            var IteratorPrototype = IteratorsCore.IteratorPrototype;
+            var BUGGY_SAFARI_ITERATORS = IteratorsCore.BUGGY_SAFARI_ITERATORS;
+            var ITERATOR = wellKnownSymbol('iterator');
+            var KEYS = 'keys';
+            var VALUES = 'values';
+            var ENTRIES = 'entries';
+
+            var returnThis = function() { return this; };
+
+            module.exports = function(Iterable, NAME, IteratorConstructor, next, DEFAULT, IS_SET, FORCED) {
+                createIteratorConstructor(IteratorConstructor, NAME, next);
+
+                var getIterationMethod = function(KIND) {
+                    if (KIND === DEFAULT && defaultIterator) return defaultIterator;
+                    if (!BUGGY_SAFARI_ITERATORS && KIND in IterablePrototype) return IterablePrototype[KIND];
+                    switch (KIND) {
+                        case KEYS:
+                            return function keys() { return new IteratorConstructor(this, KIND); };
+                        case VALUES:
+                            return function values() { return new IteratorConstructor(this, KIND); };
+                        case ENTRIES:
+                            return function entries() { return new IteratorConstructor(this, KIND); };
+                    }
+                    return function() { return new IteratorConstructor(this); };
+                };
+
+                var TO_STRING_TAG = NAME + ' Iterator';
+                var INCORRECT_VALUES_NAME = false;
+                var IterablePrototype = Iterable.prototype;
+                var nativeIterator = IterablePrototype[ITERATOR] ||
+                    IterablePrototype['@@iterator'] ||
+                    DEFAULT && IterablePrototype[DEFAULT];
+                var defaultIterator = !BUGGY_SAFARI_ITERATORS && nativeIterator || getIterationMethod(DEFAULT);
+                var anyNativeIterator = NAME == 'Array' ? IterablePrototype.entries || nativeIterator : nativeIterator;
+                var CurrentIteratorPrototype, methods, KEY;
+
+                // fix native
+                if (anyNativeIterator) {
+                    CurrentIteratorPrototype = getPrototypeOf(anyNativeIterator.call(new Iterable()));
+                    if (IteratorPrototype !== Object.prototype && CurrentIteratorPrototype.next) {
+                        if (!IS_PURE && getPrototypeOf(CurrentIteratorPrototype) !== IteratorPrototype) {
+                            if (setPrototypeOf) {
+                                setPrototypeOf(CurrentIteratorPrototype, IteratorPrototype);
+                            } else if (typeof CurrentIteratorPrototype[ITERATOR] != 'function') {
+                                createNonEnumerableProperty(CurrentIteratorPrototype, ITERATOR, returnThis);
+                            }
+                        }
+                        // Set @@toStringTag to native iterators
+                        setToStringTag(CurrentIteratorPrototype, TO_STRING_TAG, true, true);
+                        if (IS_PURE) Iterators[TO_STRING_TAG] = returnThis;
+                    }
+                }
+
+                // fix Array#{values, @@iterator}.name in V8 / FF
+                if (DEFAULT == VALUES && nativeIterator && nativeIterator.name !== VALUES) {
+                    INCORRECT_VALUES_NAME = true;
+                    defaultIterator = function values() { return nativeIterator.call(this); };
+                }
+
+                // define iterator
+                if ((!IS_PURE || FORCED) && IterablePrototype[ITERATOR] !== defaultIterator) {
+                    createNonEnumerableProperty(IterablePrototype, ITERATOR, defaultIterator);
+                }
+                Iterators[NAME] = defaultIterator;
+
+                // export additional methods
+                if (DEFAULT) {
+                    methods = {
+                        values: getIterationMethod(VALUES),
+                        keys: IS_SET ? defaultIterator : getIterationMethod(KEYS),
+                        entries: getIterationMethod(ENTRIES)
+                    };
+                    if (FORCED)
+                        for (KEY in methods) {
+                            if (BUGGY_SAFARI_ITERATORS || INCORRECT_VALUES_NAME || !(KEY in IterablePrototype)) {
+                                redefine(IterablePrototype, KEY, methods[KEY]);
+                            }
+                        } else $({ target: NAME, proto: true, forced: BUGGY_SAFARI_ITERATORS || INCORRECT_VALUES_NAME }, methods);
+                }
+
+                return methods;
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "7f9a":
+        /***/
+            (function(module, exports, __nested_webpack_require_54925__) {
+
+            var global = __nested_webpack_require_54925__("da84");
+            var inspectSource = __nested_webpack_require_54925__("8925");
+
+            var WeakMap = global.WeakMap;
+
+            module.exports = typeof WeakMap === 'function' && /native code/.test(inspectSource(WeakMap));
+
+
+            /***/
+        }),
+
+        /***/
+        "825a":
+        /***/
+            (function(module, exports, __nested_webpack_require_55330__) {
+
+            var isObject = __nested_webpack_require_55330__("861d");
+
+            module.exports = function(it) {
+                if (!isObject(it)) {
+                    throw TypeError(String(it) + ' is not an object');
+                }
+                return it;
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "83ab":
+        /***/
+            (function(module, exports, __nested_webpack_require_55739__) {
+
+            var fails = __nested_webpack_require_55739__("d039");
+
+            // Thank's IE8 for his funny defineProperty
+            module.exports = !fails(function() {
+                return Object.defineProperty({}, 1, { get: function() { return 7; } })[1] != 7;
+            });
+
+
+            /***/
+        }),
+
+        /***/
+        "861d":
+        /***/
+            (function(module, exports) {
+
+            module.exports = function(it) {
+                return typeof it === 'object' ? it !== null : typeof it === 'function';
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "8875":
+        /***/
+            (function(module, exports, __webpack_require__) {
+
+            var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__; // addapted from the document.currentScript polyfill by Adam Miller
+            // MIT license
+            // source: https://github.com/amiller-gh/currentScript-polyfill
+
+            // added support for Firefox https://bugzilla.mozilla.org/show_bug.cgi?id=1620505
+
+            (function(root, factory) {
+                if (true) {
+                    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+                        __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+                            (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+                        __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+                } else {}
+            }(typeof self !== 'undefined' ? self : this, function() {
+                function getCurrentScript() {
+                    var descriptor = Object.getOwnPropertyDescriptor(document, 'currentScript')
+                        // for chrome
+                    if (!descriptor && 'currentScript' in document && document.currentScript) {
+                        return document.currentScript
+                    }
+
+                    // for other browsers with native support for currentScript
+                    if (descriptor && descriptor.get !== getCurrentScript && document.currentScript) {
+                        return document.currentScript
+                    }
+
+                    // IE 8-10 support script readyState
+                    // IE 11+ & Firefox support stack trace
+                    try {
+                        throw new Error();
+                    } catch (err) {
+                        // Find the second match for the "at" string to get file src url from stack.
+                        var ieStackRegExp = /.*at [^(]*\((.*):(.+):(.+)\)$/ig,
+                            ffStackRegExp = /@([^@]*):(\d+):(\d+)\s*$/ig,
+                            stackDetails = ieStackRegExp.exec(err.stack) || ffStackRegExp.exec(err.stack),
+                            scriptLocation = (stackDetails && stackDetails[1]) || false,
+                            line = (stackDetails && stackDetails[2]) || false,
+                            currentLocation = document.location.href.replace(document.location.hash, ''),
+                            pageSource,
+                            inlineScriptSourceRegExp,
+                            inlineScriptSource,
+                            scripts = document.getElementsByTagName('script'); // Live NodeList collection
+
+                        if (scriptLocation === currentLocation) {
+                            pageSource = document.documentElement.outerHTML;
+                            inlineScriptSourceRegExp = new RegExp('(?:[^\\n]+?\\n){0,' + (line - 2) + '}[^<]*<script>([\\d\\D]*?)<\\/script>[\\d\\D]*', 'i');
+                            inlineScriptSource = pageSource.replace(inlineScriptSourceRegExp, '$1').trim();
+                        }
+
+                        for (var i = 0; i < scripts.length; i++) {
+                            // If ready state is interactive, return the script tag
+                            if (scripts[i].readyState === 'interactive') {
+                                return scripts[i];
+                            }
+
+                            // If src matches, return the script tag
+                            if (scripts[i].src === scriptLocation) {
+                                return scripts[i];
+                            }
+
+                            // If inline source matches, return the script tag
+                            if (
+                                scriptLocation === currentLocation &&
+                                scripts[i].innerHTML &&
+                                scripts[i].innerHTML.trim() === inlineScriptSource
+                            ) {
+                                return scripts[i];
+                            }
+                        }
+
+                        // If no match, return null
+                        return null;
+                    }
+                };
+
+                return getCurrentScript
+            }));
+
+
+            /***/
+        }),
+
+        /***/
+        "8925":
+        /***/
+            (function(module, exports, __nested_webpack_require_60904__) {
+
+            var store = __nested_webpack_require_60904__("c6cd");
+
+            var functionToString = Function.toString;
+
+            // this helper broken in `3.4.1-3.4.4`, so we can't use `shared` helper
+            if (typeof store.inspectSource != 'function') {
+                store.inspectSource = function(it) {
+                    return functionToString.call(it);
+                };
+            }
+
+            module.exports = store.inspectSource;
+
+
+            /***/
+        }),
+
+        /***/
+        "8bbf":
+        /***/
+            (function(module, exports) {
+
+            module.exports = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+
+            /***/
+        }),
+
+        /***/
+        "90e3":
+        /***/
+            (function(module, exports) {
+
+            var id = 0;
+            var postfix = Math.random();
+
+            module.exports = function(key) {
+                return 'Symbol(' + String(key === undefined ? '' : key) + ')_' + (++id + postfix).toString(36);
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "9112":
+        /***/
+            (function(module, exports, __nested_webpack_require_62008__) {
+
+            var DESCRIPTORS = __nested_webpack_require_62008__("83ab");
+            var definePropertyModule = __nested_webpack_require_62008__("9bf2");
+            var createPropertyDescriptor = __nested_webpack_require_62008__("5c6c");
+
+            module.exports = DESCRIPTORS ? function(object, key, value) {
+                return definePropertyModule.f(object, key, createPropertyDescriptor(1, value));
+            } : function(object, key, value) {
+                object[key] = value;
+                return object;
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "94ca":
+        /***/
+            (function(module, exports, __nested_webpack_require_62648__) {
+
+            var fails = __nested_webpack_require_62648__("d039");
+
+            var replacement = /#|\.prototype\./;
+
+            var isForced = function(feature, detection) {
+                var value = data[normalize(feature)];
+                return value == POLYFILL ? true :
+                    value == NATIVE ? false :
+                    typeof detection == 'function' ? fails(detection) :
+                    !!detection;
+            };
+
+            var normalize = isForced.normalize = function(string) {
+                return String(string).replace(replacement, '.').toLowerCase();
+            };
+
+            var data = isForced.data = {};
+            var NATIVE = isForced.NATIVE = 'N';
+            var POLYFILL = isForced.POLYFILL = 'P';
+
+            module.exports = isForced;
+
+
+            /***/
+        }),
+
+        /***/
+        "9bf2":
+        /***/
+            (function(module, exports, __nested_webpack_require_63567__) {
+
+            var DESCRIPTORS = __nested_webpack_require_63567__("83ab");
+            var IE8_DOM_DEFINE = __nested_webpack_require_63567__("0cfb");
+            var anObject = __nested_webpack_require_63567__("825a");
+            var toPrimitive = __nested_webpack_require_63567__("c04e");
+
+            var nativeDefineProperty = Object.defineProperty;
+
+            // `Object.defineProperty` method
+            // https://tc39.github.io/ecma262/#sec-object.defineproperty
+            exports.f = DESCRIPTORS ? nativeDefineProperty : function defineProperty(O, P, Attributes) {
+                anObject(O);
+                P = toPrimitive(P, true);
+                anObject(Attributes);
+                if (IE8_DOM_DEFINE) try {
+                    return nativeDefineProperty(O, P, Attributes);
+                } catch (error) { /* empty */ }
+                if ('get' in Attributes || 'set' in Attributes) throw TypeError('Accessors not supported');
+                if ('value' in Attributes) O[P] = Attributes.value;
+                return O;
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "9ed3":
+        /***/
+            (function(module, exports, __nested_webpack_require_64714__) {
+
+            "use strict";
+
+            var IteratorPrototype = __nested_webpack_require_64714__("ae93").IteratorPrototype;
+            var create = __nested_webpack_require_64714__("7c73");
+            var createPropertyDescriptor = __nested_webpack_require_64714__("5c6c");
+            var setToStringTag = __nested_webpack_require_64714__("d44e");
+            var Iterators = __nested_webpack_require_64714__("3f8c");
+
+            var returnThis = function() { return this; };
+
+            module.exports = function(IteratorConstructor, NAME, next) {
+                var TO_STRING_TAG = NAME + ' Iterator';
+                IteratorConstructor.prototype = create(IteratorPrototype, { next: createPropertyDescriptor(1, next) });
+                setToStringTag(IteratorConstructor, TO_STRING_TAG, false, true);
+                Iterators[TO_STRING_TAG] = returnThis;
+                return IteratorConstructor;
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "a4d3":
+        /***/
+            (function(module, exports, __nested_webpack_require_65713__) {
+
+            "use strict";
+
+            var $ = __nested_webpack_require_65713__("23e7");
+            var global = __nested_webpack_require_65713__("da84");
+            var getBuiltIn = __nested_webpack_require_65713__("d066");
+            var IS_PURE = __nested_webpack_require_65713__("c430");
+            var DESCRIPTORS = __nested_webpack_require_65713__("83ab");
+            var NATIVE_SYMBOL = __nested_webpack_require_65713__("4930");
+            var USE_SYMBOL_AS_UID = __nested_webpack_require_65713__("fdbf");
+            var fails = __nested_webpack_require_65713__("d039");
+            var has = __nested_webpack_require_65713__("5135");
+            var isArray = __nested_webpack_require_65713__("e8b5");
+            var isObject = __nested_webpack_require_65713__("861d");
+            var anObject = __nested_webpack_require_65713__("825a");
+            var toObject = __nested_webpack_require_65713__("7b0b");
+            var toIndexedObject = __nested_webpack_require_65713__("fc6a");
+            var toPrimitive = __nested_webpack_require_65713__("c04e");
+            var createPropertyDescriptor = __nested_webpack_require_65713__("5c6c");
+            var nativeObjectCreate = __nested_webpack_require_65713__("7c73");
+            var objectKeys = __nested_webpack_require_65713__("df75");
+            var getOwnPropertyNamesModule = __nested_webpack_require_65713__("241c");
+            var getOwnPropertyNamesExternal = __nested_webpack_require_65713__("057f");
+            var getOwnPropertySymbolsModule = __nested_webpack_require_65713__("7418");
+            var getOwnPropertyDescriptorModule = __nested_webpack_require_65713__("06cf");
+            var definePropertyModule = __nested_webpack_require_65713__("9bf2");
+            var propertyIsEnumerableModule = __nested_webpack_require_65713__("d1e7");
+            var createNonEnumerableProperty = __nested_webpack_require_65713__("9112");
+            var redefine = __nested_webpack_require_65713__("6eeb");
+            var shared = __nested_webpack_require_65713__("5692");
+            var sharedKey = __nested_webpack_require_65713__("f772");
+            var hiddenKeys = __nested_webpack_require_65713__("d012");
+            var uid = __nested_webpack_require_65713__("90e3");
+            var wellKnownSymbol = __nested_webpack_require_65713__("b622");
+            var wrappedWellKnownSymbolModule = __nested_webpack_require_65713__("e538");
+            var defineWellKnownSymbol = __nested_webpack_require_65713__("746f");
+            var setToStringTag = __nested_webpack_require_65713__("d44e");
+            var InternalStateModule = __nested_webpack_require_65713__("69f3");
+            var $forEach = __nested_webpack_require_65713__("b727").forEach;
+
+            var HIDDEN = sharedKey('hidden');
+            var SYMBOL = 'Symbol';
+            var PROTOTYPE = 'prototype';
+            var TO_PRIMITIVE = wellKnownSymbol('toPrimitive');
+            var setInternalState = InternalStateModule.set;
+            var getInternalState = InternalStateModule.getterFor(SYMBOL);
+            var ObjectPrototype = Object[PROTOTYPE];
+            var $Symbol = global.Symbol;
+            var $stringify = getBuiltIn('JSON', 'stringify');
+            var nativeGetOwnPropertyDescriptor = getOwnPropertyDescriptorModule.f;
+            var nativeDefineProperty = definePropertyModule.f;
+            var nativeGetOwnPropertyNames = getOwnPropertyNamesExternal.f;
+            var nativePropertyIsEnumerable = propertyIsEnumerableModule.f;
+            var AllSymbols = shared('symbols');
+            var ObjectPrototypeSymbols = shared('op-symbols');
+            var StringToSymbolRegistry = shared('string-to-symbol-registry');
+            var SymbolToStringRegistry = shared('symbol-to-string-registry');
+            var WellKnownSymbolsStore = shared('wks');
+            var QObject = global.QObject;
+            // Don't use setters in Qt Script, https://github.com/zloirock/core-js/issues/173
+            var USE_SETTER = !QObject || !QObject[PROTOTYPE] || !QObject[PROTOTYPE].findChild;
+
+            // fallback for old Android, https://code.google.com/p/v8/issues/detail?id=687
+            var setSymbolDescriptor = DESCRIPTORS && fails(function() {
+                return nativeObjectCreate(nativeDefineProperty({}, 'a', {
+                    get: function() { return nativeDefineProperty(this, 'a', { value: 7 }).a; }
+                })).a != 7;
+            }) ? function(O, P, Attributes) {
+                var ObjectPrototypeDescriptor = nativeGetOwnPropertyDescriptor(ObjectPrototype, P);
+                if (ObjectPrototypeDescriptor) delete ObjectPrototype[P];
+                nativeDefineProperty(O, P, Attributes);
+                if (ObjectPrototypeDescriptor && O !== ObjectPrototype) {
+                    nativeDefineProperty(ObjectPrototype, P, ObjectPrototypeDescriptor);
+                }
+            } : nativeDefineProperty;
+
+            var wrap = function(tag, description) {
+                var symbol = AllSymbols[tag] = nativeObjectCreate($Symbol[PROTOTYPE]);
+                setInternalState(symbol, {
+                    type: SYMBOL,
+                    tag: tag,
+                    description: description
+                });
+                if (!DESCRIPTORS) symbol.description = description;
+                return symbol;
+            };
+
+            var isSymbol = USE_SYMBOL_AS_UID ? function(it) {
+                return typeof it == 'symbol';
+            } : function(it) {
+                return Object(it) instanceof $Symbol;
+            };
+
+            var $defineProperty = function defineProperty(O, P, Attributes) {
+                if (O === ObjectPrototype) $defineProperty(ObjectPrototypeSymbols, P, Attributes);
+                anObject(O);
+                var key = toPrimitive(P, true);
+                anObject(Attributes);
+                if (has(AllSymbols, key)) {
+                    if (!Attributes.enumerable) {
+                        if (!has(O, HIDDEN)) nativeDefineProperty(O, HIDDEN, createPropertyDescriptor(1, {}));
+                        O[HIDDEN][key] = true;
+                    } else {
+                        if (has(O, HIDDEN) && O[HIDDEN][key]) O[HIDDEN][key] = false;
+                        Attributes = nativeObjectCreate(Attributes, { enumerable: createPropertyDescriptor(0, false) });
+                    }
+                    return setSymbolDescriptor(O, key, Attributes);
+                }
+                return nativeDefineProperty(O, key, Attributes);
+            };
+
+            var $defineProperties = function defineProperties(O, Properties) {
+                anObject(O);
+                var properties = toIndexedObject(Properties);
+                var keys = objectKeys(properties).concat($getOwnPropertySymbols(properties));
+                $forEach(keys, function(key) {
+                    if (!DESCRIPTORS || $propertyIsEnumerable.call(properties, key)) $defineProperty(O, key, properties[key]);
+                });
+                return O;
+            };
+
+            var $create = function create(O, Properties) {
+                return Properties === undefined ? nativeObjectCreate(O) : $defineProperties(nativeObjectCreate(O), Properties);
+            };
+
+            var $propertyIsEnumerable = function propertyIsEnumerable(V) {
+                var P = toPrimitive(V, true);
+                var enumerable = nativePropertyIsEnumerable.call(this, P);
+                if (this === ObjectPrototype && has(AllSymbols, P) && !has(ObjectPrototypeSymbols, P)) return false;
+                return enumerable || !has(this, P) || !has(AllSymbols, P) || has(this, HIDDEN) && this[HIDDEN][P] ? enumerable : true;
+            };
+
+            var $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(O, P) {
+                var it = toIndexedObject(O);
+                var key = toPrimitive(P, true);
+                if (it === ObjectPrototype && has(AllSymbols, key) && !has(ObjectPrototypeSymbols, key)) return;
+                var descriptor = nativeGetOwnPropertyDescriptor(it, key);
+                if (descriptor && has(AllSymbols, key) && !(has(it, HIDDEN) && it[HIDDEN][key])) {
+                    descriptor.enumerable = true;
+                }
+                return descriptor;
+            };
+
+            var $getOwnPropertyNames = function getOwnPropertyNames(O) {
+                var names = nativeGetOwnPropertyNames(toIndexedObject(O));
+                var result = [];
+                $forEach(names, function(key) {
+                    if (!has(AllSymbols, key) && !has(hiddenKeys, key)) result.push(key);
+                });
+                return result;
+            };
+
+            var $getOwnPropertySymbols = function getOwnPropertySymbols(O) {
+                var IS_OBJECT_PROTOTYPE = O === ObjectPrototype;
+                var names = nativeGetOwnPropertyNames(IS_OBJECT_PROTOTYPE ? ObjectPrototypeSymbols : toIndexedObject(O));
+                var result = [];
+                $forEach(names, function(key) {
+                    if (has(AllSymbols, key) && (!IS_OBJECT_PROTOTYPE || has(ObjectPrototype, key))) {
+                        result.push(AllSymbols[key]);
+                    }
+                });
+                return result;
+            };
+
+            // `Symbol` constructor
+            // https://tc39.github.io/ecma262/#sec-symbol-constructor
+            if (!NATIVE_SYMBOL) {
+                $Symbol = function Symbol() {
+                    if (this instanceof $Symbol) throw TypeError('Symbol is not a constructor');
+                    var description = !arguments.length || arguments[0] === undefined ? undefined : String(arguments[0]);
+                    var tag = uid(description);
+                    var setter = function(value) {
+                        if (this === ObjectPrototype) setter.call(ObjectPrototypeSymbols, value);
+                        if (has(this, HIDDEN) && has(this[HIDDEN], tag)) this[HIDDEN][tag] = false;
+                        setSymbolDescriptor(this, tag, createPropertyDescriptor(1, value));
+                    };
+                    if (DESCRIPTORS && USE_SETTER) setSymbolDescriptor(ObjectPrototype, tag, { configurable: true, set: setter });
+                    return wrap(tag, description);
+                };
+
+                redefine($Symbol[PROTOTYPE], 'toString', function toString() {
+                    return getInternalState(this).tag;
+                });
+
+                redefine($Symbol, 'withoutSetter', function(description) {
+                    return wrap(uid(description), description);
+                });
+
+                propertyIsEnumerableModule.f = $propertyIsEnumerable;
+                definePropertyModule.f = $defineProperty;
+                getOwnPropertyDescriptorModule.f = $getOwnPropertyDescriptor;
+                getOwnPropertyNamesModule.f = getOwnPropertyNamesExternal.f = $getOwnPropertyNames;
+                getOwnPropertySymbolsModule.f = $getOwnPropertySymbols;
+
+                wrappedWellKnownSymbolModule.f = function(name) {
+                    return wrap(wellKnownSymbol(name), name);
+                };
+
+                if (DESCRIPTORS) {
+                    // https://github.com/tc39/proposal-Symbol-description
+                    nativeDefineProperty($Symbol[PROTOTYPE], 'description', {
+                        configurable: true,
+                        get: function description() {
+                            return getInternalState(this).description;
+                        }
+                    });
+                    if (!IS_PURE) {
+                        redefine(ObjectPrototype, 'propertyIsEnumerable', $propertyIsEnumerable, { unsafe: true });
+                    }
+                }
+            }
+
+            $({ global: true, wrap: true, forced: !NATIVE_SYMBOL, sham: !NATIVE_SYMBOL }, {
+                Symbol: $Symbol
+            });
+
+            $forEach(objectKeys(WellKnownSymbolsStore), function(name) {
+                defineWellKnownSymbol(name);
+            });
+
+            $({ target: SYMBOL, stat: true, forced: !NATIVE_SYMBOL }, {
+                // `Symbol.for` method
+                // https://tc39.github.io/ecma262/#sec-symbol.for
+                'for': function(key) {
+                    var string = String(key);
+                    if (has(StringToSymbolRegistry, string)) return StringToSymbolRegistry[string];
+                    var symbol = $Symbol(string);
+                    StringToSymbolRegistry[string] = symbol;
+                    SymbolToStringRegistry[symbol] = string;
+                    return symbol;
+                },
+                // `Symbol.keyFor` method
+                // https://tc39.github.io/ecma262/#sec-symbol.keyfor
+                keyFor: function keyFor(sym) {
+                    if (!isSymbol(sym)) throw TypeError(sym + ' is not a symbol');
+                    if (has(SymbolToStringRegistry, sym)) return SymbolToStringRegistry[sym];
+                },
+                useSetter: function() { USE_SETTER = true; },
+                useSimple: function() { USE_SETTER = false; }
+            });
+
+            $({ target: 'Object', stat: true, forced: !NATIVE_SYMBOL, sham: !DESCRIPTORS }, {
+                // `Object.create` method
+                // https://tc39.github.io/ecma262/#sec-object.create
+                create: $create,
+                // `Object.defineProperty` method
+                // https://tc39.github.io/ecma262/#sec-object.defineproperty
+                defineProperty: $defineProperty,
+                // `Object.defineProperties` method
+                // https://tc39.github.io/ecma262/#sec-object.defineproperties
+                defineProperties: $defineProperties,
+                // `Object.getOwnPropertyDescriptor` method
+                // https://tc39.github.io/ecma262/#sec-object.getownpropertydescriptors
+                getOwnPropertyDescriptor: $getOwnPropertyDescriptor
+            });
+
+            $({ target: 'Object', stat: true, forced: !NATIVE_SYMBOL }, {
+                // `Object.getOwnPropertyNames` method
+                // https://tc39.github.io/ecma262/#sec-object.getownpropertynames
+                getOwnPropertyNames: $getOwnPropertyNames,
+                // `Object.getOwnPropertySymbols` method
+                // https://tc39.github.io/ecma262/#sec-object.getownpropertysymbols
+                getOwnPropertySymbols: $getOwnPropertySymbols
+            });
+
+            // Chrome 38 and 39 `Object.getOwnPropertySymbols` fails on primitives
+            // https://bugs.chromium.org/p/v8/issues/detail?id=3443
+            $({ target: 'Object', stat: true, forced: fails(function() { getOwnPropertySymbolsModule.f(1); }) }, {
+                getOwnPropertySymbols: function getOwnPropertySymbols(it) {
+                    return getOwnPropertySymbolsModule.f(toObject(it));
+                }
+            });
+
+            // `JSON.stringify` method behavior with symbols
+            // https://tc39.github.io/ecma262/#sec-json.stringify
+            if ($stringify) {
+                var FORCED_JSON_STRINGIFY = !NATIVE_SYMBOL || fails(function() {
+                    var symbol = $Symbol();
+                    // MS Edge converts symbol values to JSON as {}
+                    return $stringify([symbol]) != '[null]'
+                        // WebKit converts symbol values to JSON as null
+                        ||
+                        $stringify({ a: symbol }) != '{}'
+                        // V8 throws on boxed symbols
+                        ||
+                        $stringify(Object(symbol)) != '{}';
+                });
+
+                $({ target: 'JSON', stat: true, forced: FORCED_JSON_STRINGIFY }, {
+                    // eslint-disable-next-line no-unused-vars
+                    stringify: function stringify(it, replacer, space) {
+                        var args = [it];
+                        var index = 1;
+                        var $replacer;
+                        while (arguments.length > index) args.push(arguments[index++]);
+                        $replacer = replacer;
+                        if (!isObject(replacer) && it === undefined || isSymbol(it)) return; // IE8 returns string on undefined
+                        if (!isArray(replacer)) replacer = function(key, value) {
+                            if (typeof $replacer == 'function') value = $replacer.call(this, key, value);
+                            if (!isSymbol(value)) return value;
+                        };
+                        args[1] = replacer;
+                        return $stringify.apply(null, args);
+                    }
+                });
+            }
+
+            // `Symbol.prototype[@@toPrimitive]` method
+            // https://tc39.github.io/ecma262/#sec-symbol.prototype-@@toprimitive
+            if (!$Symbol[PROTOTYPE][TO_PRIMITIVE]) {
+                createNonEnumerableProperty($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
+            }
+            // `Symbol.prototype[@@toStringTag]` property
+            // https://tc39.github.io/ecma262/#sec-symbol.prototype-@@tostringtag
+            setToStringTag($Symbol, SYMBOL);
+
+            hiddenKeys[HIDDEN] = true;
+
+
+            /***/
+        }),
+
+        /***/
+        "a640":
+        /***/
+            (function(module, exports, __nested_webpack_require_82548__) {
+
+            "use strict";
+
+            var fails = __nested_webpack_require_82548__("d039");
+
+            module.exports = function(METHOD_NAME, argument) {
+                var method = [][METHOD_NAME];
+                return !!method && fails(function() {
+                    // eslint-disable-next-line no-useless-call,no-throw-literal
+                    method.call(null, argument || function() { throw 1; }, 1);
+                });
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "a691":
+        /***/
+            (function(module, exports) {
+
+            var ceil = Math.ceil;
+            var floor = Math.floor;
+
+            // `ToInteger` abstract operation
+            // https://tc39.github.io/ecma262/#sec-tointeger
+            module.exports = function(argument) {
+                return isNaN(argument = +argument) ? 0 : (argument > 0 ? floor : ceil)(argument);
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "a9e3":
+        /***/
+            (function(module, exports, __nested_webpack_require_83587__) {
+
+            "use strict";
+
+            var DESCRIPTORS = __nested_webpack_require_83587__("83ab");
+            var global = __nested_webpack_require_83587__("da84");
+            var isForced = __nested_webpack_require_83587__("94ca");
+            var redefine = __nested_webpack_require_83587__("6eeb");
+            var has = __nested_webpack_require_83587__("5135");
+            var classof = __nested_webpack_require_83587__("c6b6");
+            var inheritIfRequired = __nested_webpack_require_83587__("7156");
+            var toPrimitive = __nested_webpack_require_83587__("c04e");
+            var fails = __nested_webpack_require_83587__("d039");
+            var create = __nested_webpack_require_83587__("7c73");
+            var getOwnPropertyNames = __nested_webpack_require_83587__("241c").f;
+            var getOwnPropertyDescriptor = __nested_webpack_require_83587__("06cf").f;
+            var defineProperty = __nested_webpack_require_83587__("9bf2").f;
+            var trim = __nested_webpack_require_83587__("58a8").trim;
+
+            var NUMBER = 'Number';
+            var NativeNumber = global[NUMBER];
+            var NumberPrototype = NativeNumber.prototype;
+
+            // Opera ~12 has broken Object#toString
+            var BROKEN_CLASSOF = classof(create(NumberPrototype)) == NUMBER;
+
+            // `ToNumber` abstract operation
+            // https://tc39.github.io/ecma262/#sec-tonumber
+            var toNumber = function(argument) {
+                var it = toPrimitive(argument, false);
+                var first, third, radix, maxCode, digits, length, index, code;
+                if (typeof it == 'string' && it.length > 2) {
+                    it = trim(it);
+                    first = it.charCodeAt(0);
+                    if (first === 43 || first === 45) {
+                        third = it.charCodeAt(2);
+                        if (third === 88 || third === 120) return NaN; // Number('+0x1') should be NaN, old V8 fix
+                    } else if (first === 48) {
+                        switch (it.charCodeAt(1)) {
+                            case 66:
+                            case 98:
+                                radix = 2;
+                                maxCode = 49;
+                                break; // fast equal of /^0b[01]+$/i
+                            case 79:
+                            case 111:
+                                radix = 8;
+                                maxCode = 55;
+                                break; // fast equal of /^0o[0-7]+$/i
+                            default:
+                                return +it;
+                        }
+                        digits = it.slice(2);
+                        length = digits.length;
+                        for (index = 0; index < length; index++) {
+                            code = digits.charCodeAt(index);
+                            // parseInt parses a string to a first unavailable symbol
+                            // but ToNumber should return NaN if a string contains unavailable symbols
+                            if (code < 48 || code > maxCode) return NaN;
+                        }
+                        return parseInt(digits, radix);
+                    }
+                }
+                return +it;
+            };
+
+            // `Number` constructor
+            // https://tc39.github.io/ecma262/#sec-number-constructor
+            if (isForced(NUMBER, !NativeNumber(' 0o1') || !NativeNumber('0b1') || NativeNumber('+0x1'))) {
+                var NumberWrapper = function Number(value) {
+                    var it = arguments.length < 1 ? 0 : value;
+                    var dummy = this;
+                    return dummy instanceof NumberWrapper
+                        // check on 1..constructor(foo) case
+                        &&
+                        (BROKEN_CLASSOF ? fails(function() { NumberPrototype.valueOf.call(dummy); }) : classof(dummy) != NUMBER) ?
+                        inheritIfRequired(new NativeNumber(toNumber(it)), dummy, NumberWrapper) : toNumber(it);
+                };
+                for (var keys = DESCRIPTORS ? getOwnPropertyNames(NativeNumber) : (
+                        // ES3:
+                        'MAX_VALUE,MIN_VALUE,NaN,NEGATIVE_INFINITY,POSITIVE_INFINITY,' +
+                        // ES2015 (in case, if modules with ES2015 Number statics required before):
+                        'EPSILON,isFinite,isInteger,isNaN,isSafeInteger,MAX_SAFE_INTEGER,' +
+                        'MIN_SAFE_INTEGER,parseFloat,parseInt,isInteger'
+                    ).split(','), j = 0, key; keys.length > j; j++) {
+                    if (has(NativeNumber, key = keys[j]) && !has(NumberWrapper, key)) {
+                        defineProperty(NumberWrapper, key, getOwnPropertyDescriptor(NativeNumber, key));
+                    }
+                }
+                NumberWrapper.prototype = NumberPrototype;
+                NumberPrototype.constructor = NumberWrapper;
+                redefine(global, NUMBER, NumberWrapper);
+            }
+
+
+            /***/
+        }),
+
+        /***/
+        "ad6d":
+        /***/
+            (function(module, exports, __nested_webpack_require_88573__) {
+
+            "use strict";
+
+            var anObject = __nested_webpack_require_88573__("825a");
+
+            // `RegExp.prototype.flags` getter implementation
+            // https://tc39.github.io/ecma262/#sec-get-regexp.prototype.flags
+            module.exports = function() {
+                var that = anObject(this);
+                var result = '';
+                if (that.global) result += 'g';
+                if (that.ignoreCase) result += 'i';
+                if (that.multiline) result += 'm';
+                if (that.dotAll) result += 's';
+                if (that.unicode) result += 'u';
+                if (that.sticky) result += 'y';
+                return result;
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "ae40":
+        /***/
+            (function(module, exports, __nested_webpack_require_89397__) {
+
+            var DESCRIPTORS = __nested_webpack_require_89397__("83ab");
+            var fails = __nested_webpack_require_89397__("d039");
+            var has = __nested_webpack_require_89397__("5135");
+
+            var defineProperty = Object.defineProperty;
+            var cache = {};
+
+            var thrower = function(it) { throw it; };
+
+            module.exports = function(METHOD_NAME, options) {
+                if (has(cache, METHOD_NAME)) return cache[METHOD_NAME];
+                if (!options) options = {};
+                var method = [][METHOD_NAME];
+                var ACCESSORS = has(options, 'ACCESSORS') ? options.ACCESSORS : false;
+                var argument0 = has(options, 0) ? options[0] : thrower;
+                var argument1 = has(options, 1) ? options[1] : undefined;
+
+                return cache[METHOD_NAME] = !!method && !fails(function() {
+                    if (ACCESSORS && !DESCRIPTORS) return true;
+                    var O = { length: -1 };
+
+                    if (ACCESSORS) defineProperty(O, 1, { enumerable: true, get: thrower });
+                    else O[1] = 1;
+
+                    method.call(O, argument0, argument1);
+                });
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "ae93":
+        /***/
+            (function(module, exports, __nested_webpack_require_90706__) {
+
+            "use strict";
+
+            var getPrototypeOf = __nested_webpack_require_90706__("e163");
+            var createNonEnumerableProperty = __nested_webpack_require_90706__("9112");
+            var has = __nested_webpack_require_90706__("5135");
+            var wellKnownSymbol = __nested_webpack_require_90706__("b622");
+            var IS_PURE = __nested_webpack_require_90706__("c430");
+
+            var ITERATOR = wellKnownSymbol('iterator');
+            var BUGGY_SAFARI_ITERATORS = false;
+
+            var returnThis = function() { return this; };
+
+            // `%IteratorPrototype%` object
+            // https://tc39.github.io/ecma262/#sec-%iteratorprototype%-object
+            var IteratorPrototype, PrototypeOfArrayIteratorPrototype, arrayIterator;
+
+            if ([].keys) {
+                arrayIterator = [].keys();
+                // Safari 8 has buggy iterators w/o `next`
+                if (!('next' in arrayIterator)) BUGGY_SAFARI_ITERATORS = true;
+                else {
+                    PrototypeOfArrayIteratorPrototype = getPrototypeOf(getPrototypeOf(arrayIterator));
+                    if (PrototypeOfArrayIteratorPrototype !== Object.prototype) IteratorPrototype = PrototypeOfArrayIteratorPrototype;
+                }
+            }
+
+            if (IteratorPrototype == undefined) IteratorPrototype = {};
+
+            // 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
+            if (!IS_PURE && !has(IteratorPrototype, ITERATOR)) {
+                createNonEnumerableProperty(IteratorPrototype, ITERATOR, returnThis);
+            }
+
+            module.exports = {
+                IteratorPrototype: IteratorPrototype,
+                BUGGY_SAFARI_ITERATORS: BUGGY_SAFARI_ITERATORS
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "b041":
+        /***/
+            (function(module, exports, __nested_webpack_require_92516__) {
+
+            "use strict";
+
+            var TO_STRING_TAG_SUPPORT = __nested_webpack_require_92516__("00ee");
+            var classof = __nested_webpack_require_92516__("f5df");
+
+            // `Object.prototype.toString` method implementation
+            // https://tc39.github.io/ecma262/#sec-object.prototype.tostring
+            module.exports = TO_STRING_TAG_SUPPORT ? {}.toString : function toString() {
+                return '[object ' + classof(this) + ']';
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "b622":
+        /***/
+            (function(module, exports, __nested_webpack_require_93111__) {
+
+            var global = __nested_webpack_require_93111__("da84");
+            var shared = __nested_webpack_require_93111__("5692");
+            var has = __nested_webpack_require_93111__("5135");
+            var uid = __nested_webpack_require_93111__("90e3");
+            var NATIVE_SYMBOL = __nested_webpack_require_93111__("4930");
+            var USE_SYMBOL_AS_UID = __nested_webpack_require_93111__("fdbf");
+
+            var WellKnownSymbolsStore = shared('wks');
+            var Symbol = global.Symbol;
+            var createWellKnownSymbol = USE_SYMBOL_AS_UID ? Symbol : Symbol && Symbol.withoutSetter || uid;
+
+            module.exports = function(name) {
+                if (!has(WellKnownSymbolsStore, name)) {
+                    if (NATIVE_SYMBOL && has(Symbol, name)) WellKnownSymbolsStore[name] = Symbol[name];
+                    else WellKnownSymbolsStore[name] = createWellKnownSymbol('Symbol.' + name);
+                }
+                return WellKnownSymbolsStore[name];
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "b727":
+        /***/
+            (function(module, exports, __nested_webpack_require_94180__) {
+
+            var bind = __nested_webpack_require_94180__("0366");
+            var IndexedObject = __nested_webpack_require_94180__("44ad");
+            var toObject = __nested_webpack_require_94180__("7b0b");
+            var toLength = __nested_webpack_require_94180__("50c4");
+            var arraySpeciesCreate = __nested_webpack_require_94180__("65f0");
+
+            var push = [].push;
+
+            // `Array.prototype.{ forEach, map, filter, some, every, find, findIndex }` methods implementation
+            var createMethod = function(TYPE) {
+                var IS_MAP = TYPE == 1;
+                var IS_FILTER = TYPE == 2;
+                var IS_SOME = TYPE == 3;
+                var IS_EVERY = TYPE == 4;
+                var IS_FIND_INDEX = TYPE == 6;
+                var NO_HOLES = TYPE == 5 || IS_FIND_INDEX;
+                return function($this, callbackfn, that, specificCreate) {
+                    var O = toObject($this);
+                    var self = IndexedObject(O);
+                    var boundFunction = bind(callbackfn, that, 3);
+                    var length = toLength(self.length);
+                    var index = 0;
+                    var create = specificCreate || arraySpeciesCreate;
+                    var target = IS_MAP ? create($this, length) : IS_FILTER ? create($this, 0) : undefined;
+                    var value, result;
+                    for (; length > index; index++)
+                        if (NO_HOLES || index in self) {
+                            value = self[index];
+                            result = boundFunction(value, index, O);
+                            if (TYPE) {
+                                if (IS_MAP) target[index] = result; // map
+                                else if (result) switch (TYPE) {
+                                        case 3:
+                                            return true; // some
+                                        case 5:
+                                            return value; // find
+                                        case 6:
+                                            return index; // findIndex
+                                        case 2:
+                                            push.call(target, value); // filter
+                                    } else if (IS_EVERY) return false; // every
+                            }
+                        }
+                    return IS_FIND_INDEX ? -1 : IS_SOME || IS_EVERY ? IS_EVERY : target;
+                };
+            };
+
+            module.exports = {
+                // `Array.prototype.forEach` method
+                // https://tc39.github.io/ecma262/#sec-array.prototype.foreach
+                forEach: createMethod(0),
+                // `Array.prototype.map` method
+                // https://tc39.github.io/ecma262/#sec-array.prototype.map
+                map: createMethod(1),
+                // `Array.prototype.filter` method
+                // https://tc39.github.io/ecma262/#sec-array.prototype.filter
+                filter: createMethod(2),
+                // `Array.prototype.some` method
+                // https://tc39.github.io/ecma262/#sec-array.prototype.some
+                some: createMethod(3),
+                // `Array.prototype.every` method
+                // https://tc39.github.io/ecma262/#sec-array.prototype.every
+                every: createMethod(4),
+                // `Array.prototype.find` method
+                // https://tc39.github.io/ecma262/#sec-array.prototype.find
+                find: createMethod(5),
+                // `Array.prototype.findIndex` method
+                // https://tc39.github.io/ecma262/#sec-array.prototype.findIndex
+                findIndex: createMethod(6)
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "c04e":
+        /***/
+            (function(module, exports, __nested_webpack_require_97985__) {
+
+            var isObject = __nested_webpack_require_97985__("861d");
+
+            // `ToPrimitive` abstract operation
+            // https://tc39.github.io/ecma262/#sec-toprimitive
+            // instead of the ES6 spec version, we didn't implement @@toPrimitive case
+            // and the second argument - flag - preferred type is a string
+            module.exports = function(input, PREFERRED_STRING) {
+                if (!isObject(input)) return input;
+                var fn, val;
+                if (PREFERRED_STRING && typeof(fn = input.toString) == 'function' && !isObject(val = fn.call(input))) return val;
+                if (typeof(fn = input.valueOf) == 'function' && !isObject(val = fn.call(input))) return val;
+                if (!PREFERRED_STRING && typeof(fn = input.toString) == 'function' && !isObject(val = fn.call(input))) return val;
+                throw TypeError("Can't convert object to primitive value");
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "c430":
+        /***/
+            (function(module, exports) {
+
+            module.exports = false;
+
+
+            /***/
+        }),
+
+        /***/
+        "c6b6":
+        /***/
+            (function(module, exports) {
+
+            var toString = {}.toString;
+
+            module.exports = function(it) {
+                return toString.call(it).slice(8, -1);
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "c6cd":
+        /***/
+            (function(module, exports, __nested_webpack_require_99491__) {
+
+            var global = __nested_webpack_require_99491__("da84");
+            var setGlobal = __nested_webpack_require_99491__("ce4e");
+
+            var SHARED = '__core-js_shared__';
+            var store = global[SHARED] || setGlobal(SHARED, {});
+
+            module.exports = store;
+
+
+            /***/
+        }),
+
+        /***/
+        "c8ba":
+        /***/
+            (function(module, exports) {
+
+            var g;
+
+            // This works in non-strict mode
+            g = (function() {
+                return this;
+            })();
+
+            try {
+                // This works if eval is allowed (see CSP)
+                g = g || new Function("return this")();
+            } catch (e) {
+                // This works if the window reference is available
+                if (typeof window === "object") g = window;
+            }
+
+            // g can still be undefined, but nothing to do about it...
+            // We return undefined, instead of nothing here, so it's
+            // easier to handle this case. if(!global) { ...}
+
+            module.exports = g;
+
+
+            /***/
+        }),
+
+        /***/
+        "c975":
+        /***/
+            (function(module, exports, __nested_webpack_require_100690__) {
+
+            "use strict";
+
+            var $ = __nested_webpack_require_100690__("23e7");
+            var $indexOf = __nested_webpack_require_100690__("4d64").indexOf;
+            var arrayMethodIsStrict = __nested_webpack_require_100690__("a640");
+            var arrayMethodUsesToLength = __nested_webpack_require_100690__("ae40");
+
+            var nativeIndexOf = [].indexOf;
+
+            var NEGATIVE_ZERO = !!nativeIndexOf && 1 / [1].indexOf(1, -0) < 0;
+            var STRICT_METHOD = arrayMethodIsStrict('indexOf');
+            var USES_TO_LENGTH = arrayMethodUsesToLength('indexOf', { ACCESSORS: true, 1: 0 });
+
+            // `Array.prototype.indexOf` method
+            // https://tc39.github.io/ecma262/#sec-array.prototype.indexof
+            $({ target: 'Array', proto: true, forced: NEGATIVE_ZERO || !STRICT_METHOD || !USES_TO_LENGTH }, {
+                indexOf: function indexOf(searchElement /* , fromIndex = 0 */ ) {
+                    return NEGATIVE_ZERO
+                        // convert -0 to +0
+                        ?
+                        nativeIndexOf.apply(this, arguments) || 0 :
+                        $indexOf(this, searchElement, arguments.length > 1 ? arguments[1] : undefined);
+                }
+            });
+
+
+            /***/
+        }),
+
+        /***/
+        "ca84":
+        /***/
+            (function(module, exports, __nested_webpack_require_102026__) {
+
+            var has = __nested_webpack_require_102026__("5135");
+            var toIndexedObject = __nested_webpack_require_102026__("fc6a");
+            var indexOf = __nested_webpack_require_102026__("4d64").indexOf;
+            var hiddenKeys = __nested_webpack_require_102026__("d012");
+
+            module.exports = function(object, names) {
+                var O = toIndexedObject(object);
+                var i = 0;
+                var result = [];
+                var key;
+                for (key in O) !has(hiddenKeys, key) && has(O, key) && result.push(key);
+                // Don't enum bug & hidden keys
+                while (names.length > i)
+                    if (has(O, key = names[i++])) {
+                        ~indexOf(result, key) || result.push(key);
+                    }
+                return result;
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "cc12":
+        /***/
+            (function(module, exports, __nested_webpack_require_102956__) {
+
+            var global = __nested_webpack_require_102956__("da84");
+            var isObject = __nested_webpack_require_102956__("861d");
+
+            var document = global.document;
+            // typeof document.createElement is 'object' in old IE
+            var EXISTS = isObject(document) && isObject(document.createElement);
+
+            module.exports = function(it) {
+                return EXISTS ? document.createElement(it) : {};
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "ce4e":
+        /***/
+            (function(module, exports, __nested_webpack_require_103524__) {
+
+            var global = __nested_webpack_require_103524__("da84");
+            var createNonEnumerableProperty = __nested_webpack_require_103524__("9112");
+
+            module.exports = function(key, value) {
+                try {
+                    createNonEnumerableProperty(global, key, value);
+                } catch (error) {
+                    global[key] = value;
+                }
+                return value;
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "d012":
+        /***/
+            (function(module, exports) {
+
+            module.exports = {};
+
+
+            /***/
+        }),
+
+        /***/
+        "d039":
+        /***/
+            (function(module, exports) {
+
+            module.exports = function(exec) {
+                try {
+                    return !!exec();
+                } catch (error) {
+                    return true;
+                }
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "d066":
+        /***/
+            (function(module, exports, __nested_webpack_require_104551__) {
+
+            var path = __nested_webpack_require_104551__("428f");
+            var global = __nested_webpack_require_104551__("da84");
+
+            var aFunction = function(variable) {
+                return typeof variable == 'function' ? variable : undefined;
+            };
+
+            module.exports = function(namespace, method) {
+                return arguments.length < 2 ? aFunction(path[namespace]) || aFunction(global[namespace]) :
+                    path[namespace] && path[namespace][method] || global[namespace] && global[namespace][method];
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "d1e7":
+        /***/
+            (function(module, exports, __webpack_require__) {
+
+            "use strict";
+
+            var nativePropertyIsEnumerable = {}.propertyIsEnumerable;
+            var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+
+            // Nashorn ~ JDK8 bug
+            var NASHORN_BUG = getOwnPropertyDescriptor && !nativePropertyIsEnumerable.call({ 1: 2 }, 1);
+
+            // `Object.prototype.propertyIsEnumerable` method implementation
+            // https://tc39.github.io/ecma262/#sec-object.prototype.propertyisenumerable
+            exports.f = NASHORN_BUG ? function propertyIsEnumerable(V) {
+                var descriptor = getOwnPropertyDescriptor(this, V);
+                return !!descriptor && descriptor.enumerable;
+            } : nativePropertyIsEnumerable;
+
+
+            /***/
+        }),
+
+        /***/
+        "d28b":
+        /***/
+            (function(module, exports, __nested_webpack_require_106102__) {
+
+            var defineWellKnownSymbol = __nested_webpack_require_106102__("746f");
+
+            // `Symbol.iterator` well-known symbol
+            // https://tc39.github.io/ecma262/#sec-symbol.iterator
+            defineWellKnownSymbol('iterator');
+
+
+            /***/
+        }),
+
+        /***/
+        "d2bb":
+        /***/
+            (function(module, exports, __nested_webpack_require_106477__) {
+
+            var anObject = __nested_webpack_require_106477__("825a");
+            var aPossiblePrototype = __nested_webpack_require_106477__("3bbe");
+
+            // `Object.setPrototypeOf` method
+            // https://tc39.github.io/ecma262/#sec-object.setprototypeof
+            // Works with __proto__ only. Old v8 can't work with null proto objects.
+            /* eslint-disable no-proto */
+            module.exports = Object.setPrototypeOf || ('__proto__' in {} ? function() {
+                var CORRECT_SETTER = false;
+                var test = {};
+                var setter;
+                try {
+                    setter = Object.getOwnPropertyDescriptor(Object.prototype, '__proto__').set;
+                    setter.call(test, []);
+                    CORRECT_SETTER = test instanceof Array;
+                } catch (error) { /* empty */ }
+                return function setPrototypeOf(O, proto) {
+                    anObject(O);
+                    aPossiblePrototype(proto);
+                    if (CORRECT_SETTER) setter.call(O, proto);
+                    else O.__proto__ = proto;
+                    return O;
+                };
+            }() : undefined);
+
+
+            /***/
+        }),
+
+        /***/
+        "d3b7":
+        /***/
+            (function(module, exports, __nested_webpack_require_107774__) {
+
+            var TO_STRING_TAG_SUPPORT = __nested_webpack_require_107774__("00ee");
+            var redefine = __nested_webpack_require_107774__("6eeb");
+            var toString = __nested_webpack_require_107774__("b041");
+
+            // `Object.prototype.toString` method
+            // https://tc39.github.io/ecma262/#sec-object.prototype.tostring
+            if (!TO_STRING_TAG_SUPPORT) {
+                redefine(Object.prototype, 'toString', toString, { unsafe: true });
+            }
+
+
+            /***/
+        }),
+
+        /***/
+        "d44e":
+        /***/
+            (function(module, exports, __nested_webpack_require_108363__) {
+
+            var defineProperty = __nested_webpack_require_108363__("9bf2").f;
+            var has = __nested_webpack_require_108363__("5135");
+            var wellKnownSymbol = __nested_webpack_require_108363__("b622");
+
+            var TO_STRING_TAG = wellKnownSymbol('toStringTag');
+
+            module.exports = function(it, TAG, STATIC) {
+                if (it && !has(it = STATIC ? it : it.prototype, TO_STRING_TAG)) {
+                    defineProperty(it, TO_STRING_TAG, { configurable: true, value: TAG });
+                }
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "da84":
+        /***/
+            (function(module, exports, __nested_webpack_require_109010__) {
+
+            /* WEBPACK VAR INJECTION */
+            (function(global) {
+                var check = function(it) {
+                    return it && it.Math == Math && it;
+                };
+
+                // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+                module.exports =
+                    // eslint-disable-next-line no-undef
+                    check(typeof globalThis == 'object' && globalThis) ||
+                    check(typeof window == 'object' && window) ||
+                    check(typeof self == 'object' && self) ||
+                    check(typeof global == 'object' && global) ||
+                    // eslint-disable-next-line no-new-func
+                    Function('return this')();
+
+                /* WEBPACK VAR INJECTION */
+            }.call(this, __nested_webpack_require_109010__("c8ba")))
+
+            /***/
+        }),
+
+        /***/
+        "ddb0":
+        /***/
+            (function(module, exports, __nested_webpack_require_109993__) {
+
+            var global = __nested_webpack_require_109993__("da84");
+            var DOMIterables = __nested_webpack_require_109993__("fdbc");
+            var ArrayIteratorMethods = __nested_webpack_require_109993__("e260");
+            var createNonEnumerableProperty = __nested_webpack_require_109993__("9112");
+            var wellKnownSymbol = __nested_webpack_require_109993__("b622");
+
+            var ITERATOR = wellKnownSymbol('iterator');
+            var TO_STRING_TAG = wellKnownSymbol('toStringTag');
+            var ArrayValues = ArrayIteratorMethods.values;
+
+            for (var COLLECTION_NAME in DOMIterables) {
+                var Collection = global[COLLECTION_NAME];
+                var CollectionPrototype = Collection && Collection.prototype;
+                if (CollectionPrototype) {
+                    // some Chrome versions have non-configurable methods on DOMTokenList
+                    if (CollectionPrototype[ITERATOR] !== ArrayValues) try {
+                        createNonEnumerableProperty(CollectionPrototype, ITERATOR, ArrayValues);
+                    } catch (error) {
+                        CollectionPrototype[ITERATOR] = ArrayValues;
+                    }
+                    if (!CollectionPrototype[TO_STRING_TAG]) {
+                        createNonEnumerableProperty(CollectionPrototype, TO_STRING_TAG, COLLECTION_NAME);
+                    }
+                    if (DOMIterables[COLLECTION_NAME])
+                        for (var METHOD_NAME in ArrayIteratorMethods) {
+                            // some Chrome versions have non-configurable methods on DOMTokenList
+                            if (CollectionPrototype[METHOD_NAME] !== ArrayIteratorMethods[METHOD_NAME]) try {
+                                createNonEnumerableProperty(CollectionPrototype, METHOD_NAME, ArrayIteratorMethods[METHOD_NAME]);
+                            } catch (error) {
+                                CollectionPrototype[METHOD_NAME] = ArrayIteratorMethods[METHOD_NAME];
+                            }
+                        }
+                }
+            }
+
+
+            /***/
+        }),
+
+        /***/
+        "df75":
+        /***/
+            (function(module, exports, __nested_webpack_require_112154__) {
+
+            var internalObjectKeys = __nested_webpack_require_112154__("ca84");
+            var enumBugKeys = __nested_webpack_require_112154__("7839");
+
+            // `Object.keys` method
+            // https://tc39.github.io/ecma262/#sec-object.keys
+            module.exports = Object.keys || function keys(O) {
+                return internalObjectKeys(O, enumBugKeys);
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "e01a":
+        /***/
+            (function(module, exports, __nested_webpack_require_112656__) {
+
+            "use strict";
+            // `Symbol.prototype.description` getter
+            // https://tc39.github.io/ecma262/#sec-symbol.prototype.description
+
+            var $ = __nested_webpack_require_112656__("23e7");
+            var DESCRIPTORS = __nested_webpack_require_112656__("83ab");
+            var global = __nested_webpack_require_112656__("da84");
+            var has = __nested_webpack_require_112656__("5135");
+            var isObject = __nested_webpack_require_112656__("861d");
+            var defineProperty = __nested_webpack_require_112656__("9bf2").f;
+            var copyConstructorProperties = __nested_webpack_require_112656__("e893");
+
+            var NativeSymbol = global.Symbol;
+
+            if (DESCRIPTORS && typeof NativeSymbol == 'function' && (!('description' in NativeSymbol.prototype) ||
+                    // Safari 12 bug
+                    NativeSymbol().description !== undefined
+                )) {
+                var EmptyStringDescriptionStore = {};
+                // wrap Symbol constructor for correct work with undefined description
+                var SymbolWrapper = function Symbol() {
+                    var description = arguments.length < 1 || arguments[0] === undefined ? undefined : String(arguments[0]);
+                    var result = this instanceof SymbolWrapper ?
+                        new NativeSymbol(description)
+                        // in Edge 13, String(Symbol(undefined)) === 'Symbol(undefined)'
+                        :
+                        description === undefined ? NativeSymbol() : NativeSymbol(description);
+                    if (description === '') EmptyStringDescriptionStore[result] = true;
+                    return result;
+                };
+                copyConstructorProperties(SymbolWrapper, NativeSymbol);
+                var symbolPrototype = SymbolWrapper.prototype = NativeSymbol.prototype;
+                symbolPrototype.constructor = SymbolWrapper;
+
+                var symbolToString = symbolPrototype.toString;
+                var native = String(NativeSymbol('test')) == 'Symbol(test)';
+                var regexp = /^Symbol\((.*)\)[^)]+$/;
+                defineProperty(symbolPrototype, 'description', {
+                    configurable: true,
+                    get: function description() {
+                        var symbol = isObject(this) ? this.valueOf() : this;
+                        var string = symbolToString.call(symbol);
+                        if (has(EmptyStringDescriptionStore, symbol)) return '';
+                        var desc = native ? string.slice(7, -1) : string.replace(regexp, '$1');
+                        return desc === '' ? undefined : desc;
+                    }
+                });
+
+                $({ global: true, forced: true }, {
+                    Symbol: SymbolWrapper
+                });
+            }
+
+
+            /***/
+        }),
+
+        /***/
+        "e163":
+        /***/
+            (function(module, exports, __nested_webpack_require_115563__) {
+
+            var has = __nested_webpack_require_115563__("5135");
+            var toObject = __nested_webpack_require_115563__("7b0b");
+            var sharedKey = __nested_webpack_require_115563__("f772");
+            var CORRECT_PROTOTYPE_GETTER = __nested_webpack_require_115563__("e177");
+
+            var IE_PROTO = sharedKey('IE_PROTO');
+            var ObjectPrototype = Object.prototype;
+
+            // `Object.getPrototypeOf` method
+            // https://tc39.github.io/ecma262/#sec-object.getprototypeof
+            module.exports = CORRECT_PROTOTYPE_GETTER ? Object.getPrototypeOf : function(O) {
+                O = toObject(O);
+                if (has(O, IE_PROTO)) return O[IE_PROTO];
+                if (typeof O.constructor == 'function' && O instanceof O.constructor) {
+                    return O.constructor.prototype;
+                }
+                return O instanceof Object ? ObjectPrototype : null;
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "e177":
+        /***/
+            (function(module, exports, __nested_webpack_require_116589__) {
+
+            var fails = __nested_webpack_require_116589__("d039");
+
+            module.exports = !fails(function() {
+                function F() { /* empty */ }
+                F.prototype.constructor = null;
+                return Object.getPrototypeOf(new F()) !== F.prototype;
+            });
+
+
+            /***/
+        }),
+
+        /***/
+        "e260":
+        /***/
+            (function(module, exports, __nested_webpack_require_117012__) {
+
+            "use strict";
+
+            var toIndexedObject = __nested_webpack_require_117012__("fc6a");
+            var addToUnscopables = __nested_webpack_require_117012__("44d2");
+            var Iterators = __nested_webpack_require_117012__("3f8c");
+            var InternalStateModule = __nested_webpack_require_117012__("69f3");
+            var defineIterator = __nested_webpack_require_117012__("7dd0");
+
+            var ARRAY_ITERATOR = 'Array Iterator';
+            var setInternalState = InternalStateModule.set;
+            var getInternalState = InternalStateModule.getterFor(ARRAY_ITERATOR);
+
+            // `Array.prototype.entries` method
+            // https://tc39.github.io/ecma262/#sec-array.prototype.entries
+            // `Array.prototype.keys` method
+            // https://tc39.github.io/ecma262/#sec-array.prototype.keys
+            // `Array.prototype.values` method
+            // https://tc39.github.io/ecma262/#sec-array.prototype.values
+            // `Array.prototype[@@iterator]` method
+            // https://tc39.github.io/ecma262/#sec-array.prototype-@@iterator
+            // `CreateArrayIterator` internal method
+            // https://tc39.github.io/ecma262/#sec-createarrayiterator
+            module.exports = defineIterator(Array, 'Array', function(iterated, kind) {
+                setInternalState(this, {
+                    type: ARRAY_ITERATOR,
+                    target: toIndexedObject(iterated), // target
+                    index: 0, // next index
+                    kind: kind // kind
+                });
+                // `%ArrayIteratorPrototype%.next` method
+                // https://tc39.github.io/ecma262/#sec-%arrayiteratorprototype%.next
+            }, function() {
+                var state = getInternalState(this);
+                var target = state.target;
+                var kind = state.kind;
+                var index = state.index++;
+                if (!target || index >= target.length) {
+                    state.target = undefined;
+                    return { value: undefined, done: true };
+                }
+                if (kind == 'keys') return { value: index, done: false };
+                if (kind == 'values') return { value: target[index], done: false };
+                return { value: [index, target[index]], done: false };
+            }, 'values');
+
+            // argumentsList[@@iterator] is %ArrayProto_values%
+            // https://tc39.github.io/ecma262/#sec-createunmappedargumentsobject
+            // https://tc39.github.io/ecma262/#sec-createmappedargumentsobject
+            Iterators.Arguments = Iterators.Array;
+
+            // https://tc39.github.io/ecma262/#sec-array.prototype-@@unscopables
+            addToUnscopables('keys');
+            addToUnscopables('values');
+            addToUnscopables('entries');
+
+
+            /***/
+        }),
+
+        /***/
+        "e538":
+        /***/
+            (function(module, exports, __nested_webpack_require_119902__) {
+
+            var wellKnownSymbol = __nested_webpack_require_119902__("b622");
+
+            exports.f = wellKnownSymbol;
+
+
+            /***/
+        }),
+
+        /***/
+        "e893":
+        /***/
+            (function(module, exports, __nested_webpack_require_120147__) {
+
+            var has = __nested_webpack_require_120147__("5135");
+            var ownKeys = __nested_webpack_require_120147__("56ef");
+            var getOwnPropertyDescriptorModule = __nested_webpack_require_120147__("06cf");
+            var definePropertyModule = __nested_webpack_require_120147__("9bf2");
+
+            module.exports = function(target, source) {
+                var keys = ownKeys(source);
+                var defineProperty = definePropertyModule.f;
+                var getOwnPropertyDescriptor = getOwnPropertyDescriptorModule.f;
+                for (var i = 0; i < keys.length; i++) {
+                    var key = keys[i];
+                    if (!has(target, key)) defineProperty(target, key, getOwnPropertyDescriptor(source, key));
+                }
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "e8b5":
+        /***/
+            (function(module, exports, __nested_webpack_require_121021__) {
+
+            var classof = __nested_webpack_require_121021__("c6b6");
+
+            // `IsArray` abstract operation
+            // https://tc39.github.io/ecma262/#sec-isarray
+            module.exports = Array.isArray || function isArray(arg) {
+                return classof(arg) == 'Array';
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "f5df":
+        /***/
+            (function(module, exports, __nested_webpack_require_121453__) {
+
+            var TO_STRING_TAG_SUPPORT = __nested_webpack_require_121453__("00ee");
+            var classofRaw = __nested_webpack_require_121453__("c6b6");
+            var wellKnownSymbol = __nested_webpack_require_121453__("b622");
+
+            var TO_STRING_TAG = wellKnownSymbol('toStringTag');
+            // ES3 wrong here
+            var CORRECT_ARGUMENTS = classofRaw(function() { return arguments; }()) == 'Arguments';
+
+            // fallback for IE11 Script Access Denied error
+            var tryGet = function(it, key) {
+                try {
+                    return it[key];
+                } catch (error) { /* empty */ }
+            };
+
+            // getting tag from ES6+ `Object.prototype.toString`
+            module.exports = TO_STRING_TAG_SUPPORT ? classofRaw : function(it) {
+                var O, tag, result;
+                return it === undefined ? 'Undefined' : it === null ? 'Null'
+                    // @@toStringTag case
+                    :
+                    typeof(tag = tryGet(O = Object(it), TO_STRING_TAG)) == 'string' ? tag
+                    // builtinTag case
+                    :
+                    CORRECT_ARGUMENTS ? classofRaw(O)
+                    // ES3 arguments fallback
+                    :
+                    (result = classofRaw(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : result;
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "f772":
+        /***/
+            (function(module, exports, __nested_webpack_require_122930__) {
+
+            var shared = __nested_webpack_require_122930__("5692");
+            var uid = __nested_webpack_require_122930__("90e3");
+
+            var keys = shared('keys');
+
+            module.exports = function(key) {
+                return keys[key] || (keys[key] = uid(key));
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "fb15":
+        /***/
+            (function(module, __webpack_exports__, __nested_webpack_require_123348__) {
+
+            "use strict";
+            // ESM COMPAT FLAG
+            __nested_webpack_require_123348__.r(__webpack_exports__);
+
+            // EXPORTS
+            __nested_webpack_require_123348__.d(__webpack_exports__, "TailablePagination", function() { return /* reexport */ components_Pagination; });
+
+            // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js
+            // This file is imported into lib/wc client bundles.
+
+            if (typeof window !== 'undefined') {
+                var currentScript = window.document.currentScript
+                if (true) {
+                    var getCurrentScript = __nested_webpack_require_123348__("8875")
+                    currentScript = getCurrentScript()
+
+                    // for backward compatibility, because previously we directly included the polyfill
+                    if (!('currentScript' in document)) {
+                        Object.defineProperty(document, 'currentScript', { get: getCurrentScript })
+                    }
+                }
+
+                var src = currentScript && currentScript.src.match(/(.+\/)[^/]+\.js(\?.*)?$/)
+                if (src) {
+                    __nested_webpack_require_123348__.p = src[1] // eslint-disable-line
+                }
+            }
+
+            // Indicate to webpack that this file can be concatenated
+            /* harmony default export */
+            var setPublicPath = (null);
+
+            // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"20bea69e-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Pagination.vue?vue&type=template&id=49e2769e&
+            var render = function() {
+                var _vm = this;
+                var _h = _vm.$createElement;
+                var _c = _vm._self._c || _h;
+                return _c('renderless-pagination', {
+                    attrs: { "data": _vm.data, "size": _vm.size, "limit": _vm.limit, "show-disabled": _vm.showDisabled },
+                    on: { "pagination-change-page": _vm.onPaginationChangePage },
+                    scopedSlots: _vm._u([{
+                        key: "default",
+                        fn: function(ref) {
+                            var data = ref.data;
+                            var from = ref.from;
+                            var to = ref.to;
+                            var total = ref.total;
+                            var perPage = ref.perPage;
+                            var prevPageUrl = ref.prevPageUrl;
+                            var nextPageUrl = ref.nextPageUrl;
+                            var limit = ref.limit;
+                            var showDisabled = ref.showDisabled;
+                            var size = ref.size;
+                            var pageRange = ref.pageRange;
+                            var currentPage = ref.currentPage;
+                            var previousButtonHandler = ref.previousButtonHandler;
+                            var nextButtonHandler = ref.nextButtonHandler;
+                            var pageButtonHandler = ref.pageButtonHandler;
+                            return _c('div', {}, [_vm._t("default", [_c('div', { staticClass: "d-flex justify-content-between", class: _vm.containerClasses }, [_c('div', { staticClass: "hidden mb-3 sm:mb-0 sm:flex" }, [_c('p', {
+                                staticClass: "leading-5 text-gray-700",
+                                class: {
+                                    'text-base': size == 'default',
+                                        'text-sm': size == 'small',
+                                }
+                            }, [_vm._v(" Mostrando "), _c('span', { staticClass: "font-medium" }, [_vm._v(_vm._s(from))]), _vm._v(" - "), _c('span', { staticClass: "font-medium" }, [_vm._v(_vm._s(to))]), _vm._v(" de "), _c('span', { staticClass: "font-medium" }, [_vm._v(_vm._s(total))]), _vm._v(" resultados ")])]), _c('div', { staticClass: "flex" }, [_c('ul', { class: _vm.ulClasses }, [(prevPageUrl || showDisabled) ? _c('li', { class: { 'page-item pagination-prev-nav': _vm.framework === 'bootstrap', 'disabled': !prevPageUrl && _vm.framework === 'bootstrap' } }, [_c('button', { class: _vm.previousButtonClasses, attrs: { "type": "button", "tabindex": !prevPageUrl && -1, "disabled": !prevPageUrl }, on: { "click": previousButtonHandler } }, [_vm._t("previous-button", [(_vm.framework === 'tailwind') ? _c('svg', { class: _vm.previousButtonIconClasses, attrs: { "fill": "none", "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", "stroke": "currentColor", "viewBox": "0 0 24 24" } }, [_c('path', { attrs: { "d": "M15 19l-7-7 7-7" } })]) : _c('span', [_vm._v(" " + _vm._s(_vm.translate.previousButton) + " ")])])], 2)]) : _vm._e(), (_vm.showNumbers) ? _vm._l((pageRange), function(page, key) { return _c('li', { key: key, class: { 'page-item pagination-page-nav': _vm.framework === 'bootstrap', 'active': _vm.framework === 'bootstrap' && page == currentPage } }, [_c('button', { class: _vm.numberButtonClasses(page, currentPage), attrs: { "type": "button" }, on: { "click": function($event) { return pageButtonHandler(page) } } }, [_vm._v(" " + _vm._s(page) + " "), (page == currentPage) ? _c('span', { staticClass: "sr-only" }, [_vm._v("(current)")]) : _vm._e()])]) }) : _vm._e(), (nextPageUrl || showDisabled) ? _c('li', { class: { 'page-item pagination-next-nav': _vm.framework === 'bootstrap', 'disabled': !nextPageUrl && _vm.framework === 'bootstrap' } }, [_c('button', { class: _vm.nextButtonClasses, attrs: { "type": "button", "tabindex": !nextPageUrl && -1, "disabled": !nextPageUrl }, on: { "click": nextButtonHandler } }, [_vm._t("next-button", [(_vm.framework === 'tailwind') ? _c('svg', { class: _vm.nextButtonIconClasses, attrs: { "fill": "none", "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", "stroke": "currentColor", "viewBox": "0 0 24 24" } }, [_c('path', { attrs: { "d": "M9 5l7 7-7 7" } })]) : _c('span', [_vm._v(" " + _vm._s(_vm.translate.nextButton) + " ")])])], 2)]) : _vm._e()], 2)])])], { "data": data, "pageRange": pageRange, "currentPage": currentPage, "nextButtonHandler": nextButtonHandler, "pageButtonHandler": pageButtonHandler, "previousButtonHandler": previousButtonHandler })], 2)
+                        }
+                    }], null, true)
+                })
+            }
+            var staticRenderFns = []
+
+
+            // CONCATENATED MODULE: ./src/components/Pagination.vue?vue&type=template&id=49e2769e&
+
+            // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.index-of.js
+            var es_array_index_of = __nested_webpack_require_123348__("c975");
+
+            // EXTERNAL MODULE: ./node_modules/core-js/modules/es.number.constructor.js
+            var es_number_constructor = __nested_webpack_require_123348__("a9e3");
+
+            // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/classCallCheck.js
+            function _classCallCheck(instance, Constructor) {
+                if (!(instance instanceof Constructor)) {
+                    throw new TypeError("Cannot call a class as a function");
+                }
+            }
+            // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/createClass.js
+            function _defineProperties(target, props) {
+                for (var i = 0; i < props.length; i++) {
+                    var descriptor = props[i];
+                    descriptor.enumerable = descriptor.enumerable || false;
+                    descriptor.configurable = true;
+                    if ("value" in descriptor) descriptor.writable = true;
+                    Object.defineProperty(target, descriptor.key, descriptor);
+                }
+            }
+
+            function _createClass(Constructor, protoProps, staticProps) {
+                if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+                if (staticProps) _defineProperties(Constructor, staticProps);
+                return Constructor;
+            }
+            // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js
+            function _setPrototypeOf(o, p) {
+                _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+                    o.__proto__ = p;
+                    return o;
+                };
+
+                return _setPrototypeOf(o, p);
+            }
+            // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/inherits.js
+
+            function _inherits(subClass, superClass) {
+                if (typeof superClass !== "function" && superClass !== null) {
+                    throw new TypeError("Super expression must either be null or a function");
+                }
+
+                subClass.prototype = Object.create(superClass && superClass.prototype, {
+                    constructor: {
+                        value: subClass,
+                        writable: true,
+                        configurable: true
+                    }
+                });
+                if (superClass) _setPrototypeOf(subClass, superClass);
+            }
+            // EXTERNAL MODULE: ./node_modules/core-js/modules/es.reflect.construct.js
+            var es_reflect_construct = __nested_webpack_require_123348__("4ae1");
+
+            // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.get-prototype-of.js
+            var es_object_get_prototype_of = __nested_webpack_require_123348__("3410");
+
+            // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js
+
+            function _getPrototypeOf(o) {
+                _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+                    return o.__proto__ || Object.getPrototypeOf(o);
+                };
+                return _getPrototypeOf(o);
+            }
+            // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.to-string.js
+            var es_object_to_string = __nested_webpack_require_123348__("d3b7");
+
+            // EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.to-string.js
+            var es_regexp_to_string = __nested_webpack_require_123348__("25f0");
+
+            // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/isNativeReflectConstruct.js
+
+
+
+            function _isNativeReflectConstruct() {
+                if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+                if (Reflect.construct.sham) return false;
+                if (typeof Proxy === "function") return true;
+
+                try {
+                    Date.prototype.toString.call(Reflect.construct(Date, [], function() {}));
+                    return true;
+                } catch (e) {
+                    return false;
+                }
+            }
+            // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.js
+            var es_symbol = __nested_webpack_require_123348__("a4d3");
+
+            // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.description.js
+            var es_symbol_description = __nested_webpack_require_123348__("e01a");
+
+            // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.iterator.js
+            var es_symbol_iterator = __nested_webpack_require_123348__("d28b");
+
+            // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.iterator.js
+            var es_array_iterator = __nested_webpack_require_123348__("e260");
+
+            // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.iterator.js
+            var es_string_iterator = __nested_webpack_require_123348__("3ca3");
+
+            // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.iterator.js
+            var web_dom_collections_iterator = __nested_webpack_require_123348__("ddb0");
+
+            // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/typeof.js
+
+
+
+
+
+
+
+            function _typeof(obj) {
+                "@babel/helpers - typeof";
+
+                if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+                    _typeof = function _typeof(obj) {
+                        return typeof obj;
+                    };
+                } else {
+                    _typeof = function _typeof(obj) {
+                        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+                    };
+                }
+
+                return _typeof(obj);
+            }
+            // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js
+            function _assertThisInitialized(self) {
+                if (self === void 0) {
+                    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+                }
+
+                return self;
+            }
+            // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js
+
+
+            function _possibleConstructorReturn(self, call) {
+                if (call && (_typeof(call) === "object" || typeof call === "function")) {
+                    return call;
+                }
+
+                return _assertThisInitialized(self);
+            }
+            // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/createSuper.js
+
+
+
+
+            function _createSuper(Derived) {
+                var hasNativeReflectConstruct = _isNativeReflectConstruct();
+                return function _createSuperInternal() {
+                    var Super = _getPrototypeOf(Derived),
+                        result;
+
+                    if (hasNativeReflectConstruct) {
+                        var NewTarget = _getPrototypeOf(this).constructor;
+                        result = Reflect.construct(Super, arguments, NewTarget);
+                    } else {
+                        result = Super.apply(this, arguments);
+                    }
+
+                    return _possibleConstructorReturn(this, result);
+                };
+            }
+            // CONCATENATED MODULE: ./node_modules/tslib/tslib.es6.js
+            /*! *****************************************************************************
+            Copyright (c) Microsoft Corporation.
+
+            Permission to use, copy, modify, and/or distribute this software for any
+            purpose with or without fee is hereby granted.
+
+            THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+            REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+            AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+            INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+            LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+            OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+            PERFORMANCE OF THIS SOFTWARE.
+            ***************************************************************************** */
+            /* global Reflect, Promise */
+
+            var extendStatics = function(d, b) {
+                extendStatics = Object.setPrototypeOf ||
+                    ({ __proto__: [] }
+                        instanceof Array && function(d, b) { d.__proto__ = b; }) ||
+                    function(d, b) {
+                        for (var p in b)
+                            if (b.hasOwnProperty(p)) d[p] = b[p];
+                    };
+                return extendStatics(d, b);
+            };
+
+            function __extends(d, b) {
+                extendStatics(d, b);
+
+                function __() { this.constructor = d; }
+                d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+            }
+
+            var __assign = function() {
+                __assign = Object.assign || function __assign(t) {
+                    for (var s, i = 1, n = arguments.length; i < n; i++) {
+                        s = arguments[i];
+                        for (var p in s)
+                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                    }
+                    return t;
+                }
+                return __assign.apply(this, arguments);
+            }
+
+            function __rest(s, e) {
+                var t = {};
+                for (var p in s)
+                    if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+                        t[p] = s[p];
+                if (s != null && typeof Object.getOwnPropertySymbols === "function")
+                    for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+                        if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                            t[p[i]] = s[p[i]];
+                    }
+                return t;
+            }
+
+            function __decorate(decorators, target, key, desc) {
+                var c = arguments.length,
+                    r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+                    d;
+                if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+                else
+                    for (var i = decorators.length - 1; i >= 0; i--)
+                        if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+                return c > 3 && r && Object.defineProperty(target, key, r), r;
+            }
+
+            function __param(paramIndex, decorator) {
+                return function(target, key) { decorator(target, key, paramIndex); }
+            }
+
+            function __metadata(metadataKey, metadataValue) {
+                if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+            }
+
+            function __awaiter(thisArg, _arguments, P, generator) {
+                function adopt(value) { return value instanceof P ? value : new P(function(resolve) { resolve(value); }); }
+                return new(P || (P = Promise))(function(resolve, reject) {
+                    function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+
+                    function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+
+                    function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+                    step((generator = generator.apply(thisArg, _arguments || [])).next());
+                });
+            }
+
+            function __generator(thisArg, body) {
+                var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] },
+                    f, y, t, g;
+                return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+
+                function verb(n) { return function(v) { return step([n, v]); }; }
+
+                function step(op) {
+                    if (f) throw new TypeError("Generator is already executing.");
+                    while (_) try {
+                        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+                        if (y = 0, t) op = [op[0] & 2, t.value];
+                        switch (op[0]) {
+                            case 0:
+                            case 1:
+                                t = op;
+                                break;
+                            case 4:
+                                _.label++;
+                                return { value: op[1], done: false };
+                            case 5:
+                                _.label++;
+                                y = op[1];
+                                op = [0];
+                                continue;
+                            case 7:
+                                op = _.ops.pop();
+                                _.trys.pop();
+                                continue;
+                            default:
+                                if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                                if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                                if (op[0] === 6 && _.label < t[1]) {
+                                    _.label = t[1];
+                                    t = op;
+                                    break;
+                                }
+                                if (t && _.label < t[2]) {
+                                    _.label = t[2];
+                                    _.ops.push(op);
+                                    break;
+                                }
+                                if (t[2]) _.ops.pop();
+                                _.trys.pop();
+                                continue;
+                        }
+                        op = body.call(thisArg, _);
+                    } catch (e) {
+                        op = [6, e];
+                        y = 0;
+                    } finally { f = t = 0; }
+                    if (op[0] & 5) throw op[1];
+                    return { value: op[0] ? op[1] : void 0, done: true };
+                }
+            }
+
+            function __createBinding(o, m, k, k2) {
+                if (k2 === undefined) k2 = k;
+                o[k2] = m[k];
+            }
+
+            function __exportStar(m, exports) {
+                for (var p in m)
+                    if (p !== "default" && !exports.hasOwnProperty(p)) exports[p] = m[p];
+            }
+
+            function __values(o) {
+                var s = typeof Symbol === "function" && Symbol.iterator,
+                    m = s && o[s],
+                    i = 0;
+                if (m) return m.call(o);
+                if (o && typeof o.length === "number") return {
+                    next: function() {
+                        if (o && i >= o.length) o = void 0;
+                        return { value: o && o[i++], done: !o };
+                    }
+                };
+                throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+            }
+
+            function __read(o, n) {
+                var m = typeof Symbol === "function" && o[Symbol.iterator];
+                if (!m) return o;
+                var i = m.call(o),
+                    r, ar = [],
+                    e;
+                try {
+                    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+                } catch (error) { e = { error: error }; } finally {
+                    try {
+                        if (r && !r.done && (m = i["return"])) m.call(i);
+                    } finally { if (e) throw e.error; }
+                }
+                return ar;
+            }
+
+            function __spread() {
+                for (var ar = [], i = 0; i < arguments.length; i++)
+                    ar = ar.concat(__read(arguments[i]));
+                return ar;
+            }
+
+            function __spreadArrays() {
+                for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+                for (var r = Array(s), k = 0, i = 0; i < il; i++)
+                    for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+                        r[k] = a[j];
+                return r;
+            };
+
+            function __await(v) {
+                return this instanceof __await ? (this.v = v, this) : new __await(v);
+            }
+
+            function __asyncGenerator(thisArg, _arguments, generator) {
+                if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+                var g = generator.apply(thisArg, _arguments || []),
+                    i, q = [];
+                return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function() { return this; }, i;
+
+                function verb(n) { if (g[n]) i[n] = function(v) { return new Promise(function(a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+
+                function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+
+                function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+
+                function fulfill(value) { resume("next", value); }
+
+                function reject(value) { resume("throw", value); }
+
+                function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+            }
+
+            function __asyncDelegator(o) {
+                var i, p;
+                return i = {}, verb("next"), verb("throw", function(e) { throw e; }), verb("return"), i[Symbol.iterator] = function() { return this; }, i;
+
+                function verb(n, f) { i[n] = o[n] ? function(v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
+            }
+
+            function __asyncValues(o) {
+                if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+                var m = o[Symbol.asyncIterator],
+                    i;
+                return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function() { return this; }, i);
+
+                function verb(n) { i[n] = o[n] && function(v) { return new Promise(function(resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+
+                function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+            }
+
+            function __makeTemplateObject(cooked, raw) {
+                if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+                return cooked;
+            };
+
+            function __importStar(mod) {
+                if (mod && mod.__esModule) return mod;
+                var result = {};
+                if (mod != null)
+                    for (var k in mod)
+                        if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+                result.default = mod;
+                return result;
+            }
+
+            function __importDefault(mod) {
+                return (mod && mod.__esModule) ? mod : { default: mod };
+            }
+
+            function __classPrivateFieldGet(receiver, privateMap) {
+                if (!privateMap.has(receiver)) {
+                    throw new TypeError("attempted to get private field on non-instance");
+                }
+                return privateMap.get(receiver);
+            }
+
+            function __classPrivateFieldSet(receiver, privateMap, value) {
+                if (!privateMap.has(receiver)) {
+                    throw new TypeError("attempted to set private field on non-instance");
+                }
+                privateMap.set(receiver, value);
+                return value;
+            }
+
+            // EXTERNAL MODULE: external {"commonjs":"vue","commonjs2":"vue","root":"Vue"}
+            var external_commonjs_vue_commonjs2_vue_root_Vue_ = __nested_webpack_require_123348__("8bbf");
+            var external_commonjs_vue_commonjs2_vue_root_Vue_default = /*#__PURE__*/ __nested_webpack_require_123348__.n(external_commonjs_vue_commonjs2_vue_root_Vue_);
+
+            // CONCATENATED MODULE: ./node_modules/vue-class-component/dist/vue-class-component.esm.js
+            /**
+             * vue-class-component v7.2.6
+             * (c) 2015-present Evan You
+             * @license MIT
+             */
+
+
+            function vue_class_component_esm_typeof(obj) {
+                if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+                    vue_class_component_esm_typeof = function(obj) {
+                        return typeof obj;
+                    };
+                } else {
+                    vue_class_component_esm_typeof = function(obj) {
+                        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+                    };
+                }
+
+                return vue_class_component_esm_typeof(obj);
+            }
+
+            function _defineProperty(obj, key, value) {
+                if (key in obj) {
+                    Object.defineProperty(obj, key, {
+                        value: value,
+                        enumerable: true,
+                        configurable: true,
+                        writable: true
+                    });
+                } else {
+                    obj[key] = value;
+                }
+
+                return obj;
+            }
+
+            function _toConsumableArray(arr) {
+                return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
+            }
+
+            function _arrayWithoutHoles(arr) {
+                if (Array.isArray(arr)) {
+                    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+
+                    return arr2;
+                }
+            }
+
+            function _iterableToArray(iter) {
+                if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+            }
+
+            function _nonIterableSpread() {
+                throw new TypeError("Invalid attempt to spread non-iterable instance");
+            }
+
+            // The rational behind the verbose Reflect-feature check below is the fact that there are polyfills
+            // which add an implementation for Reflect.defineMetadata but not for Reflect.getOwnMetadataKeys.
+            // Without this check consumers will encounter hard to track down runtime errors.
+            function reflectionIsSupported() {
+                return typeof Reflect !== 'undefined' && Reflect.defineMetadata && Reflect.getOwnMetadataKeys;
+            }
+
+            function copyReflectionMetadata(to, from) {
+                forwardMetadata(to, from);
+                Object.getOwnPropertyNames(from.prototype).forEach(function(key) {
+                    forwardMetadata(to.prototype, from.prototype, key);
+                });
+                Object.getOwnPropertyNames(from).forEach(function(key) {
+                    forwardMetadata(to, from, key);
+                });
+            }
+
+            function forwardMetadata(to, from, propertyKey) {
+                var metaKeys = propertyKey ? Reflect.getOwnMetadataKeys(from, propertyKey) : Reflect.getOwnMetadataKeys(from);
+                metaKeys.forEach(function(metaKey) {
+                    var metadata = propertyKey ? Reflect.getOwnMetadata(metaKey, from, propertyKey) : Reflect.getOwnMetadata(metaKey, from);
+
+                    if (propertyKey) {
+                        Reflect.defineMetadata(metaKey, metadata, to, propertyKey);
+                    } else {
+                        Reflect.defineMetadata(metaKey, metadata, to);
+                    }
+                });
+            }
+
+            var fakeArray = {
+                __proto__: []
+            };
+            var hasProto = fakeArray instanceof Array;
+
+            function createDecorator(factory) {
+                return function(target, key, index) {
+                    var Ctor = typeof target === 'function' ? target : target.constructor;
+
+                    if (!Ctor.__decorators__) {
+                        Ctor.__decorators__ = [];
+                    }
+
+                    if (typeof index !== 'number') {
+                        index = undefined;
+                    }
+
+                    Ctor.__decorators__.push(function(options) {
+                        return factory(options, key, index);
+                    });
+                };
+            }
+
+            function mixins() {
+                for (var _len = arguments.length, Ctors = new Array(_len), _key = 0; _key < _len; _key++) {
+                    Ctors[_key] = arguments[_key];
+                }
+
+                return external_commonjs_vue_commonjs2_vue_root_Vue_default.a.extend({
+                    mixins: Ctors
+                });
+            }
+
+            function isPrimitive(value) {
+                var type = vue_class_component_esm_typeof(value);
+
+                return value == null || type !== 'object' && type !== 'function';
+            }
+
+            function warn(message) {
+                if (typeof console !== 'undefined') {
+                    console.warn('[vue-class-component] ' + message);
+                }
+            }
+
+            function collectDataFromConstructor(vm, Component) {
+                // override _init to prevent to init as Vue instance
+                var originalInit = Component.prototype._init;
+
+                Component.prototype._init = function() {
+                    var _this = this;
+
+                    // proxy to actual vm
+                    var keys = Object.getOwnPropertyNames(vm); // 2.2.0 compat (props are no longer exposed as self properties)
+
+                    if (vm.$options.props) {
+                        for (var key in vm.$options.props) {
+                            if (!vm.hasOwnProperty(key)) {
+                                keys.push(key);
+                            }
+                        }
+                    }
+
+                    keys.forEach(function(key) {
+                        Object.defineProperty(_this, key, {
+                            get: function get() {
+                                return vm[key];
+                            },
+                            set: function set(value) {
+                                vm[key] = value;
+                            },
+                            configurable: true
+                        });
+                    });
+                }; // should be acquired class property values
+
+
+                var data = new Component(); // restore original _init to avoid memory leak (#209)
+
+                Component.prototype._init = originalInit; // create plain data object
+
+                var plainData = {};
+                Object.keys(data).forEach(function(key) {
+                    if (data[key] !== undefined) {
+                        plainData[key] = data[key];
+                    }
+                });
+
+                if (false) {}
+
+                return plainData;
+            }
+
+            var $internalHooks = ['data', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeDestroy', 'destroyed', 'beforeUpdate', 'updated', 'activated', 'deactivated', 'render', 'errorCaptured', 'serverPrefetch' // 2.6
+            ];
+
+            function componentFactory(Component) {
+                var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+                options.name = options.name || Component._componentTag || Component.name; // prototype props.
+
+                var proto = Component.prototype;
+                Object.getOwnPropertyNames(proto).forEach(function(key) {
+                    if (key === 'constructor') {
+                        return;
+                    } // hooks
+
+
+                    if ($internalHooks.indexOf(key) > -1) {
+                        options[key] = proto[key];
+                        return;
+                    }
+
+                    var descriptor = Object.getOwnPropertyDescriptor(proto, key);
+
+                    if (descriptor.value !== void 0) {
+                        // methods
+                        if (typeof descriptor.value === 'function') {
+                            (options.methods || (options.methods = {}))[key] = descriptor.value;
+                        } else {
+                            // typescript decorated data
+                            (options.mixins || (options.mixins = [])).push({
+                                data: function data() {
+                                    return _defineProperty({}, key, descriptor.value);
+                                }
+                            });
+                        }
+                    } else if (descriptor.get || descriptor.set) {
+                        // computed properties
+                        (options.computed || (options.computed = {}))[key] = {
+                            get: descriptor.get,
+                            set: descriptor.set
+                        };
+                    }
+                });
+                (options.mixins || (options.mixins = [])).push({
+                    data: function data() {
+                        return collectDataFromConstructor(this, Component);
+                    }
+                }); // decorate options
+
+                var decorators = Component.__decorators__;
+
+                if (decorators) {
+                    decorators.forEach(function(fn) {
+                        return fn(options);
+                    });
+                    delete Component.__decorators__;
+                } // find super
+
+
+                var superProto = Object.getPrototypeOf(Component.prototype);
+                var Super = superProto instanceof external_commonjs_vue_commonjs2_vue_root_Vue_default.a ? superProto.constructor : external_commonjs_vue_commonjs2_vue_root_Vue_default.a;
+                var Extended = Super.extend(options);
+                forwardStaticMembers(Extended, Component, Super);
+
+                if (reflectionIsSupported()) {
+                    copyReflectionMetadata(Extended, Component);
+                }
+
+                return Extended;
+            }
+            var reservedPropertyNames = [ // Unique id
+                'cid', // Super Vue constructor
+                'super', // Component options that will be used by the component
+                'options', 'superOptions', 'extendOptions', 'sealedOptions', // Private assets
+                'component', 'directive', 'filter'
+            ];
+            var shouldIgnore = {
+                prototype: true,
+                arguments: true,
+                callee: true,
+                caller: true
+            };
+
+            function forwardStaticMembers(Extended, Original, Super) {
+                // We have to use getOwnPropertyNames since Babel registers methods as non-enumerable
+                Object.getOwnPropertyNames(Original).forEach(function(key) {
+                    // Skip the properties that should not be overwritten
+                    if (shouldIgnore[key]) {
+                        return;
+                    } // Some browsers does not allow reconfigure built-in properties
+
+
+                    var extendedDescriptor = Object.getOwnPropertyDescriptor(Extended, key);
+
+                    if (extendedDescriptor && !extendedDescriptor.configurable) {
+                        return;
+                    }
+
+                    var descriptor = Object.getOwnPropertyDescriptor(Original, key); // If the user agent does not support `__proto__` or its family (IE <= 10),
+                    // the sub class properties may be inherited properties from the super class in TypeScript.
+                    // We need to exclude such properties to prevent to overwrite
+                    // the component options object which stored on the extended constructor (See #192).
+                    // If the value is a referenced value (object or function),
+                    // we can check equality of them and exclude it if they have the same reference.
+                    // If it is a primitive value, it will be forwarded for safety.
+
+                    if (!hasProto) {
+                        // Only `cid` is explicitly exluded from property forwarding
+                        // because we cannot detect whether it is a inherited property or not
+                        // on the no `__proto__` environment even though the property is reserved.
+                        if (key === 'cid') {
+                            return;
+                        }
+
+                        var superDescriptor = Object.getOwnPropertyDescriptor(Super, key);
+
+                        if (!isPrimitive(descriptor.value) && superDescriptor && superDescriptor.value === descriptor.value) {
+                            return;
+                        }
+                    } // Warn if the users manually declare reserved properties
+
+
+                    if (false) {}
+
+                    Object.defineProperty(Extended, key, descriptor);
+                });
+            }
+
+            function vue_class_component_esm_Component(options) {
+                if (typeof options === 'function') {
+                    return componentFactory(options);
+                }
+
+                return function(Component) {
+                    return componentFactory(Component, options);
+                };
+            }
+
+            vue_class_component_esm_Component.registerHooks = function registerHooks(keys) {
+                $internalHooks.push.apply($internalHooks, _toConsumableArray(keys));
+            };
+
+            /* harmony default export */
+            var vue_class_component_esm = (vue_class_component_esm_Component);
+
+
+            // CONCATENATED MODULE: ./node_modules/vue-property-decorator/lib/vue-property-decorator.js
+            /** vue-property-decorator verson 8.5.1 MIT LICENSE copyright 2020 kaorun343 */
+            /// <reference types='reflect-metadata'/>
+
+
+
+
+            /** Used for keying reactive provide/inject properties */
+            var reactiveInjectKey = '__reactiveInject__';
+            /**
+             * decorator of an inject
+             * @param from key
+             * @return PropertyDecorator
+             */
+            function Inject(options) {
+                return createDecorator(function(componentOptions, key) {
+                    if (typeof componentOptions.inject === 'undefined') {
+                        componentOptions.inject = {};
+                    }
+                    if (!Array.isArray(componentOptions.inject)) {
+                        componentOptions.inject[key] = options || key;
+                    }
+                });
+            }
+            /**
+             * decorator of a reactive inject
+             * @param from key
+             * @return PropertyDecorator
+             */
+            function InjectReactive(options) {
+                return createDecorator(function(componentOptions, key) {
+                    if (typeof componentOptions.inject === 'undefined') {
+                        componentOptions.inject = {};
+                    }
+                    if (!Array.isArray(componentOptions.inject)) {
+                        var fromKey_1 = !!options ? options.from || options : key;
+                        var defaultVal_1 = (!!options && options.default) || undefined;
+                        if (!componentOptions.computed)
+                            componentOptions.computed = {};
+                        componentOptions.computed[key] = function() {
+                            var obj = this[reactiveInjectKey];
+                            return obj ? obj[fromKey_1] : defaultVal_1;
+                        };
+                        componentOptions.inject[reactiveInjectKey] = reactiveInjectKey;
+                    }
+                });
+            }
+
+            function produceProvide(original) {
+                var provide = function() {
+                    var _this = this;
+                    var rv = typeof original === 'function' ? original.call(this) : original;
+                    rv = Object.create(rv || null);
+                    // set reactive services (propagates previous services if necessary)
+                    rv[reactiveInjectKey] = this[reactiveInjectKey] || {};
+                    for (var i in provide.managed) {
+                        rv[provide.managed[i]] = this[i];
+                    }
+                    var _loop_1 = function(i) {
+                        rv[provide.managedReactive[i]] = this_1[i]; // Duplicates the behavior of `@Provide`
+                        Object.defineProperty(rv[reactiveInjectKey], provide.managedReactive[i], {
+                            enumerable: true,
+                            get: function() { return _this[i]; },
+                        });
+                    };
+                    var this_1 = this;
+                    for (var i in provide.managedReactive) {
+                        _loop_1(i);
+                    }
+                    return rv;
+                };
+                provide.managed = {};
+                provide.managedReactive = {};
+                return provide;
+            }
+
+            function needToProduceProvide(original) {
+                return (typeof original !== 'function' ||
+                    (!original.managed && !original.managedReactive));
+            }
+            /**
+             * decorator of a provide
+             * @param key key
+             * @return PropertyDecorator | void
+             */
+            function Provide(key) {
+                return createDecorator(function(componentOptions, k) {
+                    var provide = componentOptions.provide;
+                    if (needToProduceProvide(provide)) {
+                        provide = componentOptions.provide = produceProvide(provide);
+                    }
+                    provide.managed[k] = key || k;
+                });
+            }
+            /**
+             * decorator of a reactive provide
+             * @param key key
+             * @return PropertyDecorator | void
+             */
+            function ProvideReactive(key) {
+                return createDecorator(function(componentOptions, k) {
+                    var provide = componentOptions.provide;
+                    // inject parent reactive services (if any)
+                    if (!Array.isArray(componentOptions.inject)) {
+                        componentOptions.inject = componentOptions.inject || {};
+                        componentOptions.inject[reactiveInjectKey] = {
+                            from: reactiveInjectKey,
+                            default: {},
+                        };
+                    }
+                    if (needToProduceProvide(provide)) {
+                        provide = componentOptions.provide = produceProvide(provide);
+                    }
+                    provide.managedReactive[k] = key || k;
+                });
+            }
+            /** @see {@link https://github.com/vuejs/vue-class-component/blob/master/src/reflect.ts} */
+            var reflectMetadataIsSupported = typeof Reflect !== 'undefined' && typeof Reflect.getMetadata !== 'undefined';
+
+            function applyMetadata(options, target, key) {
+                if (reflectMetadataIsSupported) {
+                    if (!Array.isArray(options) &&
+                        typeof options !== 'function' &&
+                        typeof options.type === 'undefined') {
+                        var type = Reflect.getMetadata('design:type', target, key);
+                        if (type !== Object) {
+                            options.type = type;
+                        }
+                    }
+                }
+            }
+            /**
+             * decorator of model
+             * @param  event event name
+             * @param options options
+             * @return PropertyDecorator
+             */
+            function Model(event, options) {
+                if (options === void 0) { options = {}; }
+                return function(target, key) {
+                    applyMetadata(options, target, key);
+                    createDecorator(function(componentOptions, k) {;
+                        (componentOptions.props || (componentOptions.props = {}))[k] = options;
+                        componentOptions.model = { prop: k, event: event || k };
+                    })(target, key);
+                };
+            }
+            /**
+             * decorator of a prop
+             * @param  options the options for the prop
+             * @return PropertyDecorator | void
+             */
+            function Prop(options) {
+                if (options === void 0) { options = {}; }
+                return function(target, key) {
+                    applyMetadata(options, target, key);
+                    createDecorator(function(componentOptions, k) {;
+                        (componentOptions.props || (componentOptions.props = {}))[k] = options;
+                    })(target, key);
+                };
+            }
+            /**
+             * decorator of a synced prop
+             * @param propName the name to interface with from outside, must be different from decorated property
+             * @param options the options for the synced prop
+             * @return PropertyDecorator | void
+             */
+            function PropSync(propName, options) {
+                if (options === void 0) { options = {}; }
+                // @ts-ignore
+                return function(target, key) {
+                    applyMetadata(options, target, key);
+                    createDecorator(function(componentOptions, k) {;
+                        (componentOptions.props || (componentOptions.props = {}))[propName] = options;
+                        (componentOptions.computed || (componentOptions.computed = {}))[k] = {
+                            get: function() {
+                                return this[propName];
+                            },
+                            set: function(value) {
+                                // @ts-ignore
+                                this.$emit("update:" + propName, value);
+                            },
+                        };
+                    })(target, key);
+                };
+            }
+            /**
+             * decorator of a watch function
+             * @param  path the path or the expression to observe
+             * @param  WatchOption
+             * @return MethodDecorator
+             */
+            function Watch(path, options) {
+                if (options === void 0) { options = {}; }
+                var _a = options.deep,
+                    deep = _a === void 0 ? false : _a,
+                    _b = options.immediate,
+                    immediate = _b === void 0 ? false : _b;
+                return createDecorator(function(componentOptions, handler) {
+                    if (typeof componentOptions.watch !== 'object') {
+                        componentOptions.watch = Object.create(null);
+                    }
+                    var watch = componentOptions.watch;
+                    if (typeof watch[path] === 'object' && !Array.isArray(watch[path])) {
+                        watch[path] = [watch[path]];
+                    } else if (typeof watch[path] === 'undefined') {
+                        watch[path] = [];
+                    }
+                    watch[path].push({ handler: handler, deep: deep, immediate: immediate });
+                });
+            }
+            // Code copied from Vue/src/shared/util.js
+            var hyphenateRE = /\B([A-Z])/g;
+            var hyphenate = function(str) { return str.replace(hyphenateRE, '-$1').toLowerCase(); };
+            /**
+             * decorator of an event-emitter function
+             * @param  event The name of the event
+             * @return MethodDecorator
+             */
+            function Emit(event) {
+                return function(_target, propertyKey, descriptor) {
+                    var key = hyphenate(propertyKey);
+                    var original = descriptor.value;
+                    descriptor.value = function emitter() {
+                        var _this = this;
+                        var args = [];
+                        for (var _i = 0; _i < arguments.length; _i++) {
+                            args[_i] = arguments[_i];
+                        }
+                        var emit = function(returnValue) {
+                            var emitName = event || key;
+                            if (returnValue === undefined) {
+                                if (args.length === 0) {
+                                    _this.$emit(emitName);
+                                } else if (args.length === 1) {
+                                    _this.$emit(emitName, args[0]);
+                                } else {
+                                    _this.$emit.apply(_this, [emitName].concat(args));
+                                }
+                            } else {
+                                if (args.length === 0) {
+                                    _this.$emit(emitName, returnValue);
+                                } else if (args.length === 1) {
+                                    _this.$emit(emitName, returnValue, args[0]);
+                                } else {
+                                    _this.$emit.apply(_this, [emitName, returnValue].concat(args));
+                                }
+                            }
+                        };
+                        var returnValue = original.apply(this, args);
+                        if (isPromise(returnValue)) {
+                            returnValue.then(emit);
+                        } else {
+                            emit(returnValue);
+                        }
+                        return returnValue;
+                    };
+                };
+            }
+            /**
+             * decorator of a ref prop
+             * @param refKey the ref key defined in template
+             */
+            function Ref(refKey) {
+                return createDecorator(function(options, key) {
+                    options.computed = options.computed || {};
+                    options.computed[key] = {
+                        cache: false,
+                        get: function() {
+                            return this.$refs[refKey || key];
+                        },
+                    };
+                });
+            }
+
+            function isPromise(obj) {
+                return obj instanceof Promise || (obj && typeof obj.then === 'function');
+            }
+
+            // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.for-each.js
+            var es_array_for_each = __nested_webpack_require_123348__("4160");
+
+            // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--13-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/RenderlessPagination.vue?vue&type=script&lang=ts&
+
+
+
+
+
+
+
+
+
+
+
+            var RenderlessPaginationvue_type_script_lang_ts_RenderlessPagination = /*#__PURE__*/ function(_Vue) {
+                _inherits(RenderlessPagination, _Vue);
+
+                var _super = _createSuper(RenderlessPagination);
+
+                function RenderlessPagination() {
+                    _classCallCheck(this, RenderlessPagination);
+
+                    return _super.apply(this, arguments);
+                }
+
+                _createClass(RenderlessPagination, [{
+                    key: "render",
+                    value: function render(h) {
+                        if (this.$scopedSlots.default) {
+                            return h('div', this.$scopedSlots.default({
+                                to: this.to,
+                                from: this.from,
+                                total: this.total,
+                                perPage: this.perPage,
+                                data: this.$props.data,
+                                limit: this.$props.limit,
+                                nextPageUrl: this.nextPageUrl,
+                                prevPageUrl: this.prevPageUrl,
+                                showDisabled: this.$props.showDisabled,
+                                size: this.$props.size,
+                                pageRange: this.pageRange,
+                                currentPage: this.currentPage,
+                                previousButtonHandler: this.previousPage,
+                                nextButtonHandler: this.nextPage,
+                                pageButtonHandler: this.selectPage
+                            }));
+                        }
+                    }
+                }, {
+                    key: "previousPage",
+                    value: function previousPage() {
+                        this.selectPage(this.currentPage - 1);
+                    }
+                }, {
+                    key: "nextPage",
+                    value: function nextPage() {
+                        this.selectPage(this.currentPage + 1);
+                    }
+                }, {
+                    key: "selectPage",
+                    value: function selectPage(page) {
+                        if (page === '...') {
+                            return;
+                        }
+
+                        this.$emit('pagination-change-page', page);
+                    }
+                }, {
+                    key: "isApiResource",
+                    get: function get() {
+                        return !!this.$props.data.meta;
+                    }
+                }, {
+                    key: "currentPage",
+                    get: function get() {
+                        return this.isApiResource ? this.$props.data.meta.current_page : this.$props.data.current_page;
+                    }
+                }, {
+                    key: "firstPageUrl",
+                    get: function get() {
+                        return this.isApiResource ? this.$props.data.links.first : null;
+                    }
+                }, {
+                    key: "from",
+                    get: function get() {
+                        return this.isApiResource ? this.$props.data.meta.from : this.$props.data.from;
+                    }
+                }, {
+                    key: "lastPage",
+                    get: function get() {
+                        return this.isApiResource ? this.$props.data.meta.last_page : this.$props.data.last_page;
+                    }
+                }, {
+                    key: "lastPageUrl",
+                    get: function get() {
+                        return this.isApiResource ? this.$props.data.links.last : null;
+                    }
+                }, {
+                    key: "nextPageUrl",
+                    get: function get() {
+                        return this.isApiResource ? this.$props.data.links.next : this.$props.data.next_page_url;
+                    }
+                }, {
+                    key: "perPage",
+                    get: function get() {
+                        return this.isApiResource ? this.$props.data.meta.per_page : this.$props.data.per_page;
+                    }
+                }, {
+                    key: "prevPageUrl",
+                    get: function get() {
+                        return this.isApiResource ? this.$props.data.links.prev : this.$props.data.prev_page_url;
+                    }
+                }, {
+                    key: "to",
+                    get: function get() {
+                        return this.isApiResource ? this.$props.data.meta.to : this.$props.data.to;
+                    }
+                }, {
+                    key: "total",
+                    get: function get() {
+                        return this.isApiResource ? this.$props.data.meta.total : this.$props.data.total;
+                    }
+                }, {
+                    key: "pageRange",
+                    get: function get() {
+                        if (this.$props.limit === -1) {
+                            return [];
+                        }
+
+                        if (this.$props.limit === 0) {
+                            return [1, this.lastPage];
+                        }
+
+                        var current = this.currentPage;
+                        var last = this.lastPage;
+                        var delta = this.$props.limit;
+                        var left = current - delta;
+                        var right = current + delta + 1;
+                        var range = [];
+                        var pages = [];
+                        var l;
+
+                        for (var i = 1; i <= last; i++) {
+                            if (i === 1 || i === last || i >= left && i < right) {
+                                range.push(i);
+                            }
+                        }
+
+                        range.forEach(function(i) {
+                            if (l) {
+                                if (i - l === 2) {
+                                    pages.push(l + 1);
+                                } else if (i - l !== 1) {
+                                    pages.push('...');
+                                }
+                            }
+
+                            pages.push(i);
+                            l = i;
+                        });
+                        return pages;
+                    }
+                }]);
+
+                return RenderlessPagination;
+            }(external_commonjs_vue_commonjs2_vue_root_Vue_default.a);
+
+            RenderlessPaginationvue_type_script_lang_ts_RenderlessPagination = __decorate([vue_class_component_esm({
+                props: {
+                    data: {
+                        type: Object,
+                        required: true,
+                        default: function _default() {
+                            return {
+                                data: [],
+                                meta: {},
+                                links: {}
+                            };
+                        }
+                    },
+                    limit: {
+                        type: Number,
+                        default: 0
+                    },
+                    showDisabled: {
+                        type: Boolean,
+                        default: true
+                    },
+                    size: {
+                        type: String,
+                        default: 'default',
+                        validator: function validator(value) {
+                            return ['small', 'default', 'large'].indexOf(value) !== -1;
+                        }
+                    }
+                }
+            })], RenderlessPaginationvue_type_script_lang_ts_RenderlessPagination);
+            /* harmony default export */
+            var RenderlessPaginationvue_type_script_lang_ts_ = (RenderlessPaginationvue_type_script_lang_ts_RenderlessPagination);
+            // CONCATENATED MODULE: ./src/components/RenderlessPagination.vue?vue&type=script&lang=ts&
+            /* harmony default export */
+            var components_RenderlessPaginationvue_type_script_lang_ts_ = (RenderlessPaginationvue_type_script_lang_ts_);
+            // CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
+            /* globals __VUE_SSR_CONTEXT__ */
+
+            // IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+            // This module is a runtime utility for cleaner component module output and will
+            // be included in the final webpack user bundle.
+
+            function normalizeComponent(
+                scriptExports,
+                render,
+                staticRenderFns,
+                functionalTemplate,
+                injectStyles,
+                scopeId,
+                moduleIdentifier, /* server only */
+                shadowMode /* vue-cli only */
+            ) {
+                // Vue.extend constructor export interop
+                var options = typeof scriptExports === 'function' ?
+                    scriptExports.options :
+                    scriptExports
+
+                // render functions
+                if (render) {
+                    options.render = render
+                    options.staticRenderFns = staticRenderFns
+                    options._compiled = true
+                }
+
+                // functional template
+                if (functionalTemplate) {
+                    options.functional = true
+                }
+
+                // scopedId
+                if (scopeId) {
+                    options._scopeId = 'data-v-' + scopeId
+                }
+
+                var hook
+                if (moduleIdentifier) { // server build
+                    hook = function(context) {
+                            // 2.3 injection
+                            context =
+                                context || // cached call
+                                (this.$vnode && this.$vnode.ssrContext) || // stateful
+                                (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+                                // 2.2 with runInNewContext: true
+                            if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+                                context = __VUE_SSR_CONTEXT__
+                            }
+                            // inject component styles
+                            if (injectStyles) {
+                                injectStyles.call(this, context)
+                            }
+                            // register component module identifier for async chunk inferrence
+                            if (context && context._registeredComponents) {
+                                context._registeredComponents.add(moduleIdentifier)
+                            }
+                        }
+                        // used by ssr in case component is cached and beforeCreate
+                        // never gets called
+                    options._ssrRegister = hook
+                } else if (injectStyles) {
+                    hook = shadowMode ?
+
+                        function() {
+                            injectStyles.call(
+                                this,
+                                (options.functional ? this.parent : this).$root.$options.shadowRoot
+                            )
+                        } :
+                        injectStyles
+                }
+
+                if (hook) {
+                    if (options.functional) {
+                        // for template-only hot-reload because in that case the render fn doesn't
+                        // go through the normalizer
+                        options._injectStyles = hook
+                            // register for functional component in vue file
+                        var originalRender = options.render
+                        options.render = function renderWithStyleInjection(h, context) {
+                            hook.call(context)
+                            return originalRender(h, context)
+                        }
+                    } else {
+                        // inject component registration as beforeCreate hook
+                        var existing = options.beforeCreate
+                        options.beforeCreate = existing ? [].concat(existing, hook) : [hook]
+                    }
+                }
+
+                return {
+                    exports: scriptExports,
+                    options: options
+                }
+            }
+
+            // CONCATENATED MODULE: ./src/components/RenderlessPagination.vue
+            var RenderlessPagination_render, RenderlessPagination_staticRenderFns
+
+
+
+
+            /* normalize component */
+
+            var component = normalizeComponent(
+                components_RenderlessPaginationvue_type_script_lang_ts_,
+                RenderlessPagination_render,
+                RenderlessPagination_staticRenderFns,
+                false,
+                null,
+                null,
+                null
+
+            )
+
+            /* harmony default export */
+            var components_RenderlessPagination = (component.exports);
+            // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--13-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Pagination.vue?vue&type=script&lang=ts&
+
+
+
+
+
+
+
+
+
+
+            var Paginationvue_type_script_lang_ts_Pagination = /*#__PURE__*/ function(_Vue) {
+                _inherits(Pagination, _Vue);
+
+                var _super = _createSuper(Pagination);
+
+                function Pagination() {
+                    _classCallCheck(this, Pagination);
+
+                    return _super.apply(this, arguments);
+                }
+
+                _createClass(Pagination, [{
+                    key: "onPaginationChangePage",
+                    value: function onPaginationChangePage(page) {
+                        this.$emit('page-changed', page);
+                    }
+                }, {
+                    key: "numberButtonClasses",
+                    value: function numberButtonClasses(page, currentPage) {
+                        return {
+                            'inline-flex items-center h-full mx-1 text-base font-medium leading-5 transition duration-150 ease-in-out rounded-md active:bg-gray-200 focus:outline-none focus:border-blue-300 focus:shadow-outline active:text-gray-700': this.framework === 'tailwind',
+                            'px-2 py-1': this.size === 'small' && this.framework === 'tailwind',
+                            'px-4 py-2': this.size === 'default' && this.framework === 'tailwind',
+                            'bg-blue-500 text-white': page === currentPage && this.framework === 'tailwind',
+                            'text-gray-700 border border-gray-400 hover:bg-gray-200': page !== currentPage && this.framework === 'tailwind',
+                            'page-link': this.framework === 'bootstrap'
+                        };
+                    }
+                }, {
+                    key: "containerClasses",
+                    get: function get() {
+                        return {
+                            'flex flex-col items-center justify-between px-2 py-2 sm:flex-row': this.framework === 'tailwind'
+                        };
+                    }
+                }, {
+                    key: "ulClasses",
+                    get: function get() {
+                        return {
+                            'relative inline-flex list-none': this.framework === 'tailwind',
+                            'pagination': this.framework === 'bootstrap',
+                            'pagination-sm': this.size === 'small' && this.framework === 'bootstrap',
+                            'pagination-lg': this.size === 'large' && this.framework === 'bootstrap'
+                        };
+                    }
+                }, {
+                    key: "previousButtonClasses",
+                    get: function get() {
+                        return {
+                            'inline-flex items-center h-full mx-1 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out border border-gray-400 rounded-md hover:bg-gray-200 active:bg-gray-200 focus:outline-none focus:border-blue-300 focus:shadow-outline active:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed': this.framework === 'tailwind',
+                            'px-2 py-2': this.size === 'default' && this.framework === 'tailwind',
+                            'px-1 py-1': this.size === 'small' && this.framework === 'tailwind',
+                            'page-link': this.framework === 'bootstrap'
+                        };
+                    }
+                }, {
+                    key: "previousButtonIconClasses",
+                    get: function get() {
+                        return {
+                            'w-5 h-5': this.size === 'default' && this.framework === 'tailwind',
+                            'w-4 h-4': this.size === 'small' && this.framework === 'tailwind'
+                        };
+                    }
+                }, {
+                    key: "nextButtonClasses",
+                    get: function get() {
+                        return {
+                            'inline-flex items-center h-full mx-1 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-400 rounded-md hover:bg-gray-200 active:bg-gray-200 focus:outline-none focus:border-blue-300 focus:shadow-outline active:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed': this.framework === 'tailwind',
+                            'px-2 py-2': this.size === 'default' && this.framework === 'tailwind',
+                            'px-1 py-1': this.size === 'small' && this.framework === 'tailwind',
+                            'page-link': this.framework === 'bootstrap'
+                        };
+                    }
+                }, {
+                    key: "nextButtonIconClasses",
+                    get: function get() {
+                        return {
+                            'w-5 h-5': this.size === 'default' && this.framework === 'tailwind',
+                            'w-4 h-4': this.size === 'small' && this.framework === 'tailwind'
+                        };
+                    }
+                }]);
+
+                return Pagination;
+            }(external_commonjs_vue_commonjs2_vue_root_Vue_default.a);
+
+            __decorate([Prop({
+                type: String,
+                default: 'default'
+            })], Paginationvue_type_script_lang_ts_Pagination.prototype, "size", void 0);
+
+            __decorate([Prop({
+                type: String,
+                default: 'tailwind',
+                validator: function validator(value) {
+                    return ['bootstrap', 'tailwind'].indexOf(value) !== -1;
+                }
+            })], Paginationvue_type_script_lang_ts_Pagination.prototype, "framework", void 0);
+
+            Paginationvue_type_script_lang_ts_Pagination = __decorate([vue_class_component_esm({
+                components: {
+                    RenderlessPagination: components_RenderlessPagination
+                },
+                props: {
+                    data: {
+                        type: Object,
+                        required: true,
+                        default: function _default() {
+                            return {
+                                meta: {},
+                                data: [],
+                                links: {}
+                            };
+                        }
+                    },
+                    limit: {
+                        type: Number,
+                        default: 1
+                    },
+                    showDisabled: {
+                        type: Boolean,
+                        default: true
+                    },
+                    showNumbers: {
+                        type: Boolean,
+                        default: false
+                    },
+                    hideWhenEmpty: {
+                        type: Boolean,
+                        default: true
+                    },
+                    translate: {
+                        type: Object,
+                        default: function _default() {
+                            return {
+                                nextButton: 'Next',
+                                previousButton: 'Previous'
+                            };
+                        }
+                    }
+                }
+            })], Paginationvue_type_script_lang_ts_Pagination);
+            /* harmony default export */
+            var Paginationvue_type_script_lang_ts_ = (Paginationvue_type_script_lang_ts_Pagination);
+            // CONCATENATED MODULE: ./src/components/Pagination.vue?vue&type=script&lang=ts&
+            /* harmony default export */
+            var components_Paginationvue_type_script_lang_ts_ = (Paginationvue_type_script_lang_ts_);
+            // CONCATENATED MODULE: ./src/components/Pagination.vue
+
+
+
+
+
+            /* normalize component */
+
+            var Pagination_component = normalizeComponent(
+                components_Paginationvue_type_script_lang_ts_,
+                render,
+                staticRenderFns,
+                false,
+                null,
+                null,
+                null
+
+            )
+
+            /* harmony default export */
+            var components_Pagination = (Pagination_component.exports);
+            // CONCATENATED MODULE: ./src/plugin.ts
+
+            /* harmony default export */
+            var src_plugin = ({
+                install: function install(Vue) {
+                    Vue.component('tailable-pagination', components_Pagination);
+                }
+            });
+
+            // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib.js
+
+
+            /* harmony default export */
+            var entry_lib = __webpack_exports__["default"] = (src_plugin);
+
+
+
+            /***/
+        }),
+
+        /***/
+        "fc6a":
+        /***/
+            (function(module, exports, __nested_webpack_require_200577__) {
+
+            // toObject with fallback for non-array-like ES3 strings
+            var IndexedObject = __nested_webpack_require_200577__("44ad");
+            var requireObjectCoercible = __nested_webpack_require_200577__("1d80");
+
+            module.exports = function(it) {
+                return IndexedObject(requireObjectCoercible(it));
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "fdbc":
+        /***/
+            (function(module, exports) {
+
+            // iterable DOM collections
+            // flag - `iterable` interface - 'entries', 'keys', 'values', 'forEach' methods
+            module.exports = {
+                CSSRuleList: 0,
+                CSSStyleDeclaration: 0,
+                CSSValueList: 0,
+                ClientRectList: 0,
+                DOMRectList: 0,
+                DOMStringList: 0,
+                DOMTokenList: 1,
+                DataTransferItemList: 0,
+                FileList: 0,
+                HTMLAllCollection: 0,
+                HTMLCollection: 0,
+                HTMLFormElement: 0,
+                HTMLSelectElement: 0,
+                MediaList: 0,
+                MimeTypeArray: 0,
+                NamedNodeMap: 0,
+                NodeList: 1,
+                PaintRequestList: 0,
+                Plugin: 0,
+                PluginArray: 0,
+                SVGLengthList: 0,
+                SVGNumberList: 0,
+                SVGPathSegList: 0,
+                SVGPointList: 0,
+                SVGStringList: 0,
+                SVGTransformList: 0,
+                SourceBufferList: 0,
+                StyleSheetList: 0,
+                TextTrackCueList: 0,
+                TextTrackList: 0,
+                TouchList: 0
+            };
+
+
+            /***/
+        }),
+
+        /***/
+        "fdbf":
+        /***/
+            (function(module, exports, __nested_webpack_require_202397__) {
+
+            var NATIVE_SYMBOL = __nested_webpack_require_202397__("4930");
+
+            module.exports = NATIVE_SYMBOL
+                // eslint-disable-next-line no-undef
+                &&
+                !Symbol.sham
+                // eslint-disable-next-line no-undef
+                &&
+                typeof Symbol.iterator == 'symbol';
+
+
+            /***/
+        })
+
+        /******/
+    });
+//# sourceMappingURL=tailable-pagination.common.js.mapa
+
+/***/ }),
+
+/***/ "./node_modules/vue-avatar-component/Avatar.vue":
+/*!******************************************************!*\
+  !*** ./node_modules/vue-avatar-component/Avatar.vue ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Avatar_vue_vue_type_template_id_4ffd1741_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Avatar.vue?vue&type=template&id=4ffd1741&scoped=true& */ "./node_modules/vue-avatar-component/Avatar.vue?vue&type=template&id=4ffd1741&scoped=true&");
+/* harmony import */ var _Avatar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Avatar.vue?vue&type=script&lang=js& */ "./node_modules/vue-avatar-component/Avatar.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Avatar_vue_vue_type_style_index_0_id_4ffd1741_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Avatar.vue?vue&type=style&index=0&id=4ffd1741&scoped=true&lang=css& */ "./node_modules/vue-avatar-component/Avatar.vue?vue&type=style&index=0&id=4ffd1741&scoped=true&lang=css&");
+/* harmony import */ var _vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
+  _Avatar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _Avatar_vue_vue_type_template_id_4ffd1741_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Avatar_vue_vue_type_template_id_4ffd1741_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "4ffd1741",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "node_modules/vue-avatar-component/Avatar.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/vue-avatar-component/Avatar.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/vue-avatar-component/Avatar.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'Avatar',
+  props: {
+    fullname: { type: String, default: '' },
+    size: { type: Number, default: 48 },
+    radius: {
+      type: Number,
+      default: 50,
+      validator: value => value >= 0 && value <= 50
+    },
+    color: { type: String, default: '' },
+    image: { type: String, default: '' }
+  },
+  computed: {
+    initials () {
+      const words = this.fullname.split(/[\s-]+/)
+      return words.map(word => word.substr(0, 1)).join('').substr(0, 3).toUpperCase()
+    },
+    style () {
+      const fontSize = this.initials.length > 2 ? this.size / 3 : this.size / 2
+      return {
+        width: this.size + 'px',
+        height: this.size + 'px',
+        'border-radius': this.radius + '%',
+        'font-size': fontSize + 'px',
+        'background-color':
+          this.color === '' ? this.toColor(this.fullname) : this.color,
+        'background-image': this.hasImage ? 'url(' + this.image + ')' : 'none'
+      }
+    },
+    hasImage () {
+      return this.image !== ''
+    }
+  },
+  methods: {
+    toColor (str) {
+      let hash = 0
+      if (!str) return 'black'
+      for (const char of str.split('')) {
+        hash = (hash << (8 - hash)) + char.charCodeAt(0)
+      }
+      return '#' + Math.abs(hash).toString(16).substr(0, 6)
+    }
+  }
+});
+
+
+/***/ }),
+
 /***/ "./resources/js/app.vue":
 /*!******************************!*\
   !*** ./resources/js/app.vue ***!
@@ -22852,23 +28454,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Book_vue_vue_type_template_id_1b1c1554___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Book.vue?vue&type=template&id=1b1c1554& */ "./resources/js/components/Book.vue?vue&type=template&id=1b1c1554&");
+/* harmony import */ var _Book_vue_vue_type_template_id_1b1c1554_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Book.vue?vue&type=template&id=1b1c1554&scoped=true& */ "./resources/js/components/Book.vue?vue&type=template&id=1b1c1554&scoped=true&");
 /* harmony import */ var _Book_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Book.vue?vue&type=script&lang=js& */ "./resources/js/components/Book.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _Book_vue_vue_type_style_index_0_id_1b1c1554_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Book.vue?vue&type=style&index=0&id=1b1c1554&scoped=true&lang=css& */ "./resources/js/components/Book.vue?vue&type=style&index=0&id=1b1c1554&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
+;
 
 
 /* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
   _Book_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
-  _Book_vue_vue_type_template_id_1b1c1554___WEBPACK_IMPORTED_MODULE_0__.render,
-  _Book_vue_vue_type_template_id_1b1c1554___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _Book_vue_vue_type_template_id_1b1c1554_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Book_vue_vue_type_template_id_1b1c1554_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
-  null,
+  "1b1c1554",
   null
   
 )
@@ -22971,7 +28575,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Footer_vue_vue_type_template_id_fdc867da_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Footer.vue?vue&type=template&id=fdc867da&scoped=true& */ "./resources/js/components/StaticSections/Footer.vue?vue&type=template&id=fdc867da&scoped=true&");
+/* harmony import */ var _Footer_vue_vue_type_template_id_fdc867da___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Footer.vue?vue&type=template&id=fdc867da& */ "./resources/js/components/StaticSections/Footer.vue?vue&type=template&id=fdc867da&");
 /* harmony import */ var _Footer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Footer.vue?vue&type=script&lang=js& */ "./resources/js/components/StaticSections/Footer.vue?vue&type=script&lang=js&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -22983,11 +28587,11 @@ __webpack_require__.r(__webpack_exports__);
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
   _Footer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
-  _Footer_vue_vue_type_template_id_fdc867da_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
-  _Footer_vue_vue_type_template_id_fdc867da_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _Footer_vue_vue_type_template_id_fdc867da___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Footer_vue_vue_type_template_id_fdc867da___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
-  "fdc867da",
+  null,
   null
   
 )
@@ -23053,15 +28657,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Wish_vue_vue_type_template_id_69d87c12_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Wish.vue?vue&type=template&id=69d87c12&scoped=true& */ "./resources/js/components/Wish.vue?vue&type=template&id=69d87c12&scoped=true&");
 /* harmony import */ var _Wish_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Wish.vue?vue&type=script&lang=js& */ "./resources/js/components/Wish.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _Wish_vue_vue_type_style_index_0_id_69d87c12_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Wish.vue?vue&type=style&index=0&id=69d87c12&scoped=true&lang=css& */ "./resources/js/components/Wish.vue?vue&type=style&index=0&id=69d87c12&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
+;
 
 
 /* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
   _Wish_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
   _Wish_vue_vue_type_template_id_69d87c12_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
   _Wish_vue_vue_type_template_id_69d87c12_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
@@ -23090,7 +28696,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Aventura_vue_vue_type_template_id_1707a3a6_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Aventura.vue?vue&type=template&id=1707a3a6&scoped=true& */ "./resources/js/views/Aventura.vue?vue&type=template&id=1707a3a6&scoped=true&");
+/* harmony import */ var _Aventura_vue_vue_type_template_id_1707a3a6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Aventura.vue?vue&type=template&id=1707a3a6& */ "./resources/js/views/Aventura.vue?vue&type=template&id=1707a3a6&");
 /* harmony import */ var _Aventura_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Aventura.vue?vue&type=script&lang=js& */ "./resources/js/views/Aventura.vue?vue&type=script&lang=js&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -23102,11 +28708,11 @@ __webpack_require__.r(__webpack_exports__);
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
   _Aventura_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
-  _Aventura_vue_vue_type_template_id_1707a3a6_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
-  _Aventura_vue_vue_type_template_id_1707a3a6_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _Aventura_vue_vue_type_template_id_1707a3a6___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Aventura_vue_vue_type_template_id_1707a3a6___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
-  "1707a3a6",
+  null,
   null
   
 )
@@ -23285,7 +28891,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _cifi_vue_vue_type_template_id_79ba16a8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./cifi.vue?vue&type=template&id=79ba16a8&scoped=true& */ "./resources/js/views/cifi.vue?vue&type=template&id=79ba16a8&scoped=true&");
+/* harmony import */ var _cifi_vue_vue_type_template_id_79ba16a8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./cifi.vue?vue&type=template&id=79ba16a8& */ "./resources/js/views/cifi.vue?vue&type=template&id=79ba16a8&");
 /* harmony import */ var _cifi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./cifi.vue?vue&type=script&lang=js& */ "./resources/js/views/cifi.vue?vue&type=script&lang=js&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -23297,11 +28903,11 @@ __webpack_require__.r(__webpack_exports__);
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
   _cifi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
-  _cifi_vue_vue_type_template_id_79ba16a8_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
-  _cifi_vue_vue_type_template_id_79ba16a8_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _cifi_vue_vue_type_template_id_79ba16a8___WEBPACK_IMPORTED_MODULE_0__.render,
+  _cifi_vue_vue_type_template_id_79ba16a8___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
-  "79ba16a8",
+  null,
   null
   
 )
@@ -23553,6 +29159,39 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/vue-avatar-component/Avatar.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/vue-avatar-component/Avatar.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _vue_loader_lib_index_js_vue_loader_options_Avatar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../vue-loader/lib/index.js??vue-loader-options!./Avatar.vue?vue&type=script&lang=js& */ "./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/vue-avatar-component/Avatar.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_vue_loader_lib_index_js_vue_loader_options_Avatar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./node_modules/vue-avatar-component/Avatar.vue?vue&type=template&id=4ffd1741&scoped=true&":
+/*!*************************************************************************************************!*\
+  !*** ./node_modules/vue-avatar-component/Avatar.vue?vue&type=template&id=4ffd1741&scoped=true& ***!
+  \*************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_Avatar_vue_vue_type_template_id_4ffd1741_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_Avatar_vue_vue_type_template_id_4ffd1741_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_Avatar_vue_vue_type_template_id_4ffd1741_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../vue-loader/lib/index.js??vue-loader-options!./Avatar.vue?vue&type=template&id=4ffd1741&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/vue-avatar-component/Avatar.vue?vue&type=template&id=4ffd1741&scoped=true&");
+
+
+/***/ }),
+
 /***/ "./resources/js/app.vue?vue&type=template&id=23235493&":
 /*!*************************************************************!*\
   !*** ./resources/js/app.vue?vue&type=template&id=23235493& ***!
@@ -23604,19 +29243,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/Book.vue?vue&type=template&id=1b1c1554&":
-/*!*************************************************************************!*\
-  !*** ./resources/js/components/Book.vue?vue&type=template&id=1b1c1554& ***!
-  \*************************************************************************/
+/***/ "./resources/js/components/Book.vue?vue&type=template&id=1b1c1554&scoped=true&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/Book.vue?vue&type=template&id=1b1c1554&scoped=true& ***!
+  \*************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Book_vue_vue_type_template_id_1b1c1554___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Book_vue_vue_type_template_id_1b1c1554___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Book_vue_vue_type_template_id_1b1c1554_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Book_vue_vue_type_template_id_1b1c1554_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Book_vue_vue_type_template_id_1b1c1554___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Book.vue?vue&type=template&id=1b1c1554& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Book.vue?vue&type=template&id=1b1c1554&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Book_vue_vue_type_template_id_1b1c1554_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Book.vue?vue&type=template&id=1b1c1554&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Book.vue?vue&type=template&id=1b1c1554&scoped=true&");
 
 
 /***/ }),
@@ -23655,19 +29294,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/StaticSections/Footer.vue?vue&type=template&id=fdc867da&scoped=true&":
-/*!******************************************************************************************************!*\
-  !*** ./resources/js/components/StaticSections/Footer.vue?vue&type=template&id=fdc867da&scoped=true& ***!
-  \******************************************************************************************************/
+/***/ "./resources/js/components/StaticSections/Footer.vue?vue&type=template&id=fdc867da&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/StaticSections/Footer.vue?vue&type=template&id=fdc867da& ***!
+  \******************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Footer_vue_vue_type_template_id_fdc867da_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Footer_vue_vue_type_template_id_fdc867da_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Footer_vue_vue_type_template_id_fdc867da___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Footer_vue_vue_type_template_id_fdc867da___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Footer_vue_vue_type_template_id_fdc867da_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Footer.vue?vue&type=template&id=fdc867da&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/StaticSections/Footer.vue?vue&type=template&id=fdc867da&scoped=true&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Footer_vue_vue_type_template_id_fdc867da___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Footer.vue?vue&type=template&id=fdc867da& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/StaticSections/Footer.vue?vue&type=template&id=fdc867da&");
 
 
 /***/ }),
@@ -23706,19 +29345,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/Aventura.vue?vue&type=template&id=1707a3a6&scoped=true&":
-/*!************************************************************************************!*\
-  !*** ./resources/js/views/Aventura.vue?vue&type=template&id=1707a3a6&scoped=true& ***!
-  \************************************************************************************/
+/***/ "./resources/js/views/Aventura.vue?vue&type=template&id=1707a3a6&":
+/*!************************************************************************!*\
+  !*** ./resources/js/views/Aventura.vue?vue&type=template&id=1707a3a6& ***!
+  \************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Aventura_vue_vue_type_template_id_1707a3a6_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Aventura_vue_vue_type_template_id_1707a3a6_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Aventura_vue_vue_type_template_id_1707a3a6___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Aventura_vue_vue_type_template_id_1707a3a6___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Aventura_vue_vue_type_template_id_1707a3a6_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Aventura.vue?vue&type=template&id=1707a3a6&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Aventura.vue?vue&type=template&id=1707a3a6&scoped=true&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Aventura_vue_vue_type_template_id_1707a3a6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Aventura.vue?vue&type=template&id=1707a3a6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Aventura.vue?vue&type=template&id=1707a3a6&");
 
 
 /***/ }),
@@ -23791,19 +29430,36 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/cifi.vue?vue&type=template&id=79ba16a8&scoped=true&":
-/*!********************************************************************************!*\
-  !*** ./resources/js/views/cifi.vue?vue&type=template&id=79ba16a8&scoped=true& ***!
-  \********************************************************************************/
+/***/ "./resources/js/views/cifi.vue?vue&type=template&id=79ba16a8&":
+/*!********************************************************************!*\
+  !*** ./resources/js/views/cifi.vue?vue&type=template&id=79ba16a8& ***!
+  \********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_cifi_vue_vue_type_template_id_79ba16a8_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_cifi_vue_vue_type_template_id_79ba16a8_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_cifi_vue_vue_type_template_id_79ba16a8___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_cifi_vue_vue_type_template_id_79ba16a8___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_cifi_vue_vue_type_template_id_79ba16a8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./cifi.vue?vue&type=template&id=79ba16a8&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/cifi.vue?vue&type=template&id=79ba16a8&scoped=true&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_cifi_vue_vue_type_template_id_79ba16a8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./cifi.vue?vue&type=template&id=79ba16a8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/cifi.vue?vue&type=template&id=79ba16a8&");
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-avatar-component/Avatar.vue?vue&type=style&index=0&id=4ffd1741&scoped=true&lang=css&":
+/*!***************************************************************************************************************!*\
+  !*** ./node_modules/vue-avatar-component/Avatar.vue?vue&type=style&index=0&id=4ffd1741&scoped=true&lang=css& ***!
+  \***************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_style_loader_index_js_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_vue_loader_lib_index_js_vue_loader_options_Avatar_vue_vue_type_style_index_0_id_4ffd1741_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../vue-style-loader/index.js!../css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../vue-loader/lib/loaders/stylePostLoader.js!../postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../vue-loader/lib/index.js??vue-loader-options!./Avatar.vue?vue&type=style&index=0&id=4ffd1741&scoped=true&lang=css& */ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/vue-avatar-component/Avatar.vue?vue&type=style&index=0&id=4ffd1741&scoped=true&lang=css&");
+/* harmony import */ var _vue_style_loader_index_js_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_vue_loader_lib_index_js_vue_loader_options_Avatar_vue_vue_type_style_index_0_id_4ffd1741_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_vue_style_loader_index_js_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_vue_loader_lib_index_js_vue_loader_options_Avatar_vue_vue_type_style_index_0_id_4ffd1741_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _vue_style_loader_index_js_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_vue_loader_lib_index_js_vue_loader_options_Avatar_vue_vue_type_style_index_0_id_4ffd1741_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _vue_style_loader_index_js_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_vue_loader_lib_index_js_vue_loader_options_Avatar_vue_vue_type_style_index_0_id_4ffd1741_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
 
 
 /***/ }),
@@ -23837,6 +29493,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthComponent_vue_vue_type_style_index_0_id_b0e5954c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthComponent_vue_vue_type_style_index_0_id_b0e5954c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
 /* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthComponent_vue_vue_type_style_index_0_id_b0e5954c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthComponent_vue_vue_type_style_index_0_id_b0e5954c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Book.vue?vue&type=style&index=0&id=1b1c1554&scoped=true&lang=css&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/Book.vue?vue&type=style&index=0&id=1b1c1554&scoped=true&lang=css& ***!
+  \***************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Book_vue_vue_type_style_index_0_id_1b1c1554_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-style-loader/index.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Book.vue?vue&type=style&index=0&id=1b1c1554&scoped=true&lang=css& */ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Book.vue?vue&type=style&index=0&id=1b1c1554&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Book_vue_vue_type_style_index_0_id_1b1c1554_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Book_vue_vue_type_style_index_0_id_1b1c1554_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Book_vue_vue_type_style_index_0_id_1b1c1554_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Book_vue_vue_type_style_index_0_id_1b1c1554_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
 /* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
 
 
@@ -23876,6 +29549,60 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Wish.vue?vue&type=style&index=0&id=69d87c12&scoped=true&lang=css&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/Wish.vue?vue&type=style&index=0&id=69d87c12&scoped=true&lang=css& ***!
+  \***************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Wish_vue_vue_type_style_index_0_id_69d87c12_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-style-loader/index.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Wish.vue?vue&type=style&index=0&id=69d87c12&scoped=true&lang=css& */ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Wish.vue?vue&type=style&index=0&id=69d87c12&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Wish_vue_vue_type_style_index_0_id_69d87c12_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Wish_vue_vue_type_style_index_0_id_69d87c12_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Wish_vue_vue_type_style_index_0_id_69d87c12_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Wish_vue_vue_type_style_index_0_id_69d87c12_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/vue-avatar-component/Avatar.vue?vue&type=template&id=4ffd1741&scoped=true&":
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/vue-avatar-component/Avatar.vue?vue&type=template&id=4ffd1741&scoped=true& ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "avatar", style: _vm.style }, [
+    _c("table", [
+      _c("tbody", [
+        _c("tr", [
+          !_vm.hasImage
+            ? _c("td", [
+                _vm._v("\n          " + _vm._s(_vm.initials) + "\n        ")
+              ])
+            : _vm._e()
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/app.vue?vue&type=template&id=23235493&":
 /*!****************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/app.vue?vue&type=template&id=23235493& ***!
@@ -23894,7 +29621,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {},
+    { staticClass: "contenedor" },
     [
       _c("headervue", {
         staticClass: "z-10 sticky top-0",
@@ -23943,8 +29670,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("h1", [_vm._v("404. TE EPRDISTE POR LA TIERRA MEDIA.")])
+    return _c("div", { staticClass: "pt-5 container mx-auto" }, [
+      _c("h1", { staticClass: "flex justify-center" }, [
+        _vm._v("404. TE EPRDISTE POR LA TIERRA MEDIA.")
+      ])
     ])
   }
 ]
@@ -24043,7 +29772,9 @@ var render = function() {
                 },
                 [
                   _c("i", { staticClass: "fas fa-user-circle fa-lg pb-2" }),
-                  _c("p", { staticClass: "sm:block hidden" }, [_vm._v("Login")])
+                  _c("p", { staticClass: "sm:block hidden" }, [
+                    _vm._v("Iniciar sesión")
+                  ])
                 ]
               )
             ]
@@ -24057,7 +29788,7 @@ var render = function() {
                     {
                       staticClass: "flex justify-center pt-6 font-bold text-xl"
                     },
-                    [_vm._v("Login")]
+                    [_vm._v("Iniciar sesión")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -24083,7 +29814,7 @@ var render = function() {
                             }
                           ],
                           staticClass:
-                            "shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4",
+                            "focus:placeholder-gray-300 shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4",
                           attrs: { type: "email", placeholder: "Email" },
                           domProps: { value: _vm.formDataLogin.email },
                           on: {
@@ -24113,14 +29844,17 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.formDataLogin.password,
-                              expression: "formDataLogin.password"
+                              value: _vm.formDataLogin.contraseña,
+                              expression: "formDataLogin.contraseña"
                             }
                           ],
                           staticClass:
-                            "shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4",
-                          attrs: { type: "password", placeholder: "Password" },
-                          domProps: { value: _vm.formDataLogin.password },
+                            "focus:placeholder-gray-300 shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4",
+                          attrs: {
+                            type: "password",
+                            placeholder: "Contraseña"
+                          },
+                          domProps: { value: _vm.formDataLogin.contraseña },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
@@ -24128,16 +29862,18 @@ var render = function() {
                               }
                               _vm.$set(
                                 _vm.formDataLogin,
-                                "password",
+                                "contraseña",
                                 $event.target.value
                               )
                             }
                           }
                         }),
                         _vm._v(" "),
-                        _vm.errorslogin.password
+                        _vm.errorslogin.contraseña
                           ? _c("span", { staticClass: "text-red-500" }, [
-                              _vm._v("*" + _vm._s(_vm.errorslogin.password[0]))
+                              _vm._v(
+                                "*" + _vm._s(_vm.errorslogin.contraseña[0])
+                              )
                             ])
                           : _vm._e()
                       ]),
@@ -24185,8 +29921,11 @@ var render = function() {
                               }
                             ],
                             staticClass:
-                              "shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4",
-                            attrs: { placeholder: "Username", type: "text" },
+                              "shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4 focus:placeholder-gray-300",
+                            attrs: {
+                              placeholder: "Nombre de usuario",
+                              type: "text"
+                            },
                             domProps: { value: _vm.formDataRegister.name },
                             on: {
                               input: function($event) {
@@ -24220,7 +29959,7 @@ var render = function() {
                               }
                             ],
                             staticClass:
-                              "shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4",
+                              "shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4 focus:placeholder-gray-300",
                             attrs: { placeholder: "Email", type: "email" },
                             domProps: { value: _vm.formDataRegister.email },
                             on: {
@@ -24257,9 +29996,9 @@ var render = function() {
                               }
                             ],
                             staticClass:
-                              "shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4",
+                              "shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4 focus:placeholder-gray-300",
                             attrs: {
-                              placeholder: "Password",
+                              placeholder: "Contraseña",
                               type: "password"
                             },
                             domProps: { value: _vm.formDataRegister.password },
@@ -24299,9 +30038,9 @@ var render = function() {
                               }
                             ],
                             staticClass:
-                              "shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4",
+                              "shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4 focus:placeholder-gray-300",
                             attrs: {
-                              placeholder: "Password Confirm",
+                              placeholder: "Confirmar contraseña",
                               type: "password"
                             },
                             domProps: {
@@ -24364,7 +30103,7 @@ var render = function() {
                         on: {
                           submit: function($event) {
                             $event.preventDefault()
-                            _vm.RecuperarContraseña
+                            return _vm.recuperar($event)
                           }
                         }
                       },
@@ -24380,7 +30119,7 @@ var render = function() {
                               }
                             ],
                             staticClass:
-                              "shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4",
+                              "shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4 focus:placeholder-gray-300",
                             attrs: { type: "email", placeholder: "Email" },
                             domProps: { value: _vm.formDataEmail.email },
                             on: {
@@ -24442,7 +30181,7 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("p", { staticClass: "px-5 font-bold my-10 text-center" }, [
-          _vm._v("Unete a la web numero 1 en critica de literatura!")
+          _vm._v("Unete a la web numero 1 en critica literaria!")
         ])
       ]
     )
@@ -24471,7 +30210,7 @@ var staticRenderFns = [
       "button",
       {
         staticClass:
-          " hover:bg-blue-400 shadow-md border border-blue-400 bg-blue-200 focus:outline-none block w-full py-2 px-4"
+          " hover:bg-blue-400 shadow-md border border-blue-400 bg-blue-200 focus:outline-none block w-full py-2 px-4 focus:placeholder-gray-300"
       },
       [_c("p", { staticClass: "font-bold" }, [_vm._v("Registrarse")])]
     )
@@ -24480,17 +30219,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "py-2" }, [
-      _c(
-        "button",
-        {
-          staticClass:
-            "hover:bg-blue-400 shadow-md border border-blue-400 bg-blue-200 focus:outline-none block w-full py-2 px-4",
-          attrs: { type: "submit" }
-        },
-        [_c("p", { staticClass: "font-bold" }, [_vm._v("Enviar correo")])]
-      )
-    ])
+    return _c(
+      "button",
+      {
+        staticClass:
+          "hover:bg-blue-400 shadow-md border border-blue-400 bg-blue-200 focus:outline-none block w-full py-2 px-4 focus:placeholder-gray-300"
+      },
+      [_c("p", { staticClass: "font-bold" }, [_vm._v("Enviar correo")])]
+    )
   }
 ]
 render._withStripped = true
@@ -24499,10 +30235,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Book.vue?vue&type=template&id=1b1c1554&":
-/*!****************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Book.vue?vue&type=template&id=1b1c1554& ***!
-  \****************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Book.vue?vue&type=template&id=1b1c1554&scoped=true&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Book.vue?vue&type=template&id=1b1c1554&scoped=true& ***!
+  \****************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -24517,119 +30253,306 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {},
+    { staticClass: "lg:container  lg:mx-auto px-2 lg:px-0 py-5 space-y-2" },
     [
       _c(
         "div",
-        { staticClass: " flex flex-row", attrs: { id: _vm.book.isbn } },
+        {
+          staticClass:
+            "flex flex-col-reverse md:flex-row bg-white bg-opacity-25 md:border md:border-blue-200 md:p-1",
+          attrs: { id: _vm.book.isbn }
+        },
         [
-          _c("div", { staticClass: "w-full sm:w-4/12" }, [
-            _c("img", {
-              staticClass: "w-full",
-              attrs: { src: _vm.book.cover, alt: _vm.book.title }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", [_c("h1", [_vm._v(_vm._s(_vm.book.title))])]),
-          _vm._v(" "),
-          _c("h2", [_vm._v(_vm._s(_vm.book.author))]),
-          _vm._v(" "),
-          _vm.vuex.auth
-            ? _c("button", { on: { click: _vm.SetFavorito } }, [
-                _vm._v("Añadir a favoritos.")
-              ])
-            : _vm._e(),
+          _c(
+            "div",
+            {
+              staticClass:
+                "w-full md:w-4/12 lg:w-3/12  flex flex-col-reverse md:flex-col items-center md:items-start"
+            },
+            [
+              _c("img", {
+                staticClass: "w-2/3 md:w-full pb-1 md:pb-0",
+                attrs: { src: _vm.book.cover, alt: _vm.book.title }
+              }),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "w-full px-2 md:px-0",
+                  attrs: {
+                    href: _vm.book.link,
+                    target: "_blank",
+                    rel: "noopener noreferrer"
+                  }
+                },
+                [_vm._m(0)]
+              )
+            ]
+          ),
           _vm._v(" "),
           _c(
-            "a",
-            { attrs: { target: "_blank", href: "https://amzn.to/2RnKxOw" } },
-            [_vm._v("COMPRAR")]
+            "div",
+            {
+              staticClass:
+                "w-full md:w-8/12 lg:w-9/12 px-2 pt-2 flex flex-col space-y-5"
+            },
+            [
+              _c("div", { staticClass: "flex  flex-col space-y-2" }, [
+                _c("h1", { staticClass: "text-4xl font-bold" }, [
+                  _vm._v(_vm._s(_vm.book.title))
+                ]),
+                _vm._v(" "),
+                _c("h2", { staticClass: "text-2xl" }, [
+                  _vm._v(_vm._s(_vm.book.author))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "text-xl text-justify" }, [
+                _vm._v(_vm._s(_vm.book.sinopsis))
+              ])
+            ]
           )
         ]
       ),
       _vm._v(" "),
-      _vm.vuex.auth
-        ? _c("div", { attrs: { id: "Comentario" } }, [
-            _c(
-              "form",
-              {
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    return _vm.SendComentario($event)
-                  }
-                }
-              },
-              [
-                _c("div", [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.formData.texto_reseña,
-                        expression: "formData.texto_reseña"
-                      }
-                    ],
-                    staticClass: "border",
-                    attrs: {
-                      type: "text",
-                      name: "Comentario",
-                      id: "ComentarioInput"
+      _c(
+        "div",
+        {
+          staticClass:
+            "flex flex-col bg-white bg-opacity-25 border border-blue-200 p-1 space-y-2"
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "w-full flex flex-col md:flex-row md:justify-between"
+            },
+            [
+              _vm.vuex.auth
+                ? _c(
+                    "button",
+                    {
+                      staticClass:
+                        "w-full md:w-4/12 lg:w-3/12 bg-blue-600 text-white p-2 border hover:bg-yellow-100 hover:text-black hover:border-black focus:outline-none",
+                      on: { click: _vm.SetFavorito }
                     },
-                    domProps: { value: _vm.formData.texto_reseña },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.formData,
-                          "texto_reseña",
-                          $event.target.value
-                        )
-                      }
+                    [
+                      _c("i", { staticClass: "fas fa-star p-1" }),
+                      _vm._v("Añadir a deseados")
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.puntuacion != 0
+                ? _c(
+                    "p",
+                    { staticClass: "text-xl text-center flex items-center" },
+                    [
+                      _vm._v(
+                        _vm._s(_vm.puntuacion) +
+                          "/5 segun la comunidad de Liber."
+                      )
+                    ]
+                  )
+                : _c(
+                    "p",
+                    { staticClass: "text-xl text-center flex items-center" },
+                    [
+                      _vm._v(
+                        _vm._s(_vm.book.rating) +
+                          "/5 segun la comunidad de Liber."
+                      )
+                    ]
+                  ),
+              _vm._v(" "),
+              _vm.puntuacion == 0 && this.$store.state.auth
+                ? _c("star-rating", {
+                    staticClass: "flex justify-center",
+                    attrs: {
+                      "star-size": 40,
+                      "read-only": false,
+                      rating: _vm.rating,
+                      "show-rating": false
+                    },
+                    on: { "rating-selected": _vm.setRating },
+                    model: {
+                      value: _vm.rating.puntos,
+                      callback: function($$v) {
+                        _vm.$set(_vm.rating, "puntos", $$v)
+                      },
+                      expression: "rating.puntos"
                     }
                   })
-                ]),
-                _vm._v(" "),
-                _c("button", [_vm._v("Enviar")])
-              ]
-            )
-          ])
-        : _c("div", { attrs: { id: "Comentarios" } }, [
-            _c(
-              "p",
-              [
-                _vm._v(
-                  "Si quieres participar en la maravillosa comunidad de Liber, primero debes "
-                ),
-                _c("router-link", { attrs: { to: { name: "login" } } }, [
-                  _vm._v("registrarte,")
-                ]),
-                _vm._v(" si ya lo estas, "),
-                _c("router-link", { attrs: { to: { name: "login" } } }, [
-                  _vm._v("identificate :)")
-                ])
-              ],
-              1
-            )
-          ]),
-      _vm._v(" "),
-      _vm._l(_vm.comentarios, function(coment) {
-        return _c("div", { key: coment.id }, [
-          _vm._v(
-            _vm._s(coment.texto_reseña) +
-              "  Escrito por: " +
-              _vm._s(coment.name)
+                : _vm._e(),
+              _vm._v(" "),
+              this.$store.state.auth && _vm.puntuacion != 0
+                ? _c("star-rating", {
+                    staticClass: "flex justify-center",
+                    attrs: {
+                      "star-size": 40,
+                      "read-only": true,
+                      "show-rating": false
+                    },
+                    on: { "rating-selected": _vm.setRating },
+                    model: {
+                      value: _vm.rating.puntos,
+                      callback: function($$v) {
+                        _vm.$set(_vm.rating, "puntos", $$v)
+                      },
+                      expression: "rating.puntos"
+                    }
+                  })
+                : _vm._e()
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _vm.vuex.auth
+            ? _c("div", { attrs: { id: "Comentario" } }, [
+                _c(
+                  "form",
+                  {
+                    staticClass: "flex flex-row w-full",
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.SendComentario($event)
+                      }
+                    }
+                  },
+                  [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.formData.texto_reseña,
+                          expression: "formData.texto_reseña"
+                        }
+                      ],
+                      staticClass:
+                        " w-full focus:placeholder-gray-300 focus:border-blue-500 placeholder-gray-600 focus:outline-none py-2 px-10 border border-blue-500",
+                      attrs: {
+                        "aria-label": "Escribe tu comentario",
+                        type: "text",
+                        name: "Comentario",
+                        id: "ComentarioInput",
+                        placeholder: "Comparte tu experiencia!"
+                      },
+                      domProps: { value: _vm.formData.texto_reseña },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.formData,
+                            "texto_reseña",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "font-bold bg-blue-200 py-2 px-2 focus:outline-none border border-blue-500 hover:bg-blue-100",
+                        attrs: { type: "submit", id: "search_button" }
+                      },
+                      [_vm._v("Enviar")]
+                    )
+                  ]
+                )
+              ])
+            : _c("div", { attrs: { id: "Comentarios" } }, [
+                _c(
+                  "p",
+                  { staticClass: "pl-1" },
+                  [
+                    _vm._v(
+                      " Si quieres participar en la maravillosa comunidad de Liber primero debes "
+                    ),
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "font-bold",
+                        attrs: { to: { name: "login" } }
+                      },
+                      [_vm._v("iniciar sesión.")]
+                    )
+                  ],
+                  1
+                )
+              ]),
+          _vm._v(" "),
+          _c(
+            "ul",
+            { attrs: { id: "ComentaryList" } },
+            _vm._l(_vm.comentarios, function(coment) {
+              return _c(
+                "li",
+                {
+                  key: coment.id,
+                  staticClass:
+                    "bg-opacity-70 bg-white py-1 my-1 border border-blue-500",
+                  attrs: { id: coment.id }
+                },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "flex flex-row justify-between font-bold" },
+                    [
+                      _c("p", { staticClass: "px-3 " }, [
+                        _vm._v(_vm._s(coment.name))
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", {}, [
+                    _c("p", { staticClass: "px-3 py-1 text-justify" }, [
+                      _vm._v(_vm._s(coment.texto_reseña))
+                    ])
+                  ])
+                ]
+              )
+            }),
+            0
           )
-        ])
-      })
-    ],
-    2
+        ]
+      )
+    ]
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "my-1 text-xl border border-yellow-200 hover:border-yellow-800 flex flex-row items-center",
+        attrs: { id: "amazonButton" }
+      },
+      [
+        _c("i", { staticClass: "fa-2x p-1 fab fa-amazon flex justify-start" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "w-full" }, [
+          _c(
+            "p",
+            {
+              staticClass: "flex justify-center py-2 font-bold cursor-pointer"
+            },
+            [_vm._v("Comprar en Amazon")]
+          )
+        ])
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -24652,11 +30575,10 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "pt-5" }, [
     _c(
       "form",
       {
-        staticClass: "mt-8",
         on: {
           submit: function($event) {
             $event.preventDefault()
@@ -24667,6 +30589,12 @@ var render = function() {
       [
         _vm.vuex.auth
           ? _c("div", { staticClass: "mx-auto max-w-lg " }, [
+              _c(
+                "h2",
+                { staticClass: "flex justify-center pb-6 font-bold text-xl" },
+                [_vm._v("Editar datos")]
+              ),
+              _vm._v(" "),
               _c("div", { staticClass: "py-1" }, [
                 _c("input", {
                   directives: [
@@ -24678,9 +30606,10 @@ var render = function() {
                     }
                   ],
                   staticClass:
-                    "text-md block px-3 py-2  w-full bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none",
+                    "focus:placeholder-gray-300 shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4",
                   attrs: {
                     name: "name",
+                    "aria-label": "nombre",
                     placeholder: _vm.vuex.user.name,
                     type: "text"
                   },
@@ -24712,7 +30641,7 @@ var render = function() {
                     }
                   ],
                   staticClass:
-                    "text-md block px-3 py-2 w-full border-2 border-gray-300 bg-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none disabled:opacity-50 ",
+                    "focus:placeholder-gray-300 shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4",
                   attrs: { placeholder: "Email", disabled: "" },
                   domProps: { value: _vm.vuex.user.email },
                   on: {
@@ -24723,11 +30652,6 @@ var render = function() {
                       _vm.$set(_vm.vuex.user, "email", $event.target.value)
                     }
                   }
-                }),
-                _vm._v(" "),
-                _c("p", {
-                  staticClass: "text-red-500",
-                  domProps: { textContent: _vm._s(_vm.errors.email) }
                 })
               ]),
               _vm._v(" "),
@@ -24742,8 +30666,12 @@ var render = function() {
                     }
                   ],
                   staticClass:
-                    "text-md block px-3 py-2 w-full bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none",
-                  attrs: { placeholder: "Contraseña", type: "password" },
+                    "focus:placeholder-gray-300 shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4",
+                  attrs: {
+                    "aria-label": "contraseña",
+                    placeholder: "Contraseña",
+                    type: "password"
+                  },
                   domProps: { value: _vm.formData.password },
                   on: {
                     input: function($event) {
@@ -24772,9 +30700,10 @@ var render = function() {
                     }
                   ],
                   staticClass:
-                    "text-md block px-3 py-2 w-full bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none",
+                    "focus:placeholder-gray-300 shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4",
                   attrs: {
-                    placeholder: "Nueva contraseña (Campo opcional)",
+                    placeholder: "Nueva contraseña",
+                    "aria-label": "nueva contraseña",
                     type: "password"
                   },
                   domProps: { value: _vm.formData.newPassword },
@@ -24790,7 +30719,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("p", {
                   staticClass: "text-red-500",
-                  domProps: { textContent: _vm._s(_vm.errors.password) }
+                  domProps: { textContent: _vm._s(_vm.errors.newPassword) }
                 })
               ]),
               _vm._v(" "),
@@ -24805,9 +30734,10 @@ var render = function() {
                     }
                   ],
                   staticClass:
-                    "text-md block px-3 py-2 w-full bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none",
+                    "focus:placeholder-gray-300 shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4",
                   attrs: {
-                    placeholder: "Confirmar nueva contraseña (Campo opcional)",
+                    placeholder: "Confirmar nueva contraseña",
+                    "aria-label": "Confirmar nueva contraseña",
                     type: "password"
                   },
                   domProps: { value: _vm.formData.password_confirmation },
@@ -24827,7 +30757,9 @@ var render = function() {
                 _vm._v(" "),
                 _c("p", {
                   staticClass: "text-red-500",
-                  domProps: { textContent: _vm._s(_vm.errors.password_confirm) }
+                  domProps: {
+                    textContent: _vm._s(_vm.errors.password_confirmation)
+                  }
                 })
               ]),
               _vm._v(" "),
@@ -24835,7 +30767,7 @@ var render = function() {
                 "button",
                 {
                   staticClass:
-                    "mt-3 text-lg font-semibold bg-gray-800 w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:text-black hover:bg-white"
+                    "hover:bg-blue-400 shadow-md border border-blue-400 bg-blue-200 focus:outline-none block w-full py-2 px-4"
                 },
                 [_vm._v("\n                Editar\n            ")]
               )
@@ -24869,144 +30801,191 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "lg:container lg:mx-auto py-5" }, [
+    _c("div", { staticClass: "pt-2" }, [
       _c(
-        "div",
-        { staticClass: "w-5/6 mx-auto" },
-        [
-          _c(
-            "carousel",
-            {
-              staticClass: "my-4 z-0 hidden sm:flex",
-              attrs: {
-                margin: 30,
-                merge: true,
-                autoplay: true,
-                loop: true,
-                dots: false,
-                items: 5,
-                nav: false,
-                autoplayTimeout: 10000,
-                autoplayHoverPause: true
-              }
-            },
-            _vm._l(6, function(a) {
-              return _c("div", { key: a, attrs: { id: a } }, [
-                _c("img", {
-                  staticClass: "px-1 w-10",
-                  attrs: { src: _vm.books[a - 1].cover },
-                  on: {
-                    click: function($event) {
-                      return _vm.BookInformation(_vm.books[a - 1].isbn)
-                    }
-                  }
-                })
-              ])
-            }),
-            0
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        [
-          _c("router-link", { attrs: { to: { name: "Terror" } } }, [
-            _vm._v("Terror")
-          ])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "ul",
+        "form",
         {
-          staticClass:
-            "grid grid-cols-1 mx-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:mx-2"
+          staticClass: "w-full flex justify-center",
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.SearchBooks($event)
+            }
+          }
         },
-        _vm._l(_vm.booksFilter, function(b) {
-          return _c(
-            "li",
+        [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.preSearch,
+                expression: "preSearch"
+              }
+            ],
+            staticClass:
+              "w-full sm:w-1/2 focus:placeholder-gray-300 focus:border-blue-500  placeholder-gray-600 focus:outline-none py-2 px-10 border border-blue-200 ",
+            attrs: { type: "text", name: "search", placeholder: "Buscar" },
+            domProps: { value: _vm.preSearch },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.preSearch = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
             {
-              key: b.isbn,
               staticClass:
-                "flex flex-col border border-blue-900 bg-white bg-opacity-25 rounded-lg h-auto",
-              attrs: { id: b.isbn }
+                "bg-gray-200 py-2 px-2 focus:outline-none border border-blue-200 hover:bg-blue-100",
+              attrs: { type: "submit", id: "search_button" }
             },
-            [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "flex items-center h-full justify-center relative"
-                },
-                [
-                  _c("img", {
-                    staticClass:
-                      "w-40 py-6 border-blue-900 cursor-pointer border-b-2",
-                    attrs: { id: "portada", src: b.cover },
-                    on: {
-                      click: function($event) {
-                        return _vm.BookInformation(b.isbn)
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "opacity-0 hover:opacity-100  absolute bg-gray-300 bottom-4  py-2 w-full font-bold focus:outline-none",
-                      on: {
-                        click: function($event) {
-                          return _vm.BookInformation(b.isbn)
-                        }
-                      }
-                    },
-                    [_vm._v("Ver en detalle")]
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "w-full h-1/5 py-1", attrs: { id: "titulo" } },
-                [
-                  _c(
-                    "p",
-                    {
-                      staticClass:
-                        "font-sants font-bold cursor-pointer sm:text-base lg:text-xl px-2 text-center",
-                      on: {
-                        click: function($event) {
-                          return _vm.BookInformation(b.isbn)
-                        }
-                      }
-                    },
-                    [_vm._v(_vm._s(b.title))]
-                  )
-                ]
-              )
-            ]
+            [_vm._v("Buscar")]
           )
-        }),
-        0
+        ]
       )
-    ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "lg:container lg:mx-auto py-5" },
+      [
+        _c("tailable-pagination", {
+          attrs: {
+            limit: 3,
+            data: _vm.books,
+            showNumbers: true,
+            "hide-when-empty": true
+          },
+          on: { "page-changed": _vm.getResults }
+        }),
+        _vm._v(" "),
+        _c(
+          "ul",
+          {
+            staticClass:
+              "grid grid-cols-1 mx-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:mx-2"
+          },
+          _vm._l(_vm.booksFilter, function(b) {
+            return _c(
+              "li",
+              {
+                key: b.isbn,
+                staticClass:
+                  "flex flex-col border border-blue-900 bg-white bg-opacity-25 rounded-lg h-auto",
+                attrs: { id: b.isbn }
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "flex items-center h-full justify-center relative"
+                  },
+                  [
+                    _c("img", {
+                      staticClass:
+                        "w-40 py-6 border-blue-900 cursor-pointer border-b-2",
+                      attrs: { id: "portada", src: b.cover },
+                      on: {
+                        click: function($event) {
+                          return _vm.BookInformation(b.isbn)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass:
+                          "opacity-60 md:opacity-0 hover:opacity-100  absolute bottom-4 w-full focus:outline-none",
+                        attrs: {
+                          href: b.link,
+                          target: "_blank",
+                          rel: "noopener noreferrer"
+                        }
+                      },
+                      [_vm._m(0, true)]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "w-full h-1/5 py-1", attrs: { id: "titulo" } },
+                  [
+                    _c(
+                      "p",
+                      {
+                        staticClass:
+                          "font-sants font-bold cursor-pointer sm:text-base lg:text-xl px-2 text-center",
+                        on: {
+                          click: function($event) {
+                            return _vm.BookInformation(b.isbn)
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(b.title) +
+                            "\n                    "
+                        )
+                      ]
+                    )
+                  ]
+                )
+              ]
+            )
+          }),
+          0
+        )
+      ],
+      1
+    )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "mt-1 border flex flex-row items-center",
+        attrs: { id: "amazonButton" }
+      },
+      [
+        _c("i", { staticClass: " p-1 fab fa-amazon flex justify-start" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "w-full" }, [
+          _c(
+            "p",
+            {
+              staticClass: "flex justify-center py-2 cursor-pointer font-bold"
+            },
+            [_vm._v("Comprar en Amazon")]
+          )
+        ])
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/StaticSections/Footer.vue?vue&type=template&id=fdc867da&scoped=true&":
-/*!*********************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/StaticSections/Footer.vue?vue&type=template&id=fdc867da&scoped=true& ***!
-  \*********************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/StaticSections/Footer.vue?vue&type=template&id=fdc867da&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/StaticSections/Footer.vue?vue&type=template&id=fdc867da& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -25026,9 +31005,50 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: " h-52" }, [
-      _c("p", { staticClass: "text-white font-bold" }, [_vm._v("FOOTER")])
-    ])
+    return _c(
+      "div",
+      { staticClass: "h-52  text-white bg-blue-600 border-t border-black" },
+      [
+        _c("div", { staticClass: "flex flex-row justify-between  p-3" }, [
+          _c("div", [
+            _c("p", { staticClass: "text-xl" }, [_vm._v("Quienes somos?")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex flex-row justify-end space-x-5" }, [
+            _c(
+              "a",
+              {
+                attrs: {
+                  href: "https://github.com/garciatoni/LiberLogin",
+                  target: "_blanck"
+                }
+              },
+              [_c("i", { staticClass: "fab fa-github fa-2x" })]
+            ),
+            _vm._v(" "),
+            _c("a", { attrs: { href: "", target: "_blanck" } }, [
+              _c("i", { staticClass: "fab fa-twitter fa-2x" })
+            ]),
+            _vm._v(" "),
+            _c("a", { attrs: { href: "", target: "_blanck" } }, [
+              _c("i", { staticClass: "fab fa-facebook-f fa-2x" })
+            ]),
+            _vm._v(" "),
+            _c("a", { attrs: { href: "", target: "_blanck" } }, [
+              _c("i", { staticClass: "fab fa-instagram fa-2x" })
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "bg-blue-300 h-full" }, [
+          _c("p", { staticClass: "p-3 text-black text-lg" }, [
+            _vm._v(
+              "Somos Antonio García Barrera y David Hernandez Quesada, dos estudiantes de 2n de DAW."
+            )
+          ])
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -25083,6 +31103,46 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "hidden md:flex divide-solid divide-x-2 divide-blue-400 md:text-lg xl:text-xl"
+          },
+          [
+            _c(
+              "router-link",
+              { staticClass: "px-1", attrs: { to: { name: "Terror" } } },
+              [_vm._v("Terror")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              { staticClass: "px-1", attrs: { to: { name: "Romance" } } },
+              [_vm._v("Romance")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              { staticClass: "px-1", attrs: { to: { name: "Fantasia" } } },
+              [_vm._v("Fantasia")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              { staticClass: "px-1", attrs: { to: { name: "cifi" } } },
+              [_vm._v("Ciencia ficción")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              { staticClass: "px-1", attrs: { to: { name: "Aventura" } } },
+              [_vm._v("Aventura")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
         _vm.vuex.auth
           ? _c("div", { staticClass: "flex justify-end" }, [
               _vm.vuex.user
@@ -25095,10 +31155,11 @@ var render = function() {
                       on: { click: _vm.drawer }
                     },
                     [
-                      _c("p", { staticClass: "font-bold text-2xl" }, [
-                        _vm._v(_vm._s(_vm.vuex.user.name))
-                      ])
-                    ]
+                      _c("avatar", {
+                        attrs: { fullname: _vm.vuex.user.name, size: 50 }
+                      })
+                    ],
+                    1
                   )
                 : _vm._e()
             ])
@@ -25186,7 +31247,10 @@ var render = function() {
                     _c("div", { staticClass: "border-b-2 pb-2 mx-2" }, [
                       _c(
                         "div",
-                        { staticClass: "flex flex-row justify-between" },
+                        {
+                          staticClass:
+                            "flex flex-row justify-between cursor-default"
+                        },
                         [
                           _c(
                             "div",
@@ -25281,8 +31345,8 @@ var render = function() {
                         attrs: { to: { name: "edicion" } }
                       },
                       [
-                        _c("span", { staticClass: "font-bold" }, [
-                          _vm._v("Editar Perfil de Usuario")
+                        _c("span", { staticClass: "md:font-bold" }, [
+                          _vm._v("Editar Perfil")
                         ])
                       ]
                     ),
@@ -25291,12 +31355,91 @@ var render = function() {
                       "router-link",
                       {
                         staticClass:
-                          "my-4 text-center border-gray-800 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300",
+                          "mt-2 mb-6 text-center border-gray-800 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300",
                         attrs: { to: { name: "wish" } }
                       },
                       [
-                        _c("span", { staticClass: "font-bold" }, [
-                          _vm._v("Ver lista de libros favoritos.")
+                        _c("span", { staticClass: "md:font-bold" }, [
+                          _vm._v("Libros deseados")
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "p",
+                      {
+                        staticClass:
+                          "flex md:hidden justify-center border-t mx-2 pt-2 pb-2"
+                      },
+                      [_vm._v("Generos literarios")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        staticClass:
+                          "md:hidden my-1 text-center border-gray-800 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300",
+                        attrs: { to: { name: "Terror" } }
+                      },
+                      [
+                        _c("span", { staticClass: "md:font-bold" }, [
+                          _vm._v("Terror")
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        staticClass:
+                          "md:hidden my-1 text-center border-gray-800 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300",
+                        attrs: { to: { name: "Romance" } }
+                      },
+                      [
+                        _c("span", { staticClass: "md:font-bold" }, [
+                          _vm._v("Romance")
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        staticClass:
+                          "md:hidden my-1 text-center border-gray-800 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300",
+                        attrs: { to: { name: "Fantasia" } }
+                      },
+                      [
+                        _c("span", { staticClass: "md:font-bold" }, [
+                          _vm._v("Fantasia")
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        staticClass:
+                          "md:hidden my-1 text-center border-gray-800 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300",
+                        attrs: { to: { name: "cifi" } }
+                      },
+                      [
+                        _c("span", { staticClass: "md:font-bold" }, [
+                          _vm._v("Ciencia ficción")
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        staticClass:
+                          "md:hidden my-1 text-center border-gray-800 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300",
+                        attrs: { to: { name: "Aventura" } }
+                      },
+                      [
+                        _c("span", { staticClass: "md:font-bold" }, [
+                          _vm._v("Aventura")
                         ])
                       ]
                     )
@@ -25334,46 +31477,131 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "container mx-auto" }, [
     _vm._m(0),
     _vm._v(" "),
     _c(
       "div",
+      { staticClass: "space-y-2" },
       _vm._l(_vm.books, function(b) {
-        return _c("div", { key: b.isbn }, [
-          _c(
-            "div",
-            {
-              staticClass: "cursor-pointer ",
-              attrs: { id: b.isbn },
-              on: {
-                click: function($event) {
-                  return _vm.BookInformation(b.isbn)
-                }
-              }
-            },
-            [
-              _c("p", [_vm._v(_vm._s(b.title))]),
-              _vm._v(" "),
-              _c("h2", [_vm._v(_vm._s(b.author))]),
-              _vm._v(" "),
-              _c("img", { attrs: { width: "100", src: b.cover, alt: b.title } })
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "p-3 bg-red-400",
-              on: {
-                click: function($event) {
-                  return _vm.DeleteWish(b.isbn)
-                }
-              }
-            },
-            [_vm._v("Borrar")]
-          )
-        ])
+        return _c(
+          "div",
+          { key: b.isbn, staticClass: "flex justify-center px-7 md:px-0" },
+          [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex flex-col md:flex-row space-x-2 sm:w-3/4 md:w-2/3  border border-blue-300 bg-white p-1 bg-opacity-30",
+                attrs: { id: b.isbn }
+              },
+              [
+                _c("div", { staticClass: "flex md:hidden justify-end" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "pr-3 focus:outline-none",
+                      on: {
+                        click: function($event) {
+                          return _vm.DeleteWish(b.isbn)
+                        }
+                      }
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fas fa-times fa-3x text-red-600"
+                      })
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "flex justify-center md:w-2/12 cursor-pointer "
+                  },
+                  [
+                    _c("img", {
+                      staticClass: "w-1/2 md:w-full",
+                      attrs: { src: b.cover, alt: b.title },
+                      on: {
+                        click: function($event) {
+                          return _vm.BookInformation(b.isbn)
+                        }
+                      }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "md:w-10/12 flex-col flex justify-between" },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "flex flex-row justify-between" },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "flex flex-col cursor-pointer pl-2 pt-2 md:pt-0 ",
+                            on: {
+                              click: function($event) {
+                                return _vm.BookInformation(b.isbn)
+                              }
+                            }
+                          },
+                          [
+                            _c("h1", { staticClass: "text-2xl font-bold" }, [
+                              _vm._v(_vm._s(b.title))
+                            ]),
+                            _vm._v(" "),
+                            _c("h2", { staticClass: "text-xl" }, [
+                              _vm._v(_vm._s(b.author))
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "hidden md:flex" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "pr-3 focus:outline-none",
+                              on: {
+                                click: function($event) {
+                                  return _vm.DeleteWish(b.isbn)
+                                }
+                              }
+                            },
+                            [
+                              _c("i", {
+                                staticClass: "fas fa-times fa-3x text-red-600"
+                              })
+                            ]
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "w-full px-1 md:px-0 md:pr-2",
+                        attrs: {
+                          href: b.link,
+                          target: "_blank",
+                          rel: "noopener noreferrer"
+                        }
+                      },
+                      [_vm._m(1, true)]
+                    )
+                  ]
+                )
+              ]
+            )
+          ]
+        )
       }),
       0
     )
@@ -25384,7 +31612,48 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("LISTA DE LIBROS DESEADOS")])])
+    return _c(
+      "div",
+      {
+        staticClass:
+          "w-full md:w-2/3 mx-auto flex justify-center text-center py-5 flex-col"
+      },
+      [
+        _c("h1", { staticClass: "text-3xl md:text-4xl font-bold" }, [
+          _vm._v("LIBROS DESEADOS")
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "px-5" }, [
+          _vm._v("Guarda aqui todos aquellos libros que tienes pensado leer!")
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "my-1 text-xl border border-yellow-200 hover:border-yellow-800 flex flex-row items-center",
+        attrs: { id: "amazonButton" }
+      },
+      [
+        _c("i", { staticClass: "fa-2x p-1 fab fa-amazon flex justify-start" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "w-full" }, [
+          _c(
+            "p",
+            {
+              staticClass: "flex justify-center py-2 font-bold cursor-pointer"
+            },
+            [_vm._v("Comprar en Amazon")]
+          )
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -25393,10 +31662,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Aventura.vue?vue&type=template&id=1707a3a6&scoped=true&":
-/*!***************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Aventura.vue?vue&type=template&id=1707a3a6&scoped=true& ***!
-  \***************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Aventura.vue?vue&type=template&id=1707a3a6&":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Aventura.vue?vue&type=template&id=1707a3a6& ***!
+  \***************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -25409,40 +31678,363 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container mx-auto" }, [
+    _c(
+      "div",
+      {
+        staticClass:
+          "flex flex-col sm:flex-row py-7 sm:space-x-5 divide-x divide-blue-500"
+      },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "sm:w-1/2 px-3 pt-7 sm:pt-0" }, [
+          _c("div", { staticClass: "space-y-2" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center"
+              },
+              [
+                _c("div", { staticClass: "p-2 sm:3/12" }, [
+                  _c("img", {
+                    staticClass: "w-36",
+                    attrs: {
+                      src:
+                        "https://images-na.ssl-images-amazon.com/images/I/81OMiXFFwHL.jpg",
+                      alt: "LibroPortada"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.BookInformation(843167637)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(2)
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center"
+              },
+              [
+                _c("div", { staticClass: "p-2 sm:3/12" }, [
+                  _c("img", {
+                    staticClass: "w-36",
+                    attrs: {
+                      src:
+                        "https://images-na.ssl-images-amazon.com/images/I/7179uNkP9xL.jpg",
+                      alt: "LibroPortada"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.BookInformation(8469836072)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(3)
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center"
+              },
+              [
+                _c("div", { staticClass: "p-2 sm:3/12" }, [
+                  _c("img", {
+                    staticClass: "w-36",
+                    attrs: {
+                      src:
+                        "https://images-na.ssl-images-amazon.com/images/I/71UDhPMMchL.jpg",
+                      alt: "LibroPortada"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.BookInformation(8469836099)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(4)
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center"
+              },
+              [
+                _c("div", { staticClass: "p-2 sm:3/12" }, [
+                  _c("img", {
+                    staticClass: "w-36",
+                    attrs: {
+                      src:
+                        "https://images-na.ssl-images-amazon.com/images/I/71R2vDdC9-L.jpg",
+                      alt: "LibroPortada"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.BookInformation(8466794999)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(5)
+              ]
+            )
+          ])
+        ])
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "px-3 sm:px-0 text-lg sm:w-1/2 text-justify" },
+      [
+        _c("div", [
+          _c("h1", { staticClass: "text-4xl pb-7" }, [_vm._v("Aventura")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "space-y-1" }, [
+          _c("p", [
+            _vm._v(
+              "La novela de aventuras es la esencia misma de la ficción, puesto que se gesta con el sencillo objetivo de entretener. El esquema salida-viaje-retorno se suele repetir en el género, creando expectación para el lector, quien llega a las últimas páginas en busca del destino del héroe que lo ha cautivado con sus peripecias. Sí, siempre hay un personaje principal con el que el lector se identifica plenamente. La aventura es aquello que se opone a la rutina, a lo cotidiano, de ahí su valor.\n                "
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Es la capacidad del protagonista para enfrentarse a riesgos, misterios y peligros. Por norma, la novela de aventuras cuenta con un final feliz: el héroe, aunque cansado, logra al fin sus propósitos. Aunque su estructura sea clara, sus límites son difusos, pues suele acompañar a otros géneros en una misma obra."
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("h2", { staticClass: "text-3xl py-7" }, [_vm._v("Orígen")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "space-y-1" }, [
+          _c("p", [
+            _vm._v(
+              "Se considera que los orígenes del género de aventuras se encuentran en La Odisea y en La Ilíada de Homero (siglo VIII a. d C.) y, por ende, en la época clásica. Ya por aquel entonces el objetivo era claro: acompañar a un protagonista que emprende una aventura y seguir sus dificultades hasta llegar a su triunfo definitivo. Con respecto a la Edad Media, los libros de caballerías, como El Libro del Caballero Zifar es una buena referencia.\n                "
+            )
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", [
-      _c("h1", [_vm._v("Aventura")]),
-      _vm._v(" "),
-      _c("h2", [_vm._v("Descripción")]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "La novela de aventuras es la esencia misma de la ficción, puesto que se gesta con el sencillo objetivo de entretener. El esquema salida-viaje-retorno se suele repetir en el género, creando expectación para el lector, quien llega a las últimas páginas en busca del destino del héroe que lo ha cautivado con sus peripecias. Sí, siempre hay un personaje principal con el que el lector se identifica plenamente. La aventura es aquello que se opone a la rutina, a lo cotidiano, de ahí su valor. Es la capacidad del protagonista para enfrentarse a riesgos, misterios y peligros. Por norma, la novela de aventuras cuenta con un final feliz: el héroe, aunque cansado, logra al fin sus propósitos. Aunque su estructura sea clara, sus límites son difusos, pues suele acompañar a otros géneros en una misma obra."
-        )
-      ]),
-      _vm._v(" "),
-      _c("h2", [_vm._v("Orígen")]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "Se considera que los orígenes del género de aventuras se encuentran en La Odisea y en La Ilíada de Homero (siglo VIII a. d C.) y, por ende, en la época clásica. Ya por aquel entonces el objetivo era claro: acompañar a un protagonista que emprende una aventura y seguir sus dificultades hasta llegar a su triunfo definitivo. Con respecto a la Edad Media, los libros de caballerías, como El Libro del Caballero Zifar es una buena referencia. "
-        )
-      ]),
-      _vm._v(" "),
-      _c("h2", [_vm._v("Obras y Autores más famosos")]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "Don Quijote de la Mancha, Miguel de Cervantes Saavedra\n\t\tLos viajes de Gulliver, Jonathan Swift \n\t\tLa vuelta al mundo en 80 días, Julio Verne\n\t\tLa isla del tesoro, Robert Louis Stevenson"
-        )
+      _c("h2", { staticClass: "text-4xl pb-7" }, [
+        _vm._v("Obras y Autores más famosos")
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2"
+      },
+      [
+        _c(
+          "a",
+          {
+            staticClass: "text-2xl",
+            attrs: { target: "_blanck", href: "https://amzn.to/33KxOIA" }
+          },
+          [_vm._v("Don Quijote de la Mancha")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "text-lg hover:text-red-800",
+            attrs: {
+              target: "_blanck",
+              href:
+                "https://www.amazon.es/Miguel-De-Cervantes-Saavedra/e/B000APV3WE?ref_=dbs_p_pbk_r00_abau_000000"
+            }
+          },
+          [_vm._v("(Jonathan Swift)")]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          { staticClass: "text-justify flex items-center justify-center" },
+          [
+            _vm._v(
+              "\n                         El ingenioso hidalgo don Quijote de la Mancha narra las aventuras de Alonso Quijano, un hidalgo pobre que de tanto leer novelas de caballería acaba enloqueciendo y creyendo ser un caballero andante, nombrándose a sí mismo como don Quijote de la Mancha.\n                        "
+            )
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2"
+      },
+      [
+        _c(
+          "a",
+          {
+            staticClass: "text-2xl",
+            attrs: { target: "_blanck", href: "https://amzn.to/3hmTv9I" }
+          },
+          [_vm._v("Los viajes de Gulliver")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "text-lg hover:text-red-800",
+            attrs: {
+              target: "_blanck",
+              href:
+                "https://www.amazon.es/Jonathan-Swift/e/B001HCV1RG?ref_=dbs_p_pbk_r00_abau_000000"
+            }
+          },
+          [_vm._v("(Jonathan Swift)")]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          { staticClass: "text-justify flex items-center justify-center" },
+          [
+            _vm._v(
+              "\n                            Gulliver viaja a fabulosos lugares como Liliput, donde le atraparán sus diminutos habitantes; o Brobdingnag, poblado por gigantes; o la isla voladora de Laputa, donde viven disparatados científicos; o al país de los houyhnhnms, donde los caballos dominan a los hombres.\n                        "
+            )
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2"
+      },
+      [
+        _c(
+          "a",
+          {
+            staticClass: "text-2xl",
+            attrs: { target: "_blanck", href: "https://amzn.to/3tHb2Mp" }
+          },
+          [_vm._v("La vuelta al mundo en 80 días")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "text-lg hover:text-red-800",
+            attrs: {
+              target: "_blanck",
+              href:
+                "https://www.amazon.es/Julio-Verne/e/B00F1CW7NK?ref_=dbs_p_pbk_r00_abau_000000"
+            }
+          },
+          [_vm._v("(Julio Verne)")]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          { staticClass: "text-justify flex items-center justify-center" },
+          [
+            _vm._v(
+              "\n                            Phileas Fogg ha apostado una gran suma de dinero a que es capaz de dar la vuelta al mundo en 80 días, gracias a los distintos medios de locomoción de su época. Una aventura en la que habrá momentos de humor, de peligro, de acciones heroicas e incluso de amor.\n                        "
+            )
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2"
+      },
+      [
+        _c(
+          "a",
+          {
+            staticClass: "text-2xl",
+            attrs: { target: "_blanck", href: "https://amzn.to/3y47irX" }
+          },
+          [_vm._v("La isla del tesoro")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "text-lg hover:text-red-800",
+            attrs: {
+              target: "_blanck",
+              href:
+                "https://www.amazon.es/Robert-Louis-Stevenson/e/B00JVVRCRS?ref_=dbs_p_pbk_r00_abau_000000"
+            }
+          },
+          [_vm._v("(Robert Louis Stevenson)")]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          { staticClass: "text-justify flex items-center justify-center" },
+          [
+            _vm._v(
+              "\n                           El protagonista de este magnífico libro es un niño, Jim Hawkins. Su emocionante aventura comienza el día en que un viejo marinero con la cara marcada por un sablazo llega a la posada de su padre. El cofre que transporta el desconocido contiene un extraño mapa, que Jim descubrirá por casualidad.\n                        "
+            )
+          ]
+        )
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -25467,40 +32059,381 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container mx-auto" }, [
+    _c(
+      "div",
+      {
+        staticClass:
+          "flex flex-col sm:flex-row py-7 sm:space-x-5 divide-x divide-blue-500"
+      },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "sm:w-1/2 px-3 pt-7 sm:pt-0" }, [
+          _c("div", { staticClass: "space-y-2" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center"
+              },
+              [
+                _c("div", { staticClass: "p-2 sm:3/12" }, [
+                  _c("img", {
+                    staticClass: "w-36",
+                    attrs: {
+                      src:
+                        "https://images-na.ssl-images-amazon.com/images/I/816QLZKwmIL.jpg",
+                      alt: "LibroPortada"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.BookInformation(8445000667)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(2)
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center"
+              },
+              [
+                _c("div", { staticClass: "p-2 sm:3/12" }, [
+                  _c("img", {
+                    staticClass: "w-36",
+                    attrs: {
+                      src:
+                        "https://images-na.ssl-images-amazon.com/images/I/51jZNYgcL+L.jpg",
+                      alt: "LibroPortada"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.BookInformation(8420471542)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(3)
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center"
+              },
+              [
+                _c("div", { staticClass: "p-2 sm:3/12" }, [
+                  _c("img", {
+                    staticClass: "w-36",
+                    attrs: {
+                      src:
+                        "https://images-na.ssl-images-amazon.com/images/I/71UBPNAvmAL.jpg",
+                      alt: "LibroPortada"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.BookInformation(8418174072)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(4)
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center"
+              },
+              [
+                _c("div", { staticClass: "p-2 sm:3/12" }, [
+                  _c("img", {
+                    staticClass: "w-36",
+                    attrs: {
+                      src:
+                        "https://images-na.ssl-images-amazon.com/images/I/812AcWt+C2L.jpg",
+                      alt: "LibroPortada"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.BookInformation(8408099027)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(5)
+              ]
+            )
+          ])
+        ])
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "px-3 sm:px-0 text-lg sm:w-1/2 text-justify" },
+      [
+        _c("div", [
+          _c("h1", { staticClass: "text-4xl pb-7" }, [_vm._v("Fantasia")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "space-y-1" }, [
+          _c("p", [
+            _vm._v(
+              "Cómo uno de los géneros más comunes y famosos del mundo, la novela fantástica es a la vez simple y compleja. La única regla para que un libro sea considerado fantasía es simple: que ocurran sucesos fantásticos, criaturas de leyenda y magia. \n                    "
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Uno de los temas habituales de la fantasía es el conflicto entre el Bien y el Mal representado en las acciones de los personajes. Otro de los aspectos comunes del relato fantástico es su medievalismo, es decir, la ambientación medieval, ya sea en localizaciones, vestuario, costumbres, etc., y el uso de mitos y leyendas en la trama, aunque no es imprescindible."
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Muchas veces, contiene un héroe con origen incierto que acaba siendo un elegido (por los dioses, por la magia o los hombres) para salvar su mundo, triunfando sobre el Mal y descubriendo la verdad de su pasado."
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Hay dos subgéneros principales: la alta fantasía o fantasía épica y la baja fantasía:\n\t\t            La primera sitúa la acción en un mundo secundario ficticio, alejado de la realidad que conocemos y sus reglas lógicas, en tanto que la segunda, se desarrolla en el mundo real, o en uno muy parecido, con elementos y criaturas mágicas."
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("h2", { staticClass: "text-3xl py-7" }, [_vm._v("Orígen")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "space-y-1" }, [
+          _c("p", [
+            _vm._v(
+              "La literatura fantástica, tal y como la conocemos hoy, tiene sus cimientos a finales del siglo XVIII con la irrupción del Romanticismo. No obstante, no era la primera vez que elementos semejantes aparecían por escrito. La literatura fantástica cuenta con otros antecedentes más antiguos, como el mito greco-romano o la mitología hindú, celta y escandinava, la novela de caballerías del siglo XVI y la novela bizantina del XVII, y, por supuesto, la novela gótica de finales del XVIII. \n                    "
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "\n                        El diablo enamorado (1772), de Jacques Cazzotte, es considerada la primera obra fantástica de la literatura occidental, una novela corta en la que el protagonista, un joven español, capitán de la guardia del rey de Nápoles, cae bajo el influjo del mismísimo diablo, encaprichado con poseer su alma.\n                    "
+            )
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", [
-      _c("h1", [_vm._v("Fantasia")]),
-      _vm._v(" "),
-      _c("h2", [_vm._v("Descripción")]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "Cómo uno de los géneros más comunes y famosos del mundo, la novela fantástica es a la vez simple y compleja. La única regla para que un libro sea considerado fantasía es simple: que ocurran sucesos fantásticos, criaturas de leyenda y magia. \n\t\tUno de los temas habituales de la fantasía es el conflicto entre el Bien y el Mal representado en las acciones de los personajes. Otro de los aspectos comunes del relato fantástico es su medievalismo, es decir, la ambientación medieval, ya sea en localizaciones, vestuario, costumbres, etc., y el uso de mitos y leyendas en la trama, aunque no es imprescindible.\n\t\tMuchas veces, contiene un héroe con origen incierto que acaba siendo un elegido (por los dioses, por la magia o los hombres) para salvar su mundo, triunfando sobre el Mal y descubriendo la verdad de su pasado.\n\t\tHay dos subgéneros principales: la alta fantasía o fantasía épica y la baja fantasía:\n\t\tLa primera sitúa la acción en un mundo secundario ficticio, alejado de la realidad que conocemos y sus reglas lógicas, en tanto que la segunda, se desarrolla en el mundo real, o en uno muy parecido, con elementos y criaturas mágicas."
-        )
-      ]),
-      _vm._v(" "),
-      _c("h2", [_vm._v("Orígen")]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "La literatura fantástica, tal y como la conocemos hoy, tiene sus cimientos a finales del siglo XVIII con la irrupción del Romanticismo. No obstante, no era la primera vez que elementos semejantes aparecían por escrito. La literatura fantástica cuenta con otros antecedentes más antiguos, como el mito greco-romano o la mitología hindú, celta y escandinava, la novela de caballerías del siglo XVI y la novela bizantina del XVII, y, por supuesto, la novela gótica de finales del XVIII. \n\n        El diablo enamorado (1772), de Jacques Cazzotte, es considerada la primera obra fantástica de la literatura occidental, una novela corta en la que el protagonista, un joven español, capitán de la guardia del rey de Nápoles, cae bajo el influjo del mismísimo diablo, encaprichado con poseer su alma."
-        )
-      ]),
-      _vm._v(" "),
-      _c("h2", [_vm._v("Obras y Autores más famosos")]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "El Señor de los Anillos, J. R. R. Tolkien\n\t\tLa Historia Interminable, Michael Ende\n\t\tHarry Potter, J. K. Rowling\n\t\tLas Crónicas de Narnia, C. S. Lewis"
-        )
+      _c("h2", { staticClass: "text-4xl pb-7" }, [
+        _vm._v("Obras y Autores más famosos")
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2"
+      },
+      [
+        _c(
+          "a",
+          {
+            staticClass: "text-2xl",
+            attrs: { target: "_blanck", href: "https://amzn.to/3hvJrv4" }
+          },
+          [_vm._v("El Señor de los Anillos")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "text-lg hover:text-red-800",
+            attrs: {
+              target: "_blanck",
+              href:
+                "https://www.amazon.es/J.-R.-R.-Tolkien/e/B000ARC6KA?ref_=dbs_p_ebk_r00_abau_000000"
+            }
+          },
+          [_vm._v("(J. R. R. Tolkien)")]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          { staticClass: "text-justify flex items-center justify-center" },
+          [
+            _vm._v(
+              "\n                              En la adormecida e idílica Comarca, un joven hobbit recibe un encargo: custodiar el Anillo Único y emprender el viaje para su destrucción en el monte del Destino. Acompañado por magos, hombres, elfos y enanos, atravesará la Tierra Media y se internará en las sombras de Mordor.\n                            "
+            )
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2"
+      },
+      [
+        _c(
+          "a",
+          {
+            staticClass: "text-2xl",
+            attrs: { target: "_blanck", href: "https://amzn.to/3ocsvLA" }
+          },
+          [_vm._v("La Historia Interminable")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "text-lg hover:text-red-800",
+            attrs: {
+              target: "_blanck",
+              href:
+                "https://www.amazon.es/Michael-Ende/e/B000AQ4EIS?ref_=dbs_p_pbk_r00_abau_000000"
+            }
+          },
+          [_vm._v("(Michael Ende)")]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          { staticClass: "text-justify flex items-center justify-center" },
+          [
+            _vm._v(
+              "\n                                La Emperatriz Infantil está mortalmente enferma y su reino, Fantasia, corre un grave peligro. La salvación depende de Atreyu, un valiente guerrero de la tribu de los pieles verdes, y Bastian, un niño tímido que lee con pasión un libro mágico. Solo un ser humano puede salvar este lugar encantado.\n                            "
+            )
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2"
+      },
+      [
+        _c(
+          "a",
+          {
+            staticClass: "text-2xl",
+            attrs: { target: "_blanck", href: "https://amzn.to/3tNipls" }
+          },
+          [_vm._v("Harry Potter")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "text-lg hover:text-red-800",
+            attrs: {
+              target: "_blanck",
+              href:
+                "https://www.amazon.es/J.-K.-Rowling/e/B000AP9A6K?ref_=dbs_p_ebk_r00_abau_000000"
+            }
+          },
+          [_vm._v("(J. K. Rowling)")]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          { staticClass: "text-justify flex items-center justify-center" },
+          [
+            _vm._v(
+              "\n                                Instalado en casa de la horrible familia Dursley, en el número 4 de Privet Drive, donde duerme en una alacena bajo la escalera y a los once años nunca ha celebrado su cumpleaños, la magia es algo totalmente desconocido para Harry Potter.\n                            "
+            )
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2"
+      },
+      [
+        _c(
+          "a",
+          {
+            staticClass: "text-2xl",
+            attrs: { target: "_blanck", href: "https://amzn.to/3tJQ5R5" }
+          },
+          [_vm._v("Las Crónicas de Narnia")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "text-lg hover:text-red-800",
+            attrs: {
+              target: "_blanck",
+              href:
+                "https://www.amazon.es/C.S.-Lewis/e/B000APXBPG%3Fref=dbs_a_mng_rwt_scns_share"
+            }
+          },
+          [_vm._v("(C. S. Lewis)")]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          { staticClass: "text-justify flex items-center justify-center" },
+          [
+            _vm._v(
+              "\n                               Narnia…, un lugar por el que deambulan Bestias Parlantes…, donde aguarda una bruja…, donde un nuevo mundo está a punto de nacer. Dos amigos, víctimas del poder de unos anillos mágicos, son arrojados a otro mundo en el que una malvada hechicera intenta convertirlos en sus esclavos.\n                            "
+            )
+          ]
+        )
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -25550,40 +32483,362 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container mx-auto" }, [
+    _c(
+      "div",
+      {
+        staticClass:
+          "flex flex-col sm:flex-row py-7 sm:space-x-5 divide-x divide-blue-500"
+      },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "sm:w-1/2 px-3 pt-7 sm:pt-0" }, [
+          _c("div", { staticClass: "space-y-2" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center"
+              },
+              [
+                _c("div", { staticClass: "p-2 sm:3/12" }, [
+                  _c("img", {
+                    staticClass: "w-36",
+                    attrs: {
+                      src:
+                        "https://images-na.ssl-images-amazon.com/images/I/512PMMDA3GL.jpg",
+                      alt: "LibroPortada"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.BookInformation(974872431)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(2)
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center"
+              },
+              [
+                _c("div", { staticClass: "p-2 sm:3/12" }, [
+                  _c("img", {
+                    staticClass: "w-36",
+                    attrs: {
+                      src:
+                        "https://images-na.ssl-images-amazon.com/images/I/71uL0xUNDIL.jpg",
+                      alt: "LibroPortada"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.BookInformation(8416222630)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(3)
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center"
+              },
+              [
+                _c("div", { staticClass: "p-2 sm:3/12" }, [
+                  _c("img", {
+                    staticClass: "w-36",
+                    attrs: {
+                      src:
+                        "https://images-na.ssl-images-amazon.com/images/I/71wnBzT9WqL.jpg",
+                      alt: "LibroPortada"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.BookInformation(8415618786)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(4)
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center"
+              },
+              [
+                _c("div", { staticClass: "p-2 sm:3/12 sm:flex" }, [
+                  _c("img", {
+                    staticClass: "w-36",
+                    attrs: {
+                      src:
+                        "https://images-na.ssl-images-amazon.com/images/I/710Ub2sHyGL.jpg",
+                      alt: "LibroPortada"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.BookInformation(8491051104)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(5)
+              ]
+            )
+          ])
+        ])
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "px-3 sm:px-0 text-lg sm:w-1/2 text-justify" },
+      [
+        _c("div", [
+          _c("h1", { staticClass: "text-4xl pb-7" }, [_vm._v("Romance")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "space-y-1" }, [
+          _c("p", [
+            _vm._v(
+              "También conocidas como novelas rosas, en las novelas románticas se hace mucha énfasis en los personajes y en las relaciones entre ellos. Es tan importante que muchas veces las historias son estáticas y desarrollan poco los escenarios, para no desviar la atención del lector. En realidad, hay dos aspectos básicos que todo libro de este género debe seguir para poder incluirse en él: el primero es que la historia debe girar en torno a una trama amorosa como hilo argumental troncal. Aunque pueden existir otras líneas argumentales que versen sobre diferentes temas o que incluyan a otros personajes, la novela romántica no se concibe sin ese hilo conductor romántico entre dos amantes.\n\n                "
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              " La otra condición que debe seguir toda novela rosa es referente a su desenlace: por norma general siempre nos encontramos ante un final feliz, con la pareja reencontrada viviendo su amor. También es cierto que existen ciertas variaciones, si bien la esencia romántica se mantiene; aunque el desenlace pueda resultar agridulce se debe conservar el ideal de amor infinito que perdurará para siempre. En caso de tener un final triste, sería considerado una tragedia."
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("h2", { staticClass: "text-3xl py-7" }, [_vm._v("Orígen")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "space-y-1" }, [
+          _c("p", [
+            _vm._v(
+              "\n                    Si buscamos el origen de la literatura rosa podríamos remontarnos hasta el romance medieval, aunque lo cierto es que el germen original de la mayoría de estas historias lo podemos encontrar ya en muchas de las tramas de la Grecia y Roma clásicas. El esquema clásico del encuentro – conflicto – reencuentro entre los amantes ya se encontraba muy a menudo, si bien faltarían aún bastantes siglos para que el género fuera hallando sus mecánicas más habituales.\n                    Fue en la época moderna cuando la novela romántica se amolda a las características que hoy en día la definen, teniendo como primera de la historia a Pamela, o La Virtud Recompensada, de Samuel Richardson.\n                "
+            )
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", [
-      _c("h1", [_vm._v("Aventura")]),
-      _vm._v(" "),
-      _c("h2", [_vm._v("Descripción")]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "También conocidas como novelas rosas, en las novelas románticas se hace mucha énfasis en los personajes y en las relaciones entre ellos. Es tan importante que muchas veces las historias son estáticas y desarrollan poco los escenarios, para no desviar la atención del lector. En realidad, hay dos aspectos básicos que todo libro de este género debe seguir para poder incluirse en él: el primero es que la historia debe girar en torno a una trama amorosa como hilo argumental troncal. Aunque pueden existir otras líneas argumentales que versen sobre diferentes temas o que incluyan a otros personajes, la novela romántica no se concibe sin ese hilo conductor romántico entre dos amantes.\n        La otra condición que debe seguir toda novela rosa es referente a su desenlace: por norma general siempre nos encontramos ante un final feliz, con la pareja reencontrada viviendo su amor. También es cierto que existen ciertas variaciones, si bien la esencia romántica se mantiene; aunque el desenlace pueda resultar agridulce se debe conservar el ideal de amor infinito que perdurará para siempre. En caso de tener un final triste, sería considerado una tragedia."
-        )
-      ]),
-      _vm._v(" "),
-      _c("h2", [_vm._v("Orígen")]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "Si buscamos el origen de la literatura rosa podríamos remontarnos hasta el romance medieval, aunque lo cierto es que el germen original de la mayoría de estas historias lo podemos encontrar ya en muchas de las tramas de la Grecia y Roma clásicas. El esquema clásico del encuentro – conflicto – reencuentro entre los amantes ya se encontraba muy a menudo, si bien faltarían aún bastantes siglos para que el género fuera hallando sus mecánicas más habituales.\n        Fue en la época moderna cuando la novela romántica se amolda a las características que hoy en día la definen, teniendo como primera de la historia a Pamela, o La Virtud Recompensada, de Samuel Richardson."
-        )
-      ]),
-      _vm._v(" "),
-      _c("h2", [_vm._v("Obras y Autores más famosos")]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "El cuaderno de Noah, de Nicholas Sparks, \n\t\tLa princesa prometida, de William Goldman, \n\t\tOrgullo y prejuicio, de Jane Austen, \n\t\tLa Letra Escarlata, Nathaniel Hawthorne"
-        )
+      _c("h2", { staticClass: "text-4xl pb-7" }, [
+        _vm._v("Obras y Autores más famosos")
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2"
+      },
+      [
+        _c(
+          "a",
+          {
+            staticClass: "text-2xl",
+            attrs: { target: "_blanck", href: "https://amzn.to/33Jt5Hn" }
+          },
+          [_vm._v("El cuaderno de Noah")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "text-lg hover:text-red-800",
+            attrs: {
+              target: "_blanck",
+              href:
+                "https://www.amazon.es/Nicholas-Sparks/e/B000APGF36?ref_=dbs_p_pbk_r00_abau_000000"
+            }
+          },
+          [_vm._v("(Nicholas Sparks)")]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          { staticClass: "text-justify flex items-center justify-center" },
+          [
+            _vm._v(
+              "\n                         Un hombre tiene un cuaderno, traído y llevado mil veces, en su regazo. Una mujer escucha lo que él le lee aunque no acaba de entender. El cuaderno de Noah cuenta la historia de Noah, un sureño que vuelve a casa después de la Segunda Guerra Mundial.\n                        "
+            )
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2"
+      },
+      [
+        _c(
+          "a",
+          {
+            staticClass: "text-2xl",
+            attrs: { target: "_blanck", href: "https://amzn.to/2Rk6Sgh" }
+          },
+          [_vm._v("La princesa prometida")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "text-lg hover:text-red-800",
+            attrs: {
+              target: "_blanck",
+              href: "https://www.amazon.es/William-Goldman/e/B000AQ3QO6"
+            }
+          },
+          [_vm._v("(William Goldman)")]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          { staticClass: "text-justify flex items-center justify-center" },
+          [
+            _vm._v(
+              "\n                            Es una historia de espadachines y de combates. Trata de amor eterno, de odio inmortal y de venganzas despiadadas. En esta novela salen algunos gigantes, un montón de villanos y de héroes, cinco o seis hermosas mujeres, monstruos bestiales y otros amables, y muchas aventuras y huidas y capturas. Hay muerte, mentiras, verdad, milagros e incluso algún que otro beso.\n                        "
+            )
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2"
+      },
+      [
+        _c(
+          "a",
+          {
+            staticClass: "text-2xl",
+            attrs: { target: "_blanck", href: "https://amzn.to/3fhD2Rv" }
+          },
+          [_vm._v("Orgullo y prejuicio")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "text-lg hover:text-red-800",
+            attrs: {
+              target: "_blanck",
+              href:
+                "https://www.amazon.es/Jane-Austen/e/B000APWOKO?ref_=dbs_p_ebk_r00_abau_000000"
+            }
+          },
+          [_vm._v("(Jane Austen)")]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          { staticClass: "text-justify flex items-center justify-center" },
+          [
+            _vm._v(
+              "\n                            Jane Austen ocupó un lugar preminente en la literatura británica. Reivindicada vehementemente por Rudyard Kipling y Edward Said, la elegancia estilística de su prosa, su ironía y, sobre todo, su perspicacia para el retrato social convierten sus obras en una referencia ineludible de la literatura del siglo XIX.\n                        "
+            )
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2"
+      },
+      [
+        _c(
+          "a",
+          {
+            staticClass: "text-2xl",
+            attrs: { target: "_blanck", href: "https://amzn.to/3w4OtDa" }
+          },
+          [_vm._v("La Letra Escarlata")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "text-lg hover:text-red-800",
+            attrs: {
+              target: "_blanck",
+              href:
+                "https://www.amazon.es/Nathaniel-Hawthorne/e/B000AQ0C48?ref_=dbs_p_pbk_r00_abau_000000"
+            }
+          },
+          [_vm._v("(Nathaniel Hawthorne)")]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          { staticClass: "text-justify flex items-center justify-center" },
+          [
+            _vm._v(
+              "\n                           Ambientada en la Nueva Inglaterra de los puritanos del siglo XVII, La letra escarlata narra el terrible impacto que un simple acto de pasión desencadena en las vidas de tres miembros de la comunidad: Hester Prynne, una mujer objeto del escarnio público; el reverendo Dimmesdale, un alma atormentada por la culpa , y Chillingworth, un ser siniestro, cruel y vengativo, que maquina en la sombra.\n                        "
+            )
+          ]
+        )
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -25608,89 +32863,375 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container mx-auto" }, [
+    _c(
+      "div",
+      {
+        staticClass:
+          "flex flex-col sm:flex-row py-7 sm:space-x-5 divide-x divide-blue-500"
+      },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "sm:w-1/2 px-3 pt-7 sm:pt-0" }, [
+          _c("div", { staticClass: "space-y-2" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center"
+              },
+              [
+                _c("div", { staticClass: "p-2 sm:3/12" }, [
+                  _c("img", {
+                    staticClass: "w-36",
+                    attrs: {
+                      src:
+                        "https://images-na.ssl-images-amazon.com/images/I/81BnDHnF30L.jpg",
+                      alt: "LibroPortada"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.BookInformation(8467944595)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(2)
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center"
+              },
+              [
+                _c("div", { staticClass: "p-2 sm:3/12" }, [
+                  _c("img", {
+                    staticClass: "w-36",
+                    attrs: {
+                      src:
+                        "https://images-na.ssl-images-amazon.com/images/I/51CvHSxXmnL._SX327_BO1,204,203,200_.jpg",
+                      alt: "LibroPortada"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.BookInformation(8490328722)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(3)
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center"
+              },
+              [
+                _c("div", { staticClass: "p-2 sm:3/12" }, [
+                  _c("img", {
+                    staticClass: "w-36",
+                    attrs: {
+                      src:
+                        "https://images-na.ssl-images-amazon.com/images/I/710ZXn+Up2L.jpg",
+                      alt: "LibroPortada"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.BookInformation(8415618689)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(4)
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center"
+              },
+              [
+                _c("div", { staticClass: "p-2 sm:3/12" }, [
+                  _c("img", {
+                    staticClass: "w-36",
+                    attrs: {
+                      src:
+                        "https://images-na.ssl-images-amazon.com/images/I/91KVu+3L8dL.jpg",
+                      alt: "LibroPortada"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.BookInformation(8467033932)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(5)
+              ]
+            )
+          ])
+        ])
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container mx-auto" }, [
-      _c(
-        "div",
-        {
-          staticClass:
-            "flex flex-col sm:flex-row py-7 sm:space-x-5 divide-x divide-blue-500"
-        },
-        [
-          _c(
-            "div",
-            { staticClass: "px-3 sm:px-0 text-lg sm:w-1/2 text-justify" },
-            [
-              _c("div", [
-                _c("h1", { staticClass: "text-4xl pb-7" }, [_vm._v("Terror")])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "space-y-1" }, [
-                _c("p", [
-                  _vm._v(
-                    "La literatura de terror es un género de ficción literario que pretende o tiene la capacidad de asustar, causar miedo o aterrorizar sus lectores o espectadores e inducir sentimientos de horror y terror, creando una atmósfera misteriosa y aterradora.\n                "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "El historiador literario J. A. Cuddon ha definido la historia de terror como «una ficción en prosa de longitud variable que sacude o también asusta el lector, o tal vez induce una sensación de repulsión o aversión».\n                El horror puede ser sobrenatural o no sobrenatural. A menudo, la amenaza central de una obra de ficción de terror puede interpretarse como una metáfora de los grandes temores de una sociedad."
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _c("h2", { staticClass: "text-3xl py-7" }, [_vm._v("Orígen")])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "space-y-1" }, [
-                _c("p", [
-                  _vm._v(
-                    "El género del horror tiene orígenes antiguos con raíces en el folclore y las tradiciones religiosas, centrándose en la muerte, la vida futura, el mal, lo demoníaco y el principio de la encarnación en la persona. Estas se manifestaron en historias de seres como brujas, vampiros, hombre lobo y fantasmas.\n                "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "\n                    La primera obra considerada como género de terror es Frankestein, de Mary Shelley, la cual todos conocemos.\n                "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    '\n                    Desde que existe el ser humano existe el miedo, uno de los sentimientos más fuertes, y por tanto el horror y el terror. De acuerdo con H. P. Lovecraft: «El miedo es una de las emociones más antiguas y poderosas de la humanidad, y el miedo más antiguo y poderoso es el temor a lo desconocido». En su libro "El horror sobrenatural en la literatura", Lovecraft explica que lo desconocido era para nuestros antepasados una gran amenaza, ya que fenómenos como los climáticos, los cuales no entendían, les podían ocasionar grandes desgracias.\n                '
-                  )
-                ])
-              ])
-            ]
-          ),
+    return _c(
+      "div",
+      { staticClass: "px-3 sm:px-0 text-lg sm:w-1/2 text-justify" },
+      [
+        _c("div", [
+          _c("h1", { staticClass: "text-4xl pb-7" }, [_vm._v("Terror")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "space-y-1" }, [
+          _c("p", [
+            _vm._v(
+              "La literatura de terror es un género de ficción literario que pretende o tiene la capacidad de asustar, causar miedo o aterrorizar sus lectores o espectadores e inducir sentimientos de horror y terror, creando una atmósfera misteriosa y aterradora.\n                "
+            )
+          ]),
           _vm._v(" "),
-          _c("div", { staticClass: "sm:w-1/2 px-3 pt-7 sm:pt-0" }, [
-            _c("div", [
-              _c("div", [
-                _c("h2", { staticClass: "text-4xl pb-7" }, [
-                  _vm._v("Obras y Autores más famosos")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div"),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  " \n                Drácula, Bram Stoker\n                El Resplandor, Stephen King\n                La Llamada de Cthulhu, de H. P. Lovecraft\n                El Retrato de Dorian Grey, Oscar Wilde"
-                )
-              ])
-            ])
+          _c("p", [
+            _vm._v(
+              "El historiador literario J. A. Cuddon ha definido la historia de terror como «una ficción en prosa de longitud variable que sacude o también asusta el lector, o tal vez induce una sensación de repulsión o aversión».\n                El horror puede ser sobrenatural o no sobrenatural. A menudo, la amenaza central de una obra de ficción de terror puede interpretarse como una metáfora de los grandes temores de una sociedad."
+            )
           ])
-        ]
-      )
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("h2", { staticClass: "text-3xl py-7" }, [_vm._v("Orígen")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "space-y-1" }, [
+          _c("p", [
+            _vm._v(
+              "El género del horror tiene orígenes antiguos con raíces en el folclore y las tradiciones religiosas, centrándose en la muerte, la vida futura, el mal, lo demoníaco y el principio de la encarnación en la persona. Estas se manifestaron en historias de seres como brujas, vampiros, hombre lobo y fantasmas.\n                "
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "\n                    La primera obra considerada como género de terror es Frankestein, de Mary Shelley, la cual todos conocemos.\n                "
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              '\n                    Desde que existe el ser humano existe el miedo, uno de los sentimientos más fuertes, y por tanto el horror y el terror. De acuerdo con H. P. Lovecraft: «El miedo es una de las emociones más antiguas y poderosas de la humanidad, y el miedo más antiguo y poderoso es el temor a lo desconocido». En su libro "El horror sobrenatural en la literatura", Lovecraft explica que lo desconocido era para nuestros antepasados una gran amenaza, ya que fenómenos como los climáticos, los cuales no entendían, les podían ocasionar grandes desgracias.\n                '
+            )
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("h2", { staticClass: "text-4xl pb-7" }, [
+        _vm._v("Obras y Autores más famosos")
+      ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2"
+      },
+      [
+        _c(
+          "a",
+          {
+            staticClass: "text-2xl",
+            attrs: { target: "_blanck", href: "https://amzn.to/2ROrrRZ" }
+          },
+          [_vm._v("Dracula")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "text-lg hover:text-red-800",
+            attrs: {
+              target: "_blanck",
+              href:
+                "https://www.amazon.es/Bram-Stoker/e/B000AQ3N1C?ref_=dbs_p_pbk_r00_abau_000000"
+            }
+          },
+          [_vm._v("(Bram Stoker)")]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          { staticClass: "text-justify flex items-center justify-center" },
+          [
+            _vm._v(
+              "\n                            Drácula es una novela publicada en 1897 por el irlandés Bram Stoker, a raíz de la cual, su personaje antagonista, el conde Drácula, se volvió el arquetipo de vampiro occidental por antonomasia, llegando a ser considerado el vampiro más famoso.\n                        "
+            )
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2"
+      },
+      [
+        _c(
+          "a",
+          {
+            staticClass: "text-2xl",
+            attrs: { target: "_blanck", href: "https://amzn.to/3tKCtVB" }
+          },
+          [_vm._v("El Resplandor")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "text-lg hover:text-red-800",
+            attrs: {
+              target: "_blanck",
+              href:
+                "https://www.amazon.es/Stephen-King/e/B000AQ0842?ref_=dbs_p_ebk_r00_abau_000000"
+            }
+          },
+          [_vm._v("(Stephen King)")]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          { staticClass: "text-justify flex items-center justify-center" },
+          [
+            _vm._v(
+              "\n                            Danny tenía cinco años, y a esa edad poco niños saben que los espejos invierten las imágenes y menos aún saben diferenciar entre realidad y fantasía. Pero Danny tenía pruebas de que sus fantasías relacionadas con el resplandor del espejo acabarían cumpliéndose: REDRUM... MURDER, asesinato.\n                        "
+            )
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2"
+      },
+      [
+        _c(
+          "a",
+          {
+            staticClass: "text-2xl",
+            attrs: { target: "_blanck", href: "https://amzn.to/3eJdduN" }
+          },
+          [_vm._v("La Llamada de Cthulhu")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "text-lg hover:text-red-800",
+            attrs: {
+              target: "_blanck",
+              href:
+                "https://www.amazon.es/H.P.-Lovecraft/e/B000AQ40D2?ref_=dbs_p_pbk_r00_abau_000000"
+            }
+          },
+          [_vm._v("(H. P. Lovecraft)")]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          { staticClass: "text-justify flex items-center justify-center" },
+          [
+            _vm._v(
+              "\n                            H. P. Lovecraft ha pasado a la historia de la literatura como uno de los grandes innovadores del relato fantástico y de terror del siglo XX. Niño prodigio empezó a leer y escribir su primer cuento a muy temprana edad. Ya en la adolescencia era de solitaria vida nocturna y vivió atormentado.\n                        "
+            )
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2"
+      },
+      [
+        _c(
+          "a",
+          {
+            staticClass: "text-2xl",
+            attrs: { target: "_blanck", href: "https://amzn.to/3ybgnPq" }
+          },
+          [_vm._v("El Retrato de Dorian Grey")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "text-lg hover:text-red-800",
+            attrs: {
+              target: "_blanck",
+              href:
+                "https://www.amazon.es/Oscar-Wilde/e/B000AQ0DXI?ref_=dbs_p_pbk_r00_abau_000000  "
+            }
+          },
+          [_vm._v("(Oscar Wilde)")]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          { staticClass: "text-justify flex items-center justify-center" },
+          [
+            _vm._v(
+              "\n                           Cuando se publicó El retrato de Dorian Gray, la crítica moralizante acusó a su protagonista de ser una figura satánica, corrompida y corruptora, sin comprender que era el héroe de una novela que reflejaba la fatalidad de los románticos: Oscar Wilde (1854-1900) había querido hacer de la belleza un refinamiento de la inteligencia.\n                        "
+            )
+          ]
+        )
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -25699,10 +33240,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/cifi.vue?vue&type=template&id=79ba16a8&scoped=true&":
-/*!***********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/cifi.vue?vue&type=template&id=79ba16a8&scoped=true& ***!
-  \***********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/cifi.vue?vue&type=template&id=79ba16a8&":
+/*!***********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/cifi.vue?vue&type=template&id=79ba16a8& ***!
+  \***********************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -25715,40 +33256,383 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container mx-auto" }, [
+    _c(
+      "div",
+      {
+        staticClass:
+          "flex flex-col sm:flex-row py-7 sm:space-x-5 divide-x divide-blue-500"
+      },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "sm:w-1/2 px-3 pt-7 sm:pt-0" }, [
+          _c("div", { staticClass: "space-y-2" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center"
+              },
+              [
+                _c("div", { staticClass: "p-2 sm:3/12" }, [
+                  _c("img", {
+                    staticClass: "w-36",
+                    attrs: {
+                      src:
+                        "https://images-na.ssl-images-amazon.com/images/I/61vmozJbdXL.jpg",
+                      alt: "LibroPortada"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.BookInformation(8445076531)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(2)
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center"
+              },
+              [
+                _c("div", { staticClass: "p-2 sm:3/12" }, [
+                  _c("img", {
+                    staticClass: "w-36",
+                    attrs: {
+                      src:
+                        "https://images-na.ssl-images-amazon.com/images/I/81LteaYX8jL.jpg",
+                      alt: "LibroPortada"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.BookInformation(8408210068)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(3)
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center"
+              },
+              [
+                _c("div", { staticClass: "p-2 sm:3/12" }, [
+                  _c("img", {
+                    staticClass: "w-36",
+                    attrs: {
+                      src:
+                        "https://images-na.ssl-images-amazon.com/images/I/81ZVmNRdoRL.jpg",
+                      alt: "LibroPortada"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.BookInformation(8499890946)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(4)
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center"
+              },
+              [
+                _c("div", { staticClass: "p-2 sm:3/12" }, [
+                  _c("img", {
+                    staticClass: "w-36",
+                    attrs: {
+                      src:
+                        "https://m.media-amazon.com/images/I/51Jf3lVAr7L.jpg",
+                      alt: "LibroPortada"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.BookInformation(1620929304)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(5)
+              ]
+            )
+          ])
+        ])
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "px-3 sm:px-0 text-lg sm:w-1/2 text-justify" },
+      [
+        _c("div", [
+          _c("h1", { staticClass: "text-4xl pb-7" }, [
+            _vm._v("Ciencia ficción")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "space-y-1" }, [
+          _c("p", [
+            _vm._v(
+              "La ciencia ficción es un género narrativo que sitúa la acción en unas coordenadas espacio-temporales imaginarias y diferentes a las nuestras, y que especula racionalmente sobre posibles avances científicos o sociales y su impacto en la sociedad.\n                "
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              'En ocasiones se la ha llamado también "literatura de anticipación", debido a que algunos autores, como Julio Verne, han llegado a anticipar el surgimiento de logros científicos y tecnológicos, como los cohetes espaciales o los submarinos.'
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Muchas veces, contiene un héroe con origen incierto que acaba siendo un elegido (por los dioses, por la magia o los hombres) para salvar su mundo, triunfando sobre el Mal y descubriendo la verdad de su pasado."
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "En todos los casos, y a lo largo de su historia, la ciencia ficción ha mantenido siempre la característica principal que la hace tan interesante: la capacidad de crear escenarios que inspiren debates filosóficos, sociales o científicos sobre la naturaleza del hombre y de la sociedad, plantear dudas, señalar peligros o buscar respuestas."
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("h2", { staticClass: "text-3xl py-7" }, [_vm._v("Orígen")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "space-y-1" }, [
+          _c("p", [
+            _vm._v(
+              "Según opinan algunos especialistas el relato de ciencia ficción nació en la primera mitad del siglo XIX con la novela Frankenstein de la escritora inglesa Mary Shelley (1791-1851). Un científico da vida en su laboratorio a un ser monstruoso con restos de cadáveres humanos. Aunque la autora no le puso nombre al monstruo creado por Víctor Frankenstein, con el tiempo, los lectores o los espectadores de las diferentes versiones teatrales y cinematográficas llamaron a la criatura con el nombre de su creador. \n                "
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "\n                En la segunda mitad del siglo XIX, el escritor escocés Robert Louis Stevenson (1850- 1894) concibió su novela El extraño caso del doctor Jekyll y Mr. Hyde, que aportó al imaginario de la literatura otro científico. El respetado Dr. Jekyll se convertía en su doble, el siniestro Mr. Hyde, gracias a una droga que él mismo preparaba en su gabinete.\n                "
+            )
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", [
-      _c("h1", [_vm._v("Ciencia ficción")]),
-      _vm._v(" "),
-      _c("h2", [_vm._v("Descripción")]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          'La ciencia ficción es un género narrativo que sitúa la acción en unas coordenadas espacio-temporales imaginarias y diferentes a las nuestras, y que especula racionalmente sobre posibles avances científicos o sociales y su impacto en la sociedad.\nEn ocasiones se la ha llamado también "literatura de anticipación", debido a que algunos autores, como Julio Verne, han llegado a anticipar el surgimiento de logros científicos y tecnológicos, como los cohetes espaciales o los submarinos.\nEn todos los casos, y a lo largo de su historia, la ciencia ficción ha mantenido siempre la característica principal que la hace tan interesante: la capacidad de crear escenarios que inspiren debates filosóficos, sociales o científicos sobre la naturaleza del hombre y de la sociedad, plantear dudas, señalar peligros o buscar respuestas. '
-        )
-      ]),
-      _vm._v(" "),
-      _c("h2", [_vm._v("Orígen")]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "\t\tSegún opinan algunos especialistas el relato de ciencia ficción nació en la primera mitad del siglo XIX con la novela Frankenstein de la escritora inglesa Mary Shelley (1791-1851). Un científico da vida en su laboratorio a un ser monstruoso con restos de cadáveres humanos. Aunque la autora no le puso nombre al monstruo creado por Víctor Frankenstein, con el tiempo, los lectores o los espectadores de las diferentes versiones teatrales y cinematográficas llamaron a la criatura con el nombre de su creador. En la segunda mitad del siglo XIX, el escritor escocés Robert Louis Stevenson (1850- 1894) concibió su novela El extraño caso del doctor Jekyll y Mr. Hyde, que aportó al imaginario de la literatura otro científico. El respetado Dr. Jekyll se convertía en su doble, el siniestro Mr. Hyde, gracias a una droga que él mismo preparaba su gabinete. "
-        )
-      ]),
-      _vm._v(" "),
-      _c("h2", [_vm._v("Obras y Autores más famosos")]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "\tCrónicas Marcianas, Ray Bradbury\n\t\tLa Guerra de los Mundos, H. G. Wells\n\t\t1984, George Orwell\n\t\tLa última pregunta, Isaac Asimov\n"
-        )
+      _c("h2", { staticClass: "text-4xl pb-7" }, [
+        _vm._v("Obras y Autores más famosos")
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2"
+      },
+      [
+        _c(
+          "a",
+          {
+            staticClass: "text-2xl",
+            attrs: { target: "_blanck", href: "https://amzn.to/2QgQCML" }
+          },
+          [_vm._v("Crónicas Marcianas")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "text-lg hover:text-red-800",
+            attrs: {
+              target: "_blanck",
+              href:
+                "https://www.amazon.es/Ray-Bradbury/e/B000AQ1HW4?ref_=dbs_p_pbk_r00_abau_000000"
+            }
+          },
+          [_vm._v("(Ray Bradbury)")]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          { staticClass: "text-justify flex items-center justify-center" },
+          [
+            _vm._v(
+              "\n                          Esta colección de relatos reúne la crónica de la colonización de Marte por parte de la Humanidad, que abandona la Tierra en sucesivas oleadas de cohetes plateados y sueña con reproducir en el planeta rojo una civilización de perritos calientes, cómodos sofás y limonada en el porche al atardecer.\n                        "
+            )
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2"
+      },
+      [
+        _c(
+          "a",
+          {
+            staticClass: "text-2xl",
+            attrs: { target: "_blanck", href: "https://amzn.to/2RhLyYL" }
+          },
+          [_vm._v("La Guerra de los Mundos")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "text-lg hover:text-red-800",
+            attrs: {
+              target: "_blanck",
+              href:
+                "https://www.amazon.es/H.-G.-Wells/e/B000AQ4FBE?ref_=dbs_p_pbk_r00_abau_000000"
+            }
+          },
+          [_vm._v("(H. G. Wells)")]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          { staticClass: "text-justify flex items-center justify-center" },
+          [
+            _vm._v(
+              "\n                            Han llegado del espacio exterior, de Marte. Equipados con terribles máquinas, los invasores aterrizan en nuestro planeta y empiezan a sembrar el terror y la destrucción. Su único objetivo es conquistar la Tierra y convertir a los humanos en sus esclavos. Parece que nada ni nadie podrá detenerlos.\n                        "
+            )
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2"
+      },
+      [
+        _c(
+          "a",
+          {
+            staticClass: "text-2xl",
+            attrs: { target: "_blanck", href: "https://amzn.to/3tKLNJl" }
+          },
+          [_vm._v("1984")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "text-lg hover:text-red-800",
+            attrs: {
+              target: "_blanck",
+              href:
+                "https://www.amazon.es/George-Orwell/e/B000AQ0KKY?ref_=dbs_p_pbk_r00_abau_000000"
+            }
+          },
+          [_vm._v("(George Orwell)")]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          { staticClass: "text-justify flex items-center justify-center" },
+          [
+            _vm._v(
+              "\n                            En el año 1984 Londres es una ciudad lúgubre en la que la Policía del Pensamiento controla de forma asfixiante la vida de los ciudadanos. Winston Smith es un peón de este engranaje perverso y su cometido es reescribir la historia para adaptarla a lo que el Partido considera la versión oficial de los hechos. Hasta que decide replantearse la verdad del sistema que los gobierna y somete.\n                        "
+            )
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2"
+      },
+      [
+        _c(
+          "a",
+          {
+            staticClass: "text-2xl",
+            attrs: { target: "_blanck", href: "https://amzn.to/3bqfkRZ" }
+          },
+          [_vm._v("La última pregunta")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "text-lg hover:text-red-800",
+            attrs: {
+              target: "_blanck",
+              href:
+                "https://www.amazon.es/Isaac-Asimov/e/B003RY2ISS?ref_=dbs_p_ebk_r00_abau_000000"
+            }
+          },
+          [_vm._v("(Isaac Asimov)")]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          { staticClass: "text-justify flex items-center justify-center" },
+          [
+            _vm._v(
+              "\n                           ¿Es posible revertir el inevitable final del Universo, o el mundo debe acabar de todas formas? es la pregunta que desde un día del siglo XXI, hasta generaciones y generaciones posteriores en el tiempo, hacen los humanos a los ordenadores.\n                        "
+            )
+          ]
+        )
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -30482,6 +38366,27 @@ var star_rating_component = normalizeComponent(
 
 /***/ }),
 
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/vue-avatar-component/Avatar.vue?vue&type=style&index=0&id=4ffd1741&scoped=true&lang=css&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/vue-avatar-component/Avatar.vue?vue&type=style&index=0&id=4ffd1741&scoped=true&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(/*! !!../css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../vue-loader/lib/loaders/stylePostLoader.js!../postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../vue-loader/lib/index.js??vue-loader-options!./Avatar.vue?vue&type=style&index=0&id=4ffd1741&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/vue-avatar-component/Avatar.vue?vue&type=style&index=0&id=4ffd1741&scoped=true&lang=css&");
+if(content.__esModule) content = content.default;
+if(typeof content === 'string') content = [[module.id, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__(/*! !../vue-style-loader/lib/addStylesClient.js */ "./node_modules/vue-style-loader/lib/addStylesClient.js").default
+var update = add("07762676", content, false, {});
+// Hot Module Replacement
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/app.vue?vue&type=style&index=0&lang=css&":
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/app.vue?vue&type=style&index=0&lang=css& ***!
@@ -30524,6 +38429,27 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Book.vue?vue&type=style&index=0&id=1b1c1554&scoped=true&lang=css&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Book.vue?vue&type=style&index=0&id=1b1c1554&scoped=true&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Book.vue?vue&type=style&index=0&id=1b1c1554&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Book.vue?vue&type=style&index=0&id=1b1c1554&scoped=true&lang=css&");
+if(content.__esModule) content = content.default;
+if(typeof content === 'string') content = [[module.id, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__(/*! !../../../node_modules/vue-style-loader/lib/addStylesClient.js */ "./node_modules/vue-style-loader/lib/addStylesClient.js").default
+var update = add("6ad7981c", content, false, {});
+// Hot Module Replacement
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Home.vue?vue&type=style&index=0&lang=css&":
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Home.vue?vue&type=style&index=0&lang=css& ***!
@@ -30561,6 +38487,27 @@ if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = __webpack_require__(/*! !../../../../node_modules/vue-style-loader/lib/addStylesClient.js */ "./node_modules/vue-style-loader/lib/addStylesClient.js").default
 var update = add("8c74bd4e", content, false, {});
+// Hot Module Replacement
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Wish.vue?vue&type=style&index=0&id=69d87c12&scoped=true&lang=css&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Wish.vue?vue&type=style&index=0&id=69d87c12&scoped=true&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Wish.vue?vue&type=style&index=0&id=69d87c12&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Wish.vue?vue&type=style&index=0&id=69d87c12&scoped=true&lang=css&");
+if(content.__esModule) content = content.default;
+if(typeof content === 'string') content = [[module.id, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__(/*! !../../../node_modules/vue-style-loader/lib/addStylesClient.js */ "./node_modules/vue-style-loader/lib/addStylesClient.js").default
+var update = add("2c7857d0", content, false, {});
 // Hot Module Replacement
 if(false) {}
 

@@ -9,3 +9,4 @@ class Comentario extends Model
 {
     use HasFactory;
 }
+//Modelo de la tabla comentarios

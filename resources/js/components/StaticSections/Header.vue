@@ -8,24 +8,23 @@
                 </div>
             </router-link>
 
-            <!-- <div class="relative">
-                <input placeholder="Buscar Libro" type="text" name="search" class="focus:outline-none py-2 px-10 border border-blue-200 ">
-                <div class="absolute inset-y-1 left-1 flec items-center">
-                    <i id="icono" class="fa fa-search fa-2x"></i>
-                </div>
-                <button class="bg-gray-200 py-2 px-2 focus:outline-none border border-blue-200 hover:bg-blue-100">Buscar</button>
-            </div> -->
-
-
+            <div class="hidden md:flex divide-solid divide-x-2 divide-blue-400 md:text-lg xl:text-xl">
+                <router-link class="px-1" :to="{ name: 'Terror' }">Terror</router-link>
+                <router-link class="px-1" :to="{ name: 'Romance' }">Romance</router-link>
+                <router-link class="px-1" :to="{ name: 'Fantasia' }">Fantasia</router-link>
+                <router-link class="px-1" :to="{ name: 'cifi' }">Ciencia ficción</router-link>
+                <router-link class="px-1" :to="{ name: 'Aventura' }">Aventura</router-link>
+            </div>
 
             <div v-if="vuex.auth" class="flex justify-end">
                 <button v-if="vuex.user" class="flex flex-row focus:outline-none hover:text-blue-300 " aria-label="Open Menu" @click="drawer">
-                    <p class="font-bold text-2xl">{{vuex.user.name}}</p>
+                    <avatar :fullname="vuex.user.name" :size="50"></avatar>
+                    <!-- <p class="font-bold text-xl">{{vuex.user.name}}</p> -->
                 </button>
             </div>
             <div v-else class="space-x-2 flex flex-row justify-end">
                 <router-link :to="{ name: 'login' }">
-                    <p class="hover:text-blue-400">Registrate/Identificate</p> 
+                    <p class="hover:text-blue-400">Registrate/Identificate</p>
                 </router-link>
             </div>
 
@@ -40,7 +39,7 @@
                 <div class="flex flex-col">
 
                     <div class="border-b-2 pb-2 mx-2">
-                        <div class="flex flex-row justify-between">
+                        <div class="flex flex-row justify-between cursor-default">
                             <div class="pt-4 pl-2 font-bold align-bottom">Bienvenido {{vuex.user.name}}!</div>
                             <div class="mx-1 my-2">
                                 <button class="focus:outline-none pr-2" @click="isOpen = false">
@@ -65,14 +64,40 @@
 
                     <router-link class="mb-2 mt-6 text-center border-gray-800 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300"
                     :to="{ name: 'edicion' }">
-                        <span class="font-bold">Editar Perfil de Usuario</span>
+                        <span class="md:font-bold">Editar Perfil</span>
                     </router-link>
 
-                    <router-link class="my-4 text-center border-gray-800 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300"
+                    <router-link class="mt-2 mb-6 text-center border-gray-800 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300"
                     :to="{ name: 'wish' }">
-                        <span class="font-bold">Ver lista de libros favoritos.</span>
+                        <span class="md:font-bold">Libros deseados</span>
                     </router-link>
 
+                    <p class="flex md:hidden justify-center border-t mx-2 pt-2 pb-2">Generos literarios</p>
+
+                    <router-link class="md:hidden my-1 text-center border-gray-800 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300"
+                    :to="{ name: 'Terror' }">
+                        <span class="md:font-bold">Terror</span>
+                    </router-link>
+
+                    <router-link class="md:hidden my-1 text-center border-gray-800 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300"
+                    :to="{ name: 'Romance' }">
+                        <span class="md:font-bold">Romance</span>
+                    </router-link>
+
+                    <router-link class="md:hidden my-1 text-center border-gray-800 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300"
+                    :to="{ name: 'Fantasia' }">
+                        <span class="md:font-bold">Fantasia</span>
+                    </router-link>
+
+                    <router-link class="md:hidden my-1 text-center border-gray-800 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300"
+                    :to="{ name: 'cifi' }">
+                        <span class="md:font-bold">Ciencia ficción</span>
+                    </router-link>
+
+                    <router-link class="md:hidden my-1 text-center border-gray-800 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300"
+                    :to="{ name: 'Aventura' }">
+                        <span class="md:font-bold">Aventura</span>
+                    </router-link>
 
 
                 </div>
@@ -81,18 +106,14 @@
         </nav>
 	</div>
 </template>
-
 <script>
-// import menuuser from './SideMenu.vue'
+import Avatar from 'vue-avatar-component'
 export default {
     name: 'headervue',
     components:{
-
+        Avatar
     },
-
     data(){
-        // var store = this.$store;
-        // console.log(store.user)
         return{
             currentUser:{},
             isOpen: false,
@@ -142,10 +163,6 @@ export default {
 </script>
 
 <style scoped>
-    #icono{
-        color: rgb(192, 240, 255);
-    }
-
     .tooltip{
         visibility: hidden;
         position: absolute;

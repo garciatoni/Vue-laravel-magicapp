@@ -1,134 +1,53 @@
-<template>
-    <div>
-        <!-- <nav class=" flex w-full items-center justify-between px-6 h-16 bg-white text-gray-700 border-b border-gray-200 z-10">
-            <router-link :to="{ name: 'home' }">
-                <div class="flex flex-row">
-                    <img src="https://dawjavi.insjoaquimmir.cat/agarcia/LiberLogin/resources/js/img/Liber.png" alt="Logo" class="h-10 w-10" />
-                    <p class="flex items-end pl-2">iber</p>
-                </div>
-            </router-link>
+ <!--
+APP_NAME=Laravel
+APP_ENV=local
+APP_KEY=base64:UIOTqvIVn0IEiXLfd1B8i6Oqopveh4FJEzVVQ8r7PUo=
+APP_DEBUG=true
+APP_URL=https://dawjavi.insjoaquimmir.cat/agarcia/LiberLogin/public/
 
-            <div v-if="vuex.auth" class="flex justify-end">
-                <button v-if="vuex.user" class="flex flex-row" aria-label="Open Menu" @click="drawer">
-                    <p class="font-bold">{{vuex.user.name}}</p>
-                    <p>X</p>
-                </button>
-            </div>
+LOG_CHANNEL=stack
+LOG_LEVEL=debug
 
-            <div v-else class="space-x-2 flex flex-row justify-end">
-                <router-link :to="{ name: 'login' }">
-                    <button class="bg-blue-900 hover:bg-blue-200 px-3 py-1 rounded">
-                        <p class="text-white font-bold hover:text-black">Login</p>
-                    </button>
-                </router-link>
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=agarcia_Liber
+DB_USERNAME=agarcia
+DB_PASSWORD=agarcia
 
-                 <router-link :to="{ name: 'register' }">
-                    <button class="bg-blue-700 hover:bg-blue-200 px-3 py-1 rounded">
-                        <p class="text-white font-bold hover:text-black">Registrate</p>
-                    </button>
-                </router-link> 
-            </div>
+BROADCAST_DRIVER=log
+CACHE_DRIVER=file
+QUEUE_CONNECTION=sync
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
 
-            <transition enter-class="opacity-0" enter-active-class="ease-out transition-medium" enter-to-class="opacity-100" leave-class="opacity-100" leave-active-class="ease-out transition-medium" leave-to-class="opacity-0">
-                <div @keydown.esc="isOpen = false" v-show="isOpen" class="z-10 fixed inset-0 transition-opacity">
-                    <div @click="isOpen = false" class="absolute inset-0 bg-black opacity-50" tabindex="0"></div>
-                </div>
-            </transition>
+MEMCACHED_HOST=127.0.0.1
 
-            <aside v-if="vuex.auth" class="border-2 border-opacity-50 border-light-blue-400 text-xl transform top-0 right-0 w-3/4 sm:w-5/12 xl:w-80 bg-gradient-to-t from-blue-200 via-blue-100 to-white fixed h-full overflow-auto ease-in-out transition-all duration-300 z-30" :class="isOpen ? 'translate-x-0' : 'translate-x-full'">
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
 
-                <div class="flex flex-col">
-                    <div class="px-3 pt-3">
-                        <div class="border-b-2 pb-3 border-black">
-                            <p>{{vuex.user.email}}</p>
-                            <div class="flex justify-between flex-row pt-2">
-                                <p class="">{{vuex.user.name}}</p>
-                                <button class="" @click="logout" >Logout</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <button class="mt-3 border-gray-300 focus:outline-none mx-8 rounded-full p-3 font-bold border hover:border-black
-                    hover:bg-gray-300" @click="isOpen = false">
-                        Cerrar
-                    </button>
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.googlemail.com
+MAIL_PORT=1025
+MAIL_USERNAME=Liber
+MAIL_PASSWORD=perejil123
+MAIL_ENCRYPTION=ssl
+MAIL_FROM_ADDRESS=liberdaw2@gmail.com
+MAIL_FROM_NAME="${APP_NAME}"
 
-                    <router-link :to="{ name: 'edicion' }">
-                        <button class="mt-3 border-gray-300 focus:outline-none mx-8 rounded-full p-3  border hover:border-black
-                            hover:bg-gray-300">
-                            <span class="font-bold">Editar Perfil de Usuario</span>
-                        </button>
-                    </router-link>
-    
-                    <button>
-                        <span class="focus:border-0">Trending Globally</span>
-                    </button>
-                </div>
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_DEFAULT_REGION=us-east-1
+AWS_BUCKET=
 
-            </aside>
-        </nav>
-	</div>
-</template>
+PUSHER_APP_ID=
+PUSHER_APP_KEY=
+PUSHER_APP_SECRET=
+PUSHER_APP_CLUSTER=mt1
 
-<script>
-// import menuuser from './SideMenu.vue'
-export default {
-    name: 'headervue',
-    components:{
-
-    },
-
-    data(){
-        // var store = this.$store;
-        // console.log(store.user)
-        return{
-            currentUser:{},
-            isOpen: false,
-            vuex: this.$store.state,
-        }
-    },
-    watch: {
-        isOpen: {
-            immediate: true,
-            handler(isOpen) {
-                if (process.client) {
-                if (isOpen) document.body.style.setProperty("overflow", "hidden");
-                else document.body.style.removeProperty("overflow");
-                }
-            }
-        }
-    },
-    methods:{
-		drawer() {
-            this.isOpen = !this.isOpen;
-        },
-        logout(){
-            axios.post('api/logout', ).then(() => {
-                console.log(localStorage.getItem('token'));
-                this.$store.commit("SET_USER", null, false)
-                localStorage.removeItem('token');
-                this.$router.push('/agarcia/LiberLogin/public/')
-            }).catch((errors) =>{
-                console.log(errors)
-            });
-            this.isOpen = false;
-        },
-        UserEdition() {
-            this.$router.push('/agarcia/LiberLogin/public/edicion/');
-        },
-    },
-    mounted() {
-        document.addEventListener("keydown", e => {
-            if (e.keyCode == 27 && this.isOpen) this.isOpen = false;
-        });
-    },
-
-}
+MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
+MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
+-->
 
 
-
-</script>
-
-<style scoped>
-
-</style>

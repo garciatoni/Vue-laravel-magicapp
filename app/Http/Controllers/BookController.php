@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Punto;
 use App\Models\Comentario;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
+
+//CONTROLADOR DE LOS LIBROS Y SUS COMENTARIOS
 
 class BookController extends Controller
 {
@@ -18,7 +22,7 @@ class BookController extends Controller
     public function index()
     {
         //
-        return Book::all();
+        return Book::paginate(18);
     }
 
     /**
@@ -55,6 +59,7 @@ class BookController extends Controller
     {
         $data['comentarios'] = DB::table('comentarios')->where('id_libro', '=', $id)->get();
         $data["book"] = DB::table('books')->where('isbn', '=', $id)->get();
+
         // $data["id"] = $id;
         return   $data;
     }

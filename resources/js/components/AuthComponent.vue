@@ -1,14 +1,12 @@
 <template>
-
     <div class="w-full md:w-11/12 lg:w-9/12 xl:w-8/12 sm:items-center sm:flex container mx-auto">
         <div class="flex flex-col sm:flex-row justify-center w-full sm:h-96">
             <div id="Marcobg" class="hidden lg:flex lg:w-5/12 flex flex-col items-center h-full">
                 <div class="justify-end flex my-10">
                     <img src="https://dawjavi.insjoaquimmir.cat/agarcia/LiberLogin/resources/js/img/Logo.png" alt="Logo" class="hidden sm:flex h-16 w-44 sm:pl-4 py-1">
                 </div>
-                <p class="px-5 font-bold my-10 text-center">Unete a la web numero 1 en critica de literatura!</p>
+                <p class="px-5 font-bold my-10 text-center">Unete a la web numero 1 en critica literaria!</p>
             </div>
-
             <div class="flex flex-row sm:flex-col sm:border-r w-full sm:w-5/12 lg:w-4/12 divide-solid divide-x-2 sm:divide-y-2 sm:divide-x-0">
                 <button @click="ventana(0)" class="w-2/6 sm:h-2/6 sm:w-full sm:px-3 sm:py-6 bg-white hover:bg-blue-300 focus:outline-none focus:bg-blue-500 focus:text-white font-bold">
                     <i class="fas fa-lock fa-lg pb-2"></i><p class="sm:block hidden">Olvidaste tu contraseña?</p>
@@ -17,24 +15,20 @@
                     <i class="fas fa-pencil-alt fa-lg pb-2"></i><p class="sm:block hidden">Registro</p>
                 </button>
                 <button @click="ventana(1)" class="w-2/6 sm:h-2/6 sm:w-full sm:px-3 sm:py-6 bg-white hover:bg-blue-300 focus:outline-none focus:bg-blue-500 focus:text-white font-bold">
-                    <i class="fas fa-user-circle fa-lg pb-2"></i><p class="sm:block hidden">Login</p>
+                    <i class="fas fa-user-circle fa-lg pb-2"></i><p class="sm:block hidden">Iniciar sesión</p>
                 </button>
-
             </div>
-
             <div class="w-full flex items-center">
-
                 <div v-if="ventanaActiva === 1" id="login" class="w-full">
-                    <h2 class="flex justify-center pt-6 font-bold text-xl">Login</h2>
+                    <h2 class="flex justify-center pt-6 font-bold text-xl">Iniciar sesión</h2>
                     <form @submit.prevent="login" class="text-center p-3 self-center">
-
                         <div class="py-2 text-left">
-                            <input v-model="formDataLogin.email" type="email" class="shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4" placeholder="Email" />
+                            <input v-model="formDataLogin.email" type="email" class="focus:placeholder-gray-300 shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4" placeholder="Email" />
                             <span v-if="errorslogin.email" class="text-red-500">*{{errorslogin.email[0]}}</span>
                         </div>
                         <div class="py-2 text-left">
-                            <input v-model="formDataLogin.password" type="password" class="shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4" placeholder="Password" />
-                            <span v-if="errorslogin.password" class="text-red-500">*{{errorslogin.password[0]}}</span>
+                            <input v-model="formDataLogin.contraseña" type="password" class="focus:placeholder-gray-300 shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4" placeholder="Contraseña" />
+                            <span v-if="errorslogin.contraseña" class="text-red-500">*{{errorslogin.contraseña[0]}}</span>
                         </div>
                         <div class="py-2">
                             <button type="submit" class="hover:bg-blue-400 shadow-md border border-blue-400 bg-blue-200 focus:outline-none block w-full py-2 px-4">
@@ -48,22 +42,22 @@
                     <h2 class="flex justify-center pt-6 font-bold text-xl">Registro</h2>
                     <form @submit.prevent="registerUser" class="text-center p-5 self-center">
                         <div class="py-2 text-left">
-                            <input v-model="formDataRegister.name" placeholder="Username" type="text" class="shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4">
+                            <input v-model="formDataRegister.name" placeholder="Nombre de usuario" type="text" class="shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4 focus:placeholder-gray-300">
                             <span v-if="errorsregister.name" class="text-red-500">*{{errorsregister.name[0]}}</span>
                         </div>
                         <div class="py-2">
-                            <input v-model="formDataRegister.email" placeholder="Email" type="email" class="shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4">
+                            <input v-model="formDataRegister.email" placeholder="Email" type="email" class="shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4 focus:placeholder-gray-300">
                             <span v-if="errorsregister.email" class="text-red-500">*{{errorsregister.email[0]}}</span>
                         </div>
                         <div class="py-2">
-                            <input  v-model="formDataRegister.password" placeholder="Password" type="password" class="shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4">
+                            <input  v-model="formDataRegister.password" placeholder="Contraseña" type="password" class="shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4 focus:placeholder-gray-300">
                             <span v-if="errorsregister.password" class="text-red-500">*{{errorsregister.password[0]}}</span>
                         </div>
                         <div class="pt-2 pb-4">
-                            <input v-model="formDataRegister.password_confirmation" placeholder="Password Confirm" type="password" class="shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4">
+                            <input v-model="formDataRegister.password_confirmation" placeholder="Confirmar contraseña" type="password" class="shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4 focus:placeholder-gray-300">
                             <span v-if="errorsregister.password_confirm" class="text-red-500">*{{errorsregister.password_confirm[0]}}</span>
                         </div>
-                        <button class=" hover:bg-blue-400 shadow-md border border-blue-400 bg-blue-200 focus:outline-none block w-full py-2 px-4">
+                        <button class=" hover:bg-blue-400 shadow-md border border-blue-400 bg-blue-200 focus:outline-none block w-full py-2 px-4 focus:placeholder-gray-300">
                             <p class="font-bold">Registrarse</p>
                         </button>
                     </form>
@@ -71,37 +65,33 @@
 
                 <div v-if="ventanaActiva === 0" id="RecuperarContraseña" class="w-full">
                     <h2 class="flex justify-center pt-6 font-bold text-xl">Olvidaste tu contraseña?</h2>
-                    <form @submit.prevent="RecuperarContraseña" class="text-center p-5 self-center">
+                    <form @submit.prevent="recuperar" class="text-center p-5 self-center">
                         <div class="py-2 text-left">
-                            <input v-model="formDataEmail.email" type="email" class="shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4" placeholder="Email" />
+                            <input v-model="formDataEmail.email" type="email" class="shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4 focus:placeholder-gray-300" placeholder="Email" />
                             <span class="text-red-500" v-text="errorsemail.email"></span>
                         </div>
-                        <div class="py-2">
-                            <button type="submit" class="hover:bg-blue-400 shadow-md border border-blue-400 bg-blue-200 focus:outline-none block w-full py-2 px-4">
-                                <p class="font-bold">Enviar correo</p>
-                            </button>
-                        </div>
+                        <button class="hover:bg-blue-400 shadow-md border border-blue-400 bg-blue-200 focus:outline-none block w-full py-2 px-4 focus:placeholder-gray-300">
+                            <p class="font-bold">Enviar correo</p>
+                        </button>
                     </form>
                 </div>
 
             </div>
         </div>
     </div>
-
 </template>
 
 <script>
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = '/agarcia/LiberLogin/public';
-
 export default {
     name: 'login',
     data(){
         return{
             formDataLogin: {
                 email: '',
-                password: '',
+                contraseña: '',
                 device_name: 'browser'
             },
             errorslogin: {},
@@ -113,13 +103,12 @@ export default {
             },
             errorsregister:{},
             formDataEmail:{
-                'email': '',
+                'email': 'toni@gmail.com',
             },
             errorsemail:{},
             ventanaActiva: 1,
         }
     },
-
     methods: {
         login(){
             axios.post('api/login', this.formDataLogin).then((response) => {
@@ -133,13 +122,13 @@ export default {
             axios.post('/api/register', this.formDataRegister).then((response)=>{
                 this.formDataRegister.name = this.formDataRegister.email = this.formDataRegister.password = this.formDataRegister.password_confirmation = ''
                 this.errorsregister = {}
-                this.$router.push('/agarcia/LiberLogin/public/login')
+                this.ventanaActiva = 1
             }).catch((errors)=>{
                 this.errorsregister = errors.response.data.errors
             })
         },
-        RecuperarContraseña(){
-            console.log('hol<');
+        recuperar(){
+            console.log('hola');
         },
         ventana(x){
             if(x == 1){
@@ -158,9 +147,6 @@ export default {
         }
     }
 }
-
-
-
 </script>
 
 <style scoped>
