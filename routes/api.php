@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Password;
+
 //CONTROLADORES QUE SE LLAMAN EN LAS RUTAS
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthController;
@@ -26,11 +29,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //Rutas publicas
 Route::post('/login', [AuthController::class, 'login']); //RUTA PARA REALIZAR EL LOGIN
-Route::post('/register', [AuthController::class, 'register']); //RUTA PARA REALIZAR UN REGISTRO
-Route::get('/books', [BookController::class, 'index']); //RUTA PARA MOSTRAR TODOS LOS LIBROS DE LA BASE DE DATOS
+Route::post('/register', [AuthController::class, 'register']); //RUTA PARA REALIZAR UN REGISTRO DE USUARIO
+Route::get('/books', [BookController::class, 'index']); //RUTA PARA MOSTRAR TODOS LOS LIBROS DE LA BASE DE DATOS PAGINADOS
 Route::post('/libro/{id}', [BookController::class, 'show']); //RUTA PARA MOSTRAR UN LIBRO CON UNA ID ESPECIFICA
 Route::post('/getComentario/{id}', [BookController::class, 'getComentario']); //RUTA QUE DEVUELVE  TODOS LOS COMENTARIOS DE UN LIBRO
-
+Route::post('/forgotPassword', [AuthController::class, 'forgot']);//RUTA QUE ENVIA UN CORREO PARA RESTABLECER LA CONTRASEÑA.
+Route::get('/moreRating', [BookController::class, 'moreRating']);//RUTA PARA MOSTRAR LOS 20 LIBROS MAS VALORADOS POR LA COMUNIDAD.
+Route::post('/search', [BookController::class, 'store']);//RUTA PARA DEVOLVER UNA BUSQUEDA DE LIBROS
 
 //Rutas privadas
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum'); //RUTA PARA HACER LOGOUT, REQUIERE ESTAR AUTENTICADO.
@@ -41,3 +46,22 @@ Route::post('/GetWish/{id}', [DeseadoController::class, 'index'])->middleware('a
 Route::post('/DeleteWish/{id}', [DeseadoController::class, 'destroy'])->middleware('auth:sanctum');//RUTA PARA BORRAR UN LIBRO DESEADO
 Route::post('/SetPuntos/{id}', [PuntosController::class, 'create'])->middleware('auth:sanctum');//Ruta para guardar la puntuación que da un usuario a un libro
 Route::post('/GetPuntos/{id}', [PuntosController::class, 'show'])->middleware('auth:sanctum');//RUTA PARA VERIFICAR SI UN USUARIO YA HA PUNTUADO UN LIBRO.
+
+
+
+// Route::get('/users/{id}', function ($id) {
+//     return User::findOrFail($id);
+// });
+
+
+// Route::post('/forgotPassword', function (Request $request) {
+//     $request->validate(['email' => 'required|email']);
+
+//     $status = Password::sendResetLink(
+//         $request->only('email')
+//     );
+
+//     return $status === Password::RESET_LINK_SENT
+//                 ? back()->with(['status' => __($status)])
+//                 : back()->withErrors(['email' => __($status)]);
+// });

@@ -1,4 +1,4 @@
-<template>
+<!--<template>
 <div>
     <form @submit.prevent="registerUser" class="mt-8">
         <div class="mx-auto max-w-lg ">
@@ -28,7 +28,7 @@
     </form>
 </div>
 
-</template>
+</template>-->
 
 <script>
 import axios from 'axios';

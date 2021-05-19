@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="min-h-screen flex flex-col">
+        <!-- <section class="min-h-screen flex flex-col">
             <div class="flex flex-1 items-center justify-center">
                 <div class="rounded-lg sm:border-2 px-4 lg:px-24 py-16 lg:max-w-xl sm:max-w-md w-full text-center">
                     <form @submit.prevent="login" class="text-center">
@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
     </div>
 </template>
 

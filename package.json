@@ -30,6 +30,7 @@
         "tailable-pagination": "^0.1.22",
         "tailwindcss": "^2.1.2",
         "vue-owl-carousel": "^2.0.3",
-        "vue-slick-carousel": "^1.0.6"
+        "vue-slick-carousel": "^1.0.6",
+        "vue-sweetalert2": "^4.3.1"
     }
 }

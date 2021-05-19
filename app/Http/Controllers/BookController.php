@@ -8,6 +8,7 @@ use App\Models\Comentario;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 
 //CONTROLADOR DE LOS LIBROS Y SUS COMENTARIOS
@@ -32,21 +33,20 @@ class BookController extends Controller
      */
     public function create(Request $request)
     {
-
-        $libro = DB::table('books')->where('isbn', '=', $request->isbn)->get();
-        if (sizeof($libro) == 0) {
-            $book = new Book;
-            $book->isbn = $request->isbn;
-            $book->title = $request->title;
-            $book->author = $request->author;
-            $book->sinopsis = $request->sinopsis;
-            $book->cover = $request->cover;
-            $book->asin = $request->asin;
-            $book->link = $request->link;
-            $book->save();
-        } else {
-            return 'Ya esta esta en la base de datos';
-        }
+        // $libro = DB::table('books')->where('isbn', '=', $request->isbn)->get();
+        // if (sizeof($libro) == 0) {
+        //     $book = new Book;
+        //     $book->isbn = $request->isbn;
+        //     $book->title = $request->title;
+        //     $book->author = $request->author;
+        //     $book->sinopsis = $request->sinopsis;
+        //     $book->cover = $request->cover;
+        //     $book->asin = $request->asin;
+        //     $book->link = $request->link;
+        //     $book->save();
+        // } else {
+        //     return 'Ya esta esta en la base de datos';
+        // }
     }
 
     /**
@@ -70,8 +70,12 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function store($id)
+    public function store(Request $request)
     {
+        
+
+        $find = DB::table('books')->where('title', 'LIKE', "%{$request->search}%")->get();
+        return $find;
     }
 
     public function añadirComentario($id, Request $request)
@@ -122,5 +126,11 @@ class BookController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function moreRating()
+    {
+        $books = DB::table('books')->orderBy('rating', 'desc')->limit(20)->get();
+        return $books;
     }
 }

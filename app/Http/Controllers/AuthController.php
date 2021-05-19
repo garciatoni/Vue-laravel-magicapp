@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
+use Illuminate\Support\Facades\Password;
+
+use Illuminate\Support\Facades\Mail;
+
+use App\Mail\email;
 
 //CONTROLADOR DE AUTENTIFICACIÓN Y GESTIÓN DE USUARIO
 //SE USA LARAVEL SANCTUM PARA LA AUTENTICACIÓN, MÁS INFORMACIÓN EN: https://laravel.com/docs/8.x/sanctum
@@ -79,5 +86,32 @@ class AuthController extends Controller
             return 'Exito';
         }
         // $user = DB::table('users')->where('id', '=', $id)->get();
+    }
+    public function forgot(Request $request)
+    {
+
+        $request->validate([
+
+            'email' => ['required', 'email']
+
+        ]);
+
+
+
+        $email['email'] = $request->email;
+
+        Log::info(Password::sendResetLink($email));
+
+        $status = Password::sendResetLink($email);
+
+
+
+        // $name = 'test 123';
+        // Mail::to('garciabarreratoni@gmail.com')->send(new email($name));
+        // return 'Email sent Successfully';
+
+        return $status === Password::RESET_LINK_SENT
+            ? back()->with(['status' => __($status)])
+            : back()->withErrors(['email' => __($status)]);
     }
 }

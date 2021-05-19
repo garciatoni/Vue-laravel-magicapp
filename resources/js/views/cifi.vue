@@ -1,7 +1,14 @@
 <template>
     <div class="container mx-auto">
+        <div class="h-10 w-full place-items-center lg:flex flex-row hidden" id="breadcrumbs">
+            <router-link class="px-1 focus:text-blue-500 focus:outline-none flex align-middle" :to="{ name: 'home' }">Página Principal</router-link>
+            <i class="fas fa-caret-right fa-2x m-4" alt="Flecha" />
+            <p>Género</p>
+            <i class="fas fa-caret-right fa-2x m-4" alt="Flecha" />
+            <p>Ciencia Ficción</p>
+        </div>
+        
         <div class="flex flex-col sm:flex-row py-7 sm:space-x-5 divide-x divide-blue-500"> 
-
             <div class="px-3 sm:px-0 text-lg sm:w-1/2 text-justify">
                 <div>
                     <h1 class="text-4xl pb-7">Ciencia ficción</h1>
@@ -35,8 +42,8 @@
                             <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/61vmozJbdXL.jpg" alt="LibroPortada" @click="BookInformation(8445076531)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
-                            <a class="text-2xl" target="_blanck" href="https://amzn.to/2QgQCML">Crónicas Marcianas</a>
-                            <a class="text-lg hover:text-red-800" target="_blanck" href="https://www.amazon.es/Ray-Bradbury/e/B000AQ1HW4?ref_=dbs_p_pbk_r00_abau_000000">(Ray Bradbury)</a>  
+                            <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/2QgQCML">Crónicas Marcianas</a>
+                            <a class="text-lg hover:text-red-800 focus:text-blue-500 focus:outline-none" target="_blanck" href="https://www.amazon.es/Ray-Bradbury/e/B000AQ1HW4?ref_=dbs_p_pbk_r00_abau_000000">(Ray Bradbury)</a>  
                             <p class="text-justify flex items-center justify-center">
                               Esta colección de relatos reúne la crónica de la colonización de Marte por parte de la Humanidad, que abandona la Tierra en sucesivas oleadas de cohetes plateados y sueña con reproducir en el planeta rojo una civilización de perritos calientes, cómodos sofás y limonada en el porche al atardecer.
                             </p>
@@ -48,8 +55,8 @@
                             <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/81LteaYX8jL.jpg" alt="LibroPortada" @click="BookInformation(8408210068)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
-                            <a class="text-2xl" target="_blanck" href="https://amzn.to/2RhLyYL">La Guerra de los Mundos</a>
-                            <a class="text-lg hover:text-red-800" target="_blanck" href="https://www.amazon.es/H.-G.-Wells/e/B000AQ4FBE?ref_=dbs_p_pbk_r00_abau_000000">(H. G. Wells)</a>  
+                            <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/2RhLyYL">La Guerra de los Mundos</a>
+                            <a class="text-lg hover:text-red-800 focus:text-blue-500 focus:outline-none" target="_blanck" href="https://www.amazon.es/H.-G.-Wells/e/B000AQ4FBE?ref_=dbs_p_pbk_r00_abau_000000">(H. G. Wells)</a>  
                             <p class="text-justify flex items-center justify-center">
                                 Han llegado del espacio exterior, de Marte. Equipados con terribles máquinas, los invasores aterrizan en nuestro planeta y empiezan a sembrar el terror y la destrucción. Su único objetivo es conquistar la Tierra y convertir a los humanos en sus esclavos. Parece que nada ni nadie podrá detenerlos.
                             </p>
@@ -60,8 +67,8 @@
                             <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/81ZVmNRdoRL.jpg" alt="LibroPortada" @click="BookInformation(8499890946)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
-                            <a class="text-2xl" target="_blanck" href="https://amzn.to/3tKLNJl">1984</a>
-                            <a class="text-lg hover:text-red-800" target="_blanck" href="https://www.amazon.es/George-Orwell/e/B000AQ0KKY?ref_=dbs_p_pbk_r00_abau_000000">(George Orwell)</a>  
+                            <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/3tKLNJl">1984</a>
+                            <a class="text-lg hover:text-red-800 focus:text-blue-500 focus:outline-none" target="_blanck" href="https://www.amazon.es/George-Orwell/e/B000AQ0KKY?ref_=dbs_p_pbk_r00_abau_000000">(George Orwell)</a>  
                             <p class="text-justify flex items-center justify-center">
                                 En el año 1984 Londres es una ciudad lúgubre en la que la Policía del Pensamiento controla de forma asfixiante la vida de los ciudadanos. Winston Smith es un peón de este engranaje perverso y su cometido es reescribir la historia para adaptarla a lo que el Partido considera la versión oficial de los hechos. Hasta que decide replantearse la verdad del sistema que los gobierna y somete.
                             </p>
@@ -72,8 +79,8 @@
                             <img class="w-36" src="https://m.media-amazon.com/images/I/51Jf3lVAr7L.jpg" alt="LibroPortada" @click="BookInformation(1620929304)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
-                            <a class="text-2xl" target="_blanck" href="https://amzn.to/3bqfkRZ">La última pregunta</a>
-                            <a class="text-lg hover:text-red-800" target="_blanck" href="https://www.amazon.es/Isaac-Asimov/e/B003RY2ISS?ref_=dbs_p_ebk_r00_abau_000000">(Isaac Asimov)</a>  
+                            <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/3bqfkRZ">La última pregunta</a>
+                            <a class="text-lg hover:text-red-800 focus:text-blue-500 focus:outline-none" target="_blanck" href="https://www.amazon.es/Isaac-Asimov/e/B003RY2ISS?ref_=dbs_p_ebk_r00_abau_000000">(Isaac Asimov)</a>  
                             <p class="text-justify flex items-center justify-center">
                                ¿Es posible revertir el inevitable final del Universo, o el mundo debe acabar de todas formas? es la pregunta que desde un día del siglo XXI, hasta generaciones y generaciones posteriores en el tiempo, hacen los humanos a los ordenadores.
                             </p>

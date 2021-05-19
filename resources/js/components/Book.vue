@@ -1,9 +1,18 @@
 <template>
+
   <div class="lg:container  lg:mx-auto px-2 lg:px-0 py-5 space-y-2">
+        <div class="h-10 w-full place-items-center md:flex flex-row hidden" id="breadcrumbs">
+            <router-link class="px-1 focus:text-blue-500 focus:outline-none flex align-middle" :to="{ name: 'home' }">Página Principal</router-link>
+            <i class="fas fa-caret-right fa-2x m-4" alt="Flecha" />
+            <p>Libro</p>
+            <i class="fas fa-caret-right fa-2x m-4" alt="Flecha" />
+            <p>{{book.title}}</p>
+        </div>
+
         <div :id="book.isbn" class="flex flex-col-reverse md:flex-row bg-white bg-opacity-25 md:border md:border-blue-200 md:p-1">
             <div class="w-full md:w-4/12 lg:w-3/12  flex flex-col-reverse md:flex-col items-center md:items-start">
                 <img class="w-2/3 md:w-full pb-1 md:pb-0" :src="book.cover" :alt="book.title">
-                <a class="w-full px-2 md:px-0" :href="book.link" target="_blank" rel="noopener noreferrer">
+                <a class="w-full px-2 md:px-0 focus:opacity-50 focus:outline-none" :href="book.link" target="_blank" rel="noopener noreferrer">
                     <div id="amazonButton" class="my-1 text-xl border border-yellow-200 hover:border-yellow-800 flex flex-row items-center">
                         <i class="fa-2x p-1 fab fa-amazon flex justify-start"></i>
                         <div class="w-full">
@@ -24,12 +33,12 @@
 
         <div class="flex flex-col bg-white bg-opacity-25 border border-blue-200 p-1 space-y-2">
             <div class="w-full flex flex-col md:flex-row md:justify-between">
-                <button class="w-full md:w-4/12 lg:w-3/12 bg-blue-600 text-white p-2 border hover:bg-yellow-100 hover:text-black hover:border-black focus:outline-none" v-if="vuex.auth" @click="SetFavorito"><i class="fas fa-star p-1"></i>Añadir a deseados</button>
+                <button class="w-full md:w-4/12 lg:w-3/12 bg-blue-600 text-white p-2 border hover:bg-yellow-100 hover:text-black hover:border-black focus:outline-none focus:bg-yellow-100 focus:text-black focus:border-black" v-if="vuex.auth" @click="SetFavorito" aria-label="añadir a deseados"><i class="fas fa-star p-1"></i>Añadir a deseados</button>
 
-                <p v-if="puntuacion != 0" class="text-xl text-center flex items-center">{{puntuacion}}/5 segun la comunidad de Liber.</p>
-                <p v-else class="text-xl text-center flex items-center">{{book.rating}}/5 segun la comunidad de Liber.</p>
+                <p v-if="puntuacion != 0" class="text-xl text-center flex items-center">{{puntuacion}}/5 según la comunidad de Liber.</p>
+                <p v-else class="text-xl text-center flex items-center">{{book.rating}}/5 según la comunidad de Liber.</p>
                 
-                <star-rating v-if="puntuacion == 0 && this.$store.state.auth" @rating-selected ="setRating" class="flex justify-center" :star-size="40" :read-only="false" v-model="rating.puntos" v-bind:rating="rating" v-bind:show-rating="false"></star-rating>
+                <star-rating v-if="puntuacion == 0 && this.$store.state.auth" @rating-selected ="setRating" class="flex justify-center" :star-size="40" :read-only="false" v-model="rating.puntos" v-bind:show-rating="false"></star-rating>
 
                 <star-rating v-if="this.$store.state.auth && puntuacion != 0" @rating-selected ="setRating" class="flex justify-center" :star-size="40" :read-only="true" v-model="rating.puntos" v-bind:show-rating="false"></star-rating>
                 
@@ -37,8 +46,8 @@
 
             <div v-if="vuex.auth" id="Comentario">
                 <form @submit.prevent="SendComentario" class="flex flex-row w-full">
-                    <input aria-label="Escribe tu comentario" class=" w-full focus:placeholder-gray-300 focus:border-blue-500 placeholder-gray-600 focus:outline-none py-2 px-10 border border-blue-500" type="text" v-model="formData.texto_reseña" name="Comentario" id="ComentarioInput" placeholder="Comparte tu experiencia!"/>
-                    <button class="font-bold bg-blue-200 py-2 px-2 focus:outline-none border border-blue-500 hover:bg-blue-100" type="submit" id="search_button">Enviar</button>
+                    <input aria-label="Escribe tu comentario" class=" w-full focus:placeholder-gray-300 focus:border-blue-500 focus:outline-none placeholder-gray-600  py-2 px-10 border border-blue-500" type="text" v-model="formData.texto_reseña" name="Comentario" id="ComentarioInput" placeholder="Comparte tu experiencia!"/>
+                    <button class="font-bold bg-blue-200 py-2 px-2 focus:outline-none focus:bg-blue-800 focus:text-white border border-blue-500 hover:bg-blue-100" type="submit" id="search_button">Enviar</button>
                 </form>
             </div>
 
@@ -97,7 +106,7 @@ export default {
                     this.comentarios = response.data
                 })
             }).catch((errors) => {
-                console.log(errors)
+                c
             })
             this.formData.texto_reseña  = "";
         },
@@ -111,7 +120,7 @@ export default {
                     this.rating.puntos = this.puntuacion;
                 }
             }).catch((errors) => {
-                console.log(errors)
+                
             })
             
         },
@@ -119,7 +128,18 @@ export default {
         SetFavorito(){
             let vuestore = this.$store.state;
             axios.post('api/SetWish/' + vuestore.user.id, this.id_libro).then((response)=>{
-                console.log(response)
+                this.$swal( {
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    },
+                    icon: 'success',
+                    title: 'Guardado!'
+                })
             });
         },
     },
@@ -144,14 +164,14 @@ export default {
             this.id_libro.id_libro = response.data.book[0].isbn;
             this.rating.id_libro = response.data.book[0].isbn;
         }).catch((errors) =>{
-            console.log(errors)
+           
         })
     
     }
 };
 </script>
 
-<style scoped>
+<style>
 
 #amazonButton{
     background: rgb(255,158,0);

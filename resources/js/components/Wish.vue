@@ -5,8 +5,8 @@
         <p class="px-5">Guarda aqui todos aquellos libros que tienes pensado leer!</p>
     </div>
     <div class="space-y-2">
-        <div v-for="b in books" :key="b.isbn" class="flex justify-center px-7 md:px-0">
-            <div class="flex flex-col md:flex-row space-x-2 sm:w-3/4 md:w-2/3  border border-blue-300 bg-white p-1 bg-opacity-30" :id="b.isbn">
+        <ul v-for="b in books" :key="b.isbn" class="flex justify-center px-2 pt-5 space-y-1 p md:px-0">
+            <li class="flex flex-col md:flex-row space-x-2 sm:w-9/12 md:w-11/12 lg:w-3/4  border border-blue-300 bg-white p-1 bg-opacity-30" :id="b.isbn">
                 <div class="flex md:hidden justify-end">
                     <button class="pr-3 focus:outline-none" @click="DeleteWish(b.isbn)"><i class="fas fa-times fa-3x text-red-600">
                     </i></button>
@@ -18,14 +18,15 @@
                     <div class="flex flex-row justify-between">
                         <div @click="BookInformation(b.isbn)" class="flex flex-col cursor-pointer pl-2 pt-2 md:pt-0 ">
                             <h1 class="text-2xl font-bold">{{b.title}}</h1>
-                            <h2 class="text-xl">{{b.author}}</h2> 
+                            <h2 class="text-xl">{{b.author}}</h2>
+                            <p class="sinopsis text-justify mr-2">{{b.sinopsis}}</p>
                         </div>
-                        <div class="hidden md:flex">
-                            <button class="pr-3 focus:outline-none" @click="DeleteWish(b.isbn)"><i class="fas fa-times fa-3x text-red-600">
+                        <div class="hidden md:flex items-start">
+                            <button class="pr-3 focus:outline-none focus:opacity-50" @click="DeleteWish(b.isbn)" aria-label="Eliminar libro deseado"><i class="fas fa-times fa-3x text-red-600">
                             </i></button>
                         </div>
                     </div>
-                    <a class="w-full px-1 md:px-0 md:pr-2" :href="b.link" target="_blank" rel="noopener noreferrer">
+                    <a class="w-full px-1 md:px-0 md:pr-2 focus:opacity-50 focus:outline-none" :href="b.link" target="_blank" rel="noopener noreferrer">
                         <div id="amazonButton" class="my-1 text-xl border border-yellow-200 hover:border-yellow-800 flex flex-row items-center">
                             <i class="fa-2x p-1 fab fa-amazon flex justify-start"></i>
                             <div class="w-full">
@@ -34,12 +35,11 @@
                         </div>
                     </a>
                 </div>
-            </div>
-            
-        </div>
+            </li>
+        </ul>
     </div>
 </div>
-                
+
 </template>
 
 <script>
@@ -65,8 +65,20 @@ export default {
                         (this.books).splice( i, 1 );
                     }
                 }
+                this.$swal( {
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    },
+                    icon: 'success',
+                    title: 'Eliminado!'
+                })
             }).catch((errors)=>{
-                console.log(errors);
+
             })
         },
     },
@@ -79,12 +91,11 @@ export default {
         axios.get('/api/user').then((res) => {
             var userId = res.data.id;
             axios.post('api/GetWish/' + userId).then((response) => {
-                // console.log(response.data.wish);
                 ((response.data).libros).forEach(element => {
                     (this.books).push(element[0])
                 });
             }).catch((errors) =>{
-                console.log(errors);
+
             })
 
         })
@@ -105,5 +116,11 @@ export default {
         visibility: visible;
         z-index: 100;
         left: 75px;
+    }
+    .sinopsis {
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 </style>

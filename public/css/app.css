@@ -14598,6 +14598,11 @@ video {
   outline-offset: 2px;
 }
 
+.outline-blue{
+  outline: 2px solid #0066ff;
+  outline-offset: 0;
+}
+
 .focus-within\:outline-none:focus-within{
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -14613,6 +14618,11 @@ video {
   outline-offset: 2px;
 }
 
+.focus-within\:outline-blue:focus-within{
+  outline: 2px solid #0066ff;
+  outline-offset: 0;
+}
+
 .focus\:outline-none:focus{
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -14626,6 +14636,11 @@ video {
 .focus\:outline-black:focus{
   outline: 2px dotted black;
   outline-offset: 2px;
+}
+
+.focus\:outline-blue:focus{
+  outline: 2px solid #0066ff;
+  outline-offset: 0;
 }
 
 .overflow-auto{
@@ -46234,6 +46249,11 @@ html {
     outline-offset: 2px;
   }
 
+  .sm\:outline-blue{
+    outline: 2px solid #0066ff;
+    outline-offset: 0;
+  }
+
   .sm\:focus-within\:outline-none:focus-within{
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -46249,6 +46269,11 @@ html {
     outline-offset: 2px;
   }
 
+  .sm\:focus-within\:outline-blue:focus-within{
+    outline: 2px solid #0066ff;
+    outline-offset: 0;
+  }
+
   .sm\:focus\:outline-none:focus{
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -46262,6 +46287,11 @@ html {
   .sm\:focus\:outline-black:focus{
     outline: 2px dotted black;
     outline-offset: 2px;
+  }
+
+  .sm\:focus\:outline-blue:focus{
+    outline: 2px solid #0066ff;
+    outline-offset: 0;
   }
 
   .sm\:overflow-auto{
@@ -77690,6 +77720,11 @@ html {
     outline-offset: 2px;
   }
 
+  .md\:outline-blue{
+    outline: 2px solid #0066ff;
+    outline-offset: 0;
+  }
+
   .md\:focus-within\:outline-none:focus-within{
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -77705,6 +77740,11 @@ html {
     outline-offset: 2px;
   }
 
+  .md\:focus-within\:outline-blue:focus-within{
+    outline: 2px solid #0066ff;
+    outline-offset: 0;
+  }
+
   .md\:focus\:outline-none:focus{
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -77718,6 +77758,11 @@ html {
   .md\:focus\:outline-black:focus{
     outline: 2px dotted black;
     outline-offset: 2px;
+  }
+
+  .md\:focus\:outline-blue:focus{
+    outline: 2px solid #0066ff;
+    outline-offset: 0;
   }
 
   .md\:overflow-auto{
@@ -109146,6 +109191,11 @@ html {
     outline-offset: 2px;
   }
 
+  .lg\:outline-blue{
+    outline: 2px solid #0066ff;
+    outline-offset: 0;
+  }
+
   .lg\:focus-within\:outline-none:focus-within{
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -109161,6 +109211,11 @@ html {
     outline-offset: 2px;
   }
 
+  .lg\:focus-within\:outline-blue:focus-within{
+    outline: 2px solid #0066ff;
+    outline-offset: 0;
+  }
+
   .lg\:focus\:outline-none:focus{
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -109174,6 +109229,11 @@ html {
   .lg\:focus\:outline-black:focus{
     outline: 2px dotted black;
     outline-offset: 2px;
+  }
+
+  .lg\:focus\:outline-blue:focus{
+    outline: 2px solid #0066ff;
+    outline-offset: 0;
   }
 
   .lg\:overflow-auto{
@@ -140602,6 +140662,11 @@ html {
     outline-offset: 2px;
   }
 
+  .xl\:outline-blue{
+    outline: 2px solid #0066ff;
+    outline-offset: 0;
+  }
+
   .xl\:focus-within\:outline-none:focus-within{
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -140617,6 +140682,11 @@ html {
     outline-offset: 2px;
   }
 
+  .xl\:focus-within\:outline-blue:focus-within{
+    outline: 2px solid #0066ff;
+    outline-offset: 0;
+  }
+
   .xl\:focus\:outline-none:focus{
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -140630,6 +140700,11 @@ html {
   .xl\:focus\:outline-black:focus{
     outline: 2px dotted black;
     outline-offset: 2px;
+  }
+
+  .xl\:focus\:outline-blue:focus{
+    outline: 2px solid #0066ff;
+    outline-offset: 0;
   }
 
   .xl\:overflow-auto{
@@ -172058,6 +172133,11 @@ html {
     outline-offset: 2px;
   }
 
+  .\32xl\:outline-blue{
+    outline: 2px solid #0066ff;
+    outline-offset: 0;
+  }
+
   .\32xl\:focus-within\:outline-none:focus-within{
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -172073,6 +172153,11 @@ html {
     outline-offset: 2px;
   }
 
+  .\32xl\:focus-within\:outline-blue:focus-within{
+    outline: 2px solid #0066ff;
+    outline-offset: 0;
+  }
+
   .\32xl\:focus\:outline-none:focus{
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -172086,6 +172171,11 @@ html {
   .\32xl\:focus\:outline-black:focus{
     outline: 2px dotted black;
     outline-offset: 2px;
+  }
+
+  .\32xl\:focus\:outline-blue:focus{
+    outline: 2px solid #0066ff;
+    outline-offset: 0;
   }
 
   .\32xl\:overflow-auto{

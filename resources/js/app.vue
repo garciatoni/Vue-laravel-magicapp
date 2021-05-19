@@ -5,6 +5,7 @@
         <headervue id="Header" class="z-10 sticky top-0"></headervue>
         <div id="contentbg">
             <router-view id="Content" class="z-0"></router-view>
+            <cookie v-if="!politica" class="z-10"></cookie>
         </div>
 
         <footervue id="Footer" class="z-0"></footervue>
@@ -16,19 +17,35 @@
 
 import headervue from './components/StaticSections/Header.vue'
 import footervue from './components/StaticSections/Footer.vue'
+import cookie from './components/cookie.vue'
 
 export default {
+    name: 'app',
     components: {
         headervue,
         footervue,
+        cookie
     },
-    name: 'app',
+    data(){
+        return{
+            politica: true,
+        }
+    },
+
     created(){
         if(!this.$store.state.auth && localStorage.getItem('token') != null){
             this.$store.commit("login", this.$store.state.token)
         }else if(localStorage.getItem('token') == null){
         }
-    }
+
+        if(localStorage.getItem('politica') == null){
+            this.politica = false;
+        }
+
+    },
+    updated() {
+
+    },
 }
 
 
@@ -39,7 +56,7 @@ export default {
 
 <style>
     #Content{
-        min-height: calc(100vh - 13em - 4em);
+        min-height: calc(100vh - 4em - 4em);
     }
 
     #contentbg{
@@ -49,7 +66,7 @@ export default {
     ::-webkit-scrollbar {
         width: 8px;
         background: rgba(255, 255, 255, 0);
-    
+
     }
     ::-webkit-scrollbar-track{
         background: rgba(255, 255, 255, 0);

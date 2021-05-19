@@ -8,7 +8,8 @@ const store = new Vuex.Store({
     state: {
         user: null,
         auth: false,
-        token: localStorage.getItem('token')
+        token: localStorage.getItem('token'),
+        politica: false
 
     },
     mutations: {
@@ -17,7 +18,9 @@ const store = new Vuex.Store({
             state.auth = Boolean(user);
             state.token = token;
         },
-
+        SET_POLITICA(state, politica) {
+            state.politica = politica;
+        },
         //Mutación que verifica si el usuario esta conectado e inicializa el store de vuex.
         login(state, token) {
             window.axios.defaults.headers.common['Authorization'] = `Bearer ${token}`

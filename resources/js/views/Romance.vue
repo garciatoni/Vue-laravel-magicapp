@@ -1,7 +1,14 @@
 <template>
     <div class="container mx-auto">
-        <div class="flex flex-col sm:flex-row py-7 sm:space-x-5 divide-x divide-blue-500"> 
+        <div class="h-10 w-full place-items-center lg:flex flex-row hidden" id="breadcrumbs">
+            <router-link class="px-1 focus:text-blue-500 focus:outline-none flex align-middle" :to="{ name: 'home' }">Página Principal</router-link>
+            <i class="fas fa-caret-right fa-2x m-4" alt="Flecha" />
+            <p>Género</p>
+            <i class="fas fa-caret-right fa-2x m-4" alt="Flecha" />
+            <p>Romance</p>
+        </div>
 
+        <div class="flex flex-col sm:flex-row py-7 sm:space-x-5 divide-x divide-blue-500"> 
             <div class="px-3 sm:px-0 text-lg sm:w-1/2 text-justify">
                 <div>
                     <h1 class="text-4xl pb-7">Romance</h1>
@@ -33,8 +40,8 @@
                             <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/512PMMDA3GL.jpg" alt="LibroPortada" @click="BookInformation(974872431)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
-                            <a class="text-2xl" target="_blanck" href="https://amzn.to/33Jt5Hn">El cuaderno de Noah</a>
-                            <a class="text-lg hover:text-red-800" target="_blanck" href="https://www.amazon.es/Nicholas-Sparks/e/B000APGF36?ref_=dbs_p_pbk_r00_abau_000000">(Nicholas Sparks)</a>  
+                            <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/33Jt5Hn">El cuaderno de Noah</a>
+                            <a class="text-lg hover:text-red-800 focus:text-blue-500 focus:outline-none" target="_blanck" href="https://www.amazon.es/Nicholas-Sparks/e/B000APGF36?ref_=dbs_p_pbk_r00_abau_000000">(Nicholas Sparks)</a>  
                             <p class="text-justify flex items-center justify-center">
                              Un hombre tiene un cuaderno, traído y llevado mil veces, en su regazo. Una mujer escucha lo que él le lee aunque no acaba de entender. El cuaderno de Noah cuenta la historia de Noah, un sureño que vuelve a casa después de la Segunda Guerra Mundial.
                             </p>
@@ -46,8 +53,8 @@
                             <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/71uL0xUNDIL.jpg" alt="LibroPortada" @click="BookInformation(8416222630)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
-                            <a class="text-2xl" target="_blanck" href="https://amzn.to/2Rk6Sgh">La princesa prometida</a>
-                            <a class="text-lg hover:text-red-800" target="_blanck" href="https://www.amazon.es/William-Goldman/e/B000AQ3QO6">(William Goldman)</a>  
+                            <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/2Rk6Sgh">La princesa prometida</a>
+                            <a class="text-lg hover:text-red-800 focus:text-blue-500 focus:outline-none" target="_blanck" href="https://www.amazon.es/William-Goldman/e/B000AQ3QO6">(William Goldman)</a>  
                             <p class="text-justify flex items-center justify-center">
                                 Es una historia de espadachines y de combates. Trata de amor eterno, de odio inmortal y de venganzas despiadadas. En esta novela salen algunos gigantes, un montón de villanos y de héroes, cinco o seis hermosas mujeres, monstruos bestiales y otros amables, y muchas aventuras y huidas y capturas. Hay muerte, mentiras, verdad, milagros e incluso algún que otro beso.
                             </p>
@@ -58,8 +65,8 @@
                             <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/71wnBzT9WqL.jpg" alt="LibroPortada" @click="BookInformation(8415618786)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
-                            <a class="text-2xl" target="_blanck" href="https://amzn.to/3fhD2Rv">Orgullo y prejuicio</a>
-                            <a class="text-lg hover:text-red-800" target="_blanck" href="https://www.amazon.es/Jane-Austen/e/B000APWOKO?ref_=dbs_p_ebk_r00_abau_000000">(Jane Austen)</a>  
+                            <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/3fhD2Rv">Orgullo y prejuicio</a>
+                            <a class="text-lg hover:text-red-800 focus:text-blue-500 focus:outline-none" target="_blanck" href="https://www.amazon.es/Jane-Austen/e/B000APWOKO?ref_=dbs_p_ebk_r00_abau_000000">(Jane Austen)</a>  
                             <p class="text-justify flex items-center justify-center">
                                 Jane Austen ocupó un lugar preminente en la literatura británica. Reivindicada vehementemente por Rudyard Kipling y Edward Said, la elegancia estilística de su prosa, su ironía y, sobre todo, su perspicacia para el retrato social convierten sus obras en una referencia ineludible de la literatura del siglo XIX.
                             </p>
@@ -70,8 +77,8 @@
                             <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/710Ub2sHyGL.jpg" alt="LibroPortada" @click="BookInformation(8491051104)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
-                            <a class="text-2xl" target="_blanck" href="https://amzn.to/3w4OtDa">La Letra Escarlata</a>
-                            <a class="text-lg hover:text-red-800" target="_blanck" href="https://www.amazon.es/Nathaniel-Hawthorne/e/B000AQ0C48?ref_=dbs_p_pbk_r00_abau_000000">(Nathaniel Hawthorne)</a>  
+                            <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/3w4OtDa">La Letra Escarlata</a>
+                            <a class="text-lg hover:text-red-800 focus:text-blue-500 focus:outline-none" target="_blanck" href="https://www.amazon.es/Nathaniel-Hawthorne/e/B000AQ0C48?ref_=dbs_p_pbk_r00_abau_000000">(Nathaniel Hawthorne)</a>  
                             <p class="text-justify flex items-center justify-center">
                                Ambientada en la Nueva Inglaterra de los puritanos del siglo XVII, La letra escarlata narra el terrible impacto que un simple acto de pasión desencadena en las vidas de tres miembros de la comunidad: Hester Prynne, una mujer objeto del escarnio público; el reverendo Dimmesdale, un alma atormentada por la culpa , y Chillingworth, un ser siniestro, cruel y vengativo, que maquina en la sombra.
                             </p>

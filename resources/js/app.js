@@ -3,14 +3,21 @@ require('alpinejs');
 
 window.Vue = require('vue').default;
 
+//Plugins y componentes exportados de vue
 import VueRouter from 'vue-router';
 import store from './store/index.js'
 import StarRating from 'vue-star-rating';
 import TailablePagination from 'tailable-pagination';
+import VueSweetalert2 from 'vue-sweetalert2';
 
+//Indicación a vue que use los componentes y los plugins
 Vue.use(VueRouter);
 Vue.component('star-rating', StarRating);
 Vue.use(TailablePagination);
+Vue.use(VueSweetalert2);
+
+//estilos sweetAlert2
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 //Componentes importados
 import app from './app.vue'
@@ -19,27 +26,40 @@ import home from './components/Home.vue';
 import book from './components/Book.vue';
 import edicion from './components/EditUser.vue'
 import auth from './components/AuthComponent.vue'
+import resetPassword from './components/resetPassword.vue'
 import wish from './components/Wish.vue'
-
-//GENEROS COMPONENTS
 import generos from './views/Generos.vue'
 import aventura from './views/Aventura.vue'
 import romance from './views/Romance.vue'
 import fantasia from './views/Fantasia.vue'
 import terror from './views/Terror.vue'
 import cifi from './views/cifi.vue'
-// Vue.component('testvue', require('./components/vuetest.vue').default);  OTRA FORMA DE LLAMAR A LOS COMPONENTES
+import cookie from './components/cookie.vue'
+import search from './components/search.vue'
+//Vue.component('testvue', require('./components/vuetest.vue').default);  OTRA FORMA DE LLAMAR A LOS COMPONENTES
 
 
-// Rutas
+// Rutas vue
 const router = new VueRouter({
     mode: 'history',
     routes: [
         //{guest: true} = Si esta logueado redirige al home
+        //{requiresAuth: true} = Si NO esta logueado redirige al home
         {
-            path: '/agarcia/LiberLogin/public/login',
+            path: '/agarcia/LiberLogin/public/auth',
             name: 'login',
             component: auth,
+            meta: { guest: true }
+        },
+        {
+            path: '/agarcia/LiberLogin/public/cookie',
+            name: 'cookie',
+            component: cookie,
+        },
+        {
+            path: '/agarcia/LiberLogin/public/reset-password',
+            name: 'resetPassword',
+            component: resetPassword,
             meta: { guest: true }
         },
         {
@@ -48,7 +68,12 @@ const router = new VueRouter({
             component: book,
             props: true
         },
-        //{requiresAuth: true} = Si NO esta logueado redirige al home
+        {
+            path: '/agarcia/LiberLogin/public/search/:campo',
+            name: 'search',
+            component: search,
+            props: true
+        },
         {
             path: '/agarcia/LiberLogin/public/wish',
             name: 'wish',
@@ -96,8 +121,6 @@ const router = new VueRouter({
             component: edicion,
             meta: { requiresAuth: true }
         },
-
-
         //Esta ruta siempre abajo del todo.
         {
             path: "/agarcia/LiberLogin/public/:catchAll(.*)",
