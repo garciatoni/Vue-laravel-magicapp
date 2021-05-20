@@ -35,7 +35,7 @@
                     </div>
                     <div class="bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center">
                         <div class="p-2 sm:3/12">
-                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/81OMiXFFwHL.jpg" alt="LibroPortada" @click="BookInformation(843167637)" >
+                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/81OMiXFFwHL.jpg" alt="LibroPortada" @click="BookInformation(1)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
                             <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/33KxOIA">Don Quijote de la Mancha</a>
@@ -48,7 +48,7 @@
 
                     <div class="bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center">
                         <div class="p-2 sm:3/12">
-                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/7179uNkP9xL.jpg" alt="LibroPortada" @click="BookInformation(8469836072)" >
+                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/7179uNkP9xL.jpg" alt="LibroPortada" @click="BookInformation(21)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
                             <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/3hmTv9I">Los viajes de Gulliver</a>
@@ -60,7 +60,7 @@
                     </div>
                     <div class="bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center">
                         <div class="p-2 sm:3/12">
-                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/71UDhPMMchL.jpg" alt="LibroPortada" @click="BookInformation(8469836099)" >
+                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/71UDhPMMchL.jpg" alt="LibroPortada" @click="BookInformation(22)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
                             <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/3tHb2Mp">La vuelta al mundo en 80 días</a>
@@ -72,7 +72,7 @@
                     </div>
                     <div class="bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center">
                         <div class="p-2 sm:3/12">
-                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/71R2vDdC9-L.jpg" alt="LibroPortada" @click="BookInformation(8466794999)" >
+                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/71R2vDdC9-L.jpg" alt="LibroPortada" @click="BookInformation(17)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
                             <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/3y47irX">La isla del tesoro</a>

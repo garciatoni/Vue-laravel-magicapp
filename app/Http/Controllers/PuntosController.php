@@ -33,9 +33,9 @@ class PuntosController extends Controller
      */
     public function create(Request $request, $id)
     {
-        /*Recibe el id del usuario, el id del libro y la puntiación del mismo, compruba si este usuario ya ha realizado una puntuación 
-        para ese libro, si no es el caso procede a guardarla en la base de datos, acontinuación hace la media de todas las 
-        puntucaciónes de ese libro, 
+        /*Recibe el id del usuario, el id del libro y la puntiación del mismo, compruba si este usuario ya ha realizado una puntuación
+        para ese libro, si no es el caso procede a guardarla en la base de datos, acontinuación hace la media de todas las
+        puntucaciónes de ese libro,
         realiza la media y guarda esa media en la puntuación del propio libro.*/
 
         $puntoexist = DB::table('puntos')->where('id_user', '=', $id)->where('id_libro', '=', $request->id_libro)->get();

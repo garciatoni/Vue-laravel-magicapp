@@ -41,7 +41,7 @@
                     </div>
                     <div class="bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center">
                         <div class="p-2 sm:3/12">
-                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/81BnDHnF30L.jpg" alt="LibroPortada" @click="BookInformation(8467944595)" >
+                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/81BnDHnF30L.jpg" alt="LibroPortada" @click="BookInformation(20)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
                             <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/2ROrrRZ">Drácula</a>
@@ -54,7 +54,7 @@
 
                     <div class="bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center">
                         <div class="p-2 sm:3/12">
-                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/51CvHSxXmnL._SX327_BO1,204,203,200_.jpg" alt="LibroPortada" @click="BookInformation(8490328722)" >
+                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/51CvHSxXmnL._SX327_BO1,204,203,200_.jpg" alt="LibroPortada" @click="BookInformation(26)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
                             <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/3tKCtVB">El Resplandor</a>
@@ -66,7 +66,7 @@
                     </div>
                     <div class="bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center">
                         <div class="p-2 sm:3/12">
-                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/710ZXn+Up2L.jpg" alt="LibroPortada" @click="BookInformation(8415618689)" >
+                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/710ZXn+Up2L.jpg" alt="LibroPortada" @click="BookInformation(6)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
                             <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/3eJdduN">La Llamada de Cthulhu</a>
@@ -78,7 +78,7 @@
                     </div>
                     <div class="bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center">
                         <div class="p-2 sm:3/12">
-                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/91KVu+3L8dL.jpg" alt="LibroPortada" @click="BookInformation(8467033932)" >
+                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/91KVu+3L8dL.jpg" alt="LibroPortada" @click="BookInformation(18)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
                             <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/3ybgnPq">El Retrato de Dorian Grey</a>

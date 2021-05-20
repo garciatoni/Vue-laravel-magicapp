@@ -39,7 +39,7 @@
                     </div>
                     <div class="bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center">
                         <div class="p-2 sm:3/12">
-                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/61vmozJbdXL.jpg" alt="LibroPortada" @click="BookInformation(8445076531)" >
+                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/61vmozJbdXL.jpg" alt="LibroPortada" @click="BookInformation(16)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
                             <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/2QgQCML">Crónicas Marcianas</a>
@@ -52,7 +52,7 @@
 
                     <div class="bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center">
                         <div class="p-2 sm:3/12">
-                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/81LteaYX8jL.jpg" alt="LibroPortada" @click="BookInformation(8408210068)" >
+                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/81LteaYX8jL.jpg" alt="LibroPortada" @click="BookInformation(5)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
                             <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/2RhLyYL">La Guerra de los Mundos</a>
@@ -64,7 +64,7 @@
                     </div>
                     <div class="bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center">
                         <div class="p-2 sm:3/12">
-                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/81ZVmNRdoRL.jpg" alt="LibroPortada" @click="BookInformation(8499890946)" >
+                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/81ZVmNRdoRL.jpg" alt="LibroPortada" @click="BookInformation(28)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
                             <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/3tKLNJl">1984</a>
@@ -76,7 +76,7 @@
                     </div>
                     <div class="bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center">
                         <div class="p-2 sm:3/12">
-                            <img class="w-36" src="https://m.media-amazon.com/images/I/51Jf3lVAr7L.jpg" alt="LibroPortada" @click="BookInformation(1620929304)" >
+                            <img class="w-36" src="https://m.media-amazon.com/images/I/51Jf3lVAr7L.jpg" alt="LibroPortada" @click="BookInformation(3)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
                             <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/3bqfkRZ">La última pregunta</a>

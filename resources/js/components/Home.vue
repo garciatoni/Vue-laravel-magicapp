@@ -15,19 +15,20 @@
         <carousel class="my-4 z-0 hidden sm:flex" :merge="true" :autoplay="true" :loop="true" :dots="true" :items=6 :nav="false" :autoplayTimeout="4000" :autoplayHoverPause="true" :responsive = "{640:{items:3},768:{items:4},1024:{items:5},	1280:{items:6}}">
 
         <div class="content-between border shadow-md mx-1 bg-blue-100 bg-opacity-30 flex-col items-center border-blue-900 h-80 md:h-80 2xl:h-96 flex p-2" v-for="a of 20" :key="a" :id="a">
-            <img class="px-1 w-10 max-h-72 my-auto flex items-center"  :src="moreRating[a-1].cover" @click="BookInformation(moreRating[a-1].isbn)">
+            <img class="px-1 w-10 max-h-72 my-auto flex items-center cursor-pointer"  :src="moreRating[a-1].cover" @dblclick="BookInformation(moreRating[a-1].isbn)">
             <p id="tituloCarousel" class="">{{moreRating[a-1].title}}</p>
             <star-rating  class="flex justify-center" :star-size="30" :read-only="true" v-model="moreRating[a-1].rating" v-bind:show-rating="false"></star-rating>
         </div>
         </carousel>
       </div>
 
-      <tailable-pagination :limit="3" :data="books" @page-changed="getResults" :showNumbers="true" :hide-when-empty="true"></tailable-pagination>
+      <tailable-pagination :limit="1" :data="books" @page-changed="getResults" :showNumbers="true" :hide-when-empty="true"></tailable-pagination>
 
       <ul class="grid grid-cols-1 mx-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:mx-2">
-        <li v-for="b in books.data" :key="b.isbn" :id="b.isbn" class="relative flex flex-col border hover:border-blue-900 border-white hover:bg-opacity-30 bg-white shadow-md bg-opacity-50 h-auto  ">
+        <li v-for="b in books.data" :key="b.isbn" :id="b.isbn" class="relative flex flex-col border hover:border-blue-900 border-white hover:bg-opacity-30 bg-white shadow-md bg-opacity-50 h-80  ">
           <div class="flex items-center h-full px-1 justify-center has-tooltip">
             <img id="portada" @click="BookInformation(b.isbn)" class="w-40 py-6 cursor-pointer max-h-72" :src="b.cover" :aria-label="'más información de' + b.title"/>
+
             <a class="opacity-60 md:opacity-0 hover:opacity-100 absolute -top-1 w-full focus:outline-none focus:opacity-100" :href="b.link" target="_blank" rel="noopener noreferrer">
               <div id="amazonButton" class="mt-1 border flex flex-row items-center">
                 <i class="p-1 fab fa-amazon flex justify-start"></i>
@@ -38,6 +39,7 @@
                 </div>
               </div>
             </a>
+
           </div>
           <div id="titulo" class="w-full h-1/5 py-1 border-t border-blue-900 bg-blue-300 bg-opacity-40">
             <p @click="BookInformation(b.isbn)" class="text-center justify-self-center hover:font-bold font-sants cursor-pointer sm:text-base lg:text-lg px-2 pl-2" :aria-label="'más información de' + b.title">
@@ -46,7 +48,7 @@
           </div>
         </li>
       </ul>
-      <tailable-pagination class="bg-white bg-opacity-50 flex sm:hidden mt-3 justify-center" :limit="3" :data="books" @page-changed="getResults" :showNumbers="true" :hide-when-empty="true"></tailable-pagination>
+      <tailable-pagination class="bg-white bg-opacity-50 flex sm:hidden mt-3 justify-center" :limit="1" :data="books" @page-changed="getResults" :showNumbers="true" :hide-when-empty="true"></tailable-pagination>
     </div>
   </div>
 </template>

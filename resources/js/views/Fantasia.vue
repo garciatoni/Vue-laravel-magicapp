@@ -40,7 +40,7 @@
                     </div>
                     <div class="bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center">
                         <div class="p-2 sm:3/12">
-                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/816QLZKwmIL.jpg" alt="LibroPortada" @click="BookInformation(8445000667)" >
+                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/816QLZKwmIL.jpg" alt="LibroPortada" @click="BookInformation(15)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
                             <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/3hvJrv4">El Señor de los Anillos</a>
@@ -53,7 +53,7 @@
 
                     <div class="bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center">
                         <div class="p-2 sm:3/12">
-                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/51jZNYgcL+L.jpg" alt="LibroPortada" @click="BookInformation(8420471542)" >
+                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/51jZNYgcL+L.jpg" alt="LibroPortada" @click="BookInformation(11)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
                             <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/3ocsvLA">La Historia Interminable</a>
@@ -65,10 +65,10 @@
                     </div>
                     <div class="bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center">
                         <div class="p-2 sm:3/12">
-                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/71UBPNAvmAL.jpg" alt="LibroPortada" @click="BookInformation(8418174072)" >
+                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/71UBPNAvmAL.jpg" alt="LibroPortada" @click="BookInformation(9)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
-                            <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/3tNipls">Harry Potter</a>
+                            <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/3tNipls">Harry Potter y la Piedra Filosofal</a>
                             <a class="text-lg hover:text-red-800 focus:text-blue-500 focus:outline-none" target="_blanck" href="https://www.amazon.es/J.-K.-Rowling/e/B000AP9A6K?ref_=dbs_p_ebk_r00_abau_000000">(J. K. Rowling)</a>  
                             <p class="text-justify flex items-center justify-center">
                                 Instalado en casa de la horrible familia Dursley, en el número 4 de Privet Drive, donde duerme en una alacena bajo la escalera y a los once años nunca ha celebrado su cumpleaños, la magia es algo totalmente desconocido para Harry Potter.
@@ -77,7 +77,7 @@
                     </div>
                     <div class="bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center">
                         <div class="p-2 sm:3/12">
-                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/812AcWt+C2L.jpg" alt="LibroPortada" @click="BookInformation(8408099027)" >
+                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/812AcWt+C2L.jpg" alt="LibroPortada" @click="BookInformation(4)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
                             <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/3tJQ5R5">Las Crónicas de Narnia</a>

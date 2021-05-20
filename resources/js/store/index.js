@@ -8,7 +8,7 @@ const store = new Vuex.Store({
     state: {
         user: null,
         auth: false,
-        token: localStorage.getItem('token'),
+        token: sessionStorage.getItem('token'),
         politica: false
 
     },
@@ -29,7 +29,7 @@ const store = new Vuex.Store({
                 state.user = user;
                 state.auth = Boolean(user);
                 state.token = token;
-                localStorage.setItem('token', token);
+                sessionStorage.setItem('token', token);
 
             }).catch(() => {
                 console.log('fallo al logear');

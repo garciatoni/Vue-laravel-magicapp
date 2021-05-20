@@ -132,7 +132,7 @@ const router = new VueRouter({
 
 //Rutas privadas.
 function loggedIn() {
-    return localStorage.getItem('token');
+    return sessionStorage.getItem('token');
 }
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {

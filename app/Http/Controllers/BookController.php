@@ -33,17 +33,66 @@ class BookController extends Controller
      */
     public function create(Request $request)
     {
-        // $libro = DB::table('books')->where('isbn', '=', $request->isbn)->get();
-        // if (sizeof($libro) == 0) {
-        //     $book = new Book;
-        //     $book->isbn = $request->isbn;
-        //     $book->title = $request->title;
-        //     $book->author = $request->author;
-        //     $book->sinopsis = $request->sinopsis;
-        //     $book->cover = $request->cover;
-        //     $book->asin = $request->asin;
-        //     $book->link = $request->link;
-        //     $book->save();
+
+
+        $libro = DB::table('books')->where('asin', '=', $request->asin)->get();
+
+        if (empty($libro)) {
+
+            $book = new Book;
+
+
+            if (isset($request->title)) {
+                $book->title = $request->title;
+            }
+            if (isset($request->title_search)) {
+                $book->title_search = $request->title_search;
+            }
+            if (isset($request->cover)) {
+                $book->cover = $request->cover;
+            }
+            if (isset($request->asin)) {
+                $book->asin = $request->asin;
+            }
+            if (isset($request->link)) {
+                $book->link = $request->link;
+            }
+
+            if (isset($request->author)) {
+                $book->author = $request->author;
+            }
+            if (isset($request->sinopsis)) {
+                $book->sinopsis = $request->sinopsis;
+            }
+
+            $book->save();
+            return $book;
+
+        }else if (is_null($libro[0]->author) && is_null($libro[0]->sinopsis)) {
+
+            /*if (isset($request->title)) {
+                $libro[0]->title = $request->title;
+            }
+            if (isset($request->title_search)) {
+                $libro[0]->title_search = $request->title_search;
+            }
+            if (isset($request->cover)) {
+                $libro[0]->cover = $request->cover;
+            }
+            if (isset($request->author)) {
+                $libro[0]->author = $request->author;
+            }
+            if (isset($request->sinopsis)) {
+                $libro[0]->sinopsis = $request->sinopsis;
+            }*/
+
+            $book = DB::table('books')->where('asin', '=', $request->asin)->update(['title' => $request->title, 'title_search' => $request->title_search, 'cover' => $request->cover, 'author' => $request->author, 'sinopsis' => $request->sinopsis]);
+
+            return $libro;
+        }
+
+
+
         // } else {
         //     return 'Ya esta esta en la base de datos';
         // }
@@ -72,9 +121,9 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        
 
-        $find = DB::table('books')->where('title', 'LIKE', "%{$request->search}%")->get();
+
+        $find = DB::table('books')->where('title_search', 'LIKE', "%{$request->search}%")->get();
         return $find;
     }
 

@@ -1,7 +1,7 @@
 <template>
 <div class="py-5">
     <form @submit.prevent="EditUser" aria-label="editar datos del usuario">
-        <div class="mx-auto max-w-lg " v-if="vuex.auth" >
+        <div class="mx-auto max-w-lg" v-if="vuex.auth" >
             <h2 class="flex justify-center pb-6 font-bold text-xl">Editar datos</h2>
             <div class="space-y-5 bg-blue-600 bg-opacity-30 shadow-md p-8">
             <div class="py-1">
@@ -30,6 +30,14 @@
             </div>
         </div>
     </form>
+
+    <div class="border-t-2 mx-auto max-w-lg mt-5">
+        <h2 class="flex justify-center pb-6 font-bold text-xl py-5">Eliminar cuenta</h2>
+        <div class="space-y-5 bg-blue-600 bg-opacity-30 shadow-md p-8 flex justify-center items-center">
+            <button @click="eliminarCuenta" class="py-3 px-5 bg-red-500">Eliminar</button>
+        </div>
+
+    </div>
 </div>
 </template>
 
@@ -58,7 +66,7 @@ export default {
         EditUser(){
             let vuestore = this.$store.state
             axios.post('api/editUser/' + vuestore.user.id, this.formData).then((response) =>{
-                this.$store.commit("login", localStorage.getItem('token'))
+                this.$store.commit("login", sessionStorage.getItem('token'))
                 this.$swal( {
                     toast: true,
                     position: 'center',
@@ -77,6 +85,60 @@ export default {
                     title: 'Algo salió mal.',
                     icon: 'error',
                 });
+            })
+        },
+        eliminarCuenta(){
+            let vuestore = this.$store.state
+            this.$swal({
+                title: '¿Estas seguro?',
+                text: "¡No podras revertir esta acción!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, elimina la cuenta'
+            }).then((result) => {
+                if (result.isConfirmed){
+                    this.$swal({
+                        title: 'Introduce tu contraseña',
+                        input: 'password',
+                        inputLabel: 'Contraseña',
+                        inputPlaceholder: 'Introduce tu contraseña',
+                        showCloseButton: true,
+                    }).then((results) => {
+                        const password = {
+                            password: results.value,
+                        }
+                        const id = vuestore.user.id
+                        axios.post('api/DeleteUser/' + id, password).then((response) =>{
+                            this.$store.commit("SET_USER", null, false);
+                            sessionStorage.removeItem("token");
+                            if(localStorage.getItem('token') != null){
+                                localStorage.removeItem("token");
+                            }
+                            this.$router.push("/agarcia/LiberLogin/public/");
+                            this.$swal( {
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 2000,
+                                title: 'Cuenta eliminada.',
+                                icon: 'success',
+                            });
+                        })
+                        .catch(() =>{
+                            this.$swal( {
+                                toast: true,
+                                position: 'center',
+                                showConfirmButton: false,
+                                timer: 2000,
+                                title: 'Algo salió mal.',
+                                icon: 'error',
+                            });
+                        })
+
+                    })
+                }
             })
         }
     },

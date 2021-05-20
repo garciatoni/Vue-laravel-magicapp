@@ -37,7 +37,7 @@
                     </div>
                     <div class="bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center">
                         <div class="p-2 sm:3/12">
-                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/512PMMDA3GL.jpg" alt="LibroPortada" @click="BookInformation(974872431)" >
+                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/512PMMDA3GL.jpg" alt="LibroPortada" @click="BookInformation(2)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
                             <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/33Jt5Hn">El cuaderno de Noah</a>
@@ -50,7 +50,7 @@
 
                     <div class="bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center">
                         <div class="p-2 sm:3/12">
-                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/71uL0xUNDIL.jpg" alt="LibroPortada" @click="BookInformation(8416222630)" >
+                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/71uL0xUNDIL.jpg" alt="LibroPortada" @click="BookInformation(8)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
                             <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/2Rk6Sgh">La princesa prometida</a>
@@ -62,7 +62,7 @@
                     </div>
                     <div class="bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center">
                         <div class="p-2 sm:3/12">
-                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/71wnBzT9WqL.jpg" alt="LibroPortada" @click="BookInformation(8415618786)" >
+                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/71wnBzT9WqL.jpg" alt="LibroPortada" @click="BookInformation(7)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
                             <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/3fhD2Rv">Orgullo y prejuicio</a>
@@ -74,7 +74,7 @@
                     </div>
                     <div class="bg-white bg-opacity-25 border border-blue-400 flex flex-col sm:flex-row items-center sm:items-start text-center">
                         <div class="p-2 sm:3/12 sm:flex">
-                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/710Ub2sHyGL.jpg" alt="LibroPortada" @click="BookInformation(8491051104)" >
+                            <img class="w-36" src="https://images-na.ssl-images-amazon.com/images/I/710Ub2sHyGL.jpg" alt="LibroPortada" @click="BookInformation(27)" >
                         </div>
                         <div class="p-2 sm:w-9/12 flex flex-col items-center justify-center space-y-2">
                             <a class="text-2xl focus:text-blue-500 focus:outline-none" target="_blanck" href="https://amzn.to/3w4OtDa">La Letra Escarlata</a>

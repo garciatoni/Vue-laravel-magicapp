@@ -53,6 +53,7 @@ props: ['campo'],
     },
     methods: {
         searched(){
+            this.formData.search = (this.formData.search).toLowerCase()
             axios.post("api/search", this.formData).then((response) => {
                 this.books = response.data;
             });
@@ -64,7 +65,7 @@ props: ['campo'],
     },
     created(){
         const data = {
-            search: this.$route.params.campo
+            search: (this.$route.params.campo).toLowerCase()
         }
         axios.post("api/search", data).then((response) => {
             this.books = response.data;

@@ -37,11 +37,11 @@
 
                 <p v-if="puntuacion != 0" class="text-xl text-center flex items-center">{{puntuacion}}/5 según la comunidad de Liber.</p>
                 <p v-else class="text-xl text-center flex items-center">{{book.rating}}/5 según la comunidad de Liber.</p>
-                
+
                 <star-rating v-if="puntuacion == 0 && this.$store.state.auth" @rating-selected ="setRating" class="flex justify-center" :star-size="40" :read-only="false" v-model="rating.puntos" v-bind:show-rating="false"></star-rating>
 
                 <star-rating v-if="this.$store.state.auth && puntuacion != 0" @rating-selected ="setRating" class="flex justify-center" :star-size="40" :read-only="true" v-model="rating.puntos" v-bind:show-rating="false"></star-rating>
-                
+
             </div>
 
             <div v-if="vuex.auth" id="Comentario">
@@ -56,15 +56,15 @@
                 <p class="pl-1" > Si quieres participar en la maravillosa comunidad de Liber primero debes <router-link class="font-bold" :to="{ name: 'login' }">iniciar sesión.</router-link></p>
             </div>
 
-            <ul id="ComentaryList">
-                <li v-for="coment in comentarios" :key="coment.id" class="bg-opacity-70 bg-white py-1 my-1 border border-blue-500" :id="coment.id">
-                    <div class="flex flex-row justify-between font-bold">
+            <ul id="ComentaryList" class="space-y-3">
+                <li v-for="coment in comentarios" :key="coment.id" class="bg-opacity-70 bg-white my-1 border border-blue-500" :id="coment.id">
+                <!--<li v-for="coment in comentarios" :key="coment.id" class="py-1 my-3" :id="coment.id">-->
+                    <div class="flex flex-row justify-between py-2 font-bold bg-blue-300">
                         <p class="px-3 ">{{coment.name}}</p>
                     </div>
                     <div class="">
-                        <p class="px-3 py-1 text-justify">{{coment.texto_reseña}}</p>    
+                        <p class="px-3 py-1 text-justify">{{coment.texto_reseña}}</p>
                     </div>
-                    
                 </li>
             </ul>
         </div>
@@ -120,17 +120,31 @@ export default {
                     this.rating.puntos = this.puntuacion;
                 }
             }).catch((errors) => {
-                
+
             })
-            
+
         },
 
         SetFavorito(){
             let vuestore = this.$store.state;
             axios.post('api/SetWish/' + vuestore.user.id, this.id_libro).then((response)=>{
+                if(response.data == 'ya esta'){
+                    this.$swal( {
+                    toast: true,
+                    position: 'center',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    },
+                    icon: 'info',
+                    title: '¡Ya esta en tu lista!'
+                })
+                }else{
                 this.$swal( {
                     toast: true,
-                    position: 'top-end',
+                    position: 'center',
                     showConfirmButton: false,
                     timer: 2000,
                     didOpen: (toast) => {
@@ -138,14 +152,16 @@ export default {
                         toast.addEventListener('mouseleave', Swal.resumeTimer)
                     },
                     icon: 'success',
-                    title: 'Guardado!'
-                })
+                    title: '¡Guardado!'
+                })}
+            }).catch((errors) => {
+                console.log(errors);
             });
         },
     },
     created(){
         window.axios.defaults.headers.common['Authorization'] = `Bearer ${this.$store.state.token}`
-        axios.get('/api/user').then((res) => {   
+        axios.get('/api/user').then((res) => {
             var userId = res.data.id;
             let request = {
                 'id_libro': this.$route.params.isbn,
@@ -163,10 +179,11 @@ export default {
             this.formData.id_libro = response.data.book[0].isbn;
             this.id_libro.id_libro = response.data.book[0].isbn;
             this.rating.id_libro = response.data.book[0].isbn;
+            console.log(response.data.book[0].isbn)
         }).catch((errors) =>{
-           
+
         })
-    
+
     }
 };
 </script>

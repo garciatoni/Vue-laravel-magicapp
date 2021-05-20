@@ -48,10 +48,10 @@
               </div>
             </div>
             <div class="flex flex-row">
-              <router-link class="has-tooltip focus:opacity-50 focus:outline-none" :to="{ name: 'home' }" aria-label="pagina principal">
+              <div class="has-tooltip focus:opacity-50 focus:outline-none cursor-pointer" @click="asideButton('')" aria-label="pagina principal">
                 <i class="fas pl-2 fa-2x fa-home"></i>
                 <span class="tooltip bg-white border border-black px-2">Home</span>
-              </router-link>
+              </div>
               <div class="flex justify-between flex-row pl-7 has-tooltip relative">
                 <button class="focus:opacity-50 focus:outline-none" @click="logout" aria-label="desconectarse">
                   <i class="fas fa-2x fa-sign-out-alt"></i>
@@ -61,40 +61,38 @@
             </div>
           </div>
 
-        <div @click="isOpen = false" class="mb-2 mt-6 text-center border-gray-800 focus:bg-blue-300 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300">
-            <router-link :to="{ name: 'edicion' }" aria-label="editar perfil" @click="isOpen = false">
-                <span class="md:font-bold">Editar Perfil</span>
-            </router-link>
-        </div>
 
+          <div class="cursor-pointer mb-2 mt-6 text-center border-gray-800 focus:bg-blue-300 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300" @click="asideButton('edicion')" aria-label="editar perfil">
+            <span class="md:font-bold">Editar Perfil</span>
+          </div>
 
-          <router-link class="mt-2 mb-6 text-center border-gray-800 focus:bg-blue-300 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300" :to="{ name: 'wish' }" aria-label="libros deseados">
+          <div class="mt-2 mb-6 text-center border-gray-800 focus:bg-blue-300 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300 cursor-pointer" @click="asideButton('wish')" aria-label="libros deseados">
             <span class="md:font-bold">Libros deseados</span>
-          </router-link>
+          </div>
 
           <p class="flex lg:hidden justify-center border-t mx-2 pt-2 pb-2">
             Generos literarios
           </p>
 
-          <router-link class="lg:hidden my-1 text-center border-gray-800 focus:bg-blue-300 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300" :to="{ name: 'Terror' }" aria-label="terror">
+          <div class="lg:hidden my-1 text-center border-gray-800 focus:bg-blue-300 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300 cursor-pointer" @click="asideButton('Genero/Terror')" aria-label="terror">
             <span class="md:font-bold">Terror</span>
-          </router-link>
+          </div>
 
-          <router-link class="lg:hidden my-1 text-center border-gray-800 focus:bg-blue-300 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300" :to="{ name: 'Romance' }" aria-label="romance">
+          <div class="lg:hidden my-1 text-center border-gray-800 focus:bg-blue-300 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300 cursor-pointer" @click="asideButton('Genero/Romance')" aria-label="romance">
             <span class="md:font-bold">Romance</span>
-          </router-link>
+          </div>
 
-          <router-link class="lg:hidden my-1 text-center border-gray-800 focus:bg-blue-300 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300" :to="{ name: 'Fantasia' }" aria-label="fanstasía">
+          <div class="lg:hidden my-1 text-center border-gray-800 focus:bg-blue-300 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300 cursor-pointer" @click="asideButton('Genero/Fantasia')" aria-label="fanstasía">
             <span class="md:font-bold">Fantasia</span>
-          </router-link>
+          </div>
 
-          <router-link class="lg:hidden my-1 text-center border-gray-800 focus:bg-blue-300 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300" :to="{ name: 'cifi' }" aria-label="ciencia ficción">
+          <div class="lg:hidden my-1 text-center border-gray-800 focus:bg-blue-300 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300 cursor-pointer" @click="asideButton('Genero/cifi')" aria-label="ciencia ficción">
             <span class="md:font-bold">Ciencia ficción</span>
-          </router-link>
+          </div>
 
-          <router-link class="lg:hidden my-1 text-center border-gray-800 focus:bg-blue-300 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300" :to="{ name: 'Aventura' }" aria-label="aventura">
+          <div class="lg:hidden my-1 text-center border-gray-800 focus:bg-blue-300 focus:outline-none mx-5 bg-white p-2 border hover:border-blue-700 hover:text-black hover:bg-blue-300 cursor-pointer" @click="asideButton('Genero/Aventura')" aria-label="aventura">
             <span class="md:font-bold">Aventura</span>
-          </router-link>
+          </div>
         </div>
       </aside>
     </nav>
@@ -134,7 +132,12 @@ export default {
         .post("api/logout")
         .then(() => {
           this.$store.commit("SET_USER", null, false);
+          sessionStorage.removeItem("token");
+          
+        if(localStorage.getItem('token') != null){
           localStorage.removeItem("token");
+        }
+
           this.$router.push("/agarcia/LiberLogin/public/");
           this.$swal( {
             toast: true,
@@ -161,6 +164,10 @@ export default {
     UserEdition() {
       this.$router.push("/agarcia/LiberLogin/public/edicion/");
     },
+    asideButton(address){
+      this.$router.push("/agarcia/LiberLogin/public/" + address);
+      this.isOpen = false;
+    }
   },
   mounted() {
     document.addEventListener("keydown", (e) => {

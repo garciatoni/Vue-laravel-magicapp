@@ -31,6 +31,10 @@
                             <input v-model="formDataLogin.contraseña" type="password" class="focus:placeholder-gray-300 shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4" placeholder="Contraseña" aria-label="constraseña"/>
                             <span v-if="errorslogin.contraseña" class="text-red-500 font-bold">{{errorslogin.contraseña[0]}}</span>
                         </div>
+                        <div class="flex items-center flex-row-reverse justify-start md:flex-row">
+                            <input class="form-checkbox h-6 w-6" type="checkbox" id="remember" name="remember" v-model="checked">
+                            <label for="remember" class="px-2 text-lg">Recuérdame</label>
+                        </div>
                         <div class="">
                             <button type="submit" class="hover:bg-blue-400 focus:bg-blue-400 shadow-md border border-blue-400 bg-blue-200 focus:outline-none block w-full py-2 px-4">
                                 <p class="font-bold">Login</p>
@@ -109,13 +113,18 @@ export default {
 
             errorsemail:{},
             ventanaActiva: 1,
+            checked: false,
         }
     },
     methods: {
         login(){
+            console.log(this.checked)
             axios.post('api/login', this.formDataLogin).then((response) => {
-                this.$store.commit("login", response.data)
-                this.$router.push('/agarcia/LiberLogin/public/'),
+                this.$store.commit("login", response.data);
+                this.$router.push('/agarcia/LiberLogin/public/');
+                if (this.checked){
+                    localStorage.setItem('token', response.data);
+                }
                 this.$swal( {
                     toast: true,
                     position: 'top-end',
@@ -125,8 +134,7 @@ export default {
                         toast.addEventListener('mouseenter', Swal.stopTimer)
                         toast.addEventListener('mouseleave', Swal.resumeTimer)
                     },
-                    icon: 'success',
-                    title: 'Has iniciado sesión.'
+                    icon: '¡Bienvenido!'
                 })
             }).catch((errors) => {
                 this.errorslogin = errors.response.data.errors
@@ -187,6 +195,7 @@ export default {
                 });
             })
         },
+
         ventana(x){
             if(x == 1){
                 this.ventanaActiva = 1

@@ -114,4 +114,15 @@ class AuthController extends Controller
             ? back()->with(['status' => __($status)])
             : back()->withErrors(['email' => __($status)]);
     }
+    public function delete(Request $request, $id){
+        $request->validate([
+            'password'              => ['required', 'min:8'],
+        ]);
+
+        $user = User::find($id);
+        if (Hash::check($request->password, $user->password)) {
+            $user->delete();
+            return 0;
+        }
+    }
 }

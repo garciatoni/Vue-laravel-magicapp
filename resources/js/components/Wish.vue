@@ -67,7 +67,7 @@ export default {
                 }
                 this.$swal( {
                     toast: true,
-                    position: 'top-end',
+                    position: 'center',
                     showConfirmButton: false,
                     timer: 2000,
                     didOpen: (toast) => {
@@ -94,6 +94,8 @@ export default {
                 ((response.data).libros).forEach(element => {
                     (this.books).push(element[0])
                 });
+                console.log(this.books)
+
             }).catch((errors) =>{
 
             })
