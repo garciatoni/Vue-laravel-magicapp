@@ -101,6 +101,9 @@ export default {
         BookInformation(isbn) {
             this.$router.push('/agarcia/LiberLogin/public/book/' + isbn);
         },
+    },
+    mounted() {
+        window.scrollTo(0,0);
     }
 }
 

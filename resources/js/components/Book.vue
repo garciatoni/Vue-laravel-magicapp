@@ -37,11 +37,11 @@
 
                 <p v-if="puntuacion != 0" class="text-xl text-center flex items-center">{{puntuacion}}/5 según la comunidad de Liber.</p>
                 <p v-else class="text-xl text-center flex items-center">{{book.rating}}/5 según la comunidad de Liber.</p>
-
-                <star-rating v-if="puntuacion == 0 && this.$store.state.auth" @rating-selected ="setRating" class="flex justify-center" :star-size="40" :read-only="false" v-model="rating.puntos" v-bind:show-rating="false"></star-rating>
+                
+                <star-rating v-if="puntuacion == 0 && this.$store.state.auth" @rating-selected ="setRating" class="flex justify-center" :star-size="40" :read-only="false" v-bind:show-rating="false"></star-rating>
 
                 <star-rating v-if="this.$store.state.auth && puntuacion != 0" @rating-selected ="setRating" class="flex justify-center" :star-size="40" :read-only="true" v-model="rating.puntos" v-bind:show-rating="false"></star-rating>
-
+                
             </div>
 
             <div v-if="vuex.auth" id="Comentario">
@@ -63,8 +63,8 @@
                         <p class="px-3 ">{{coment.name}}</p>
                     </div>
                     <div class="">
-                        <p class="px-3 py-1 text-justify">{{coment.texto_reseña}}</p>
-                    </div>
+                        <p class="px-3 py-1 text-justify">{{coment.texto_reseña}}</p>    
+                    </div>  
                 </li>
             </ul>
         </div>
@@ -106,7 +106,7 @@ export default {
                     this.comentarios = response.data
                 })
             }).catch((errors) => {
-                c
+                
             })
             this.formData.texto_reseña  = "";
         },
@@ -120,31 +120,17 @@ export default {
                     this.rating.puntos = this.puntuacion;
                 }
             }).catch((errors) => {
-
+                
             })
-
+            
         },
 
         SetFavorito(){
             let vuestore = this.$store.state;
             axios.post('api/SetWish/' + vuestore.user.id, this.id_libro).then((response)=>{
-                if(response.data == 'ya esta'){
-                    this.$swal( {
-                    toast: true,
-                    position: 'center',
-                    showConfirmButton: false,
-                    timer: 2000,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    },
-                    icon: 'info',
-                    title: '¡Ya esta en tu lista!'
-                })
-                }else{
                 this.$swal( {
                     toast: true,
-                    position: 'center',
+                    position: 'top-end',
                     showConfirmButton: false,
                     timer: 2000,
                     didOpen: (toast) => {
@@ -152,16 +138,16 @@ export default {
                         toast.addEventListener('mouseleave', Swal.resumeTimer)
                     },
                     icon: 'success',
-                    title: '¡Guardado!'
-                })}
-            }).catch((errors) => {
-                console.log(errors);
+                    title: 'Guardado!'
+                })
             });
         },
     },
     created(){
+        window.scrollTo(0,0);
+
         window.axios.defaults.headers.common['Authorization'] = `Bearer ${this.$store.state.token}`
-        axios.get('/api/user').then((res) => {
+        axios.get('/api/user').then((res) => {   
             var userId = res.data.id;
             let request = {
                 'id_libro': this.$route.params.isbn,
@@ -174,16 +160,63 @@ export default {
             })
         }),
         axios.post('api/libro/' + this.$route.params.isbn).then((response) => {
-            this.book = response.data.book[0];
+
+            const informacion = response.data.book[0];
+
             this.comentarios = response.data.comentarios;
             this.formData.id_libro = response.data.book[0].isbn;
             this.id_libro.id_libro = response.data.book[0].isbn;
             this.rating.id_libro = response.data.book[0].isbn;
-            console.log(response.data.book[0].isbn)
+
+            if(informacion.author == null && informacion.sinopsis == null){
+                console.log("Te falta informaçao!");
+
+                const url = new URL('https://api.rainforestapi.com/request');
+
+                const params = {
+                    api_key: "F5FA69E2271C49858CDC658BA456FB1C",
+                    type: "product",
+                    amazon_domain: "amazon.es",
+                    asin: informacion.asin,
+                    language: "es_ES",
+                    output: "json",
+                    include_html: "false",
+                    associate_id: "liber0e-21"
+                }
+
+                url.search = new URLSearchParams(params).toString();
+
+                fetch(url)
+                    .then(data => data.json())
+                    .then(book => {
+                        console.log(book);
+                        
+                        const product = book.product;
+
+                        const bookData = {
+                            title: product.title,
+                            title_search: (product.title).toLowerCase(),
+                            cover: product.main_image.link,
+                            asin: product.asin,
+                            link: product.link,
+                            author: product.authors[0].name,
+                            sinopsis: product.book_description
+                        }
+
+                        axios.post('/api/newBook', bookData).then((resp)=>{
+                            this.book = resp.data[0];
+                            console.log(resp.data[0]);
+                            console.log(resp.data);
+                        })
+                    });
+
+            } else {
+                this.book = informacion;
+            }
         }).catch((errors) =>{
-
+           
         })
-
+    
     }
 };
 </script>

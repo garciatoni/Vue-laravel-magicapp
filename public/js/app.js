@@ -12,6 +12,34 @@ module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/
 
 /***/ }),
 
+/***/ "./node_modules/@inotom/vue-go-top/dist/vue-go-top.umd.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@inotom/vue-go-top/dist/vue-go-top.umd.js ***!
+  \****************************************************************/
+/***/ ((module) => {
+
+/*! @inotom/vue-go-top v1.3.0 inotom (http://www.serendip.ws/) | MIT */
+!function(t,e){ true?module.exports=e():0}(window,(function(){return function(t){var e={};function n(r){if(e[r])return e[r].exports;var o=e[r]={i:r,l:!1,exports:{}};return t[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}return n.m=t,n.c=e,n.d=function(t,e,r){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:r})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var o in t)n.d(r,o,function(e){return t[e]}.bind(null,o));return r},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="",n(n.s=60)}([function(t,e){t.exports=function(t){try{return!!t()}catch(t){return!0}}},function(t,e,n){(function(e){var n=function(t){return t&&t.Math==Math&&t};t.exports=n("object"==typeof globalThis&&globalThis)||n("object"==typeof window&&window)||n("object"==typeof self&&self)||n("object"==typeof e&&e)||Function("return this")()}).call(this,n(35))},function(t,e){var n={}.hasOwnProperty;t.exports=function(t,e){return n.call(t,e)}},function(t,e,n){var r=n(0);t.exports=!r((function(){return 7!=Object.defineProperty({},1,{get:function(){return 7}})[1]}))},function(t,e){t.exports=function(t){return"object"==typeof t?null!==t:"function"==typeof t}},function(t,e,n){var r=n(1),o=n(11).f,i=n(9),a=n(17),c=n(24),u=n(63),s=n(48);t.exports=function(t,e){var n,f,l,p,h,d=t.target,v=t.global,g=t.stat;if(n=v?r:g?r[d]||c(d,{}):(r[d]||{}).prototype)for(f in e){if(p=e[f],l=t.noTargetGet?(h=o(n,f))&&h.value:n[f],!s(v?f:d+(g?".":"#")+f,t.forced)&&void 0!==l){if(typeof p==typeof l)continue;u(p,l)}(t.sham||l&&l.sham)&&i(p,"sham",!0),a(n,f,p,t)}}},function(t,e,n){var r=n(3),o=n(38),i=n(7),a=n(13),c=Object.defineProperty;e.f=r?c:function(t,e,n){if(i(t),e=a(e,!0),i(n),o)try{return c(t,e,n)}catch(t){}if("get"in n||"set"in n)throw TypeError("Accessors not supported");return"value"in n&&(t[e]=n.value),t}},function(t,e,n){var r=n(4);t.exports=function(t){if(!r(t))throw TypeError(String(t)+" is not an object");return t}},function(t,e,n){var r=n(37),o=n(12);t.exports=function(t){return r(o(t))}},function(t,e,n){var r=n(3),o=n(6),i=n(15);t.exports=r?function(t,e,n){return o.f(t,e,i(1,n))}:function(t,e,n){return t[e]=n,t}},function(t,e,n){var r=n(1),o=n(26),i=n(2),a=n(27),c=n(29),u=n(49),s=o("wks"),f=r.Symbol,l=u?f:f&&f.withoutSetter||a;t.exports=function(t){return i(s,t)||(c&&i(f,t)?s[t]=f[t]:s[t]=l("Symbol."+t)),s[t]}},function(t,e,n){var r=n(3),o=n(36),i=n(15),a=n(8),c=n(13),u=n(2),s=n(38),f=Object.getOwnPropertyDescriptor;e.f=r?f:function(t,e){if(t=a(t),e=c(e,!0),s)try{return f(t,e)}catch(t){}if(u(t,e))return i(!o.f.call(t,e),t[e])}},function(t,e){t.exports=function(t){if(null==t)throw TypeError("Can't call method on "+t);return t}},function(t,e,n){var r=n(4);t.exports=function(t,e){if(!r(t))return t;var n,o;if(e&&"function"==typeof(n=t.toString)&&!r(o=n.call(t)))return o;if("function"==typeof(n=t.valueOf)&&!r(o=n.call(t)))return o;if(!e&&"function"==typeof(n=t.toString)&&!r(o=n.call(t)))return o;throw TypeError("Can't convert object to primitive value")}},function(t,e,n){var r=n(12);t.exports=function(t){return Object(r(t))}},function(t,e){t.exports=function(t,e){return{enumerable:!(1&t),configurable:!(2&t),writable:!(4&t),value:e}}},function(t,e){var n={}.toString;t.exports=function(t){return n.call(t).slice(8,-1)}},function(t,e,n){var r=n(1),o=n(9),i=n(2),a=n(24),c=n(40),u=n(42),s=u.get,f=u.enforce,l=String(String).split("String");(t.exports=function(t,e,n,c){var u=!!c&&!!c.unsafe,s=!!c&&!!c.enumerable,p=!!c&&!!c.noTargetGet;"function"==typeof n&&("string"!=typeof e||i(n,"name")||o(n,"name",e),f(n).source=l.join("string"==typeof e?e:"")),t!==r?(u?!p&&t[e]&&(s=!0):delete t[e],s?t[e]=n:o(t,e,n)):s?t[e]=n:a(e,n)})(Function.prototype,"toString",(function(){return"function"==typeof this&&s(this).source||c(this)}))},function(t,e){t.exports={}},function(t,e,n){var r=n(45),o=n(1),i=function(t){return"function"==typeof t?t:void 0};t.exports=function(t,e){return arguments.length<2?i(r[t])||i(o[t]):r[t]&&r[t][e]||o[t]&&o[t][e]}},function(t,e,n){var r=n(46),o=n(28).concat("length","prototype");e.f=Object.getOwnPropertyNames||function(t){return r(t,o)}},function(t,e,n){var r=n(22),o=Math.min;t.exports=function(t){return t>0?o(r(t),9007199254740991):0}},function(t,e){var n=Math.ceil,r=Math.floor;t.exports=function(t){return isNaN(t=+t)?0:(t>0?r:n)(t)}},function(t,e,n){var r=n(97),o=n(98);"string"==typeof(o=o.__esModule?o.default:o)&&(o=[[t.i,o,""]]);var i={insert:"head",singleton:!1},a=(r(o,i),o.locals?o.locals:{});t.exports=a},function(t,e,n){var r=n(1),o=n(9);t.exports=function(t,e){try{o(r,t,e)}catch(n){r[t]=e}return e}},function(t,e,n){var r=n(26),o=n(27),i=r("keys");t.exports=function(t){return i[t]||(i[t]=o(t))}},function(t,e,n){var r=n(43),o=n(41);(t.exports=function(t,e){return o[t]||(o[t]=void 0!==e?e:{})})("versions",[]).push({version:"3.6.4",mode:r?"pure":"global",copyright:"© 2020 Denis Pushkarev (zloirock.ru)"})},function(t,e){var n=0,r=Math.random();t.exports=function(t){return"Symbol("+String(void 0===t?"":t)+")_"+(++n+r).toString(36)}},function(t,e){t.exports=["constructor","hasOwnProperty","isPrototypeOf","propertyIsEnumerable","toLocaleString","toString","valueOf"]},function(t,e,n){var r=n(0);t.exports=!!Object.getOwnPropertySymbols&&!r((function(){return!String(Symbol())}))},function(t,e,n){var r=n(16);t.exports=Array.isArray||function(t){return"Array"==r(t)}},function(t,e,n){var r=n(46),o=n(28);t.exports=Object.keys||function(t){return r(t,o)}},function(t,e,n){var r=n(71),o=n(37),i=n(14),a=n(21),c=n(52),u=[].push,s=function(t){var e=1==t,n=2==t,s=3==t,f=4==t,l=6==t,p=5==t||l;return function(h,d,v,g){for(var y,m,b=i(h),x=o(b),w=r(d,v,3),S=a(x.length),O=0,E=g||c,_=e?E(h,S):n?E(h,0):void 0;S>O;O++)if((p||O in x)&&(m=w(y=x[O],O,b),t))if(e)_[O]=m;else if(m)switch(t){case 3:return!0;case 5:return y;case 6:return O;case 2:u.call(_,y)}else if(f)return!1;return l?-1:s||f?f:_}};t.exports={forEach:s(0),map:s(1),filter:s(2),some:s(3),every:s(4),find:s(5),findIndex:s(6)}},function(t,e,n){"use strict";var r,o,i=n(87),a=n(88),c=RegExp.prototype.exec,u=String.prototype.replace,s=c,f=(r=/a/,o=/b*/g,c.call(r,"a"),c.call(o,"a"),0!==r.lastIndex||0!==o.lastIndex),l=a.UNSUPPORTED_Y||a.BROKEN_CARET,p=void 0!==/()??/.exec("")[1];(f||p||l)&&(s=function(t){var e,n,r,o,a=this,s=l&&a.sticky,h=i.call(a),d=a.source,v=0,g=t;return s&&(-1===(h=h.replace("y","")).indexOf("g")&&(h+="g"),g=String(t).slice(a.lastIndex),a.lastIndex>0&&(!a.multiline||a.multiline&&"\n"!==t[a.lastIndex-1])&&(d="(?: "+d+")",g=" "+g,v++),n=new RegExp("^(?:"+d+")",h)),p&&(n=new RegExp("^"+d+"$(?!\\s)",h)),f&&(e=a.lastIndex),r=c.call(s?n:a,g),s?r?(r.input=r.input.slice(v),r[0]=r[0].slice(v),r.index=a.lastIndex,a.lastIndex+=r[0].length):a.lastIndex=0:f&&r&&(a.lastIndex=a.global?r.index+r[0].length:e),p&&r&&r.length>1&&u.call(r[0],n,(function(){for(o=1;o<arguments.length-2;o++)void 0===arguments[o]&&(r[o]=void 0)})),r}),t.exports=s},function(t,e,n){"use strict";n(61),n(73),n(75),n(76),n(78),n(84),n(85),n(86),n(58),n(89),n(94);function r(t,e,n,r){var o,i=!1,a=0;function c(){o&&clearTimeout(o)}function u(){var u=this,s=Date.now()-a,f=arguments;function l(){a=Date.now(),n.apply(u,f)}function p(){o=void 0}i||(r&&!o&&l(),c(),void 0===r&&s>t?l():!0!==e&&(o=setTimeout(r?p:l,void 0===r?t-s:t)))}return"boolean"!=typeof e&&(r=n,n=e,e=void 0),u.cancel=function(){c(),i=!0},u}var o=n(59);function i(t,e){var n=Object.keys(t);if(Object.getOwnPropertySymbols){var r=Object.getOwnPropertySymbols(t);e&&(r=r.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),n.push.apply(n,r)}return n}function a(t){for(var e=1;e<arguments.length;e++){var n=null!=arguments[e]?arguments[e]:{};e%2?i(Object(n),!0).forEach((function(e){c(t,e,n[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(n)):i(Object(n)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(n,e))}))}return t}function c(t,e,n){return e in t?Object.defineProperty(t,e,{value:n,enumerable:!0,configurable:!0,writable:!0}):t[e]=n,t}var u=function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"px";return"number"==typeof t?t+e:t},s=new(n.n(o).a),f={props:{size:{type:Number,default:70},right:{type:[String,Number],default:50},bottom:{type:[String,Number],default:100},bottomGap:{type:[String,Number],default:0},zIndex:{type:Number,default:1e3},fgColor:{type:String,default:"#ffffff"},bgColor:{type:String,default:"#ffc966"},radius:{type:[String,Number],default:"50%"},weight:{type:String,default:"normal"},rippleBg:{type:String,default:"rgba(255, 255, 255, .5)"},boundary:{type:Number,default:200},maxWidth:{type:Number,default:640},src:{type:String,default:null},alt:{type:String,default:""},hasOutline:{type:Boolean,default:!0},boxShadow:{type:String,default:"1px 1px 2px rgba(0, 0, 0, .3)"},tabindex:{type:Number,default:0}},data:function(){var t=this.hasOutline?{}:{outline:"0 none"};return{enabled:!1,isActive:!1,isRippleActive:!1,mainStyle:a({width:u(this.size),height:u(this.size),right:u(this.right),bottom:"calc(".concat(u(this.bottom)," - ").concat(u(this.bottomGap),")"),zIndex:this.zIndex,color:this.fgColor,backgroundColor:this.bgColor,backgroundImage:this.bgImage(),backgroundSize:"".concat(this.size," auto"),boxShadow:this.boxShadow,opacity:this.opacity,borderRadius:u(this.radius)},t),rippleStyle:{top:u(-this.size),left:u(-this.size),width:"200%",height:"200%",backgroundColor:this.rippleBg},throttleScroll:null,throttleResize:null}},created:function(){this.handleResize(),this.throttleScroll=r(100,this.handleScroll),this.throttleResize=r(100,this.handleResize),window.addEventListener("resize",this.throttleResize),window.addEventListener("scroll",this.throttleScroll)},beforeDestroy:function(){this.throttleResize&&window.removeEventListener("resize",this.throttleResize),this.throttleScroll&&window.removeEventListener("scroll",this.throttleScroll)},methods:{clickHandle:function(t){var e=this;if(!this.isRippleActive){var n=t.target;if(n){var r=n.getBoundingClientRect(),o=t.clientY-r.top,i=t.clientX-r.left;this.rippleStyle.top=u(o-this.size),this.rippleStyle.left=u(i-this.size)}this.isRippleActive=!0,setTimeout((function(){e.isRippleActive=!1}),750)}s.to(0)},handleScroll:function(){this.isActive=window.pageYOffset>this.boundary},handleResize:function(){this.maxWidth>0?this.enabled=!window.matchMedia("(max-width: ".concat(this.maxWidth,"px)")).matches:this.enabled=!0},keyEnter:function(t){13!==t.keyCode&&32!==t.keyCode||s.to(0)},bgImage:function(){return null!==this.src?"none":'url("'.concat((t=this.weight,e=this.fgColor,n=e.replace(/^#/,""),"bold"===t?"data:image/svg+xml;charset=utf8, %3Csvg version=%271.1%27 xmlns=%27http://www.w3.org/2000/svg%27 width=%2710px%27 height=%2710px%27%3E %3Cpolygon fill=%27%23"+n+"%27 stroke=%27none%27 points=%278.646,7.354 5,3.707 1.354,7.354 0.646,6.646 5,2.293 9.354,6.646%27 /%3E %3C/svg%3E":"data:image/svg+xml;charset=utf8,%3Csvg version=%271.1%27 xmlns=%27http://www.w3.org/2000/svg%27 width=%2710px%27 height=%2710px%27%3E %3Cpolygon fill=%27%23"+n+"%27 stroke=%27none%27 points=%278.589,6.945 5,3.22 1.413,6.945 1.052,6.598 5,2.499 8.948,6.598%27 /%3E %3C/svg%3E"),'")');var t,e,n}}};n(96);var l=function(t,e,n,r,o,i,a,c){var u,s="function"==typeof t?t.options:t;if(e&&(s.render=e,s.staticRenderFns=n,s._compiled=!0),r&&(s.functional=!0),i&&(s._scopeId="data-v-"+i),a?(u=function(t){(t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),o&&o.call(this,t),t&&t._registeredComponents&&t._registeredComponents.add(a)},s._ssrRegister=u):o&&(u=c?function(){o.call(this,this.$root.$options.shadowRoot)}:o),u)if(s.functional){s._injectStyles=u;var f=s.render;s.render=function(t,e){return u.call(e),f(t,e)}}else{var l=s.beforeCreate;s.beforeCreate=l?[].concat(l,u):[u]}return{exports:t,options:s}}(f,(function(){var t=this,e=t.$createElement,n=t._self._c||e;return n("transition",{attrs:{name:"vue-go-top"}},[t.isActive&&t.enabled?n("div",{staticClass:"vue-go-top",style:t.mainStyle,attrs:{role:"button",tabindex:t.tabindex},on:{click:function(e){return e.preventDefault(),t.clickHandle(e)},keydown:function(e){return e.preventDefault(),t.keyEnter(e)}}},[null!==t.src?n("div",{staticClass:"vue-go-top__icon"},[n("img",{staticClass:"vue-go-top__image",attrs:{src:t.src,alt:t.alt}}),t._v(" "),n("div",{staticClass:"vue-go-top__ripple",style:t.rippleStyle,attrs:{"is-active":t.isRippleActive}})]):n("div",{staticClass:"vue-go-top__content"},[n("div",{staticClass:"vue-go-top__ripple",style:t.rippleStyle,attrs:{"is-active":t.isRippleActive}}),t._v(" "),t._t("default")],2)]):t._e()])}),[],!1,null,"0c20a6ee",null);e.a=l.exports},function(t,e){var n;n=function(){return this}();try{n=n||new Function("return this")()}catch(t){"object"==typeof window&&(n=window)}t.exports=n},function(t,e,n){"use strict";var r={}.propertyIsEnumerable,o=Object.getOwnPropertyDescriptor,i=o&&!r.call({1:2},1);e.f=i?function(t){var e=o(this,t);return!!e&&e.enumerable}:r},function(t,e,n){var r=n(0),o=n(16),i="".split;t.exports=r((function(){return!Object("z").propertyIsEnumerable(0)}))?function(t){return"String"==o(t)?i.call(t,""):Object(t)}:Object},function(t,e,n){var r=n(3),o=n(0),i=n(39);t.exports=!r&&!o((function(){return 7!=Object.defineProperty(i("div"),"a",{get:function(){return 7}}).a}))},function(t,e,n){var r=n(1),o=n(4),i=r.document,a=o(i)&&o(i.createElement);t.exports=function(t){return a?i.createElement(t):{}}},function(t,e,n){var r=n(41),o=Function.toString;"function"!=typeof r.inspectSource&&(r.inspectSource=function(t){return o.call(t)}),t.exports=r.inspectSource},function(t,e,n){var r=n(1),o=n(24),i=r["__core-js_shared__"]||o("__core-js_shared__",{});t.exports=i},function(t,e,n){var r,o,i,a=n(62),c=n(1),u=n(4),s=n(9),f=n(2),l=n(25),p=n(18),h=c.WeakMap;if(a){var d=new h,v=d.get,g=d.has,y=d.set;r=function(t,e){return y.call(d,t,e),e},o=function(t){return v.call(d,t)||{}},i=function(t){return g.call(d,t)}}else{var m=l("state");p[m]=!0,r=function(t,e){return s(t,m,e),e},o=function(t){return f(t,m)?t[m]:{}},i=function(t){return f(t,m)}}t.exports={set:r,get:o,has:i,enforce:function(t){return i(t)?o(t):r(t,{})},getterFor:function(t){return function(e){var n;if(!u(e)||(n=o(e)).type!==t)throw TypeError("Incompatible receiver, "+t+" required");return n}}}},function(t,e){t.exports=!1},function(t,e,n){var r=n(19),o=n(20),i=n(47),a=n(7);t.exports=r("Reflect","ownKeys")||function(t){var e=o.f(a(t)),n=i.f;return n?e.concat(n(t)):e}},function(t,e,n){var r=n(1);t.exports=r},function(t,e,n){var r=n(2),o=n(8),i=n(64).indexOf,a=n(18);t.exports=function(t,e){var n,c=o(t),u=0,s=[];for(n in c)!r(a,n)&&r(c,n)&&s.push(n);for(;e.length>u;)r(c,n=e[u++])&&(~i(s,n)||s.push(n));return s}},function(t,e){e.f=Object.getOwnPropertySymbols},function(t,e,n){var r=n(0),o=/#|\.prototype\./,i=function(t,e){var n=c[a(t)];return n==s||n!=u&&("function"==typeof e?r(e):!!e)},a=i.normalize=function(t){return String(t).replace(o,".").toLowerCase()},c=i.data={},u=i.NATIVE="N",s=i.POLYFILL="P";t.exports=i},function(t,e,n){var r=n(29);t.exports=r&&!Symbol.sham&&"symbol"==typeof Symbol.iterator},function(t,e,n){var r,o=n(7),i=n(66),a=n(28),c=n(18),u=n(67),s=n(39),f=n(25),l=f("IE_PROTO"),p=function(){},h=function(t){return"<script>"+t+"<\/script>"},d=function(){try{r=document.domain&&new ActiveXObject("htmlfile")}catch(t){}var t,e;d=r?function(t){t.write(h("")),t.close();var e=t.parentWindow.Object;return t=null,e}(r):((e=s("iframe")).style.display="none",u.appendChild(e),e.src=String("javascript:"),(t=e.contentWindow.document).open(),t.write(h("document.F=Object")),t.close(),t.F);for(var n=a.length;n--;)delete d.prototype[a[n]];return d()};c[l]=!0,t.exports=Object.create||function(t,e){var n;return null!==t?(p.prototype=o(t),n=new p,p.prototype=null,n[l]=t):n=d(),void 0===e?n:i(n,e)}},function(t,e,n){var r=n(10);e.f=r},function(t,e,n){var r=n(4),o=n(30),i=n(10)("species");t.exports=function(t,e){var n;return o(t)&&("function"!=typeof(n=t.constructor)||n!==Array&&!o(n.prototype)?r(n)&&null===(n=n[i])&&(n=void 0):n=void 0),new(void 0===n?Array:n)(0===e?0:e)}},function(t,e,n){"use strict";var r=n(13),o=n(6),i=n(15);t.exports=function(t,e,n){var a=r(e);a in t?o.f(t,a,i(0,n)):t[a]=n}},function(t,e,n){var r=n(0),o=n(10),i=n(55),a=o("species");t.exports=function(t){return i>=51||!r((function(){var e=[];return(e.constructor={})[a]=function(){return{foo:1}},1!==e[t](Boolean).foo}))}},function(t,e,n){var r,o,i=n(1),a=n(74),c=i.process,u=c&&c.versions,s=u&&u.v8;s?o=(r=s.split("."))[0]+r[1]:a&&(!(r=a.match(/Edge\/(\d+)/))||r[1]>=74)&&(r=a.match(/Chrome\/(\d+)/))&&(o=r[1]),t.exports=o&&+o},function(t,e,n){var r=n(3),o=n(0),i=n(2),a=Object.defineProperty,c={},u=function(t){throw t};t.exports=function(t,e){if(i(c,t))return c[t];e||(e={});var n=[][t],s=!!i(e,"ACCESSORS")&&e.ACCESSORS,f=i(e,0)?e[0]:u,l=i(e,1)?e[1]:void 0;return c[t]=!!n&&!o((function(){if(s&&!r)return!0;var t={length:-1};s?a(t,1,{enumerable:!0,get:u}):t[1]=1,n.call(t,f,l)}))}},function(t,e,n){"use strict";var r=n(32).forEach,o=n(77),i=n(56),a=o("forEach"),c=i("forEach");t.exports=a&&c?[].forEach:function(t){return r(this,t,arguments.length>1?arguments[1]:void 0)}},function(t,e,n){"use strict";var r=n(5),o=n(33);r({target:"RegExp",proto:!0,forced:/./.exec!==o},{exec:o})},function(t,e,n){
+/*! @preserve sweet-scroll v4.0.0 - tsuyoshiwada | MIT License */
+t.exports=function(){"use strict";
+/*! *****************************************************************************
+    Copyright (c) Microsoft Corporation. All rights reserved.
+    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+    this file except in compliance with the License. You may obtain a copy of the
+    License at http://www.apache.org/licenses/LICENSE-2.0
+
+    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+    MERCHANTABLITY OR NON-INFRINGEMENT.
+
+    See the Apache Version 2.0 License for specific language governing permissions
+    and limitations under the License.
+    ***************************************************************************** */var t=function(){return(t=Object.assign||function(t){for(var e,n=1,r=arguments.length;n<r;n++)for(var o in e=arguments[n])Object.prototype.hasOwnProperty.call(e,o)&&(t[o]=e[o]);return t}).apply(this,arguments)},e=!("undefined"==typeof window||!window.document||!window.document.createElement),n=!!e&&window.history&&"pushState"in window.history&&"file:"!==window.location.protocol,r=function(){var t=!1;if(!e)return t;try{var n=window,r=Object.defineProperty({},"passive",{get:function(){t=!0}});n.addEventListener("test",null,r),n.removeEventListener("test",null,r)}catch(t){}return t}(),o=function(t){return"string"==typeof t},i=function(t){return"function"==typeof t},a=function(t){return Array.isArray(t)},c=function(t,e){return t&&t.hasOwnProperty(e)},u=e?window.requestAnimationFrame.bind(window):null,s=e?window.cancelAnimationFrame.bind(window):null,f=Math.cos,l=Math.sin,p=Math.pow,h=Math.sqrt,d=Math.PI,v={linear:function(t){return t},easeInQuad:function(t,e,n,r,o){return r*(e/=o)*e+n},easeOutQuad:function(t,e,n,r,o){return-r*(e/=o)*(e-2)+n},easeInOutQuad:function(t,e,n,r,o){return(e/=o/2)<1?r/2*e*e+n:-r/2*(--e*(e-2)-1)+n},easeInCubic:function(t,e,n,r,o){return r*(e/=o)*e*e+n},easeOutCubic:function(t,e,n,r,o){return r*((e=e/o-1)*e*e+1)+n},easeInOutCubic:function(t,e,n,r,o){return(e/=o/2)<1?r/2*e*e*e+n:r/2*((e-=2)*e*e+2)+n},easeInQuart:function(t,e,n,r,o){return r*(e/=o)*e*e*e+n},easeOutQuart:function(t,e,n,r,o){return-r*((e=e/o-1)*e*e*e-1)+n},easeInOutQuart:function(t,e,n,r,o){return(e/=o/2)<1?r/2*e*e*e*e+n:-r/2*((e-=2)*e*e*e-2)+n},easeInQuint:function(t,e,n,r,o){return r*(e/=o)*e*e*e*e+n},easeOutQuint:function(t,e,n,r,o){return r*((e=e/o-1)*e*e*e*e+1)+n},easeInOutQuint:function(t,e,n,r,o){return(e/=o/2)<1?r/2*e*e*e*e*e+n:r/2*((e-=2)*e*e*e*e+2)+n},easeInSine:function(t,e,n,r,o){return-r*f(e/o*(d/2))+r+n},easeOutSine:function(t,e,n,r,o){return r*l(e/o*(d/2))+n},easeInOutSine:function(t,e,n,r,o){return-r/2*(f(d*e/o)-1)+n},easeInExpo:function(t,e,n,r,o){return 0===e?n:r*p(2,10*(e/o-1))+n},easeOutExpo:function(t,e,n,r,o){return e===o?n+r:r*(1-p(2,-10*e/o))+n},easeInOutExpo:function(t,e,n,r,o){return 0===e?n:e===o?n+r:(e/=o/2)<1?r/2*p(2,10*(e-1))+n:r/2*(2-p(2,-10*--e))+n},easeInCirc:function(t,e,n,r,o){return-r*(h(1-(e/=o)*e)-1)+n},easeOutCirc:function(t,e,n,r,o){return r*h(1-(e=e/o-1)*e)+n},easeInOutCirc:function(t,e,n,r,o){return(e/=o/2)<1?-r/2*(h(1-e*e)-1)+n:r/2*(h(1-(e-=2)*e)+1)+n}},g=function(t){return Array.prototype.slice.call(t?document.querySelectorAll(t):[])},y=function(t){return g(t).shift()||null},m=function(t){return t instanceof Element},b=function(t){return t===window},x=function(t){return t===document.documentElement||t===document.body},w=function(t,e){if(m(e))return t===e;for(var n=g(e),r=n.length;--r>=0&&n[r]!==t;);return r>-1},S=function(t){return Math.max(t.scrollHeight,t.clientHeight,t.offsetHeight)},O=function(t){return Math.max(t.scrollWidth,t.clientWidth,t.offsetWidth)},E=function(t){return{width:O(t),height:S(t)}},_={y:"scrollTop",x:"scrollLeft"},C={y:"pageYOffset",x:"pageXOffset"},j=function(t,e){return b(t)?t[C[e]]:t[_[e]]},I=function(t,e,n){if(b(t)){var r="y"===n;t.scrollTo(r?t.pageXOffset:e,r?e:t.pageYOffset)}else t[_[n]]=e},P=function(t,e){var n=t.getBoundingClientRect();if(n.width||n.height){var r={top:0,left:0},o=void 0;if(b(e)||x(e))o=document.documentElement,r.top=window[C.y],r.left=window[C.x];else{var i=(o=e).getBoundingClientRect();r.top=-1*i.top+o[_.y],r.left=-1*i.left+o[_.x]}return{top:n.top+r.top-o.clientTop,left:n.left+r.left-o.clientLeft}}return n},T=e?"onwheel"in document?"wheel":"mousewheel":"wheel",A=function(t,e,n,o,i){n.split(" ").forEach((function(n){t[e](function(t){return"wheel"===t?T:t}(n),o,!!r&&{passive:i})}))},R=function(t,e,n,r){return A(t,"addEventListener",e,n,r)},k=function(t,e,n,r){return A(t,"removeEventListener",e,n,r)},N=/^(\+|-)=(\d+(?:\.\d+)?)$/,M=function(e,n){var r,i={top:0,left:0,relative:!1};if(c(e,"top")||c(e,"left"))i=t({},i,e);else if(a(e))if(e.length>1)i.top=e[0],i.left=e[1];else{if(1!==e.length)return null;i.top=n?e[0]:0,i.left=n?0:e[0]}else if(!a(r=e)&&r-parseFloat(r)+1>=0)n?i.top=e:i.left=e;else{if(!o(e))return null;var u=e.trim().match(N);if(!u)return null;var s=u[1],f=parseInt(u[2],10);"+"===s?(i.top=n?f:0,i.left=n?0:f):(i.top=n?-f:0,i.left=n?0:-f),i.relative=!0}return i},L={trigger:"[data-scroll]",header:"[data-scroll-header]",duration:1e3,easing:"easeOutQuint",offset:0,vertical:!0,horizontal:!1,cancellable:!0,updateURL:!1,preventDefault:!0,stopPropagation:!0,before:null,after:null,cancel:null,complete:null,step:null};return function(){function r(n,o){var i=this;this.$el=null,this.ctx={$trigger:null,opts:null,progress:!1,pos:null,startPos:null,easing:null,start:0,id:0,cancel:!1,hash:null},this.loop=function(t){var e=i,n=e.$el,o=e.ctx;if(o.start||(o.start=t),o.progress&&n){var a=o.opts,c=o.pos,u=o.start,s=o.startPos,f=o.easing,l=a.duration,p={top:"y",left:"x"},h=t-u,d=Math.min(1,Math.max(h/l,0));Object.keys(c).forEach((function(t){var e=c[t],r=s[t],o=e-r;if(0!==o){var i=f(d,l*d,0,1,l);I(n,Math.round(r+o*i),p[t])}})),h<=l?(i.hook(a,"step",d),o.id=r.raf(i.loop)):i.stop(!0)}else i.stop()},this.handleClick=function(e){for(var n=i.opts,r=e.target;r&&r!==document;r=r.parentNode)if(w(r,n.trigger)){var o=JSON.parse(r.getAttribute("data-scroll-options")||"{}"),a=r.getAttribute("data-scroll")||r.getAttribute("href"),c=t({},n,o),u=c.preventDefault,s=c.stopPropagation,f=c.vertical,l=c.horizontal;u&&e.preventDefault(),s&&e.stopPropagation(),i.ctx.$trigger=r,l&&f?i.to(a,c):f?i.toTop(a,c):l&&i.toLeft(a,c);break}},this.handleStop=function(t){var e=i.ctx,n=e.opts;n&&n.cancellable?(e.cancel=!0,i.stop()):t.preventDefault()},this.opts=t({},L,n||{});var a=null;e&&(a="string"==typeof o?y(o):null!=o?o:window),this.$el=a,a&&this.bind(!0,!1)}return r.create=function(t,e){return new r(t,e)},r.prototype.to=function(n,r){if(e){var i=this.$el,a=this.ctx,c=this.opts,u=a.$trigger,s=t({},c,r||{}),f=s.offset,l=s.vertical,p=s.horizontal,h=m(s.header)?s.header:y(s.header),d=o(n)&&/^#/.test(n)?n:null;if(a.opts=s,a.cancel=!1,a.hash=d,this.stop(),i){var v=M(f,l),g=M(n,l),w={top:0,left:0};if(g)if(g.relative){var _=j(i,l?"y":"x");w.top=l?_+g.top:g.top,w.left=l?g.left:_+g.left}else w=g;else if(o(n)&&"#"!==n){var C=y(n);if(!C)return;w=P(C,i)}v&&(w.top+=v.top,w.left+=v.left),h&&(w.top=Math.max(0,w.top-E(h).height));var I=function(t){var e=b(t)||x(t);return{viewport:{width:e?Math.min(window.innerWidth,document.documentElement.clientWidth):t.clientWidth,height:e?window.innerHeight:t.clientHeight},size:e?{width:Math.max(O(document.body),O(document.documentElement)),height:Math.max(S(document.body),S(document.documentElement))}:E(t)}}(i),T=I.viewport,A=I.size;w.top=l?Math.max(0,Math.min(A.height-T.height,w.top)):j(i,"y"),w.left=p?Math.max(0,Math.min(A.width-T.width,w.left)):j(i,"x"),!1!==this.hook(s,"before",w,u)?(a.pos=w,this.start(s),this.bind(!1,!0)):a.opts=null}}},r.prototype.toTop=function(e,n){this.to(e,t({},n||{},{vertical:!0,horizontal:!1}))},r.prototype.toLeft=function(e,n){this.to(e,t({},n||{},{vertical:!1,horizontal:!0}))},r.prototype.toElement=function(t,n){var r=this.$el;e&&r&&this.to(P(t,r),n||{})},r.prototype.stop=function(t){void 0===t&&(t=!1);var e=this.$el,n=this.ctx,o=n.pos;e&&n.progress&&(r.caf(n.id),n.progress=!1,n.start=0,n.id=0,t&&o&&(I(e,o.left,"x"),I(e,o.top,"y")),this.complete())},r.prototype.update=function(e){if(this.$el){var n=t({},this.opts,e);this.stop(),this.unbind(!0,!0),this.opts=n,this.bind(!0,!1)}},r.prototype.destroy=function(){this.$el&&(this.stop(),this.unbind(!0,!0),this.$el=null)},r.prototype.onBefore=function(t,e){return!0},r.prototype.onStep=function(t){},r.prototype.onAfter=function(t,e){},r.prototype.onCancel=function(){},r.prototype.onComplete=function(t){},r.prototype.start=function(t){var e=this.ctx;e.opts=t,e.progress=!0,e.easing=i(t.easing)?t.easing:v[t.easing];var n=this.$el,o={top:j(n,"y"),left:j(n,"x")};e.startPos=o,e.id=r.raf(this.loop)},r.prototype.complete=function(){var t=this.$el,r=this.ctx,o=r.hash,i=r.cancel,a=r.opts,c=r.pos,u=r.$trigger;if(t&&a){if(null!=o&&o!==window.location.hash){var s=a.updateURL;e&&n&&!1!==s&&window.history["replace"===s?"replaceState":"pushState"](null,"",o)}this.unbind(!1,!0),r.opts=null,r.$trigger=null,i?this.hook(a,"cancel"):this.hook(a,"after",c,u),this.hook(a,"complete",i)}},r.prototype.hook=function(t,e){for(var n,r=[],o=2;o<arguments.length;o++)r[o-2]=arguments[o];var a,c,u=t[e];return i(u)&&(a=u.apply(this,r.concat([this]))),c=(n=this)["on"+(e[0].toUpperCase()+e.slice(1))].apply(n,r),void 0!==a?a:c},r.prototype.bind=function(t,e){var n=this.$el,r=this.ctx.opts;n&&(t&&R(n,"click",this.handleClick,!1),e&&R(n,"wheel touchstart touchmove",this.handleStop,!r||r.cancellable))},r.prototype.unbind=function(t,e){var n=this.$el,r=this.ctx.opts;n&&(t&&k(n,"click",this.handleClick,!1),e&&k(n,"wheel touchstart touchmove",this.handleStop,!r||r.cancellable))},r.raf=u,r.caf=s,r}()}()},function(t,e,n){"use strict";n.r(e),function(t){n.d(e,"install",(function(){return o}));var r=n(34);function o(t){o.installed||(o.installed=!0,t.component("go-top",r.a))}var i={install:o},a=null;"undefined"!=typeof window?a=window.Vue:void 0!==t&&(a=t.Vue),a&&a.use(i),e.default=r.a}.call(this,n(35))},function(t,e,n){"use strict";var r=n(5),o=n(1),i=n(19),a=n(43),c=n(3),u=n(29),s=n(49),f=n(0),l=n(2),p=n(30),h=n(4),d=n(7),v=n(14),g=n(8),y=n(13),m=n(15),b=n(50),x=n(31),w=n(20),S=n(68),O=n(47),E=n(11),_=n(6),C=n(36),j=n(9),I=n(17),P=n(26),T=n(25),A=n(18),R=n(27),k=n(10),N=n(51),M=n(69),L=n(70),$=n(42),z=n(32).forEach,D=T("hidden"),F=k("toPrimitive"),U=$.set,G=$.getterFor("Symbol"),B=Object.prototype,V=o.Symbol,W=i("JSON","stringify"),H=E.f,Q=_.f,Y=S.f,X=C.f,q=P("symbols"),J=P("op-symbols"),K=P("string-to-symbol-registry"),Z=P("symbol-to-string-registry"),tt=P("wks"),et=o.QObject,nt=!et||!et.prototype||!et.prototype.findChild,rt=c&&f((function(){return 7!=b(Q({},"a",{get:function(){return Q(this,"a",{value:7}).a}})).a}))?function(t,e,n){var r=H(B,e);r&&delete B[e],Q(t,e,n),r&&t!==B&&Q(B,e,r)}:Q,ot=function(t,e){var n=q[t]=b(V.prototype);return U(n,{type:"Symbol",tag:t,description:e}),c||(n.description=e),n},it=s?function(t){return"symbol"==typeof t}:function(t){return Object(t)instanceof V},at=function(t,e,n){t===B&&at(J,e,n),d(t);var r=y(e,!0);return d(n),l(q,r)?(n.enumerable?(l(t,D)&&t[D][r]&&(t[D][r]=!1),n=b(n,{enumerable:m(0,!1)})):(l(t,D)||Q(t,D,m(1,{})),t[D][r]=!0),rt(t,r,n)):Q(t,r,n)},ct=function(t,e){d(t);var n=g(e),r=x(n).concat(lt(n));return z(r,(function(e){c&&!ut.call(n,e)||at(t,e,n[e])})),t},ut=function(t){var e=y(t,!0),n=X.call(this,e);return!(this===B&&l(q,e)&&!l(J,e))&&(!(n||!l(this,e)||!l(q,e)||l(this,D)&&this[D][e])||n)},st=function(t,e){var n=g(t),r=y(e,!0);if(n!==B||!l(q,r)||l(J,r)){var o=H(n,r);return!o||!l(q,r)||l(n,D)&&n[D][r]||(o.enumerable=!0),o}},ft=function(t){var e=Y(g(t)),n=[];return z(e,(function(t){l(q,t)||l(A,t)||n.push(t)})),n},lt=function(t){var e=t===B,n=Y(e?J:g(t)),r=[];return z(n,(function(t){!l(q,t)||e&&!l(B,t)||r.push(q[t])})),r};(u||(I((V=function(){if(this instanceof V)throw TypeError("Symbol is not a constructor");var t=arguments.length&&void 0!==arguments[0]?String(arguments[0]):void 0,e=R(t),n=function(t){this===B&&n.call(J,t),l(this,D)&&l(this[D],e)&&(this[D][e]=!1),rt(this,e,m(1,t))};return c&&nt&&rt(B,e,{configurable:!0,set:n}),ot(e,t)}).prototype,"toString",(function(){return G(this).tag})),I(V,"withoutSetter",(function(t){return ot(R(t),t)})),C.f=ut,_.f=at,E.f=st,w.f=S.f=ft,O.f=lt,N.f=function(t){return ot(k(t),t)},c&&(Q(V.prototype,"description",{configurable:!0,get:function(){return G(this).description}}),a||I(B,"propertyIsEnumerable",ut,{unsafe:!0}))),r({global:!0,wrap:!0,forced:!u,sham:!u},{Symbol:V}),z(x(tt),(function(t){M(t)})),r({target:"Symbol",stat:!0,forced:!u},{for:function(t){var e=String(t);if(l(K,e))return K[e];var n=V(e);return K[e]=n,Z[n]=e,n},keyFor:function(t){if(!it(t))throw TypeError(t+" is not a symbol");if(l(Z,t))return Z[t]},useSetter:function(){nt=!0},useSimple:function(){nt=!1}}),r({target:"Object",stat:!0,forced:!u,sham:!c},{create:function(t,e){return void 0===e?b(t):ct(b(t),e)},defineProperty:at,defineProperties:ct,getOwnPropertyDescriptor:st}),r({target:"Object",stat:!0,forced:!u},{getOwnPropertyNames:ft,getOwnPropertySymbols:lt}),r({target:"Object",stat:!0,forced:f((function(){O.f(1)}))},{getOwnPropertySymbols:function(t){return O.f(v(t))}}),W)&&r({target:"JSON",stat:!0,forced:!u||f((function(){var t=V();return"[null]"!=W([t])||"{}"!=W({a:t})||"{}"!=W(Object(t))}))},{stringify:function(t,e,n){for(var r,o=[t],i=1;arguments.length>i;)o.push(arguments[i++]);if(r=e,(h(e)||void 0!==t)&&!it(t))return p(e)||(e=function(t,e){if("function"==typeof r&&(e=r.call(this,t,e)),!it(e))return e}),o[1]=e,W.apply(null,o)}});V.prototype[F]||j(V.prototype,F,V.prototype.valueOf),L(V,"Symbol"),A[D]=!0},function(t,e,n){var r=n(1),o=n(40),i=r.WeakMap;t.exports="function"==typeof i&&/native code/.test(o(i))},function(t,e,n){var r=n(2),o=n(44),i=n(11),a=n(6);t.exports=function(t,e){for(var n=o(e),c=a.f,u=i.f,s=0;s<n.length;s++){var f=n[s];r(t,f)||c(t,f,u(e,f))}}},function(t,e,n){var r=n(8),o=n(21),i=n(65),a=function(t){return function(e,n,a){var c,u=r(e),s=o(u.length),f=i(a,s);if(t&&n!=n){for(;s>f;)if((c=u[f++])!=c)return!0}else for(;s>f;f++)if((t||f in u)&&u[f]===n)return t||f||0;return!t&&-1}};t.exports={includes:a(!0),indexOf:a(!1)}},function(t,e,n){var r=n(22),o=Math.max,i=Math.min;t.exports=function(t,e){var n=r(t);return n<0?o(n+e,0):i(n,e)}},function(t,e,n){var r=n(3),o=n(6),i=n(7),a=n(31);t.exports=r?Object.defineProperties:function(t,e){i(t);for(var n,r=a(e),c=r.length,u=0;c>u;)o.f(t,n=r[u++],e[n]);return t}},function(t,e,n){var r=n(19);t.exports=r("document","documentElement")},function(t,e,n){var r=n(8),o=n(20).f,i={}.toString,a="object"==typeof window&&window&&Object.getOwnPropertyNames?Object.getOwnPropertyNames(window):[];t.exports.f=function(t){return a&&"[object Window]"==i.call(t)?function(t){try{return o(t)}catch(t){return a.slice()}}(t):o(r(t))}},function(t,e,n){var r=n(45),o=n(2),i=n(51),a=n(6).f;t.exports=function(t){var e=r.Symbol||(r.Symbol={});o(e,t)||a(e,t,{value:i.f(t)})}},function(t,e,n){var r=n(6).f,o=n(2),i=n(10)("toStringTag");t.exports=function(t,e,n){t&&!o(t=n?t:t.prototype,i)&&r(t,i,{configurable:!0,value:e})}},function(t,e,n){var r=n(72);t.exports=function(t,e,n){if(r(t),void 0===e)return t;switch(n){case 0:return function(){return t.call(e)};case 1:return function(n){return t.call(e,n)};case 2:return function(n,r){return t.call(e,n,r)};case 3:return function(n,r,o){return t.call(e,n,r,o)}}return function(){return t.apply(e,arguments)}}},function(t,e){t.exports=function(t){if("function"!=typeof t)throw TypeError(String(t)+" is not a function");return t}},function(t,e,n){"use strict";var r=n(5),o=n(0),i=n(30),a=n(4),c=n(14),u=n(21),s=n(53),f=n(52),l=n(54),p=n(10),h=n(55),d=p("isConcatSpreadable"),v=h>=51||!o((function(){var t=[];return t[d]=!1,t.concat()[0]!==t})),g=l("concat"),y=function(t){if(!a(t))return!1;var e=t[d];return void 0!==e?!!e:i(t)};r({target:"Array",proto:!0,forced:!v||!g},{concat:function(t){var e,n,r,o,i,a=c(this),l=f(a,0),p=0;for(e=-1,r=arguments.length;e<r;e++)if(i=-1===e?a:arguments[e],y(i)){if(p+(o=u(i.length))>9007199254740991)throw TypeError("Maximum allowed index exceeded");for(n=0;n<o;n++,p++)n in i&&s(l,p,i[n])}else{if(p>=9007199254740991)throw TypeError("Maximum allowed index exceeded");s(l,p++,i)}return l.length=p,l}})},function(t,e,n){var r=n(19);t.exports=r("navigator","userAgent")||""},function(t,e,n){"use strict";var r=n(5),o=n(32).filter,i=n(54),a=n(56),c=i("filter"),u=a("filter");r({target:"Array",proto:!0,forced:!c||!u},{filter:function(t){return o(this,t,arguments.length>1?arguments[1]:void 0)}})},function(t,e,n){"use strict";var r=n(5),o=n(57);r({target:"Array",proto:!0,forced:[].forEach!=o},{forEach:o})},function(t,e,n){"use strict";var r=n(0);t.exports=function(t,e){var n=[][t];return!!n&&r((function(){n.call(null,e||function(){throw 1},1)}))}},function(t,e,n){"use strict";var r=n(3),o=n(1),i=n(48),a=n(17),c=n(2),u=n(16),s=n(79),f=n(13),l=n(0),p=n(50),h=n(20).f,d=n(11).f,v=n(6).f,g=n(82).trim,y=o.Number,m=y.prototype,b="Number"==u(p(m)),x=function(t){var e,n,r,o,i,a,c,u,s=f(t,!1);if("string"==typeof s&&s.length>2)if(43===(e=(s=g(s)).charCodeAt(0))||45===e){if(88===(n=s.charCodeAt(2))||120===n)return NaN}else if(48===e){switch(s.charCodeAt(1)){case 66:case 98:r=2,o=49;break;case 79:case 111:r=8,o=55;break;default:return+s}for(a=(i=s.slice(2)).length,c=0;c<a;c++)if((u=i.charCodeAt(c))<48||u>o)return NaN;return parseInt(i,r)}return+s};if(i("Number",!y(" 0o1")||!y("0b1")||y("+0x1"))){for(var w,S=function(t){var e=arguments.length<1?0:t,n=this;return n instanceof S&&(b?l((function(){m.valueOf.call(n)})):"Number"!=u(n))?s(new y(x(e)),n,S):x(e)},O=r?h(y):"MAX_VALUE,MIN_VALUE,NaN,NEGATIVE_INFINITY,POSITIVE_INFINITY,EPSILON,isFinite,isInteger,isNaN,isSafeInteger,MAX_SAFE_INTEGER,MIN_SAFE_INTEGER,parseFloat,parseInt,isInteger".split(","),E=0;O.length>E;E++)c(y,w=O[E])&&!c(S,w)&&v(S,w,d(y,w));S.prototype=m,m.constructor=S,a(o,"Number",S)}},function(t,e,n){var r=n(4),o=n(80);t.exports=function(t,e,n){var i,a;return o&&"function"==typeof(i=e.constructor)&&i!==n&&r(a=i.prototype)&&a!==n.prototype&&o(t,a),t}},function(t,e,n){var r=n(7),o=n(81);t.exports=Object.setPrototypeOf||("__proto__"in{}?function(){var t,e=!1,n={};try{(t=Object.getOwnPropertyDescriptor(Object.prototype,"__proto__").set).call(n,[]),e=n instanceof Array}catch(t){}return function(n,i){return r(n),o(i),e?t.call(n,i):n.__proto__=i,n}}():void 0)},function(t,e,n){var r=n(4);t.exports=function(t){if(!r(t)&&null!==t)throw TypeError("Can't set "+String(t)+" as a prototype");return t}},function(t,e,n){var r=n(12),o="["+n(83)+"]",i=RegExp("^"+o+o+"*"),a=RegExp(o+o+"*$"),c=function(t){return function(e){var n=String(r(e));return 1&t&&(n=n.replace(i,"")),2&t&&(n=n.replace(a,"")),n}};t.exports={start:c(1),end:c(2),trim:c(3)}},function(t,e){t.exports="\t\n\v\f\r                　\u2028\u2029\ufeff"},function(t,e,n){var r=n(5),o=n(0),i=n(8),a=n(11).f,c=n(3),u=o((function(){a(1)}));r({target:"Object",stat:!0,forced:!c||u,sham:!c},{getOwnPropertyDescriptor:function(t,e){return a(i(t),e)}})},function(t,e,n){var r=n(5),o=n(3),i=n(44),a=n(8),c=n(11),u=n(53);r({target:"Object",stat:!0,sham:!o},{getOwnPropertyDescriptors:function(t){for(var e,n,r=a(t),o=c.f,s=i(r),f={},l=0;s.length>l;)void 0!==(n=o(r,e=s[l++]))&&u(f,e,n);return f}})},function(t,e,n){var r=n(5),o=n(14),i=n(31);r({target:"Object",stat:!0,forced:n(0)((function(){i(1)}))},{keys:function(t){return i(o(t))}})},function(t,e,n){"use strict";var r=n(7);t.exports=function(){var t=r(this),e="";return t.global&&(e+="g"),t.ignoreCase&&(e+="i"),t.multiline&&(e+="m"),t.dotAll&&(e+="s"),t.unicode&&(e+="u"),t.sticky&&(e+="y"),e}},function(t,e,n){"use strict";var r=n(0);function o(t,e){return RegExp(t,e)}e.UNSUPPORTED_Y=r((function(){var t=o("a","y");return t.lastIndex=2,null!=t.exec("abcd")})),e.BROKEN_CARET=r((function(){var t=o("^r","gy");return t.lastIndex=2,null!=t.exec("str")}))},function(t,e,n){"use strict";var r=n(90),o=n(7),i=n(14),a=n(21),c=n(22),u=n(12),s=n(91),f=n(93),l=Math.max,p=Math.min,h=Math.floor,d=/\$([$&'`]|\d\d?|<[^>]*>)/g,v=/\$([$&'`]|\d\d?)/g;r("replace",2,(function(t,e,n,r){var g=r.REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE,y=r.REPLACE_KEEPS_$0,m=g?"$":"$0";return[function(n,r){var o=u(this),i=null==n?void 0:n[t];return void 0!==i?i.call(n,o,r):e.call(String(o),n,r)},function(t,r){if(!g&&y||"string"==typeof r&&-1===r.indexOf(m)){var i=n(e,t,this,r);if(i.done)return i.value}var u=o(t),h=String(this),d="function"==typeof r;d||(r=String(r));var v=u.global;if(v){var x=u.unicode;u.lastIndex=0}for(var w=[];;){var S=f(u,h);if(null===S)break;if(w.push(S),!v)break;""===String(S[0])&&(u.lastIndex=s(h,a(u.lastIndex),x))}for(var O,E="",_=0,C=0;C<w.length;C++){S=w[C];for(var j=String(S[0]),I=l(p(c(S.index),h.length),0),P=[],T=1;T<S.length;T++)P.push(void 0===(O=S[T])?O:String(O));var A=S.groups;if(d){var R=[j].concat(P,I,h);void 0!==A&&R.push(A);var k=String(r.apply(void 0,R))}else k=b(j,h,I,P,A,r);I>=_&&(E+=h.slice(_,I)+k,_=I+j.length)}return E+h.slice(_)}];function b(t,n,r,o,a,c){var u=r+t.length,s=o.length,f=v;return void 0!==a&&(a=i(a),f=d),e.call(c,f,(function(e,i){var c;switch(i.charAt(0)){case"$":return"$";case"&":return t;case"`":return n.slice(0,r);case"'":return n.slice(u);case"<":c=a[i.slice(1,-1)];break;default:var f=+i;if(0===f)return e;if(f>s){var l=h(f/10);return 0===l?e:l<=s?void 0===o[l-1]?i.charAt(1):o[l-1]+i.charAt(1):e}c=o[f-1]}return void 0===c?"":c}))}}))},function(t,e,n){"use strict";n(58);var r=n(17),o=n(0),i=n(10),a=n(33),c=n(9),u=i("species"),s=!o((function(){var t=/./;return t.exec=function(){var t=[];return t.groups={a:"7"},t},"7"!=="".replace(t,"$<a>")})),f="$0"==="a".replace(/./,"$0"),l=i("replace"),p=!!/./[l]&&""===/./[l]("a","$0"),h=!o((function(){var t=/(?:)/,e=t.exec;t.exec=function(){return e.apply(this,arguments)};var n="ab".split(t);return 2!==n.length||"a"!==n[0]||"b"!==n[1]}));t.exports=function(t,e,n,l){var d=i(t),v=!o((function(){var e={};return e[d]=function(){return 7},7!=""[t](e)})),g=v&&!o((function(){var e=!1,n=/a/;return"split"===t&&((n={}).constructor={},n.constructor[u]=function(){return n},n.flags="",n[d]=/./[d]),n.exec=function(){return e=!0,null},n[d](""),!e}));if(!v||!g||"replace"===t&&(!s||!f||p)||"split"===t&&!h){var y=/./[d],m=n(d,""[t],(function(t,e,n,r,o){return e.exec===a?v&&!o?{done:!0,value:y.call(e,n,r)}:{done:!0,value:t.call(n,e,r)}:{done:!1}}),{REPLACE_KEEPS_$0:f,REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE:p}),b=m[0],x=m[1];r(String.prototype,t,b),r(RegExp.prototype,d,2==e?function(t,e){return x.call(t,this,e)}:function(t){return x.call(t,this)})}l&&c(RegExp.prototype[d],"sham",!0)}},function(t,e,n){"use strict";var r=n(92).charAt;t.exports=function(t,e,n){return e+(n?r(t,e).length:1)}},function(t,e,n){var r=n(22),o=n(12),i=function(t){return function(e,n){var i,a,c=String(o(e)),u=r(n),s=c.length;return u<0||u>=s?t?"":void 0:(i=c.charCodeAt(u))<55296||i>56319||u+1===s||(a=c.charCodeAt(u+1))<56320||a>57343?t?c.charAt(u):i:t?c.slice(u,u+2):a-56320+(i-55296<<10)+65536}};t.exports={codeAt:i(!1),charAt:i(!0)}},function(t,e,n){var r=n(16),o=n(33);t.exports=function(t,e){var n=t.exec;if("function"==typeof n){var i=n.call(t,e);if("object"!=typeof i)throw TypeError("RegExp exec method returned something other than an Object or null");return i}if("RegExp"!==r(t))throw TypeError("RegExp#exec called on incompatible receiver");return o.call(t,e)}},function(t,e,n){var r=n(1),o=n(95),i=n(57),a=n(9);for(var c in o){var u=r[c],s=u&&u.prototype;if(s&&s.forEach!==i)try{a(s,"forEach",i)}catch(t){s.forEach=i}}},function(t,e){t.exports={CSSRuleList:0,CSSStyleDeclaration:0,CSSValueList:0,ClientRectList:0,DOMRectList:0,DOMStringList:0,DOMTokenList:1,DataTransferItemList:0,FileList:0,HTMLAllCollection:0,HTMLCollection:0,HTMLFormElement:0,HTMLSelectElement:0,MediaList:0,MimeTypeArray:0,NamedNodeMap:0,NodeList:1,PaintRequestList:0,Plugin:0,PluginArray:0,SVGLengthList:0,SVGNumberList:0,SVGPathSegList:0,SVGPointList:0,SVGStringList:0,SVGTransformList:0,SourceBufferList:0,StyleSheetList:0,TextTrackCueList:0,TextTrackList:0,TouchList:0}},function(t,e,n){"use strict";var r=n(23);n.n(r).a},function(t,e,n){"use strict";var r,o=function(){return void 0===r&&(r=Boolean(window&&document&&document.all&&!window.atob)),r},i=function(){var t={};return function(e){if(void 0===t[e]){var n=document.querySelector(e);if(window.HTMLIFrameElement&&n instanceof window.HTMLIFrameElement)try{n=n.contentDocument.head}catch(t){n=null}t[e]=n}return t[e]}}(),a=[];function c(t){for(var e=-1,n=0;n<a.length;n++)if(a[n].identifier===t){e=n;break}return e}function u(t,e){for(var n={},r=[],o=0;o<t.length;o++){var i=t[o],u=e.base?i[0]+e.base:i[0],s=n[u]||0,f="".concat(u," ").concat(s);n[u]=s+1;var l=c(f),p={css:i[1],media:i[2],sourceMap:i[3]};-1!==l?(a[l].references++,a[l].updater(p)):a.push({identifier:f,updater:g(p,e),references:1}),r.push(f)}return r}function s(t){var e=document.createElement("style"),r=t.attributes||{};if(void 0===r.nonce){var o=n.nc;o&&(r.nonce=o)}if(Object.keys(r).forEach((function(t){e.setAttribute(t,r[t])})),"function"==typeof t.insert)t.insert(e);else{var a=i(t.insert||"head");if(!a)throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");a.appendChild(e)}return e}var f,l=(f=[],function(t,e){return f[t]=e,f.filter(Boolean).join("\n")});function p(t,e,n,r){var o=n?"":r.media?"@media ".concat(r.media," {").concat(r.css,"}"):r.css;if(t.styleSheet)t.styleSheet.cssText=l(e,o);else{var i=document.createTextNode(o),a=t.childNodes;a[e]&&t.removeChild(a[e]),a.length?t.insertBefore(i,a[e]):t.appendChild(i)}}function h(t,e,n){var r=n.css,o=n.media,i=n.sourceMap;if(o?t.setAttribute("media",o):t.removeAttribute("media"),i&&btoa&&(r+="\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(i))))," */")),t.styleSheet)t.styleSheet.cssText=r;else{for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(r))}}var d=null,v=0;function g(t,e){var n,r,o;if(e.singleton){var i=v++;n=d||(d=s(e)),r=p.bind(null,n,i,!1),o=p.bind(null,n,i,!0)}else n=s(e),r=h.bind(null,n,e),o=function(){!function(t){if(null===t.parentNode)return!1;t.parentNode.removeChild(t)}(n)};return r(t),function(e){if(e){if(e.css===t.css&&e.media===t.media&&e.sourceMap===t.sourceMap)return;r(t=e)}else o()}}t.exports=function(t,e){(e=e||{}).singleton||"boolean"==typeof e.singleton||(e.singleton=o());var n=u(t=t||[],e);return function(t){if(t=t||[],"[object Array]"===Object.prototype.toString.call(t)){for(var r=0;r<n.length;r++){var o=c(n[r]);a[o].references--}for(var i=u(t,e),s=0;s<n.length;s++){var f=c(n[s]);0===a[f].references&&(a[f].updater(),a.splice(f,1))}n=i}}}},function(t,e,n){(e=n(99)(!1)).push([t.i,".vue-go-top[data-v-0c20a6ee]{overflow:hidden;position:fixed;cursor:pointer;background-repeat:no-repeat;background-position:50% 50%;background-size:70% auto;white-space:nowrap;text-indent:100%}.vue-go-top__content[data-v-0c20a6ee]{position:relative;left:0;top:0;width:100%;height:100%}.vue-go-top__ripple[data-v-0c20a6ee]{position:absolute;border-radius:50%;-webkit-transform:scale(0);transform:scale(0);opacity:0;pointer-events:none}.vue-go-top__ripple[is-active][data-v-0c20a6ee]{-webkit-animation:vue-go-top-ripple-animation-data-v-0c20a6ee .75s ease-out;animation:vue-go-top-ripple-animation-data-v-0c20a6ee .75s ease-out}.vue-go-top__icon[data-v-0c20a6ee]{position:absolute;top:0;left:0;width:100%;height:100%}.vue-go-top__image[data-v-0c20a6ee]{position:absolute;top:0;left:0;width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.vue-go-top-enter-active[data-v-0c20a6ee],.vue-go-top-leave-active[data-v-0c20a6ee]{-webkit-transition:opacity .3s, -webkit-transform .3s;transition:opacity .3s, -webkit-transform .3s;transition:opacity .3s, transform .3s;transition:opacity .3s, transform .3s, -webkit-transform .3s}.vue-go-top-enter[data-v-0c20a6ee],.vue-go-top-leave-to[data-v-0c20a6ee]{opacity:0;-webkit-transform:translateY(50px);transform:translateY(50px)}@-webkit-keyframes vue-go-top-ripple-animation-data-v-0c20a6ee{from{opacity:1}to{-webkit-transform:scale(2);transform:scale(2);opacity:0}}@keyframes vue-go-top-ripple-animation-data-v-0c20a6ee{from{opacity:1}to{-webkit-transform:scale(2);transform:scale(2);opacity:0}}\n",""]),t.exports=e},function(t,e,n){"use strict";t.exports=function(t){var e=[];return e.toString=function(){return this.map((function(e){var n=function(t,e){var n=t[1]||"",r=t[3];if(!r)return n;if(e&&"function"==typeof btoa){var o=(a=r,c=btoa(unescape(encodeURIComponent(JSON.stringify(a)))),u="sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(c),"/*# ".concat(u," */")),i=r.sources.map((function(t){return"/*# sourceURL=".concat(r.sourceRoot||"").concat(t," */")}));return[n].concat(i).concat([o]).join("\n")}var a,c,u;return[n].join("\n")}(e,t);return e[2]?"@media ".concat(e[2]," {").concat(n,"}"):n})).join("")},e.i=function(t,n,r){"string"==typeof t&&(t=[[null,t,""]]);var o={};if(r)for(var i=0;i<this.length;i++){var a=this[i][0];null!=a&&(o[a]=!0)}for(var c=0;c<t.length;c++){var u=[].concat(t[c]);r&&o[u[0]]||(n&&(u[2]?u[2]="".concat(n," and ").concat(u[2]):u[2]=n),e.push(u))}},e}}])}));
+//# sourceMappingURL=vue-go-top.umd.js.map
+
+/***/ }),
+
 /***/ "./node_modules/alpinejs/dist/alpine.js":
 /*!**********************************************!*\
   !*** ./node_modules/alpinejs/dist/alpine.js ***!
@@ -3817,6 +3845,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_StaticSections_Header_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/StaticSections/Header.vue */ "./resources/js/components/StaticSections/Header.vue");
 /* harmony import */ var _components_StaticSections_Footer_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/StaticSections/Footer.vue */ "./resources/js/components/StaticSections/Footer.vue");
 /* harmony import */ var _components_cookie_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/cookie.vue */ "./resources/js/components/cookie.vue");
+/* harmony import */ var _inotom_vue_go_top__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @inotom/vue-go-top */ "./node_modules/@inotom/vue-go-top/dist/vue-go-top.umd.js");
+/* harmony import */ var _inotom_vue_go_top__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_inotom_vue_go_top__WEBPACK_IMPORTED_MODULE_3__);
 //
 //
 //
@@ -3832,6 +3862,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 
 
 
@@ -3840,7 +3872,8 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     headervue: _components_StaticSections_Header_vue__WEBPACK_IMPORTED_MODULE_0__.default,
     footervue: _components_StaticSections_Footer_vue__WEBPACK_IMPORTED_MODULE_1__.default,
-    cookie: _components_cookie_vue__WEBPACK_IMPORTED_MODULE_2__.default
+    cookie: _components_cookie_vue__WEBPACK_IMPORTED_MODULE_2__.default,
+    GoTop: (_inotom_vue_go_top__WEBPACK_IMPORTED_MODULE_3___default())
   },
   data: function data() {
     return {
@@ -3857,2631 +3890,8 @@ __webpack_require__.r(__webpack_exports__);
     if (localStorage.getItem('politica') == null) {
       this.politica = false;
     }
-
-    var json = {
-      "request_info": {
-        "success": true,
-        "credits_used": 1,
-        "credits_used_this_request": 1,
-        "credits_remaining": 499,
-        "credits_reset_at": "2021-06-18T03:10:14.000Z"
-      },
-      "request_metadata": {
-        "created_at": "2021-05-19T23:51:01.319Z",
-        "processed_at": "2021-05-19T23:51:04.062Z",
-        "total_time_taken": 2.74,
-        "amazon_url": "https://www.amazon.es/gp/bestsellers/books?language=es_ES"
-      },
-      "request_parameters": {
-        "type": "bestsellers",
-        "url": "https://www.amazon.es/gp/bestsellers/books",
-        "associate_id": "liber0e-21",
-        "language": "es_ES",
-        "include_html": "true",
-        "output": "json"
-      },
-      "bestsellers": [{
-        "rank": 1,
-        "position": 1,
-        "title": "El Humor De Mi Vida",
-        "asin": "8491396209",
-        "link": "https://www.amazon.es/El-Humor-Vida-Paz-Padilla/dp/8491396209/ref=zg_bs_books_1?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa dura",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/61kesI-1wdL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.4,
-        "ratings_total": 572,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 18.9,
-          "raw": "€18,90"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 18.9,
-          "raw": "18,90€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 18.9,
-          "raw": "€18,90 - 18,90€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 2,
-        "position": 2,
-        "title": "Boulevard: 1",
-        "asin": "9807909066",
-        "link": "https://www.amazon.es/Boulevard-1-Flor-M-Salvador/dp/9807909066/ref=zg_bs_books_2?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/61rArrCpGvL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.7,
-        "ratings_total": 1569,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 14.53,
-          "raw": "€14,53"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 14.53,
-          "raw": "14,53€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 14.53,
-          "raw": "€14,53 - 14,53€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 3,
-        "position": 3,
-        "title": "SIRA (Autores Españoles e Iberoamericanos)",
-        "asin": "8408241915",
-        "link": "https://www.amazon.es/Autores-Espa%C3%B1oles-Iberoamericanos-Mar%C3%ADa-Due%C3%B1as/dp/8408241915/ref=zg_bs_books_3?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa dura",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/91iDWaWNk0L._AC_UL200_SR200,200_.jpg",
-        "rating": 4.3,
-        "ratings_total": 1063,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 21.75,
-          "raw": "€21,75"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 21.75,
-          "raw": "21,75€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 21.75,
-          "raw": "€21,75 - 21,75€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 4,
-        "position": 4,
-        "title": "Ley de Educación versión Martina: Ley Orgánica 2/2006, de 3 de mayo. Texto legal",
-        "asin": "8430982043",
-        "link": "https://www.amazon.es/Ley-Educaci%C3%B3n-versi%C3%B3n-Martina-Org%C3%A1nica/dp/8430982043/ref=zg_bs_books_4?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/71Yp0O5IXzL._AC_UL200_SR200,200_.jpg",
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 17.57,
-          "raw": "€17,57"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 17.57,
-          "raw": "17,57€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 17.57,
-          "raw": "€17,57 - 17,57€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 5,
-        "position": 5,
-        "title": "Las recetas verdes de MasterChef (F. COLECCION)",
-        "asin": "8467062177",
-        "link": "https://www.amazon.es/Las-recetas-verdes-MasterChef-COLECCION/dp/8467062177/ref=zg_bs_books_5?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa dura",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/91IMX4qBJzL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.2,
-        "ratings_total": 26,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 20.8,
-          "raw": "€20,80"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 20.8,
-          "raw": "20,80€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 20.8,
-          "raw": "€20,80 - 20,80€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 6,
-        "position": 6,
-        "title": "Dragon Ball Super nº 10 (Manga Shonen)",
-        "asin": "8413416175",
-        "link": "https://www.amazon.es/Dragon-Ball-Super-Manga-Shonen/dp/8413416175/ref=zg_bs_books_6?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/81VT6dQkVYL._AC_UL200_SR200,200_.jpg",
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 7.55,
-          "raw": "€7,55"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 7.55,
-          "raw": "7,55€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 7.55,
-          "raw": "€7,55 - 7,55€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 7,
-        "position": 7,
-        "title": "A través de mi ventana (Sin límites)",
-        "asin": "8420451916",
-        "link": "https://www.amazon.es/trav%C3%A9s-ventana-Sin-l%C3%ADmites/dp/8420451916/ref=zg_bs_books_7?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/915XYLyY%2BSL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.6,
-        "ratings_total": 488,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 18,
-          "raw": "€18,00"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 18,
-          "raw": "18,00€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 18,
-          "raw": "€18,00 - 18,00€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 8,
-        "position": 8,
-        "title": "Consecuencias de decir te quiero: 1 (Didot)",
-        "asin": "8418290781",
-        "link": "https://www.amazon.es/Consecuencias-decir-quiero-Manu-Erena/dp/8418290781/ref=zg_bs_books_8?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/51x5Lp9IdHL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.6,
-        "ratings_total": 249,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 11.4,
-          "raw": "€11,40"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 11.4,
-          "raw": "11,40€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 11.4,
-          "raw": "€11,40 - 11,40€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 9,
-        "position": 9,
-        "title": "El juego del alma (SUMA)",
-        "asin": "849129354X",
-        "link": "https://www.amazon.es/El-juego-del-alma-SUMA/dp/849129354X/ref=zg_bs_books_9?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/817iOAFEQzL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.6,
-        "ratings_total": 1178,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 17.95,
-          "raw": "€17,95"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 17.95,
-          "raw": "17,95€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 17.95,
-          "raw": "€17,95 - 17,95€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 10,
-        "position": 10,
-        "title": "Un trozo de cielo azul: La verdad sobre cómo lo perdí todo, salvo la esperanza (No Ficción)",
-        "asin": "840824227X",
-        "link": "https://www.amazon.es/trozo-cielo-azul-esperanza-Ficci%C3%B3n/dp/840824227X/ref=zg_bs_books_10?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/719KU8oaHhS._AC_UL200_SR200,200_.jpg",
-        "rating": 4.6,
-        "ratings_total": 14,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 17.57,
-          "raw": "€17,57"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 17.57,
-          "raw": "17,57€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 17.57,
-          "raw": "€17,57 - 17,57€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 11,
-        "position": 11,
-        "title": "La guía definitiva de caligrafía moderna y lettering a mano para principiantes: Aprende a dibujar letras: un cuaderno de…",
-        "asin": "1646081536",
-        "link": "https://www.amazon.es/definitiva-caligraf%C3%ADa-moderna-lettering-principiantes/dp/1646081536/ref=zg_bs_books_11?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/71kVlpyzn-L._AC_UL200_SR200,200_.jpg",
-        "rating": 4.6,
-        "ratings_total": 2203,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 7.99,
-          "raw": "€7,99"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 7.99,
-          "raw": "7,99€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 7.99,
-          "raw": "€7,99 - 7,99€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 12,
-        "position": 12,
-        "title": "My Hero Academia nº 27 (Manga Shonen)",
-        "asin": "8413416205",
-        "link": "https://www.amazon.es/My-Hero-Academia-Manga-Shonen/dp/8413416205/ref=zg_bs_books_12?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/81GWty8Jm2L._AC_UL200_SR200,200_.jpg",
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 6.6,
-          "raw": "€6,60"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 6.6,
-          "raw": "6,60€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 6.6,
-          "raw": "€6,60 - 6,60€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 13,
-        "position": 13,
-        "title": "El arte de engañar al karma (SUMA)",
-        "asin": "8491291938",
-        "link": "https://www.amazon.es/El-arte-enga%C3%B1ar-karma-SUMA/dp/8491291938/ref=zg_bs_books_13?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/91tsnPGROUL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.4,
-        "ratings_total": 979,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 17.95,
-          "raw": "€17,95"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 17.95,
-          "raw": "17,95€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 17.95,
-          "raw": "€17,95 - 17,95€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 14,
-        "position": 14,
-        "title": "Epic Battle: El día que los youtubers salvaron el mundo (4You2)",
-        "asin": "8427048378",
-        "link": "https://www.amazon.es/Epic-Battle-youtubers-salvaron-mundo/dp/8427048378/ref=zg_bs_books_14?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/91%2BDgD31NNL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.4,
-        "ratings_total": 24,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 13.2,
-          "raw": "€13,20"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 13.2,
-          "raw": "13,20€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 13.2,
-          "raw": "€13,20 - 13,20€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 15,
-        "position": 15,
-        "title": "My Hero Academia nº 01 (Manga Shonen)",
-        "asin": "8416693501",
-        "link": "https://www.amazon.es/My-Hero-Academia-Manga-Shonen/dp/8416693501/ref=zg_bs_books_15?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/912mJf7tsUL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.8,
-        "ratings_total": 475,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 6.6,
-          "raw": "€6,60"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 6.6,
-          "raw": "6,60€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 6.6,
-          "raw": "€6,60 - 6,60€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 16,
-        "position": 16,
-        "title": "España invertebrada (Contemporánea)",
-        "asin": "8467037547",
-        "link": "https://www.amazon.es/Espa%C3%B1a-invertebrada-Contempor%C3%A1nea-Ortega-Gasset/dp/8467037547/ref=zg_bs_books_16?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/81BbpL%2BRsOL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.7,
-        "ratings_total": 75,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 7.55,
-          "raw": "€7,55"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 7.55,
-          "raw": "7,55€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 7.55,
-          "raw": "€7,55 - 7,55€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 17,
-        "position": 17,
-        "title": "Padre Rico, padre Pobre: Qué les enseñan los ricos a sus hijos acerca del dinero, ¡que los pobres y la clase media no!",
-        "asin": "846633212X",
-        "link": "https://www.amazon.es/Padre-Rico-padre-Pobre-ense%C3%B1an/dp/846633212X/ref=zg_bs_books_17?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Libro de bolsillo",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/81iEKRLmvlS._AC_UL200_SR200,200_.jpg",
-        "rating": 4.6,
-        "ratings_total": 6585,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 9.44,
-          "raw": "€9,44"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 9.44,
-          "raw": "9,44€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 9.44,
-          "raw": "€9,44 - 9,44€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 18,
-        "position": 18,
-        "title": "¿Puedo mirar tu pañal? (Libros de cartón)",
-        "asin": "8467530693",
-        "link": "https://www.amazon.es/%C2%BFPuedo-mirar-pa%C3%B1al-Libros-cart%C3%B3n/dp/8467530693/ref=zg_bs_books_18?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa dura",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/810cDZ9CGPL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.8,
-        "ratings_total": 2029,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 11.35,
-          "raw": "€11,35"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 11.35,
-          "raw": "11,35€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 11.35,
-          "raw": "€11,35 - 11,35€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 19,
-        "position": 19,
-        "title": "No me tires: El libro que evitará que desperdicies comida",
-        "asin": "8441543852",
-        "link": "https://www.amazon.es/No-tires-evitar%C3%A1-desperdicies-comida/dp/8441543852/ref=zg_bs_books_19?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa dura",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/61K4tLzWveL._AC_UL200_SR200,200_.jpg",
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 19.9,
-          "raw": "€19,90"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 19.9,
-          "raw": "19,90€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 19.9,
-          "raw": "€19,90 - 19,90€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 20,
-        "position": 20,
-        "title": "My Hero Academia nº 02 (Manga Shonen)",
-        "asin": "841669351X",
-        "link": "https://www.amazon.es/My-Hero-Academia-Manga-Shonen/dp/841669351X/ref=zg_bs_books_20?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/91DTEUBZsgL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.8,
-        "ratings_total": 1461,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 6.6,
-          "raw": "€6,60"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 6.6,
-          "raw": "6,60€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 6.6,
-          "raw": "€6,60 - 6,60€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 21,
-        "position": 21,
-        "title": "Busca Dinosaurios",
-        "asin": "8430537813",
-        "link": "https://www.amazon.es/Busca-Dinosaurios-Susaeta-Ediciones-S/dp/8430537813/ref=zg_bs_books_21?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa dura",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/81bbDyiX2NL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.6,
-        "ratings_total": 2067,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 4.7,
-          "raw": "€4,70"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 4.7,
-          "raw": "4,70€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 4.7,
-          "raw": "€4,70 - 4,70€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 22,
-        "position": 22,
-        "title": "El gran libro de Lucía, mi pediatra: La guía más completa y actualizada sobre la salud de tu hijo desde el nacimiento a…",
-        "asin": "8408226789",
-        "link": "https://www.amazon.es/gran-libro-Luc%C3%ADa-pediatra-adolescencia/dp/8408226789/ref=zg_bs_books_22?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa dura",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/81cHVQqafZL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.7,
-        "ratings_total": 782,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 21.75,
-          "raw": "€21,75"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 21.75,
-          "raw": "21,75€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 21.75,
-          "raw": "€21,75 - 21,75€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 23,
-        "position": 23,
-        "title": "Los cuatro acuerdos: Un libro de sabiduría tolteca (Crecimiento personal)",
-        "asin": "847953253X",
-        "link": "https://www.amazon.es/Los-cuatro-acuerdos-sabidur%C3%ADa-Crecimiento/dp/847953253X/ref=zg_bs_books_23?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/71mVri6PDWL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.6,
-        "ratings_total": 6005,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 9.97,
-          "raw": "€9,97"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 9.97,
-          "raw": "9,97€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 9.97,
-          "raw": "€9,97 - 9,97€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 24,
-        "position": 24,
-        "title": "La guía para principiantes de caligrafía moderna y lettering a mano para niños: Un divertido cuaderno de actividades con…",
-        "asin": "1646081803",
-        "link": "https://www.amazon.es/principiantes-caligraf%C3%ADa-moderna-lettering-ni%C3%B1os/dp/1646081803/ref=zg_bs_books_24?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/61pVyb6urtL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.6,
-        "ratings_total": 2203,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 6.99,
-          "raw": "€6,99"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 6.99,
-          "raw": "6,99€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 6.99,
-          "raw": "€6,99 - 6,99€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 25,
-        "position": 25,
-        "title": "El Principito (Infantil)",
-        "asin": "8498381495",
-        "link": "https://www.amazon.es/Principito-Antoine-Saint-Exup%C3%A9ry-Saint-Exupery/dp/8498381495/ref=zg_bs_books_25?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/71WzzmBVvJL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.7,
-        "ratings_total": 3043,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 6.6,
-          "raw": "€6,60"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 6.6,
-          "raw": "6,60€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 6.6,
-          "raw": "€6,60 - 6,60€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 26,
-        "position": 26,
-        "title": "Los Compas y el diamantito legendario (nueva presentación) (4You2)",
-        "asin": "8427047940",
-        "link": "https://www.amazon.es/Compas-diamantito-legendario-nueva-presentaci%C3%B3n/dp/8427047940/ref=zg_bs_books_26?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa dura",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/81%2BOpapnDaL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.7,
-        "ratings_total": 2324,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 15.1,
-          "raw": "€15,10"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 15.1,
-          "raw": "15,10€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 15.1,
-          "raw": "€15,10 - 15,10€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 27,
-        "position": 27,
-        "title": "Diario de una adolescente (Tendencias)",
-        "asin": "8418318813",
-        "link": "https://www.amazon.es/Diario-adolescente-Tendencias-Andrea-Palaz%C3%B3n/dp/8418318813/ref=zg_bs_books_27?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa dura",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/81dfmMQV%2BPS._AC_UL200_SR200,200_.jpg",
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 15.15,
-          "raw": "€15,15"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 15.15,
-          "raw": "15,15€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 15.15,
-          "raw": "€15,15 - 15,15€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 28,
-        "position": 28,
-        "title": "Dime qué comes y te diré qué bacterias tienes: El intestino, nuestro segundo cerebro (Vivir mejor) (Alimentación…",
-        "asin": "8417752927",
-        "link": "https://www.amazon.es/Dime-comes-dir%C3%A9-bacterias-tienes/dp/8417752927/ref=zg_bs_books_28?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/81LsJ%2BYnNhL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.6,
-        "ratings_total": 1537,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 18.9,
-          "raw": "€18,90"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 18.9,
-          "raw": "18,90€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 18.9,
-          "raw": "€18,90 - 18,90€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 29,
-        "position": 29,
-        "title": "El Pequeño Larousse ilustrado (Larousse - Lengua Española - Diccionarios Enciclopédicos)",
-        "asin": "8417720340",
-        "link": "https://www.amazon.es/Peque%C3%B1o-Larousse-ilustrado-Diccionarios-Enciclop%C3%A9dicos/dp/8417720340/ref=zg_bs_books_29?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa dura",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/71xqREvgAEL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.7,
-        "ratings_total": 122,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 9.45,
-          "raw": "€9,45"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 9.45,
-          "raw": "9,45€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 9.45,
-          "raw": "€9,45 - 9,45€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 30,
-        "position": 30,
-        "title": "El cerebro del niño explicado a los padres (Plataforma Actual)",
-        "asin": "8416429561",
-        "link": "https://www.amazon.es/Cerebro-Explicado-Padres-Plataforma-Actual/dp/8416429561/ref=zg_bs_books_30?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/81-j6E3V2WL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.8,
-        "ratings_total": 2957,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 17.1,
-          "raw": "€17,10"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 17.1,
-          "raw": "17,10€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 17.1,
-          "raw": "€17,10 - 17,10€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 31,
-        "position": 31,
-        "title": "Dragon Ball Serie Roja nº 263 (Manga Shonen)",
-        "asin": "8413416086",
-        "link": "https://www.amazon.es/Dragon-Ball-Serie-Manga-Shonen/dp/8413416086/ref=zg_bs_books_31?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/81839ebNoHL._AC_UL200_SR200,200_.jpg",
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 2.8,
-          "raw": "€2,80"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 2.8,
-          "raw": "2,80€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 2.8,
-          "raw": "€2,80 - 2,80€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 32,
-        "position": 32,
-        "title": "Dragon Ball Serie Roja nº 262 (Manga Shonen)",
-        "asin": "8413416078",
-        "link": "https://www.amazon.es/Dragon-Ball-Serie-Manga-Shonen/dp/8413416078/ref=zg_bs_books_32?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/914MV-QISCL._AC_UL200_SR200,200_.jpg",
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 2.8,
-          "raw": "€2,80"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 2.8,
-          "raw": "2,80€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 2.8,
-          "raw": "€2,80 - 2,80€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 33,
-        "position": 33,
-        "title": "Los Compas perdidos en el espacio (4You2)",
-        "asin": "8427048343",
-        "link": "https://www.amazon.es/Los-Compas-perdidos-espacio-4You2/dp/8427048343/ref=zg_bs_books_33?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa dura",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/91yPNzXuN5L._AC_UL200_SR200,200_.jpg",
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 18.9,
-          "raw": "€18,90"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 18.9,
-          "raw": "18,90€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 18.9,
-          "raw": "€18,90 - 18,90€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 34,
-        "position": 34,
-        "title": "Los Futbolísimos 19: El misterio de las brujas futbolistas",
-        "asin": "8413921597",
-        "link": "https://www.amazon.es/Los-Futbol%C3%ADsimos-19-misterio-futbolistas/dp/8413921597/ref=zg_bs_books_34?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/91NTHfZGyCS._AC_UL200_SR200,200_.jpg",
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 11.35,
-          "raw": "€11,35"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 11.35,
-          "raw": "11,35€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 11.35,
-          "raw": "€11,35 - 11,35€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 35,
-        "position": 35,
-        "title": "Culpa mía (Culpables 1)",
-        "asin": "8413142016",
-        "link": "https://www.amazon.es/Culpa-m%C3%ADa-Culpables-Mercedes-Ron/dp/8413142016/ref=zg_bs_books_35?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Libro de bolsillo",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/71zP8bc3AnS._AC_UL200_SR200,200_.jpg",
-        "rating": 4.7,
-        "ratings_total": 693,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 8.5,
-          "raw": "€8,50"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 8.5,
-          "raw": "8,50€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 8.5,
-          "raw": "€8,50 - 8,50€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 36,
-        "position": 36,
-        "title": "Los Compas y la cámara del tiempo (4You2)",
-        "asin": "8427047371",
-        "link": "https://www.amazon.es/Los-Compas-c%C3%A1mara-tiempo-4You2/dp/8427047371/ref=zg_bs_books_36?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa dura",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/91HxZQTLEOL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.8,
-        "ratings_total": 1185,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 15.1,
-          "raw": "€15,10"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 15.1,
-          "raw": "15,10€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 15.1,
-          "raw": "€15,10 - 15,10€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 37,
-        "position": 37,
-        "title": "Heist: Cazar o ser cazado (Wattpad)",
-        "asin": "841831883X",
-        "link": "https://www.amazon.es/Heist-Cazar-ser-cazado-Wattpad/dp/841831883X/ref=zg_bs_books_37?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/91mtPR6lxwL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.6,
-        "ratings_total": 23,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 17.05,
-          "raw": "€17,05"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 17.05,
-          "raw": "17,05€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 17.05,
-          "raw": "€17,05 - 17,05€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 38,
-        "position": 38,
-        "title": "Letra impresa",
-        "asin": "B094L79K9D",
-        "link": "https://www.amazon.es/Letra-impresa-Varios-Autores/dp/B094L79K9D/ref=zg_bs_books_38?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/51ZIIOCtdyS._AC_UL200_SR200,200_.jpg",
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 23,
-          "raw": "€23,00"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 23,
-          "raw": "23,00€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 23,
-          "raw": "€23,00 - 23,00€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 39,
-        "position": 39,
-        "title": "El poder del ahora: una guía para la iluminación espiritual (Perenne)",
-        "asin": "8484452069",
-        "link": "https://www.amazon.es/poder-del-ahora-iluminaci%C3%B3n-espiritual/dp/8484452069/ref=zg_bs_books_39?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/71hHAjSYR3L._AC_UL200_SR200,200_.jpg",
-        "rating": 4.4,
-        "ratings_total": 4857,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 9.5,
-          "raw": "€9,50"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 9.5,
-          "raw": "9,50€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 9.5,
-          "raw": "€9,50 - 9,50€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 40,
-        "position": 40,
-        "title": "El monje que vendió su Ferrari: Una fábula espiritual (Clave)",
-        "asin": "8499087124",
-        "link": "https://www.amazon.es/monje-que-vendi%C3%B3-Ferrari-CLAVE/dp/8499087124/ref=zg_bs_books_40?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Libro de bolsillo",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/81aII%2BgLegL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.6,
-        "ratings_total": 3205,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 8.5,
-          "raw": "€8,50"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 8.5,
-          "raw": "8,50€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 8.5,
-          "raw": "€8,50 - 8,50€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 41,
-        "position": 41,
-        "title": "Destroza este diario. Ahora a todo color (Libros Singulares)",
-        "asin": "8449333733",
-        "link": "https://www.amazon.es/Destroza-diario-Ahora-Libros-Singulares/dp/8449333733/ref=zg_bs_books_41?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/91W-zMfhy6L._AC_UL200_SR200,200_.jpg",
-        "rating": 4.7,
-        "ratings_total": 1738,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 10.4,
-          "raw": "€10,40"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 10.4,
-          "raw": "10,40€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 10.4,
-          "raw": "€10,40 - 10,40€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 42,
-        "position": 42,
-        "title": "ESTUCHE DEJA QUE OCURRA (ALICE KELLEN) (Novela)",
-        "asin": "8408231197",
-        "link": "https://www.amazon.es/ESTUCHE-OCURRA-ALICE-KELLEN-Novela/dp/8408231197/ref=zg_bs_books_42?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/81HGJhHRQGL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.7,
-        "ratings_total": 260,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 17,
-          "raw": "€17,00"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 17,
-          "raw": "17,00€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 17,
-          "raw": "€17,00 - 17,00€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 43,
-        "position": 43,
-        "title": "Territorios improbables: Historias sobre lugares que (casi) no sabías que existían (Kailas No Ficción)",
-        "asin": "841724882X",
-        "link": "https://www.amazon.es/Territorios-improbables-Historias-lugares-exist%C3%ADan/dp/841724882X/ref=zg_bs_books_43?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/91hAzFbzXhS._AC_UL200_SR200,200_.jpg",
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 23.9,
-          "raw": "€23,90"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 23.9,
-          "raw": "23,90€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 23.9,
-          "raw": "€23,90 - 23,90€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 44,
-        "position": 44,
-        "title": "El caso del castillo encantado (Serie Los BuscaPistas 1)",
-        "asin": "8415580703",
-        "link": "https://www.amazon.es/caso-castillo-encantado-Serie-BuscaPistas/dp/8415580703/ref=zg_bs_books_44?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/81rEYGN8BPL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.6,
-        "ratings_total": 1824,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 6.6,
-          "raw": "€6,60"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 6.6,
-          "raw": "6,60€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 6.6,
-          "raw": "€6,60 - 6,60€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 45,
-        "position": 45,
-        "title": "Las Ratitas 1. Tres, dos, uno... ¡superpoderes! (Jóvenes influencers)",
-        "asin": "840822574X",
-        "link": "https://www.amazon.es/Ratitas-Tres-%C2%A1superpoderes-Youtubers-infantiles/dp/840822574X/ref=zg_bs_books_45?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa dura",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/81EnTaBbw-L._AC_UL200_SR200,200_.jpg",
-        "rating": 4.6,
-        "ratings_total": 1061,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 14.2,
-          "raw": "€14,20"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 14.2,
-          "raw": "14,20€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 14.2,
-          "raw": "€14,20 - 14,20€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 46,
-        "position": 46,
-        "title": "Los Compas y la maldición de Mikecrack (4You2)",
-        "asin": "8427047495",
-        "link": "https://www.amazon.es/Los-Compas-maldici%C3%B3n-Mikecrack-4You2/dp/8427047495/ref=zg_bs_books_46?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa dura",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/91aDsj10boL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.8,
-        "ratings_total": 897,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 18.9,
-          "raw": "€18,90"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 18.9,
-          "raw": "18,90€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 18.9,
-          "raw": "€18,90 - 18,90€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 47,
-        "position": 47,
-        "title": "¡Eres un ser fantástico!: Inspirador libro infantil sobre la autoconfianza, la concienciación y la amistad - apto para…",
-        "asin": "B08Z2WTTWT",
-        "link": "https://www.amazon.es/%C2%A1Eres-ser-fant%C3%A1stico-autoconfianza-concienciaci%C3%B3n/dp/B08Z2WTTWT/ref=zg_bs_books_47?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/71kT-x-YNZS._AC_UL200_SR200,200_.jpg",
-        "rating": 4.2,
-        "ratings_total": 27,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 9.99,
-          "raw": "€9,99"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 9.99,
-          "raw": "9,99€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 9.99,
-          "raw": "€9,99 - 9,99€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 48,
-        "position": 48,
-        "title": "Culpa nuestra (Culpables 3)",
-        "asin": "8413142032",
-        "link": "https://www.amazon.es/Culpa-nuestra-Culpables-Mercedes-Ron/dp/8413142032/ref=zg_bs_books_48?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Libro de bolsillo",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/81555TMQm3L._AC_UL200_SR200,200_.jpg",
-        "rating": 4.7,
-        "ratings_total": 648,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 8.5,
-          "raw": "€8,50"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 8.5,
-          "raw": "8,50€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 8.5,
-          "raw": "€8,50 - 8,50€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 49,
-        "position": 49,
-        "title": "Cocina de resistencia: Las mejores recetas para no desperdiciar nada (Planeta Cocina)",
-        "asin": "8408239104",
-        "link": "https://www.amazon.es/Cocina-resistencia-mejores-recetas-desperdiciar/dp/8408239104/ref=zg_bs_books_49?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/91FgOAjnstL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.7,
-        "ratings_total": 46,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 20.8,
-          "raw": "€20,80"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 20.8,
-          "raw": "20,80€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 20.8,
-          "raw": "€20,80 - 20,80€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }, {
-        "rank": 50,
-        "position": 50,
-        "title": "Trolardy y el pan dorado (4You2)",
-        "asin": "8427048068",
-        "link": "https://www.amazon.es/Trolardy-dorado-4You2-Trolerotutos-Hardy/dp/8427048068/ref=zg_bs_books_50?_encoding=UTF8&psc=1&refRID=KCRY7BS6TREZRWHMJ63F&tag=liber0e-21",
-        "variant": "Tapa blanda",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/918ffvs51hL._AC_UL200_SR200,200_.jpg",
-        "rating": 4.8,
-        "ratings_total": 103,
-        "price_lower": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 13.2,
-          "raw": "€13,20"
-        },
-        "price_upper": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 13.2,
-          "raw": "13,20€"
-        },
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 13.2,
-          "raw": "€13,20 - 13,20€"
-        },
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        }
-      }],
-      "pagination": {
-        "current_page": 1,
-        "total_pages": 2
-      },
-      "bestsellers_info": {
-        "current_category": {
-          "name": "Libros",
-          "link": "https://www.amazon.es/gp/bestsellers/books",
-          "id": "books"
-        },
-        "parent_category": {
-          "name": "Cualquier departamento",
-          "link": "https://www.amazon.es/gp/bestsellers/ref=zg_bs_unv_b_0_b_1",
-          "id": "bestsellers"
-        },
-        "child_categories": [{
-          "name": "Acción y aventura",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902675031/ref=zg_bs_nav_b_1_b",
-          "id": "902675031"
-        }, {
-          "name": "Arte, cine y fotografía",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902486031/ref=zg_bs_nav_b_1_b",
-          "id": "902486031"
-        }, {
-          "name": "Biografías, diarios y hechos reales",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902498031/ref=zg_bs_nav_b_1_b",
-          "id": "902498031"
-        }, {
-          "name": "Calendarios",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902502031/ref=zg_bs_nav_b_1_b",
-          "id": "902502031"
-        }, {
-          "name": "Ciencias, tecnología y medicina",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902503031/ref=zg_bs_nav_b_1_b",
-          "id": "902503031"
-        }, {
-          "name": "Cocina, bebida y hospitalidad",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902613031/ref=zg_bs_nav_b_1_b",
-          "id": "902613031"
-        }, {
-          "name": "Consulta",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902517031/ref=zg_bs_nav_b_1_b",
-          "id": "902517031"
-        }, {
-          "name": "Cómics, manga y novelas gráficas",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902516031/ref=zg_bs_nav_b_1_b",
-          "id": "902516031"
-        }, {
-          "name": "Deportes y aire libre",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902520031/ref=zg_bs_nav_b_1_b",
-          "id": "902520031"
-        }, {
-          "name": "Derecho",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902590031/ref=zg_bs_nav_b_1_b",
-          "id": "902590031"
-        }, {
-          "name": "Economía y empresa",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902595031/ref=zg_bs_nav_b_1_b",
-          "id": "902595031"
-        }, {
-          "name": "Erótica",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902681031/ref=zg_bs_nav_b_1_b",
-          "id": "902681031"
-        }, {
-          "name": "Fantasía, terror y ciencia ficción",
-          "link": "https://www.amazon.es/gp/bestsellers/books/1349107031/ref=zg_bs_nav_b_1_b",
-          "id": "1349107031"
-        }, {
-          "name": "Ficción histórica",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902682031/ref=zg_bs_nav_b_1_b",
-          "id": "902682031"
-        }, {
-          "name": "Guías de estudio y repaso",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902599031/ref=zg_bs_nav_b_1_b",
-          "id": "902599031"
-        }, {
-          "name": "Historia",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902600031/ref=zg_bs_nav_b_1_b",
-          "id": "902600031"
-        }, {
-          "name": "Hogar, manualidades y estilos de vida",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902610031/ref=zg_bs_nav_b_1_b",
-          "id": "902610031"
-        }, {
-          "name": "Humor",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902620031/ref=zg_bs_nav_b_1_b",
-          "id": "902620031"
-        }, {
-          "name": "Infantil",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902621031/ref=zg_bs_nav_b_1_b",
-          "id": "902621031"
-        }, {
-          "name": "Informática, internet y medios digitales",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902652031/ref=zg_bs_nav_b_1_b",
-          "id": "902652031"
-        }, {
-          "name": "Juvenil",
-          "link": "https://www.amazon.es/gp/bestsellers/books/12942013031/ref=zg_bs_nav_b_1_b",
-          "id": "12942013031"
-        }, {
-          "name": "Lengua, lingüística y redacción",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902665031/ref=zg_bs_nav_b_1_b",
-          "id": "902665031"
-        }, {
-          "name": "Libros en catalán",
-          "link": "https://www.amazon.es/gp/bestsellers/books/665405031/ref=zg_bs_nav_b_1_b",
-          "id": "665405031"
-        }, {
-          "name": "Libros en euskera",
-          "link": "https://www.amazon.es/gp/bestsellers/books/665407031/ref=zg_bs_nav_b_1_b",
-          "id": "665407031"
-        }, {
-          "name": "Libros en gallego",
-          "link": "https://www.amazon.es/gp/bestsellers/books/665406031/ref=zg_bs_nav_b_1_b",
-          "id": "665406031"
-        }, {
-          "name": "Libros en idiomas extranjeros",
-          "link": "https://www.amazon.es/gp/bestsellers/books/16247123031/ref=zg_bs_nav_b_1_b",
-          "id": "16247123031"
-        }, {
-          "name": "Libros en inglés",
-          "link": "https://www.amazon.es/gp/bestsellers/books/665418031/ref=zg_bs_nav_b_1_b",
-          "id": "665418031"
-        }, {
-          "name": "Libros escolares",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902673031/ref=zg_bs_nav_b_1_b",
-          "id": "902673031"
-        }, {
-          "name": "Libros universitarios y de estudios superiores",
-          "link": "https://www.amazon.es/gp/bestsellers/books/15246790031/ref=zg_bs_nav_b_1_b",
-          "id": "15246790031"
-        }, {
-          "name": "Literatura y ficción",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902674031/ref=zg_bs_nav_b_1_b",
-          "id": "902674031"
-        }, {
-          "name": "Policíaca, negra y suspense",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902685031/ref=zg_bs_nav_b_1_b",
-          "id": "902685031"
-        }, {
-          "name": "Política",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902693031/ref=zg_bs_nav_b_1_b",
-          "id": "902693031"
-        }, {
-          "name": "Religión",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902702031/ref=zg_bs_nav_b_1_b",
-          "id": "902702031"
-        }, {
-          "name": "Romántica",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902686031/ref=zg_bs_nav_b_1_b",
-          "id": "902686031"
-        }, {
-          "name": "Salud, familia y desarrollo personal",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902716031/ref=zg_bs_nav_b_1_b",
-          "id": "902716031"
-        }, {
-          "name": "Sociedad y ciencias sociales",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902721031/ref=zg_bs_nav_b_1_b",
-          "id": "902721031"
-        }, {
-          "name": "Viajes",
-          "link": "https://www.amazon.es/gp/bestsellers/books/902729031/ref=zg_bs_nav_b_1_b",
-          "id": "902729031"
-        }]
-      }
-    };
-    var book_json = {
-      "request_info": {
-        "success": true,
-        "credits_used": 4,
-        "credits_used_this_request": 1,
-        "credits_remaining": 496,
-        "credits_reset_at": "2021-06-18T03:10:14.000Z"
-      },
-      "request_metadata": {
-        "created_at": "2021-05-20T15:36:55.959Z",
-        "processed_at": "2021-05-20T15:36:59.467Z",
-        "total_time_taken": 3.51,
-        "amazon_url": "https://www.amazon.es/dp/8418318198?th=1&psc=1&language=es_ES"
-      },
-      "request_parameters": {
-        "type": "product",
-        "amazon_domain": "amazon.es",
-        "asin": "8418318198",
-        "language": "es_ES",
-        "output": "json",
-        "associate_id": "liber0e-21"
-      },
-      "product": {
-        "title": "League of Legends. Reinos de Runaterra (No ficción ilustrados)",
-        "keywords": "Riot Games Merchandise, Inc,League of Legends. Reinos de Runaterra (No ficción ilustrados),MONTENA,8418318198,Handbooks and manuals.,League of legends (Game);Handbooks, manuals, etc.,Video games;Handbooks, manuals, etc.,YOUNG ADULT NONFICTION / Computers / Entertainment & Games,Young Adult Nonfiction/Computers - Entertainment & Games,Children’s / Teenage general interest: Sports and outdoor recreation,Sports & outdoor recreation (Children's / Teenage),Children’s,Children’s / Teenage general interest: Sports and outdoor recreation,Computers,Entertainment & Games,Handbooks and manuals.,JUVENILE,Juvenile Non-Fiction,League of legends (Game);Handbooks, manuals, etc.,Spanish Grades 7-9,Sports & outdoor recreation (Children's,Sports & outdoor recreation (Children's / Teenage),Techniques,Teenage general interest: Sports and outdoor recreation,Teenage),United States,Video games;Handbooks, manuals, etc.,YOUNG ADULT NONFICTION,YOUNG ADULT NONFICTION / Computers / Entertainment & Games,Young Adult Nonfiction/Computers - Entertainment & Games,league of legends;libro de league of legends;reinos de runeterra;librode reinos de runeterra;libros para regalar a mi novio;libros devideojuegos;guia de videojuegos;libros de fortnite;minecraft;libros deesports;para jovenes;para adolescentes;12 años;13 años;14 años;15años;en español;silla gamer;ps4;en español;en castellano;2020;libros dee-sports;libro para gamers;regalo para gamer;libros de fantasia paraniños;libros de fantasia para adolescentes;libro fantasiajuvenil;fantasy;fantasia epic",
-        "keywords_list": ["Riot Games Merchandise", "League of Legends. Reinos de Runaterra (No ficción ilustrados)", "MONTENA", "8418318198", "Handbooks and manuals.", "League of legends (Game)", "Handbooks", "manuals", "etc.", "Video games", "Handbooks", "manuals", "etc.", "YOUNG ADULT NONFICTION / Computers / Entertainment & Games", "Young Adult Nonfiction/Computers - Entertainment & Games", "Children’s / Teenage general interest: Sports and outdoor recreation", "Sports & outdoor recreation (Children's / Teenage)", "Children’s", "Children’s / Teenage general interest: Sports and outdoor recreation", "Computers", "Entertainment & Games", "Handbooks and manuals.", "JUVENILE", "Juvenile Non-Fiction", "League of legends (Game)", "Handbooks", "manuals", "etc.", "Spanish Grades 7-9", "Sports & outdoor recreation (Children's", "Sports & outdoor recreation (Children's / Teenage)", "Techniques", "Teenage general interest: Sports and outdoor recreation", "Teenage)", "United States", "Video games", "Handbooks", "manuals", "etc.", "YOUNG ADULT NONFICTION", "YOUNG ADULT NONFICTION / Computers / Entertainment & Games", "Young Adult Nonfiction/Computers - Entertainment & Games", "league of legends", "libro de league of legends", "reinos de runeterra", "librode reinos de runeterra", "libros para regalar a mi novio", "libros devideojuegos", "guia de videojuegos", "libros de fortnite", "minecraft", "libros deesports", "para jovenes", "para adolescentes", "12 años", "13 años", "14 años", "15años", "en español", "silla gamer", "en español", "en castellano", "2020", "libros dee-sports", "libro para gamers", "regalo para gamer", "libros de fantasia paraniños", "libros de fantasia para adolescentes", "libro fantasiajuvenil", "fantasy", "fantasia epic"],
-        "asin": "8418318198",
-        "link": "https://www.amazon.es/League-Legends-Runaterra-ficci%C3%B3n-ilustrados/dp/8418318198?tag=liber0e-21",
-        "sell_on_amazon": true,
-        "variants": [{
-          "asin": "8418318198",
-          "link": "https://www.amazon.es/League-Legends-Runaterra-ficci%C3%B3n-ilustrados/dp/8418318198?tag=liber0e-21",
-          "is_current_product": true,
-          "title": "Tapa dura",
-          "price": {
-            "symbol": "€",
-            "currency": "EUR",
-            "value": 23.7,
-            "raw": "€23,70"
-          }
-        }],
-        "authors": [{
-          "name": "Inc Riot Games Merchandise",
-          "link": "https://www.amazon.es/s/ref=dp_byline_sr_book_1?ie=UTF8&field-author=Inc+Riot+Games+Merchandise&search-alias=stripbooks"
-        }],
-        "categories": [{
-          "name": "Libros"
-        }],
-        "delivery_message": "Entrega GRATIS: jueves, 27 de mayo",
-        "a_plus_content": {
-          "has_a_plus_content": false
-        },
-        "sub_title": {
-          "text": "de Inc Riot Games Merchandise (Autor)",
-          "link": "https://www.amazon.es/gp/help/customer/display.html?nodeId=201909010&ref_=buybox-secureTransaction-learnMore-web&tag=liber0e-21"
-        },
-        "has_coupon": false,
-        "rating": 4.7,
-        "rating_breakdown": {
-          "five_star": {
-            "percentage": 85,
-            "count": 69
-          },
-          "four_star": {
-            "percentage": 7,
-            "count": 5
-          },
-          "three_star": {
-            "percentage": 3,
-            "count": 2
-          },
-          "two_star": {
-            "percentage": 2,
-            "count": 1
-          },
-          "one_star": {
-            "percentage": 3,
-            "count": 2
-          }
-        },
-        "ratings_total": 82,
-        "book_description": "Descubre todos los misterios, trucos y secretos con el libro oficial de League of Legends. Embárcate en un viaje a través de los Reinos de Runeterra en este recopilatorio único de League of Legends, uno de los videojuegos más populares del mundo. Dentro encontrarás: -Una expedición a través de las once regiones, crónica de los conflictos, las rivalidades más arraigadas y las alianzas encubiertas. -Cientos de ilustraciones, incluyendo mapas inéditos. -Todos los detalles sobre los héroes, flora, fauna, arquitectura, política y tecnologías de todos los rincones del universo. -Originales tramas y narrativas que convierten las culturas de Runeterra en realidad. Este es el volumen esencial de referencia para cualquier fan y gamer. Leer más Leer menos",
-        "main_image": {
-          "link": "https://images-na.ssl-images-amazon.com/images/I/41u4lT3aASL.jpg"
-        },
-        "attributes": [{
-          "name": "variant",
-          "value": "Tapa dura"
-        }],
-        "buybox_winner": {
-          "offer_id": "5ZutQHxw2Lx5pwahwHkpyiyIIbYsGu88yl28QO+V26j25lIjs2hIXSd3DUAkiooPhNElysRQWkadWbEduiIgRngDMi1iLallbE9cO6Ev+xIFm4GxxxVEJtqQN3myC9pfkawKGcNzyaxb953mq4mXvQ==",
-          "new_offers_count": 12,
-          "new_offers_from": {
-            "value": 2249,
-            "currency": "EUR",
-            "raw": "2249"
-          },
-          "used_offers_count": 9,
-          "used_offers_from": {
-            "value": 1514,
-            "currency": "EUR",
-            "raw": "1514"
-          },
-          "is_prime": true,
-          "is_amazon_fresh": false,
-          "condition": {
-            "is_new": true
-          },
-          "availability": {
-            "type": "in_stock",
-            "raw": "En stock.",
-            "dispatch_days": 1
-          },
-          "fulfillment": {
-            "type": "1p",
-            "is_sold_by_amazon": true,
-            "is_fulfilled_by_amazon": true,
-            "is_fulfilled_by_third_party": false,
-            "is_sold_by_third_party": false
-          },
-          "price": {
-            "currency": "EUR",
-            "value": 23.7,
-            "raw": "EUR 23,70"
-          }
-        },
-        "more_buying_choices": [{
-          "price": {
-            "symbol": "€",
-            "currency": "EUR",
-            "value": 24.95,
-            "raw": "€24,95"
-          },
-          "seller_name": "Agapea Libros Urgentes",
-          "seller_link": "https://www.amazon.es/gp/product/du/mbc-seller-information.html/ref=dp_mbc_info_0?c=new&a=8418318198&me=A1ODG9SE0K7SKL&brand=Montena&productGroupID=book_display_on_website&isUDP=1&isAGS=0&uniqueMerchantOfferKey=bmV3JHxBMU9ERzlTRTBLN1NLTCR8MTk2OTMxMTQkfEExT0RHOVNFMEs3U0tMJHxwdXJjaGFzYWJsZSR8QUxM",
-          "position": 1
-        }, {
-          "price": {
-            "symbol": "€",
-            "currency": "EUR",
-            "value": 23.7,
-            "raw": "€23,70"
-          },
-          "seller_name": "Imosver",
-          "seller_link": "https://www.amazon.es/gp/product/du/mbc-seller-information.html/ref=dp_mbc_info_1?c=new&a=8418318198&me=A3T8NGZYWN6HYL&brand=Montena&productGroupID=book_display_on_website&isUDP=1&isAGS=0&uniqueMerchantOfferKey=bmV3JHxBM1Q4TkdaWVdONkhZTCR8MDAxMDI4MTU1NSR8QTNUOE5HWllXTjZIWUwkfHB1cmNoYXNhYmxlJHxBTEw=",
-          "position": 2
-        }, {
-          "price": {
-            "symbol": "€",
-            "currency": "EUR",
-            "value": 23.7,
-            "raw": "€23,70"
-          },
-          "seller_name": "Nobel Booksellers",
-          "seller_link": "https://www.amazon.es/gp/product/du/mbc-seller-information.html/ref=dp_mbc_info_2?c=new&a=8418318198&me=A1ATYXWNE9V4C0&brand=Montena&productGroupID=book_display_on_website&isUDP=1&isAGS=0&uniqueMerchantOfferKey=bmV3JHxBMUFUWVhXTkU5VjRDMCR8OTc4ODQxODMxODE5MSR8QTFBVFlYV05FOVY0QzAkfHB1cmNoYXNhYmxlJHxBTEw=",
-          "position": 3
-        }],
-        "specifications": [{
-          "name": "Editorial",
-          "value": "MONTENA; 001 edición (8 octubre 2020)"
-        }, {
-          "name": "Idioma",
-          "value": "Español"
-        }, {
-          "name": "Tapa dura",
-          "value": "264 páginas"
-        }, {
-          "name": "ISBN-10",
-          "value": "8418318198"
-        }, {
-          "name": "ISBN-13",
-          "value": "978-8418318191"
-        }, {
-          "name": "Edad de lectura",
-          "value": "12 - 17 años"
-        }, {
-          "name": "Peso del producto",
-          "value": "816 g"
-        }, {
-          "name": "Dimensiones",
-          "value": "18.29 x 2.54 x 24.38 cm"
-        }, {
-          "name": "Clasificación en los más vendidos de Amazon",
-          "value": "Ver el Top 100 en Libros"
-        }],
-        "specifications_flat": "Clasificación en los más vendidos de Amazon: Ver el Top 100 en Libros. Dimensiones: 18.29 x 2.54 x 24.38 cm. Peso del producto: 816 g. Edad de lectura: 12 - 17 años. ISBN-13: 978-8418318191. ISBN-10: 8418318198. Tapa dura: 264 páginas. Idioma: Español. Editorial: MONTENA; 001 edición (8 octubre 2020).",
-        "bestsellers_rank": [{
-          "category": "Libros",
-          "rank": 6714,
-          "link": "https://www.amazon.es/gp/bestsellers/books/ref=pd_zg_ts_books?tag=liber0e-21"
-        }, {
-          "category": "Libros sobre deportes y aire libre para jóvenes",
-          "rank": 2,
-          "link": "https://www.amazon.es/gp/bestsellers/books/12942405031/ref=pd_zg_hrsr_books?tag=liber0e-21"
-        }, {
-          "category": "Libros sobre ordenadores para jóvenes",
-          "rank": 3,
-          "link": "https://www.amazon.es/gp/bestsellers/books/12942111031/ref=pd_zg_hrsr_books?tag=liber0e-21"
-        }, {
-          "category": "Guías de videojuegos para videoconsola y ordenador para jóvenes",
-          "rank": 7,
-          "link": "https://www.amazon.es/gp/bestsellers/books/12942175031/ref=pd_zg_hrsr_books?tag=liber0e-21"
-        }],
-        "isbn_10": "8418318198",
-        "isbn_13": "978-8418318191"
-      },
-      "frequently_bought_together": {
-        "total_price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 57.9,
-          "raw": "57,90 €"
-        },
-        "products": [{
-          "asin": "8413340810",
-          "title": "League of Legends. Ashe. Comandante (MARVEL)",
-          "link": "https://www.amazon.es/League-Legends-Ashe-Comandante-Shafer/dp/8413340810/ref=pd_bxgy_img_2/259-0741569-9361331?_encoding=UTF8&pd_rd_i=8413340810&pd_rd_r=0e060c90-c3b7-476f-995f-3fa93b68ce32&pd_rd_w=CBDrO&pd_rd_wg=hmRCo&pf_rd_p=1e5224b7-4b05-43dc-b9bd-5f16e5a29bac&pf_rd_r=HCXEHRG0H86421DDZRNN&psc=1&refRID=HCXEHRG0H86421DDZRNN&tag=liber0e-21",
-          "price": {
-            "symbol": "€",
-            "currency": "EUR",
-            "value": 17.1,
-            "raw": "17,10 €"
-          }
-        }, {
-          "asin": "8413342201",
-          "title": "League of Legends. Lux (PRODUCTO ESPECIAL)",
-          "link": "https://www.amazon.es/League-Legends-John-OBryan-Billy/dp/8413342201/ref=pd_bxgy_img_3/259-0741569-9361331?_encoding=UTF8&pd_rd_i=8413342201&pd_rd_r=0e060c90-c3b7-476f-995f-3fa93b68ce32&pd_rd_w=CBDrO&pd_rd_wg=hmRCo&pf_rd_p=1e5224b7-4b05-43dc-b9bd-5f16e5a29bac&pf_rd_r=HCXEHRG0H86421DDZRNN&psc=1&refRID=HCXEHRG0H86421DDZRNN&tag=liber0e-21",
-          "price": {
-            "symbol": "€",
-            "currency": "EUR",
-            "value": 17.1,
-            "raw": "17,10 €"
-          }
-        }]
-      },
-      "sponsored_products": [{
-        "title": "Introducción a la Mentalidad en League of Legends: Cambia tu actitud y sube de División (Guía No Oficial) (Mentalidad en LoL nº 1)",
-        "asin": "B088DK4GX2",
-        "link": "https://www.amazon.es/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_0?ie=UTF8&adId=A02774462VTI10UN0TLV2&qualifier=1621525017&id=6646833288209711&widgetName=sp_detail&url=%2Fdp%2FB088DK4GX2%2Fref%3Dsspa_dk_detail_0%3Fpsc%3D1%26pd_rd_i%3DB088DK4GX2p13NParams&tag=liber0e-21",
-        "image": "https://m.media-amazon.com/images/I/41AR-JH8qeL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg",
-        "rating": 5,
-        "ratings_total": 1,
-        "is_prime": false,
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 0,
-          "raw": "€0,00"
-        }
-      }, {
-        "title": "La mentalidad en League of Legends: actitud y gestión emocional para convertirse en ganador (Guía no oficial) (Mentalidad en LoL nº 2)",
-        "asin": "B082H4662V",
-        "link": "https://www.amazon.es/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_1?ie=UTF8&adId=A02772901H6K0ZMDRJXD6&qualifier=1621525017&id=6646833288209711&widgetName=sp_detail&url=%2Fdp%2FB082H4662V%2Fref%3Dsspa_dk_detail_1%3Fpsc%3D1%26pd_rd_i%3DB082H4662Vp13NParams&tag=liber0e-21",
-        "image": "https://m.media-amazon.com/images/I/41dWgBpGF7L._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg",
-        "rating": 4.5,
-        "ratings_total": 24,
-        "is_prime": false,
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 4.95,
-          "raw": "€4,95"
-        }
-      }, {
-        "title": "League Of Legends - Re-program Your Brain To Succeed: How The Correct Mindset, Mentality, And Attitude Are The Keys To Unlock Your Potential: 1 (League of Legends Guide)",
-        "asin": "1708171967",
-        "link": "https://www.amazon.es/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_2?ie=UTF8&adId=A0119817OVX86W3GE2GX&qualifier=1621525017&id=6646833288209711&widgetName=sp_detail&url=%2Fdp%2F1708171967%2Fref%3Dsspa_dk_detail_2%3Fpsc%3D1%26pd_rd_i%3D1708171967p13NParams&tag=liber0e-21",
-        "image": "https://m.media-amazon.com/images/I/41IWiP2NeML._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg",
-        "rating": 4.5,
-        "ratings_total": 58,
-        "is_prime": true,
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 14.99,
-          "raw": "€14,99"
-        }
-      }, {
-        "title": "League Of Legends - The Secret Blueprint To High Elo: With This Simple Step-by-Step Process, You Will Climb The Ranked Ladder With Ease",
-        "asin": "B08MSNHWW9",
-        "link": "https://www.amazon.es/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_3?ie=UTF8&adId=A05179793H5RQ55RNEV2M&qualifier=1621525017&id=6646833288209711&widgetName=sp_detail&url=%2Fdp%2FB08MSNHWW9%2Fref%3Dsspa_dk_detail_3%3Fpsc%3D1%26pd_rd_i%3DB08MSNHWW9p13NParams&tag=liber0e-21",
-        "image": "https://m.media-amazon.com/images/I/51L4yZg8drL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg",
-        "rating": 4,
-        "ratings_total": 17,
-        "is_prime": true,
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 14.99,
-          "raw": "€14,99"
-        }
-      }, {
-        "title": "Rompecabezas y Pasatiempos para Niños: Juegos educativos, Encuentra las diferencias, Sopa de letras, Encuentra el intruso, Desafío laberintos y unir los puntos.",
-        "asin": "B085KQ2MZ4",
-        "link": "https://www.amazon.es/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_4?ie=UTF8&adId=A0405584Y4W6VQUOTYA4&qualifier=1621525017&id=6646833288209711&widgetName=sp_detail&url=%2Fdp%2FB085KQ2MZ4%2Fref%3Dsspa_dk_detail_4%3Fpsc%3D1%26pd_rd_i%3DB085KQ2MZ4p13NParams&tag=liber0e-21",
-        "image": "https://m.media-amazon.com/images/I/5134rnVLPOL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg",
-        "rating": 4,
-        "ratings_total": 26,
-        "is_prime": true,
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 6.99,
-          "raw": "€6,99"
-        }
-      }, {
-        "title": "Oscura Dinastía (Oferta Especial 3 Libros En 1) Colección Especial De Vampiros En Español: Libros de Novelas de Vampiros. Las mejores historias de Suspenso, Romance y Fantasía Paranormal",
-        "asin": "B084Z42CV8",
-        "link": "https://www.amazon.es/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_5?ie=UTF8&adId=A00817517O80WFIDDL6J&qualifier=1621525017&id=6646833288209711&widgetName=sp_detail&url=%2Fdp%2FB084Z42CV8%2Fref%3Dsspa_dk_detail_5%3Fpsc%3D1%26pd_rd_i%3DB084Z42CV8p13NParams&tag=liber0e-21",
-        "image": "https://m.media-amazon.com/images/I/4160iI6CTgL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg",
-        "rating": 5,
-        "ratings_total": 1,
-        "is_prime": true,
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 12.47,
-          "raw": "€12,47"
-        }
-      }, {
-        "title": "Caligrafía y lettering creativa: Una guía para principiantes con instrucciones, ejercicios, páginas de práctica y más!",
-        "asin": "1678697532",
-        "link": "https://www.amazon.es/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_6?ie=UTF8&adId=A0917946PUO3PQBKC14I&qualifier=1621525017&id=6646833288209711&widgetName=sp_detail&url=%2Fdp%2F1678697532%2Fref%3Dsspa_dk_detail_6%3Fpsc%3D1%26pd_rd_i%3D1678697532p13NParams&tag=liber0e-21",
-        "image": "https://m.media-amazon.com/images/I/41SfpPMp9CL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg",
-        "rating": 4,
-        "ratings_total": 56,
-        "is_prime": true,
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 7.95,
-          "raw": "€7,95"
-        }
-      }, {
-        "title": "La puerta de Abadón (The Expanse 3)",
-        "asin": "8417347208",
-        "link": "https://www.amazon.es/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_7?ie=UTF8&adId=A00778472QO845TET936K&qualifier=1621525017&id=6646833288209711&widgetName=sp_detail&url=%2Fdp%2F8417347208%2Fref%3Dsspa_dk_detail_7%3Fpsc%3D1%26pd_rd_i%3D8417347208p13NParams&tag=liber0e-21",
-        "image": "https://m.media-amazon.com/images/I/519qqD2rVQL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg",
-        "rating": 4.5,
-        "ratings_total": 124,
-        "is_prime": true,
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 20.8,
-          "raw": "€20,80"
-        }
-      }, {
-        "title": "La Furia y El Poder De Las Sombras. Colección Especial De Vampiros En Español (3 En 1): Libros de Novelas de Vampiros. Las mejores historias de Suspense, Romance y Fantasía Paranormal",
-        "asin": "1658892798",
-        "link": "https://www.amazon.es/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_8?ie=UTF8&adId=A04594491W1TF8H4F13LI&qualifier=1621525017&id=6646833288209711&widgetName=sp_detail&url=%2Fdp%2F1658892798%2Fref%3Dsspa_dk_detail_8%3Fpsc%3D1%26pd_rd_i%3D1658892798p13NParams&tag=liber0e-21",
-        "image": "https://m.media-amazon.com/images/I/51+OHyc5NCL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg",
-        "rating": 3.5,
-        "ratings_total": 5,
-        "is_prime": true,
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 18.71,
-          "raw": "€18,71"
-        }
-      }, {
-        "title": "Retrato de mim: Roubaram a minha infancia",
-        "asin": "B08C961BVB",
-        "link": "https://www.amazon.es/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_9?ie=UTF8&adId=A0804781259FQ38S4R3M3&qualifier=1621525017&id=6646833288209711&widgetName=sp_detail&url=%2Fdp%2FB08C961BVB%2Fref%3Dsspa_dk_detail_9%3Fpsc%3D1%26pd_rd_i%3DB08C961BVBp13NParams&tag=liber0e-21",
-        "image": "https://m.media-amazon.com/images/I/51f8Uxjkc2L._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg",
-        "rating": 5,
-        "ratings_total": 1,
-        "is_prime": true,
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 13.31,
-          "raw": "€13,31"
-        }
-      }, {
-        "title": "League Of Legends - Re-program Your Brain To Succeed: How The Correct Mindset, Mentality, And Attitude Are The Keys To Unlock Your Potential: 1 (League of Legends Guide)",
-        "asin": "1708171967",
-        "link": "https://www.amazon.es/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_0?ie=UTF8&adId=A0119817OVX86W3GE2GX&qualifier=1621525017&id=1503378899377329&widgetName=sp_detail2&url=%2Fdp%2F1708171967%2Fref%3Dsspa_dk_detail_0%3Fpsc%3D1%26pd_rd_i%3D1708171967p13NParams&tag=liber0e-21",
-        "image": "https://m.media-amazon.com/images/I/41IWiP2NeML._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg",
-        "rating": 4.5,
-        "ratings_total": 58,
-        "is_prime": true,
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 14.99,
-          "raw": "€14,99"
-        }
-      }, {
-        "title": "League Of Legends - The Secret Blueprint To High Elo: With This Simple Step-by-Step Process, You Will Climb The Ranked Ladder With Ease",
-        "asin": "B08MSNHWW9",
-        "link": "https://www.amazon.es/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_1?ie=UTF8&adId=A05179793H5RQ55RNEV2M&qualifier=1621525017&id=1503378899377329&widgetName=sp_detail2&url=%2Fdp%2FB08MSNHWW9%2Fref%3Dsspa_dk_detail_1%3Fpsc%3D1%26pd_rd_i%3DB08MSNHWW9p13NParams&tag=liber0e-21",
-        "image": "https://m.media-amazon.com/images/I/51L4yZg8drL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg",
-        "rating": 4,
-        "ratings_total": 17,
-        "is_prime": true,
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 14.99,
-          "raw": "€14,99"
-        }
-      }, {
-        "title": "Retrato de mim: Roubaram a minha infancia",
-        "asin": "B08C961BVB",
-        "link": "https://www.amazon.es/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_2?ie=UTF8&adId=A0804781259FQ38S4R3M3&qualifier=1621525017&id=1503378899377329&widgetName=sp_detail2&url=%2Fdp%2FB08C961BVB%2Fref%3Dsspa_dk_detail_2%3Fpsc%3D1%26pd_rd_i%3DB08C961BVBp13NParams&tag=liber0e-21",
-        "image": "https://m.media-amazon.com/images/I/51f8Uxjkc2L._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg",
-        "rating": 5,
-        "ratings_total": 1,
-        "is_prime": true,
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 13.31,
-          "raw": "€13,31"
-        }
-      }, {
-        "title": "BLOODY ALPHABET: The Scariest Serial Killers Coloring Book. A True Crime Adult Gift - Full of Famous Murderers. For Adults Only.: 2 (True Crime Gifts)",
-        "asin": "170201939X",
-        "link": "https://www.amazon.es/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_3?ie=UTF8&adId=A072820912B83QCQPRPY4&qualifier=1621525017&id=1503378899377329&widgetName=sp_detail2&url=%2Fdp%2F170201939X%2Fref%3Dsspa_dk_detail_3%3Fpsc%3D1%26pd_rd_i%3D170201939Xp13NParams&tag=liber0e-21",
-        "image": "https://m.media-amazon.com/images/I/61pThDaQObL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg",
-        "rating": 4.5,
-        "is_prime": true,
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 8.31,
-          "raw": "€8,31"
-        }
-      }, {
-        "title": "El camino de los reyes (El Archivo de las Tormentas 1)",
-        "asin": "8466657665",
-        "link": "https://www.amazon.es/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_4?ie=UTF8&adId=A00788638GZIL6I0S5RW&qualifier=1621525017&id=1503378899377329&widgetName=sp_detail2&url=%2Fdp%2F8466657665%2Fref%3Dsspa_dk_detail_4%3Fpsc%3D1%26pd_rd_i%3D8466657665p13NParams&tag=liber0e-21",
-        "image": "https://m.media-amazon.com/images/I/518ggd0zZCL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg",
-        "rating": 4.5,
-        "is_prime": true,
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 33.15,
-          "raw": "€33,15"
-        }
-      }, {
-        "title": "La mentalidad en League of Legends: actitud y gestión emocional para convertirse en ganador (Guía no oficial) (Mentalidad en LoL nº 2)",
-        "asin": "B082H4662V",
-        "link": "https://www.amazon.es/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_5?ie=UTF8&adId=A02772901H6K0ZMDRJXD6&qualifier=1621525017&id=1503378899377329&widgetName=sp_detail2&url=%2Fdp%2FB082H4662V%2Fref%3Dsspa_dk_detail_5%3Fpsc%3D1%26pd_rd_i%3DB082H4662Vp13NParams&tag=liber0e-21",
-        "image": "https://m.media-amazon.com/images/I/41dWgBpGF7L._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg",
-        "rating": 4.5,
-        "ratings_total": 24,
-        "is_prime": false,
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 4.95,
-          "raw": "€4,95"
-        }
-      }, {
-        "title": "Estelar (Escuadrón 2)",
-        "asin": "8417347747",
-        "link": "https://www.amazon.es/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_6?ie=UTF8&adId=A00780032YFPYMGYI2H66&qualifier=1621525017&id=1503378899377329&widgetName=sp_detail2&url=%2Fdp%2F8417347747%2Fref%3Dsspa_dk_detail_6%3Fpsc%3D1%26pd_rd_i%3D8417347747p13NParams&tag=liber0e-21",
-        "image": "https://m.media-amazon.com/images/I/41ahELLyf1L._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg",
-        "rating": 4.5,
-        "ratings_total": 325,
-        "is_prime": true,
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 18.9,
-          "raw": "€18,90"
-        }
-      }, {
-        "title": "Introducción a la Mentalidad en League of Legends: Cambia tu actitud y sube de División (Guía No Oficial) (Mentalidad en LoL nº 1)",
-        "asin": "B088DK4GX2",
-        "link": "https://www.amazon.es/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_7?ie=UTF8&adId=A02774462VTI10UN0TLV2&qualifier=1621525017&id=1503378899377329&widgetName=sp_detail2&url=%2Fdp%2FB088DK4GX2%2Fref%3Dsspa_dk_detail_7%3Fpsc%3D1%26pd_rd_i%3DB088DK4GX2p13NParams&tag=liber0e-21",
-        "image": "https://m.media-amazon.com/images/I/41AR-JH8qeL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg",
-        "rating": 5,
-        "ratings_total": 1,
-        "is_prime": false,
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 0,
-          "raw": "€0,00"
-        }
-      }, {
-        "title": "El Héroe de las Eras (Nacidos de la bruma [Mistborn] 3)",
-        "asin": "8498727952",
-        "link": "https://www.amazon.es/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_8?ie=UTF8&adId=A00786831XQB41SQ43LJZ&qualifier=1621525017&id=1503378899377329&widgetName=sp_detail2&url=%2Fdp%2F8498727952%2Fref%3Dsspa_dk_detail_8%3Fpsc%3D1%26pd_rd_i%3D8498727952p13NParams&tag=liber0e-21",
-        "image": "https://m.media-amazon.com/images/I/51esLV8OYyL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg",
-        "rating": 4.5,
-        "ratings_total": 772,
-        "is_prime": true,
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 12.3,
-          "raw": "€12,30"
-        }
-      }, {
-        "title": "LA ÚLTIMA CRIPTA: La novela Nº1 en Amazon España (Las aventuras de Ulises Vidal)",
-        "asin": "B07CNMTJ6Z",
-        "link": "https://www.amazon.es/gp/slredirect/picassoRedirect.html/ref=sspa_dk_detail_9?ie=UTF8&adId=A07715707QJILPNFL6CM&qualifier=1621525017&id=1503378899377329&widgetName=sp_detail2&url=%2Fdp%2FB07CNMTJ6Z%2Fref%3Dsspa_dk_detail_9%3Fpsc%3D1%26pd_rd_i%3DB07CNMTJ6Zp13NParams&tag=liber0e-21",
-        "image": "https://m.media-amazon.com/images/I/51ryA9Ad4GS._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg",
-        "rating": 4,
-        "is_prime": false,
-        "price": {
-          "symbol": "€",
-          "currency": "EUR",
-          "value": 4.99,
-          "raw": "€4,99"
-        }
-      }]
-    }; // console.log(json.bestsellers);
-    //CAMBIAR bestsellers POR search_result PARA EL BUSCADOR
-
-    json.bestsellers.forEach(function (book) {
-      // console.log((book.title).toLowerCase())
-      // console.log(book.image)
-      // console.log(book.link)
-      // console.log(book.asin)
-      var bookData = {
-        title: book.title,
-        title_search: book.title.toLowerCase(),
-        cover: book.image,
-        asin: book.asin,
-        link: book.link
-      };
-      /*axios.post('/api/newBook', bookData).then((response)=>{
-          console.log(response.data);
-      })*/
-    });
-    /*****ZONA DEL BOOK_JSON*****/
-
-    var book = book_json.product;
-    console.log(book.title.toLowerCase());
-    console.log(book.main_image.link);
-    console.log(book.link);
-    console.log(book.asin);
-    console.log(book.authors[0].name);
-    console.log(book.book_description);
-    var bookData = {
-      title: book.title,
-      title_search: book.title.toLowerCase(),
-      cover: book.main_image.link,
-      asin: book.asin,
-      link: book.link,
-      author: book.authors[0].name,
-      sinopsis: book.book_description
-    };
-    axios.post('/api/newBook', bookData).then(function (response) {
-      console.log(response.data);
-    });
   },
-  methods: {
-    test: function test() {}
-  }
+  methods: {}
 });
 
 /***/ }),
@@ -6753,6 +4163,9 @@ __webpack_require__.r(__webpack_exports__);
         this.errorsregister = {};
       }
     }
+  },
+  mounted: function mounted() {
+    window.scrollTo(0, 0);
   }
 });
 
@@ -6878,9 +4291,7 @@ __webpack_require__.r(__webpack_exports__);
         axios.post('api/getComentario/' + _this.$route.params.isbn).then(function (response) {
           _this.comentarios = response.data;
         });
-      })["catch"](function (errors) {
-        c;
-      });
+      })["catch"](function (errors) {});
       this.formData.texto_reseña = "";
     },
     setRating: function setRating(rating) {
@@ -6902,41 +4313,25 @@ __webpack_require__.r(__webpack_exports__);
 
       var vuestore = this.$store.state;
       axios.post('api/SetWish/' + vuestore.user.id, this.id_libro).then(function (response) {
-        if (response.data == 'ya esta') {
-          _this3.$swal({
-            toast: true,
-            position: 'center',
-            showConfirmButton: false,
-            timer: 2000,
-            didOpen: function didOpen(toast) {
-              toast.addEventListener('mouseenter', Swal.stopTimer);
-              toast.addEventListener('mouseleave', Swal.resumeTimer);
-            },
-            icon: 'info',
-            title: '¡Ya esta en tu lista!'
-          });
-        } else {
-          _this3.$swal({
-            toast: true,
-            position: 'center',
-            showConfirmButton: false,
-            timer: 2000,
-            didOpen: function didOpen(toast) {
-              toast.addEventListener('mouseenter', Swal.stopTimer);
-              toast.addEventListener('mouseleave', Swal.resumeTimer);
-            },
-            icon: 'success',
-            title: '¡Guardado!'
-          });
-        }
-      })["catch"](function (errors) {
-        console.log(errors);
+        _this3.$swal({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 2000,
+          didOpen: function didOpen(toast) {
+            toast.addEventListener('mouseenter', Swal.stopTimer);
+            toast.addEventListener('mouseleave', Swal.resumeTimer);
+          },
+          icon: 'success',
+          title: 'Guardado!'
+        });
       });
     }
   },
   created: function created() {
     var _this4 = this;
 
+    window.scrollTo(0, 0);
     window.axios.defaults.headers.common['Authorization'] = "Bearer ".concat(this.$store.state.token);
     axios.get('/api/user').then(function (res) {
       var userId = res.data.id;
@@ -6950,12 +4345,49 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     }), axios.post('api/libro/' + this.$route.params.isbn).then(function (response) {
-      _this4.book = response.data.book[0];
+      var informacion = response.data.book[0];
       _this4.comentarios = response.data.comentarios;
       _this4.formData.id_libro = response.data.book[0].isbn;
       _this4.id_libro.id_libro = response.data.book[0].isbn;
       _this4.rating.id_libro = response.data.book[0].isbn;
-      console.log(response.data.book[0].isbn);
+
+      if (informacion.author == null && informacion.sinopsis == null) {
+        console.log("Te falta informaçao!");
+        var url = new URL('https://api.rainforestapi.com/request');
+        var params = {
+          api_key: "F5FA69E2271C49858CDC658BA456FB1C",
+          type: "product",
+          amazon_domain: "amazon.es",
+          asin: informacion.asin,
+          language: "es_ES",
+          output: "json",
+          include_html: "false",
+          associate_id: "liber0e-21"
+        };
+        url.search = new URLSearchParams(params).toString();
+        fetch(url).then(function (data) {
+          return data.json();
+        }).then(function (book) {
+          console.log(book);
+          var product = book.product;
+          var bookData = {
+            title: product.title,
+            title_search: product.title.toLowerCase(),
+            cover: product.main_image.link,
+            asin: product.asin,
+            link: product.link,
+            author: product.authors[0].name,
+            sinopsis: product.book_description
+          };
+          axios.post('/api/newBook', bookData).then(function (resp) {
+            _this4.book = resp.data[0];
+            console.log(resp.data[0]);
+            console.log(resp.data);
+          });
+        });
+      } else {
+        _this4.book = informacion;
+      }
     })["catch"](function (errors) {});
   }
 });
@@ -7123,6 +4555,9 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     }
+  },
+  mounted: function mounted() {
+    window.scrollTo(0, 0);
   }
 });
 
@@ -7197,6 +4632,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -7209,7 +4659,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       search: '',
       books: {},
-      moreRating: {}
+      moreRating: {},
+      moreSeller: {}
     };
   },
   computed: {// destacadosLength: function(){
@@ -7223,22 +4674,57 @@ __webpack_require__.r(__webpack_exports__);
     //   );
     // },
   },
-  mounted: function mounted() {
+  created: function created() {
     var _this = this;
 
-    //Lista de libros paginada
+    window.scrollTo(0, 0); //Lista de libros paginada
+
     this.getResults(); //lista de 20 libros mejor valorados
 
     axios.get("api/moreRating").then(function (response) {
       _this.moreRating = response.data;
     });
+
+    if (sessionStorage.getItem('mostview') == null) {
+      var masVendidos = [];
+      var url = new URL('https://api.rainforestapi.com/request');
+      var params = {
+        api_key: "F5FA69E2271C49858CDC658BA456FB1C",
+        type: "bestsellers",
+        url: "https://www.amazon.es/gp/bestsellers/books",
+        output: "json",
+        include_html: "false",
+        language: "es_ES",
+        associate_id: "liber0e-21"
+      };
+      url.search = new URLSearchParams(params).toString();
+      fetch(url).then(function (data) {
+        return data.json();
+      }).then(function (books) {
+        // sessionStorage.setItem('mostview', JSON.stringify(books.bestsellers))
+        books.bestsellers.forEach(function (book) {
+          var bookData = {
+            title: book.title,
+            title_search: book.title.toLowerCase(),
+            cover: book.image,
+            asin: book.asin,
+            link: book.link
+          };
+          axios.post('/api/newBook', bookData).then(function (resp) {
+            masVendidos.push(resp.data[0]);
+          }).then(function () {
+            sessionStorage.setItem('mostview', JSON.stringify(masVendidos));
+            _this.moreSeller = JSON.parse(sessionStorage.getItem('mostview'));
+          });
+        });
+      });
+    } else {
+      this.moreSeller = JSON.parse(sessionStorage.getItem('mostview'));
+    }
   },
   methods: {
-    // SearchBooks() {
-    //   this.postSearch = this.preSearch;
-    // },
     SearchBooks: function SearchBooks(campo) {
-      this.$router.push("/agarcia/LiberLogin/public/search/" + campo);
+      this.$router.push("/agarcia/LiberLogin/public/search/" + campo.toLowerCase());
     },
     BookInformation: function BookInformation(isbn) {
       this.$router.push("/agarcia/LiberLogin/public/book/" + isbn);
@@ -7592,6 +5078,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this2 = this;
 
+    window.scrollTo(0, 0);
     window.axios.defaults.headers.common['Authorization'] = "Bearer ".concat(this.$store.state.token);
     axios.get('/api/user').then(function (res) {
       var userId = res.data.id;
@@ -7602,6 +5089,67 @@ __webpack_require__.r(__webpack_exports__);
         console.log(_this2.books);
       })["catch"](function (errors) {});
     });
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/bestSeller.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/bestSeller.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "bestseller",
+  data: function data() {
+    return {
+      moreSeller: {}
+    };
+  },
+  mounted: function mounted() {
+    this.moreSeller = JSON.parse(sessionStorage.getItem('mostview'));
+    window.scrollTo(0, 0);
+  },
+  methods: {
+    BookInformation: function BookInformation(isbn) {
+      this.$router.push("/agarcia/LiberLogin/public/book/" + isbn);
+    }
   }
 });
 
@@ -7735,6 +5283,9 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     }
+  },
+  mounted: function mounted() {
+    window.scrollTo(0, 0);
   }
 });
 
@@ -7788,6 +5339,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'search',
   props: ['campo'],
@@ -7802,12 +5355,55 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    searched: function searched() {
+    searched: function searched(search) {
       var _this = this;
 
-      this.formData.search = this.formData.search.toLowerCase();
-      axios.post("api/search", this.formData).then(function (response) {
-        _this.books = response.data;
+      this.$router.push("/agarcia/LiberLogin/public/search/" + search.toLowerCase());
+      var data = {
+        search: this.$route.params.campo.toLowerCase()
+      };
+      axios.post("api/search", data).then(function (response) {
+        var info = response.data;
+        var url = new URL('https://api.rainforestapi.com/request');
+        var params = {
+          api_key: "F5FA69E2271C49858CDC658BA456FB1C",
+          type: "search",
+          amazon_domain: "amazon.es",
+          search_term: data.search,
+          language: "es_ES",
+          associate_id: "liber0e-21",
+          include_html: "false",
+          category_id: "599365031",
+          output: "json"
+        };
+        url.search = new URLSearchParams(params).toString();
+        fetch(url).then(function (data) {
+          return data.json();
+        }).then(function (books) {
+          var infoApi = books.search_results; // console.log(books.search_results)
+
+          books.search_results.forEach(function (book) {
+            var bookData = {
+              title: book.title,
+              title_search: book.title.toLowerCase(),
+              cover: book.image,
+              asin: book.asin,
+              link: book.link
+            };
+            axios.post('/api/newBook', bookData).then(function (resp) {});
+          }); // infoApi.forEach(book => {
+          // for(let i=0; i<info.length; i++){
+          //     if(book.asin != info[i].asin){
+          //         info.push(book);
+          //     }
+          // }
+          // });
+          //retocar
+
+          var busqueda = info.concat(infoApi);
+          console.log(busqueda);
+          _this.books = busqueda;
+        });
       });
     },
     BookInformation: function BookInformation(isbn) {
@@ -7815,14 +5411,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this2 = this;
-
-    var data = {
-      search: this.$route.params.campo.toLowerCase()
-    };
-    axios.post("api/search", data).then(function (response) {
-      _this2.books = response.data;
-    });
+    this.searched(this.$route.params.campo);
+    window.scrollTo(0, 0);
   }
 });
 
@@ -7939,6 +5529,9 @@ __webpack_require__.r(__webpack_exports__);
     BookInformation: function BookInformation(isbn) {
       this.$router.push('/agarcia/LiberLogin/public/book/' + isbn);
     }
+  },
+  mounted: function mounted() {
+    window.scrollTo(0, 0);
   }
 });
 
@@ -8060,6 +5653,9 @@ __webpack_require__.r(__webpack_exports__);
     BookInformation: function BookInformation(isbn) {
       this.$router.push('/agarcia/LiberLogin/public/book/' + isbn);
     }
+  },
+  mounted: function mounted() {
+    window.scrollTo(0, 0);
   }
 });
 
@@ -8204,6 +5800,9 @@ __webpack_require__.r(__webpack_exports__);
     BookInformation: function BookInformation(isbn) {
       this.$router.push('/agarcia/LiberLogin/public/book/' + isbn);
     }
+  },
+  mounted: function mounted() {
+    window.scrollTo(0, 0);
   }
 });
 
@@ -8326,6 +5925,9 @@ __webpack_require__.r(__webpack_exports__);
     BookInformation: function BookInformation(isbn) {
       this.$router.push('/agarcia/LiberLogin/public/book/' + isbn);
     }
+  },
+  mounted: function mounted() {
+    window.scrollTo(0, 0);
   }
 });
 
@@ -8446,6 +6048,9 @@ __webpack_require__.r(__webpack_exports__);
     BookInformation: function BookInformation(isbn) {
       this.$router.push('/agarcia/LiberLogin/public/book/' + isbn);
     }
+  },
+  mounted: function mounted() {
+    window.scrollTo(0, 0);
   }
 });
 
@@ -8459,31 +6064,34 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _store_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./store/index.js */ "./resources/js/store/index.js");
 /* harmony import */ var vue_star_rating__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-star-rating */ "./node_modules/vue-star-rating/dist/VueStarRating.common.js");
 /* harmony import */ var vue_star_rating__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_star_rating__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var tailable_pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tailable-pagination */ "./node_modules/tailable-pagination/dist/tailable-pagination.common.js");
 /* harmony import */ var tailable_pagination__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(tailable_pagination__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var vue_sweetalert2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-sweetalert2 */ "./node_modules/vue-sweetalert2/dist/index.js");
-/* harmony import */ var sweetalert2_dist_sweetalert2_min_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.min.css */ "./node_modules/sweetalert2/dist/sweetalert2.min.css");
-/* harmony import */ var sweetalert2_dist_sweetalert2_min_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_min_css__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _app_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app.vue */ "./resources/js/app.vue");
-/* harmony import */ var _components_404_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/404.vue */ "./resources/js/components/404.vue");
-/* harmony import */ var _components_Home_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Home.vue */ "./resources/js/components/Home.vue");
-/* harmony import */ var _components_Book_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Book.vue */ "./resources/js/components/Book.vue");
-/* harmony import */ var _components_EditUser_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/EditUser.vue */ "./resources/js/components/EditUser.vue");
-/* harmony import */ var _components_AuthComponent_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/AuthComponent.vue */ "./resources/js/components/AuthComponent.vue");
-/* harmony import */ var _components_resetPassword_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/resetPassword.vue */ "./resources/js/components/resetPassword.vue");
-/* harmony import */ var _components_Wish_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Wish.vue */ "./resources/js/components/Wish.vue");
-/* harmony import */ var _views_Generos_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./views/Generos.vue */ "./resources/js/views/Generos.vue");
-/* harmony import */ var _views_Aventura_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./views/Aventura.vue */ "./resources/js/views/Aventura.vue");
-/* harmony import */ var _views_Romance_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./views/Romance.vue */ "./resources/js/views/Romance.vue");
-/* harmony import */ var _views_Fantasia_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./views/Fantasia.vue */ "./resources/js/views/Fantasia.vue");
-/* harmony import */ var _views_Terror_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./views/Terror.vue */ "./resources/js/views/Terror.vue");
-/* harmony import */ var _views_cifi_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./views/cifi.vue */ "./resources/js/views/cifi.vue");
-/* harmony import */ var _components_cookie_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/cookie.vue */ "./resources/js/components/cookie.vue");
-/* harmony import */ var _components_search_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/search.vue */ "./resources/js/components/search.vue");
+/* harmony import */ var _inotom_vue_go_top__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @inotom/vue-go-top */ "./node_modules/@inotom/vue-go-top/dist/vue-go-top.umd.js");
+/* harmony import */ var _inotom_vue_go_top__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_inotom_vue_go_top__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var sweetalert2_dist_sweetalert2_min_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.min.css */ "./node_modules/sweetalert2/dist/sweetalert2.min.css");
+/* harmony import */ var sweetalert2_dist_sweetalert2_min_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_min_css__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _app_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app.vue */ "./resources/js/app.vue");
+/* harmony import */ var _components_404_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/404.vue */ "./resources/js/components/404.vue");
+/* harmony import */ var _components_Home_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Home.vue */ "./resources/js/components/Home.vue");
+/* harmony import */ var _components_Book_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Book.vue */ "./resources/js/components/Book.vue");
+/* harmony import */ var _components_EditUser_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/EditUser.vue */ "./resources/js/components/EditUser.vue");
+/* harmony import */ var _components_AuthComponent_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/AuthComponent.vue */ "./resources/js/components/AuthComponent.vue");
+/* harmony import */ var _components_resetPassword_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/resetPassword.vue */ "./resources/js/components/resetPassword.vue");
+/* harmony import */ var _components_Wish_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Wish.vue */ "./resources/js/components/Wish.vue");
+/* harmony import */ var _views_Generos_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./views/Generos.vue */ "./resources/js/views/Generos.vue");
+/* harmony import */ var _views_Aventura_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./views/Aventura.vue */ "./resources/js/views/Aventura.vue");
+/* harmony import */ var _views_Romance_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./views/Romance.vue */ "./resources/js/views/Romance.vue");
+/* harmony import */ var _views_Fantasia_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./views/Fantasia.vue */ "./resources/js/views/Fantasia.vue");
+/* harmony import */ var _views_Terror_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./views/Terror.vue */ "./resources/js/views/Terror.vue");
+/* harmony import */ var _views_cifi_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./views/cifi.vue */ "./resources/js/views/cifi.vue");
+/* harmony import */ var _components_cookie_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/cookie.vue */ "./resources/js/components/cookie.vue");
+/* harmony import */ var _components_search_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/search.vue */ "./resources/js/components/search.vue");
+/* harmony import */ var _components_bestSeller_vue__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/bestSeller.vue */ "./resources/js/components/bestSeller.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
@@ -8494,14 +6102,17 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 
 
 
+
  //Indicación a vue que use los componentes y los plugins
 
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_4__.default);
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_5__.default);
 Vue.component('star-rating', (vue_star_rating__WEBPACK_IMPORTED_MODULE_1___default()));
 Vue.use((tailable_pagination__WEBPACK_IMPORTED_MODULE_2___default()));
-Vue.use(vue_sweetalert2__WEBPACK_IMPORTED_MODULE_3__.default); //estilos sweetAlert2
+Vue.use(vue_sweetalert2__WEBPACK_IMPORTED_MODULE_3__.default);
+Vue.use((_inotom_vue_go_top__WEBPACK_IMPORTED_MODULE_4___default())); //estilos sweetAlert2
 
  //Componentes importados
+
 
 
 
@@ -8521,84 +6132,88 @@ Vue.use(vue_sweetalert2__WEBPACK_IMPORTED_MODULE_3__.default); //estilos sweetAl
  //Vue.component('testvue', require('./components/vuetest.vue').default);  OTRA FORMA DE LLAMAR A LOS COMPONENTES
 // Rutas vue
 
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_4__.default({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_5__.default({
   mode: 'history',
   routes: [//{guest: true} = Si esta logueado redirige al home
   //{requiresAuth: true} = Si NO esta logueado redirige al home
   {
     path: '/agarcia/LiberLogin/public/auth',
     name: 'login',
-    component: _components_AuthComponent_vue__WEBPACK_IMPORTED_MODULE_11__.default,
+    component: _components_AuthComponent_vue__WEBPACK_IMPORTED_MODULE_12__.default,
     meta: {
       guest: true
     }
   }, {
     path: '/agarcia/LiberLogin/public/cookie',
     name: 'cookie',
-    component: _components_cookie_vue__WEBPACK_IMPORTED_MODULE_20__.default
+    component: _components_cookie_vue__WEBPACK_IMPORTED_MODULE_21__.default
+  }, {
+    path: '/agarcia/LiberLogin/public/bestSeller',
+    name: 'bestseller',
+    component: _components_bestSeller_vue__WEBPACK_IMPORTED_MODULE_23__.default
   }, {
     path: '/agarcia/LiberLogin/public/reset-password',
     name: 'resetPassword',
-    component: _components_resetPassword_vue__WEBPACK_IMPORTED_MODULE_12__.default,
+    component: _components_resetPassword_vue__WEBPACK_IMPORTED_MODULE_13__.default,
     meta: {
       guest: true
     }
   }, {
     path: '/agarcia/LiberLogin/public/book/:isbn',
     name: 'book',
-    component: _components_Book_vue__WEBPACK_IMPORTED_MODULE_9__.default,
+    component: _components_Book_vue__WEBPACK_IMPORTED_MODULE_10__.default,
     props: true
   }, {
     path: '/agarcia/LiberLogin/public/search/:campo',
     name: 'search',
-    component: _components_search_vue__WEBPACK_IMPORTED_MODULE_21__.default,
+    component: _components_search_vue__WEBPACK_IMPORTED_MODULE_22__.default,
     props: true
   }, {
     path: '/agarcia/LiberLogin/public/wish',
     name: 'wish',
-    component: _components_Wish_vue__WEBPACK_IMPORTED_MODULE_13__.default,
+    component: _components_Wish_vue__WEBPACK_IMPORTED_MODULE_14__.default,
     meta: {
       requiresAuth: true
     }
   }, {
     path: '/agarcia/LiberLogin/public/Genero',
     name: 'Genero',
-    component: _views_Generos_vue__WEBPACK_IMPORTED_MODULE_14__.default
+    component: _views_Generos_vue__WEBPACK_IMPORTED_MODULE_15__.default
   }, {
     path: '/agarcia/LiberLogin/public/Genero/Aventura',
     name: 'Aventura',
-    component: _views_Aventura_vue__WEBPACK_IMPORTED_MODULE_15__.default
+    component: _views_Aventura_vue__WEBPACK_IMPORTED_MODULE_16__.default
   }, {
     path: '/agarcia/LiberLogin/public/Genero/Romance',
     name: 'Romance',
-    component: _views_Romance_vue__WEBPACK_IMPORTED_MODULE_16__.default
+    component: _views_Romance_vue__WEBPACK_IMPORTED_MODULE_17__.default
   }, {
     path: '/agarcia/LiberLogin/public/Genero/Fantasia',
     name: 'Fantasia',
-    component: _views_Fantasia_vue__WEBPACK_IMPORTED_MODULE_17__.default
+    component: _views_Fantasia_vue__WEBPACK_IMPORTED_MODULE_18__.default
   }, {
     path: '/agarcia/LiberLogin/public/Genero/Terror',
     name: 'Terror',
-    component: _views_Terror_vue__WEBPACK_IMPORTED_MODULE_18__.default
+    component: _views_Terror_vue__WEBPACK_IMPORTED_MODULE_19__.default
   }, {
     path: '/agarcia/LiberLogin/public/Genero/cifi',
     name: 'cifi',
-    component: _views_cifi_vue__WEBPACK_IMPORTED_MODULE_19__.default
+    component: _views_cifi_vue__WEBPACK_IMPORTED_MODULE_20__.default
   }, {
     path: '/agarcia/LiberLogin/public/',
     name: 'home',
-    component: _components_Home_vue__WEBPACK_IMPORTED_MODULE_8__.default
+    component: _components_Home_vue__WEBPACK_IMPORTED_MODULE_9__.default
   }, {
     path: '/agarcia/LiberLogin/public/edicion',
     name: 'edicion',
-    component: _components_EditUser_vue__WEBPACK_IMPORTED_MODULE_10__.default,
+    component: _components_EditUser_vue__WEBPACK_IMPORTED_MODULE_11__.default,
     meta: {
       requiresAuth: true
     }
   }, //Esta ruta siempre abajo del todo.
   {
     path: "/agarcia/LiberLogin/public/:catchAll(.*)",
-    component: _components_404_vue__WEBPACK_IMPORTED_MODULE_7__.default
+    component: _components_404_vue__WEBPACK_IMPORTED_MODULE_8__.default
   }]
 }); //Rutas privadas.
 
@@ -8643,7 +6258,7 @@ router.beforeEach(function (to, from, next) {
 var appp = new Vue({
   el: '#app',
   components: {
-    app: _app_vue__WEBPACK_IMPORTED_MODULE_6__.default
+    app: _app_vue__WEBPACK_IMPORTED_MODULE_7__.default
   },
   router: router,
   store: _store_index_js__WEBPACK_IMPORTED_MODULE_0__.default
@@ -8965,7 +6580,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "#Content{\n  min-height: calc(100vh - 4em - 4em);\n}\n#contentbg{\n  background: rgb(0,106,255);\n  background: linear-gradient(340deg, rgba(0,106,255,1) 0%, rgba(94,161,255,1) 16%, rgba(116,174,255,1) 17%, rgba(150,195,255,1) 33%, rgba(150,195,255,1) 33%, rgba(164,203,255,1) 34%, rgba(213,231,255,1) 47%, rgba(219,234,255,1) 47%, rgba(235,243,255,1) 55%, rgba(236,243,255,1) 55%, rgba(244,248,254,1) 78%, rgba(255,255,255,1) 100%);\n}\n::-webkit-scrollbar {\n  width: 8px;\n  background: rgba(255, 255, 255, 0);\n}\n::-webkit-scrollbar-track{\n  background: rgba(255, 255, 255, 0);\n}\n::-webkit-scrollbar-thumb {\n  border-radius: 10px;\n  background: rgba(0, 99, 237, 0.301);\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "#Content{\n  min-height: calc(100vh - 4em - 4em);\n}\n#contentbg{\n  background: rgb(0,106,255);\n  background: linear-gradient(340deg, rgba(0,106,255,1) 0%, rgba(94,161,255,1) 16%, rgba(116,174,255,1) 17%, rgba(150,195,255,1) 33%, rgba(150,195,255,1) 33%, rgba(164,203,255,1) 34%, rgba(213,231,255,1) 47%, rgba(219,234,255,1) 47%, rgba(235,243,255,1) 55%, rgba(236,243,255,1) 55%, rgba(244,248,254,1) 78%, rgba(255,255,255,1) 100%);\n}\n::-webkit-scrollbar {\n  width: 10px;\n  background: rgba(255, 255, 255, 0);\n}\n::-webkit-scrollbar-track{\n  width: 8px;\n  background: rgba(255, 255, 255, 0);\n}\n::-webkit-scrollbar-thumb {\n  width: 8px;\n  background: rgba(0, 99, 237, 0.301);\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9037,7 +6652,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "@media (max-width: 640px) and (min-width: 0px) {\n#titulo {\n    display: -webkit-box;\n    -webkit-line-clamp: 2;\n    -webkit-box-orient: vertical;\n    overflow: hidden;\n}\n}\n#titulo {\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n}\n#tituloCarousel{\n  display: -webkit-box;\n  -webkit-line-clamp: 1;\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n}\n#icono {\n  color: rgb(192, 240, 255);\n}\n#amazonButton {\n  background: rgb(255, 158, 0);\n  background: linear-gradient(\n    0deg,\n    rgba(255, 158, 0, 1) 21%,\n    rgba(247, 255, 79, 1) 100%\n  );\n}\n.tooltip {\n  visibility: hidden;\n  position: absolute;\n  cursor: default;\n}\n.has-tooltip:hover .tooltip {\n  visibility: visible;\n  z-index: 100;\n  left: 75px;\n}\n.owl-dot:focus  {\n  opacity: 30%;\n  outline: none;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "@media (max-width: 640px) and (min-width: 0px) {\n#titulo {\n    display: -webkit-box;\n    -webkit-line-clamp: 2;\n    -webkit-box-orient: vertical;\n    overflow: hidden;\n}\n}\n#titulo {\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n}\n#tituloCarousel{\n  display: -webkit-box;\n  -webkit-line-clamp: 1;\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n}\n#icono {\n  color: rgb(192, 240, 255);\n}\n#amazonButton {\n  background: rgb(255, 158, 0);\n  background: linear-gradient(\n    0deg,\n    rgba(255, 158, 0, 1) 21%,\n    rgba(247, 255, 79, 1) 100%\n  );\n}\n.tooltip {\n  visibility: hidden;\n  position: absolute;\n  cursor: default;\n}\n.has-tooltip:hover .tooltip {\n  visibility: visible;\n  z-index: 100;\n  left: 75px;\n}\n.owl-dot:focus  {\n  opacity: 30%;\n  outline: none;\n}\n.top-button {\n  text-decoration: none;\n  font-size: 24px;\n  font-weight: 700;\n  text-transform: uppercase;\n  line-height: 1;\n  margin: 2rem auto;\n  cursor: pointer;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -35733,11 +33348,11 @@ module.exports =
                     key: "numberButtonClasses",
                     value: function numberButtonClasses(page, currentPage) {
                         return {
-                            'inline-flex items-center h-full mx-1 text-base font-medium leading-5 transition duration-150 ease-in-out active:bg-gray-200 focus:outline-none focus:border-blue-300 focus:shadow-outline active:text-gray-700': this.framework === 'tailwind',
+                            'inline-flex items-center h-full text-base font-medium leading-5 transition duration-150 ease-in-out bg-white active:bg-gray-200 focus:outline-none focus:border-blue-300 focus:shadow-outline active:text-gray-700': this.framework === 'tailwind',
                             'px-1 py-1': this.size === 'small' && this.framework === 'tailwind',
                             'px-2 py-2': this.size === 'default' && this.framework === 'tailwind',
                             'bg-blue-500 text-white': page === currentPage && this.framework === 'tailwind',
-                            'text-gray-700 border border-gray-400 hover:bg-gray-200': page !== currentPage && this.framework === 'tailwind',
+                            'text-gray-700 border border-gray-400 hover:bg-gray-200 bg-white': page !== currentPage && this.framework === 'tailwind',
                             'page-link': this.framework === 'bootstrap'
                         };
                     }
@@ -35745,14 +33360,14 @@ module.exports =
                     key: "containerClasses",
                     get: function get() {
                         return {
-                            'flex flex-col items-center justify-between px-1 py-1 md:px-2 md:py-2 sm:flex-row': this.framework === 'tailwind'
+                            'flex flex-col items-center justify-between px-1 py-1 md:px-1 md:py-2 sm:flex-row': this.framework === 'tailwind'
                         };
                     }
                 }, {
                     key: "ulClasses",
                     get: function get() {
                         return {
-                            'relative inline-flex list-none': this.framework === 'tailwind',
+                            'relative inline-flex list-none space-x-1': this.framework === 'tailwind',
                             'pagination': this.framework === 'bootstrap',
                             'pagination-sm': this.size === 'small' && this.framework === 'bootstrap',
                             'pagination-lg': this.size === 'large' && this.framework === 'bootstrap'
@@ -35762,7 +33377,7 @@ module.exports =
                     key: "previousButtonClasses",
                     get: function get() {
                         return {
-                            'inline-flex items-center h-full mx-1 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out border border-gray-400 rounded-md hover:bg-gray-200 active:bg-gray-200 focus:outline-none focus:border-blue-300 focus:shadow-outline active:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed': this.framework === 'tailwind',
+                            'inline-flex items-center h-full text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out border border-gray-400 hover:bg-gray-200 bg-white active:bg-gray-200 focus:outline-none focus:border-blue-300 focus:shadow-outline active:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed': this.framework === 'tailwind',
                             'px-1 py-2': this.size === 'default' && this.framework === 'tailwind',
                             'px-1 py-1': this.size === 'small' && this.framework === 'tailwind',
                             'page-link': this.framework === 'bootstrap'
@@ -35780,7 +33395,7 @@ module.exports =
                     key: "nextButtonClasses",
                     get: function get() {
                         return {
-                            'inline-flex items-center h-full mx-1 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-400 rounded-md hover:bg-gray-200 active:bg-gray-200 focus:outline-none focus:border-blue-300 focus:shadow-outline active:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed': this.framework === 'tailwind',
+                            'inline-flex items-center h-full text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-400 hover:bg-gray-200 bg-white active:bg-gray-200 focus:outline-none focus:border-blue-300 focus:shadow-outline active:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed': this.framework === 'tailwind',
                             'px-1 py-2': this.size === 'default' && this.framework === 'tailwind',
                             'px-1 py-1': this.size === 'small' && this.framework === 'tailwind',
                             'page-link': this.framework === 'bootstrap'
@@ -35904,11 +33519,11 @@ module.exports =
         /***/
         "fc6a":
         /***/
-            (function(module, exports, __nested_webpack_require_200683__) {
+            (function(module, exports, __nested_webpack_require_200692__) {
 
             // toObject with fallback for non-array-like ES3 strings
-            var IndexedObject = __nested_webpack_require_200683__("44ad");
-            var requireObjectCoercible = __nested_webpack_require_200683__("1d80");
+            var IndexedObject = __nested_webpack_require_200692__("44ad");
+            var requireObjectCoercible = __nested_webpack_require_200692__("1d80");
 
             module.exports = function(it) {
                 return IndexedObject(requireObjectCoercible(it));
@@ -35966,9 +33581,9 @@ module.exports =
         /***/
         "fdbf":
         /***/
-            (function(module, exports, __nested_webpack_require_202503__) {
+            (function(module, exports, __nested_webpack_require_202512__) {
 
-            var NATIVE_SYMBOL = __nested_webpack_require_202503__("4930");
+            var NATIVE_SYMBOL = __nested_webpack_require_202512__("4930");
 
             module.exports = NATIVE_SYMBOL
                 // eslint-disable-next-line no-undef
@@ -36463,6 +34078,45 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 /* hot reload */
 if (false) { var api; }
 component.options.__file = "resources/js/components/Wish.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/bestSeller.vue":
+/*!************************************************!*\
+  !*** ./resources/js/components/bestSeller.vue ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _bestSeller_vue_vue_type_template_id_63cd84e4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bestSeller.vue?vue&type=template&id=63cd84e4& */ "./resources/js/components/bestSeller.vue?vue&type=template&id=63cd84e4&");
+/* harmony import */ var _bestSeller_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./bestSeller.vue?vue&type=script&lang=js& */ "./resources/js/components/bestSeller.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _bestSeller_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _bestSeller_vue_vue_type_template_id_63cd84e4___WEBPACK_IMPORTED_MODULE_0__.render,
+  _bestSeller_vue_vue_type_template_id_63cd84e4___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/bestSeller.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -36964,6 +34618,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/bestSeller.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/bestSeller.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_bestSeller_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./bestSeller.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/bestSeller.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_bestSeller_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/cookie.vue?vue&type=script&lang=js&":
 /*!*********************************************************************!*\
   !*** ./resources/js/components/cookie.vue?vue&type=script&lang=js& ***!
@@ -37290,6 +34960,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Wish_vue_vue_type_template_id_69d87c12_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Wish_vue_vue_type_template_id_69d87c12_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Wish.vue?vue&type=template&id=69d87c12&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Wish.vue?vue&type=template&id=69d87c12&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/bestSeller.vue?vue&type=template&id=63cd84e4&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/bestSeller.vue?vue&type=template&id=63cd84e4& ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_bestSeller_vue_vue_type_template_id_63cd84e4___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_bestSeller_vue_vue_type_template_id_63cd84e4___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_bestSeller_vue_vue_type_template_id_63cd84e4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./bestSeller.vue?vue&type=template&id=63cd84e4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/bestSeller.vue?vue&type=template&id=63cd84e4&");
 
 
 /***/ }),
@@ -37651,7 +35338,11 @@ var render = function() {
         [
           _c("router-view", { staticClass: "z-0", attrs: { id: "Content" } }),
           _vm._v(" "),
-          !_vm.politica ? _c("cookie", { staticClass: "z-10" }) : _vm._e()
+          !_vm.politica ? _c("cookie", { staticClass: "z-10" }) : _vm._e(),
+          _vm._v(" "),
+          _c("go-top", {
+            attrs: { bottom: 20, right: 20, "bg-color": "#47b3ff" }
+          })
         ],
         1
       ),
@@ -38560,14 +36251,7 @@ var render = function() {
                       "read-only": false,
                       "show-rating": false
                     },
-                    on: { "rating-selected": _vm.setRating },
-                    model: {
-                      value: _vm.rating.puntos,
-                      callback: function($$v) {
-                        _vm.$set(_vm.rating, "puntos", $$v)
-                      },
-                      expression: "rating.puntos"
-                    }
+                    on: { "rating-selected": _vm.setRating }
                   })
                 : _vm._e(),
               _vm._v(" "),
@@ -38996,7 +36680,8 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "py-3 px-5 bg-red-500",
+              staticClass:
+                " font-bold py-3 px-5 bg-blue-700 text-white focus:outline-none hover:bg-red-600 hover:text-black",
               on: { click: _vm.eliminarCuenta }
             },
             [_vm._v("Eliminar")]
@@ -39097,9 +36782,130 @@ var render = function() {
               "h1",
               {
                 staticClass:
-                  "mx-2 text-xl hidden sm:flex bg-blue-400 bg-opacity-30"
+                  "px-2 font-bold text-xl hidden sm:flex bg-blue-400 bg-opacity-30"
               },
-              [_vm._v("Libros más valorados por la comunidad")]
+              [_vm._v("¡Libros más valorados por la comunidad de Liber!")]
+            ),
+            _vm._v(" "),
+            _vm.moreRating.length
+              ? _c(
+                  "carousel",
+                  {
+                    staticClass: "my-4 z-0 hidden sm:flex",
+                    attrs: {
+                      merge: true,
+                      autoplay: true,
+                      loop: true,
+                      dots: true,
+                      items: 6,
+                      nav: false,
+                      autoplayTimeout: 4000,
+                      autoplayHoverPause: true,
+                      responsive: {
+                        640: { items: 3 },
+                        768: { items: 4 },
+                        1024: { items: 5 },
+                        1280: { items: 6 }
+                      }
+                    }
+                  },
+                  _vm._l(20, function(a) {
+                    return _c(
+                      "div",
+                      {
+                        key: a,
+                        staticClass:
+                          "content-between border shadow-md mx-1 bg-blue-100 bg-opacity-30 flex-col-reverse items-center border-blue-900 h-80 md:h-80 2xl:h-96 flex p-2",
+                        attrs: { id: a }
+                      },
+                      [
+                        _c("img", {
+                          staticClass:
+                            "px-1 w-10 max-h-72 my-auto flex items-center cursor-pointer",
+                          attrs: { src: _vm.moreRating[a - 1].cover },
+                          on: {
+                            dblclick: function($event) {
+                              return _vm.BookInformation(
+                                _vm.moreRating[a - 1].isbn
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("star-rating", {
+                          staticClass: "flex justify-center",
+                          attrs: {
+                            "star-size": 30,
+                            "read-only": true,
+                            "show-rating": false
+                          },
+                          model: {
+                            value: _vm.moreRating[a - 1].rating,
+                            callback: function($$v) {
+                              _vm.$set(_vm.moreRating[a - 1], "rating", $$v)
+                            },
+                            expression: "moreRating[a-1].rating"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.moreRating[a - 1].title
+                          ? _c(
+                              "p",
+                              {
+                                staticClass: "my-1",
+                                attrs: { id: "tituloCarousel" }
+                              },
+                              [_vm._v(_vm._s(_vm.moreRating[a - 1].title))]
+                            )
+                          : _vm._e()
+                      ],
+                      1
+                    )
+                  }),
+                  0
+                )
+              : _vm._e()
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: " px-4 mb-5 p-1" },
+          [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "bg-blue-400 bg-opacity-30 flex justify-center sm:justify-between"
+              },
+              [
+                _c(
+                  "h1",
+                  { staticClass: "px-2 text-xl hidden sm:flex font-bold" },
+                  [_vm._v("¡Lo más vendido en amazon!")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "px-2 hover:text-blue-400 hidden sm:flex",
+                    attrs: { to: { name: "bestseller" } }
+                  },
+                  [_vm._v("Ver todos..")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass:
+                      "px-2 hover:text-blue-400 flex sm:hidden font-bold",
+                    attrs: { to: { name: "bestseller" } }
+                  },
+                  [_vm._v("Los libros más vendidos en amazon.")]
+                )
+              ],
+              1
             ),
             _vm._v(" "),
             _c(
@@ -39129,42 +36935,25 @@ var render = function() {
                   {
                     key: a,
                     staticClass:
-                      "content-between border shadow-md mx-1 bg-blue-100 bg-opacity-30 flex-col items-center border-blue-900 h-80 md:h-80 2xl:h-96 flex p-2",
+                      "content-between border shadow-md mx-1 bg-blue-100 bg-opacity-30 flex-col-reverse items-center border-blue-900 h-80 md:h-80 2xl:h-96 flex p-2",
                     attrs: { id: a }
                   },
                   [
                     _c("img", {
                       staticClass:
-                        "px-1 w-10 max-h-72 my-auto flex items-center cursor-pointer",
-                      attrs: { src: _vm.moreRating[a - 1].cover },
+                        "px-1 w-10 max-h-72 my-auto flex items-center",
+                      attrs: { src: _vm.moreSeller[a - 1].cover },
                       on: {
                         dblclick: function($event) {
-                          return _vm.BookInformation(_vm.moreRating[a - 1].isbn)
+                          return _vm.BookInformation(_vm.moreSeller[a - 1].isbn)
                         }
                       }
                     }),
                     _vm._v(" "),
                     _c("p", { attrs: { id: "tituloCarousel" } }, [
-                      _vm._v(_vm._s(_vm.moreRating[a - 1].title))
-                    ]),
-                    _vm._v(" "),
-                    _c("star-rating", {
-                      staticClass: "flex justify-center",
-                      attrs: {
-                        "star-size": 30,
-                        "read-only": true,
-                        "show-rating": false
-                      },
-                      model: {
-                        value: _vm.moreRating[a - 1].rating,
-                        callback: function($$v) {
-                          _vm.$set(_vm.moreRating[a - 1], "rating", $$v)
-                        },
-                        expression: "moreRating[a-1].rating"
-                      }
-                    })
-                  ],
-                  1
+                      _vm._v(_vm._s(_vm.moreSeller[a - 1].title))
+                    ])
+                  ]
                 )
               }),
               0
@@ -39271,8 +37060,6 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("tailable-pagination", {
-          staticClass:
-            "bg-white bg-opacity-50 flex sm:hidden mt-3 justify-center",
           attrs: {
             limit: 1,
             data: _vm.books,
@@ -40152,6 +37939,149 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/bestSeller.vue?vue&type=template&id=63cd84e4&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/bestSeller.vue?vue&type=template&id=63cd84e4& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container mx-auto py-5 space-y-5" }, [
+    _c(
+      "h1",
+      {
+        staticClass:
+          "px-2 text-xl font-bold flex justify-center text-center text-3xl"
+      },
+      [_vm._v("¡Lo más vendido en amazon!")]
+    ),
+    _vm._v(" "),
+    _c(
+      "ul",
+      {
+        staticClass:
+          "grid grid-cols-1 mx-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:mx-2"
+      },
+      _vm._l(_vm.moreSeller, function(b) {
+        return _c(
+          "li",
+          {
+            key: b.isbn,
+            staticClass:
+              "relative flex flex-col border hover:border-blue-900 border-white hover:bg-opacity-30 bg-white shadow-md bg-opacity-50 h-80  ",
+            attrs: { id: b.isbn }
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex items-center h-full px-1 justify-center has-tooltip"
+              },
+              [
+                _c("img", {
+                  staticClass: "w-40 py-6 cursor-pointer max-h-72",
+                  attrs: {
+                    id: "portada",
+                    src: b.cover,
+                    "aria-label": "más información de" + b.title
+                  },
+                  on: {
+                    click: function($event) {
+                      return _vm.BookInformation(b.isbn)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass:
+                      "opacity-60 md:opacity-0 hover:opacity-100 absolute -top-1 w-full focus:outline-none focus:opacity-100",
+                    attrs: {
+                      href: b.link,
+                      target: "_blank",
+                      rel: "noopener noreferrer"
+                    }
+                  },
+                  [_vm._m(0, true)]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "w-full h-1/5 py-1 border-t border-blue-900 bg-blue-300 bg-opacity-40",
+                attrs: { id: "titulo" }
+              },
+              [
+                _c(
+                  "p",
+                  {
+                    staticClass:
+                      "text-center justify-self-center hover:font-bold font-sants cursor-pointer sm:text-base lg:text-lg px-2 pl-2",
+                    attrs: { "aria-label": "más información de" + b.title },
+                    on: {
+                      click: function($event) {
+                        return _vm.BookInformation(b.isbn)
+                      }
+                    }
+                  },
+                  [_vm._v("\n          " + _vm._s(b.title) + "\n        ")]
+                )
+              ]
+            )
+          ]
+        )
+      }),
+      0
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "mt-1 border flex flex-row items-center",
+        attrs: { id: "amazonButton" }
+      },
+      [
+        _c("i", { staticClass: "p-1 fab fa-amazon flex justify-start" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "w-full" }, [
+          _c(
+            "p",
+            {
+              staticClass: "flex justify-center py-2 cursor-pointer font-bold"
+            },
+            [_vm._v("\n                Comprar en Amazon\n              ")]
+          )
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/cookie.vue?vue&type=template&id=b4fbeb22&scoped=true&":
 /*!******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/cookie.vue?vue&type=template&id=b4fbeb22&scoped=true& ***!
@@ -40196,7 +38126,7 @@ var render = function() {
               "button",
               {
                 staticClass:
-                  "w-full py-5  lg:w-48 px-2 lg:py-1 bg-blue-700 bg-opacity-70 focus:outline-none hover:text-white hover:bg-opacity-100 hover:bg-blue-900 hover:text-xl rounded text-black mr-2 mb-5 uppercase tracking-widest text-xs font-bold shadow-md",
+                  "w-full py-5  lg:w-48 px-2 lg:py-1 bg-blue-700 bg-opacity-70 focus:outline-none hover:text-white hover:bg-opacity-100 hover:bg-blue-900 hover:text-xl text-black uppercase text-xs font-bold shadow-md",
                 on: { click: _vm.aceptar }
               },
               [_vm._v("\n            Acepto\n        ")]
@@ -40411,7 +38341,7 @@ var render = function() {
             on: {
               submit: function($event) {
                 $event.preventDefault()
-                return _vm.searched($event)
+                return _vm.searched(_vm.formData.search)
               }
             }
           },
@@ -40479,15 +38409,25 @@ var render = function() {
                     staticClass: "flex justify-center md:w-2/12 cursor-pointer "
                   },
                   [
-                    _c("img", {
-                      staticClass: "w-1/2 md:w-full",
-                      attrs: { src: b.cover, alt: b.title },
-                      on: {
-                        click: function($event) {
-                          return _vm.BookInformation(b.isbn)
-                        }
-                      }
-                    })
+                    b.cover != null
+                      ? _c("img", {
+                          staticClass: "w-1/2 md:w-full",
+                          attrs: { src: b.cover, alt: b.title },
+                          on: {
+                            click: function($event) {
+                              return _vm.BookInformation(b.isbn)
+                            }
+                          }
+                        })
+                      : _c("img", {
+                          staticClass: "w-1/2 md:w-full",
+                          attrs: { src: b.image, alt: b.title },
+                          on: {
+                            click: function($event) {
+                              return _vm.BookInformation(b.isbn)
+                            }
+                          }
+                        })
                   ]
                 ),
                 _vm._v(" "),
@@ -40515,15 +38455,19 @@ var render = function() {
                               _vm._v(_vm._s(b.title))
                             ]),
                             _vm._v(" "),
-                            _c("h2", { staticClass: "text-xl" }, [
-                              _vm._v(_vm._s(b.author))
-                            ]),
+                            b.author != null
+                              ? _c("h2", { staticClass: "text-xl" }, [
+                                  _vm._v(_vm._s(b.author))
+                                ])
+                              : _vm._e(),
                             _vm._v(" "),
-                            _c(
-                              "p",
-                              { staticClass: "sinopsis text-justify mr-2" },
-                              [_vm._v(_vm._s(b.sinopsis))]
-                            )
+                            b.sinopsis != null
+                              ? _c(
+                                  "p",
+                                  { staticClass: "sinopsis text-justify mr-2" },
+                                  [_vm._v(_vm._s(b.sinopsis))]
+                                )
+                              : _vm._e()
                           ]
                         )
                       ]

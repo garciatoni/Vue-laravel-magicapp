@@ -34,7 +34,7 @@
     <div class="border-t-2 mx-auto max-w-lg mt-5">
         <h2 class="flex justify-center pb-6 font-bold text-xl py-5">Eliminar cuenta</h2>
         <div class="space-y-5 bg-blue-600 bg-opacity-30 shadow-md p-8 flex justify-center items-center">
-            <button @click="eliminarCuenta" class="py-3 px-5 bg-red-500">Eliminar</button>
+            <button @click="eliminarCuenta" class=" font-bold py-3 px-5 bg-blue-700 text-white focus:outline-none hover:bg-red-600 hover:text-black">Eliminar</button>
         </div>
 
     </div>
@@ -142,6 +142,10 @@ export default {
             })
         }
     },
+
+    mounted() {
+        window.scrollTo(0,0);
+    }
 }
 
 </script>

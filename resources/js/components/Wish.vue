@@ -83,10 +83,9 @@ export default {
         },
     },
 
-
-
-
     mounted(){
+        window.scrollTo(0,0);
+
         window.axios.defaults.headers.common['Authorization'] = `Bearer ${this.$store.state.token}`
         axios.get('/api/user').then((res) => {
             var userId = res.data.id;

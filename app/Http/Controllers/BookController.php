@@ -23,7 +23,7 @@ class BookController extends Controller
     public function index()
     {
         //
-        return Book::paginate(18);
+        return Book::paginate(24);
     }
 
     /**
@@ -36,8 +36,8 @@ class BookController extends Controller
 
 
         $libro = DB::table('books')->where('asin', '=', $request->asin)->get();
-
-        if (empty($libro)) {
+        
+        if (sizeof($libro) == 0) {
 
             $book = new Book;
 
@@ -68,26 +68,14 @@ class BookController extends Controller
             $book->save();
             return $book;
 
-        }else if (is_null($libro[0]->author) && is_null($libro[0]->sinopsis)) {
-
-            /*if (isset($request->title)) {
-                $libro[0]->title = $request->title;
-            }
-            if (isset($request->title_search)) {
-                $libro[0]->title_search = $request->title_search;
-            }
-            if (isset($request->cover)) {
-                $libro[0]->cover = $request->cover;
-            }
-            if (isset($request->author)) {
-                $libro[0]->author = $request->author;
-            }
-            if (isset($request->sinopsis)) {
-                $libro[0]->sinopsis = $request->sinopsis;
-            }*/
+        } else if (is_null($libro[0]->author) && is_null($libro[0]->sinopsis) && sizeof($libro) != 0) {
 
             $book = DB::table('books')->where('asin', '=', $request->asin)->update(['title' => $request->title, 'title_search' => $request->title_search, 'cover' => $request->cover, 'author' => $request->author, 'sinopsis' => $request->sinopsis]);
 
+            $newBook = DB::table('books')->where('asin', '=', $request->asin)->get();
+
+            return $newBook;
+        }else{
             return $libro;
         }
 

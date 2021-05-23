@@ -9,12 +9,16 @@ import store from './store/index.js'
 import StarRating from 'vue-star-rating';
 import TailablePagination from 'tailable-pagination';
 import VueSweetalert2 from 'vue-sweetalert2';
+import GoTop from '@inotom/vue-go-top';
+
 
 //Indicación a vue que use los componentes y los plugins
 Vue.use(VueRouter);
 Vue.component('star-rating', StarRating);
 Vue.use(TailablePagination);
 Vue.use(VueSweetalert2);
+Vue.use(GoTop);
+
 
 //estilos sweetAlert2
 import 'sweetalert2/dist/sweetalert2.min.css';
@@ -36,6 +40,7 @@ import terror from './views/Terror.vue'
 import cifi from './views/cifi.vue'
 import cookie from './components/cookie.vue'
 import search from './components/search.vue'
+import bestSeller from './components/bestSeller.vue'
 //Vue.component('testvue', require('./components/vuetest.vue').default);  OTRA FORMA DE LLAMAR A LOS COMPONENTES
 
 
@@ -55,6 +60,11 @@ const router = new VueRouter({
             path: '/agarcia/LiberLogin/public/cookie',
             name: 'cookie',
             component: cookie,
+        },
+        {
+            path: '/agarcia/LiberLogin/public/bestSeller',
+            name: 'bestseller',
+            component: bestSeller,
         },
         {
             path: '/agarcia/LiberLogin/public/reset-password',
