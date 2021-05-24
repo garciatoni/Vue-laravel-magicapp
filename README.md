@@ -8,6 +8,9 @@ Liber es un espacio dedicado a los lectores que quieran compartir opiniones de s
 
 El proceso de instalación de liber es muy sencillo, solo hay que seguir los siguientes pasos.
 - **git clone**
+    Clona el repositorio https://github.com/garciatoni/LiberLogin.git en tu area de trabajo.
+    'git clone https://github.com/garciatoni/LiberLogin.git'
+- 
 
 
 ## Laravel Sponsors
