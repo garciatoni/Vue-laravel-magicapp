@@ -7,7 +7,7 @@ Liber es un espacio dedicado a los lectores que quieran compartir opiniones de s
 ## Instalar liber
 
 El proceso de instalación de liber es muy sencillo, solo hay que seguir los siguientes pasos.
-- **[Vehikl](https://vehikl.com/)**
+- **git clone**
 
 
 ## Laravel Sponsors
