@@ -8,7 +8,9 @@ Liber es un espacio dedicado a los lectores que quieran compartir opiniones de s
 
 El proceso de instalación de liber es muy sencillo, solo hay que seguir los siguientes pasos.
 - **git clone**: git clone https://github.com/garciatoni/LiberLogin.git, Clona el repositorio https://github.com/garciatoni/LiberLogin.git en tu area de trabajo.
-- 
+- **Dar permisos**:Dentro del directorio del proyecto: sudo chmod -R 755 storage || sudo chmod -R 755 bootstrapç
+- **Composer**: Dentro del directorio del proyecto: composer install
+- **.env**: Cada nuevo proyecto con Laravel, por defecto tiene un archivo .env con los datos de configuración necesarios para el mismo, cuando utilizamos un sistema de control de versiones como git, este archivo se excluye del repositorio por medidas de seguridad. Sin embargo  existe un archivo llamado .env.example que es un ejemplo de como crear un el archivo de configuración, podemos copiar este archivo desde la consola con: cp .env.example .env
 
 
 ## Laravel Sponsors
