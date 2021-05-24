@@ -4,11 +4,11 @@
 
 Liber es un espacio dedicado a los lectores que quieran compartir opiniones de sus libros favoritos, encontrar nuevos libros con los que vivir nuevas experiencias y poder comprar directamente esos libros mediante nuestra afiliación con amazon.
 
-## Learning Laravel
+## Instalar liber
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+El proceso de instalación de liber es muy sencillo, solo hay que seguir los siguientes pasos.
+- **[Vehikl](https://vehikl.com/)**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
 ## Laravel Sponsors
 
