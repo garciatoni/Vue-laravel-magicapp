@@ -83,8 +83,12 @@ class PuntosController extends Controller
     {
         $puntoexist = DB::table('puntos')->where('id_user', '=', $id)->where('id_libro', '=', $request->id_libro)->get();
         if (sizeof($puntoexist) != 0) {
-            $data = $puntoexist[0]->puntos;
+            $data['puntosUser'] = $puntoexist[0]->puntos;
+            $book = DB::table('books')->where('isbn', '=', $request->id_libro)->get();
+            $data['rating' ] = $book[0]->rating;  
             return $data;
+        }else{
+            return 0;
         }
     }
 

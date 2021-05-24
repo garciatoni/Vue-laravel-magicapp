@@ -29,19 +29,19 @@
                 <p class="text-xl text-justify">{{book.sinopsis}}</p>
             </div>
         </div>
-
+    
 
         <div class="flex flex-col bg-white bg-opacity-25 border border-blue-200 p-1 space-y-2">
             <div class="w-full flex flex-col md:flex-row md:justify-between">
                 <button class="w-full md:w-4/12 lg:w-3/12 bg-blue-600 text-white p-2 border hover:bg-yellow-100 hover:text-black hover:border-black focus:outline-none focus:bg-yellow-100 focus:text-black focus:border-black" v-if="vuex.auth" @click="SetFavorito" aria-label="añadir a deseados"><i class="fas fa-star p-1"></i>Añadir a deseados</button>
 
                 <p v-if="puntuacion != 0" class="text-xl text-center flex items-center">{{puntuacion}}/5 según la comunidad de Liber.</p>
+                
                 <p v-else class="text-xl text-center flex items-center">{{book.rating}}/5 según la comunidad de Liber.</p>
                 
                 <star-rating v-if="puntuacion == 0 && this.$store.state.auth" @rating-selected ="setRating" class="flex justify-center" :star-size="40" :read-only="false" v-bind:show-rating="false"></star-rating>
 
-                <star-rating v-if="this.$store.state.auth && puntuacion != 0" @rating-selected ="setRating" class="flex justify-center" :star-size="40" :read-only="true" v-model="rating.puntos" v-bind:show-rating="false"></star-rating>
-                
+                <star-rating v-if="this.$store.state.auth && puntuacion != 0" @rating-selected ="setRating" class="flex justify-center" :star-size="40" :read-only="true" v-model="rating.puntos" v-bind:show-rating="false"></star-rating>         
             </div>
 
             <div v-if="vuex.auth" id="Comentario">
@@ -58,7 +58,6 @@
 
             <ul id="ComentaryList" class="space-y-3">
                 <li v-for="coment in comentarios" :key="coment.id" class="bg-opacity-70 bg-white my-1 border border-blue-500" :id="coment.id">
-                <!--<li v-for="coment in comentarios" :key="coment.id" class="py-1 my-3" :id="coment.id">-->
                     <div class="flex flex-row justify-between py-2 font-bold bg-blue-300">
                         <p class="px-3 ">{{coment.name}}</p>
                     </div>
@@ -114,38 +113,60 @@ export default {
             let vuestore = this.$store.state;
             (this.rating).puntos= rating;
             axios.post('api/SetPuntos/' + vuestore.user.id, this.rating).then((response) => {
+                
                 this.puntuacion = response.data.media;
                 if(response.data.existe != undefined){
                     this.puntuacion = response.data.existe;
+                    
                     this.rating.puntos = this.puntuacion;
+                }else{
+                    this.puntuacion = response.data.media;
+                    
+                    this.rating.puntos = response.data.media;
                 }
+                
+                
             }).catch((errors) => {
                 
             })
-            
         },
 
         SetFavorito(){
             let vuestore = this.$store.state;
             axios.post('api/SetWish/' + vuestore.user.id, this.id_libro).then((response)=>{
-                this.$swal( {
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 2000,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    },
-                    icon: 'success',
-                    title: 'Guardado!'
-                })
+                console.log(response)
+                if(response.data == 'ya esta'){
+                    this.$swal( {
+                        toast: true,
+                        position: 'center',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        },
+                        icon: 'info',
+                        title: '¡Ya se encuentra en tu lista!'
+                    })
+                }else{
+                    this.$swal( {
+                        toast: true,
+                        position: 'center',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        },
+                        icon: 'success',
+                        title: '¡Guardado!'
+                    })
+                }
             });
         },
     },
     created(){
         window.scrollTo(0,0);
-
         window.axios.defaults.headers.common['Authorization'] = `Bearer ${this.$store.state.token}`
         axios.get('/api/user').then((res) => {   
             var userId = res.data.id;
@@ -153,24 +174,20 @@ export default {
                 'id_libro': this.$route.params.isbn,
             }
             axios.post('api/GetPuntos/' + userId, request).then((response) => {
-                if(response.data != undefined){
-                    this.rating.puntos = response.data;
-                    this.puntuacion = response.data;
+                if(response.data != undefined && response.data != 0){
+                    this.rating.puntos = response.data.puntosUser;
+                    this.puntuacion = response.data.rating;
                 }
             })
         }),
         axios.post('api/libro/' + this.$route.params.isbn).then((response) => {
-
             const informacion = response.data.book[0];
-
             this.comentarios = response.data.comentarios;
             this.formData.id_libro = response.data.book[0].isbn;
             this.id_libro.id_libro = response.data.book[0].isbn;
             this.rating.id_libro = response.data.book[0].isbn;
 
             if(informacion.author == null && informacion.sinopsis == null){
-                console.log("Te falta informaçao!");
-
                 const url = new URL('https://api.rainforestapi.com/request');
 
                 const params = {
@@ -189,8 +206,7 @@ export default {
                 fetch(url)
                     .then(data => data.json())
                     .then(book => {
-                        console.log(book);
-                        
+                     
                         const product = book.product;
 
                         const bookData = {
@@ -205,8 +221,7 @@ export default {
 
                         axios.post('/api/newBook', bookData).then((resp)=>{
                             this.book = resp.data[0];
-                            console.log(resp.data[0]);
-                            console.log(resp.data);
+                         
                         })
                     });
 
@@ -214,7 +229,7 @@ export default {
                 this.book = informacion;
             }
         }).catch((errors) =>{
-           
+            console.log(errors)
         })
     
     }

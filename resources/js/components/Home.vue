@@ -1,5 +1,6 @@
 <template>
   <div class="pt-5">
+
     <div class="mx-2">
       <form @submit.prevent="SearchBooks(search)" class="w-full flex justify-center" aria-label="Buscar libro">
         <input class="w-full sm:w-1/2 focus:placeholder-gray-300 focus:border-blue-500 placeholder-gray-600 focus:outline-none py-2 px-10 border border-blue-200" type="text" v-model="search" name="search" placeholder="Encuentra tu siguiente lectura." aria-label="buscar libro"/>
@@ -36,11 +37,10 @@
 
       <tailable-pagination :limit="1" :data="books" @page-changed="getResults" :showNumbers="true" :hide-when-empty="true"></tailable-pagination>
 
-      <ul class="grid grid-cols-1 mx-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:mx-2">
+      <ul  class="grid grid-cols-1 mx-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:mx-2">
         <li v-for="b in books.data" :key="b.isbn" :id="b.isbn" class="relative flex flex-col border hover:border-blue-900 border-white hover:bg-opacity-30 bg-white shadow-md bg-opacity-50 h-80  ">
           <div class="flex items-center h-full px-1 justify-center has-tooltip">
             <img id="portada" @click="BookInformation(b.isbn)" class="w-40 py-6 cursor-pointer max-h-72" :src="b.cover" :aria-label="'más información de' + b.title"/>
-
             <a class="opacity-60 md:opacity-0 hover:opacity-100 absolute -top-1 w-full focus:outline-none focus:opacity-100" :href="b.link" target="_blank" rel="noopener noreferrer">
               <div id="amazonButton" class="mt-1 border flex flex-row items-center">
                 <i class="p-1 fab fa-amazon flex justify-start"></i>
@@ -51,7 +51,6 @@
                 </div>
               </div>
             </a>
-
           </div>
           <div id="titulo" class="w-full h-1/5 py-1 border-t border-blue-900 bg-blue-300 bg-opacity-40">
             <p @click="BookInformation(b.isbn)" class="text-center justify-self-center hover:font-bold font-sants cursor-pointer sm:text-base lg:text-lg px-2 pl-2" :aria-label="'más información de' + b.title">
@@ -61,9 +60,8 @@
         </li>
       </ul>
 
-
-        
       <tailable-pagination :limit="1" :data="books" @page-changed="getResults" :showNumbers="true" :hide-when-empty="true"></tailable-pagination>
+
     </div>
   </div>
 </template>
@@ -89,23 +87,14 @@ export default {
     };
   },
   computed: {
-    // destacadosLength: function(){
-    //     return parseInt(this.books.length, 10);
-    // },
-    // booksFilter: function () {
-    //   let search = this.postSearch.toLowerCase();
-    //   return this.books.data.filter(
-    //     (b) => b.title.toLowerCase().includes(search)
-    //     //b.author.toLowerCase().includes(search)
-    //   );
-    // },
+
   },
 
   created() {
     window.scrollTo(0,0);
-    //Lista de libros paginada
+
     this.getResults();
-    //lista de 20 libros mejor valorados
+
     axios.get("api/moreRating").then((response) => {
         this.moreRating = response.data;
     });
@@ -127,8 +116,6 @@ export default {
 
         fetch(url).then(data => data.json())
         .then(books => {
-          
-          // sessionStorage.setItem('mostview', JSON.stringify(books.bestsellers))
 
           books.bestsellers.forEach(book => {
             const bookData = {
@@ -218,9 +205,6 @@ export default {
   opacity: 30%;
   outline: none;
 }
-
-
-
 
 .top-button {
   text-decoration: none;

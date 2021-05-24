@@ -121,7 +121,7 @@ export default {
             console.log(this.checked)
             axios.post('api/login', this.formDataLogin).then((response) => {
                 this.$store.commit("login", response.data);
-                this.$router.push('/agarcia/LiberLogin/public/');
+                this.$router.push('/agarcia/LiberLogin/public');
                 if (this.checked){
                     localStorage.setItem('token', response.data);
                 }
@@ -134,7 +134,8 @@ export default {
                         toast.addEventListener('mouseenter', Swal.stopTimer)
                         toast.addEventListener('mouseleave', Swal.resumeTimer)
                     },
-                    icon: '¡Bienvenido!'
+                    title: '¡Bienvenido!',
+                    icon: 'success',
                 })
             }).catch((errors) => {
                 this.errorslogin = errors.response.data.errors

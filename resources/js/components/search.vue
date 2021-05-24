@@ -109,11 +109,7 @@ props: ['campo'],
                         this.books = busqueda;
                     });
 
-
-   
             });
-
-
 
         },
         BookInformation(isbn) {

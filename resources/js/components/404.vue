@@ -1,10 +1,5 @@
 <template>
   <div class="pb-5 container mx-auto flex items-center justify-center">
-    <!-- <div class="h-10 w-full place-items-center md:flex flex-row hidden" id="breadcrumbs">
-      <router-link class="px-1 focus:text-blue-500 focus:outline-none flex align-middle" :to="{ name: 'home' }">Página Principal</router-link>
-      <i class="fas fa-caret-right fa-2x m-4" alt="Flecha" />
-      <p>Error 404</p>
-    </div> -->
     <router-link :to="{ name: 'home' }">
       <div class="w-full">
         <h1 class="text-center font-bold text-5xl">ERROR 404</h1>

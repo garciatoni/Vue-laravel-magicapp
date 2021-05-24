@@ -3920,11 +3920,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
 
 /***/ }),
@@ -4066,7 +4061,7 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('api/login', this.formDataLogin).then(function (response) {
         _this.$store.commit("login", response.data);
 
-        _this.$router.push('/agarcia/LiberLogin/public/');
+        _this.$router.push('/agarcia/LiberLogin/public');
 
         if (_this.checked) {
           localStorage.setItem('token', response.data);
@@ -4081,7 +4076,8 @@ __webpack_require__.r(__webpack_exports__);
             toast.addEventListener('mouseenter', Swal.stopTimer);
             toast.addEventListener('mouseleave', Swal.resumeTimer);
           },
-          icon: '¡Bienvenido!'
+          title: '¡Bienvenido!',
+          icon: 'success'
         });
       })["catch"](function (errors) {
         _this.errorslogin = errors.response.data.errors;
@@ -4256,7 +4252,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['isbn'],
@@ -4305,6 +4300,9 @@ __webpack_require__.r(__webpack_exports__);
         if (response.data.existe != undefined) {
           _this2.puntuacion = response.data.existe;
           _this2.rating.puntos = _this2.puntuacion;
+        } else {
+          _this2.puntuacion = response.data.media;
+          _this2.rating.puntos = response.data.media;
         }
       })["catch"](function (errors) {});
     },
@@ -4313,18 +4311,35 @@ __webpack_require__.r(__webpack_exports__);
 
       var vuestore = this.$store.state;
       axios.post('api/SetWish/' + vuestore.user.id, this.id_libro).then(function (response) {
-        _this3.$swal({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 2000,
-          didOpen: function didOpen(toast) {
-            toast.addEventListener('mouseenter', Swal.stopTimer);
-            toast.addEventListener('mouseleave', Swal.resumeTimer);
-          },
-          icon: 'success',
-          title: 'Guardado!'
-        });
+        console.log(response);
+
+        if (response.data == 'ya esta') {
+          _this3.$swal({
+            toast: true,
+            position: 'center',
+            showConfirmButton: false,
+            timer: 2000,
+            didOpen: function didOpen(toast) {
+              toast.addEventListener('mouseenter', Swal.stopTimer);
+              toast.addEventListener('mouseleave', Swal.resumeTimer);
+            },
+            icon: 'info',
+            title: '¡Ya se encuentra en tu lista!'
+          });
+        } else {
+          _this3.$swal({
+            toast: true,
+            position: 'center',
+            showConfirmButton: false,
+            timer: 2000,
+            didOpen: function didOpen(toast) {
+              toast.addEventListener('mouseenter', Swal.stopTimer);
+              toast.addEventListener('mouseleave', Swal.resumeTimer);
+            },
+            icon: 'success',
+            title: '¡Guardado!'
+          });
+        }
       });
     }
   },
@@ -4339,9 +4354,9 @@ __webpack_require__.r(__webpack_exports__);
         'id_libro': _this4.$route.params.isbn
       };
       axios.post('api/GetPuntos/' + userId, request).then(function (response) {
-        if (response.data != undefined) {
-          _this4.rating.puntos = response.data;
-          _this4.puntuacion = response.data;
+        if (response.data != undefined && response.data != 0) {
+          _this4.rating.puntos = response.data.puntosUser;
+          _this4.puntuacion = response.data.rating;
         }
       });
     }), axios.post('api/libro/' + this.$route.params.isbn).then(function (response) {
@@ -4352,7 +4367,6 @@ __webpack_require__.r(__webpack_exports__);
       _this4.rating.id_libro = response.data.book[0].isbn;
 
       if (informacion.author == null && informacion.sinopsis == null) {
-        console.log("Te falta informaçao!");
         var url = new URL('https://api.rainforestapi.com/request');
         var params = {
           api_key: "F5FA69E2271C49858CDC658BA456FB1C",
@@ -4368,7 +4382,6 @@ __webpack_require__.r(__webpack_exports__);
         fetch(url).then(function (data) {
           return data.json();
         }).then(function (book) {
-          console.log(book);
           var product = book.product;
           var bookData = {
             title: product.title,
@@ -4381,14 +4394,14 @@ __webpack_require__.r(__webpack_exports__);
           };
           axios.post('/api/newBook', bookData).then(function (resp) {
             _this4.book = resp.data[0];
-            console.log(resp.data[0]);
-            console.log(resp.data);
           });
         });
       } else {
         _this4.book = informacion;
       }
-    })["catch"](function (errors) {});
+    })["catch"](function (errors) {
+      console.log(errors);
+    });
   }
 });
 
@@ -4645,8 +4658,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -4663,24 +4674,12 @@ __webpack_require__.r(__webpack_exports__);
       moreSeller: {}
     };
   },
-  computed: {// destacadosLength: function(){
-    //     return parseInt(this.books.length, 10);
-    // },
-    // booksFilter: function () {
-    //   let search = this.postSearch.toLowerCase();
-    //   return this.books.data.filter(
-    //     (b) => b.title.toLowerCase().includes(search)
-    //     //b.author.toLowerCase().includes(search)
-    //   );
-    // },
-  },
+  computed: {},
   created: function created() {
     var _this = this;
 
-    window.scrollTo(0, 0); //Lista de libros paginada
-
-    this.getResults(); //lista de 20 libros mejor valorados
-
+    window.scrollTo(0, 0);
+    this.getResults();
     axios.get("api/moreRating").then(function (response) {
       _this.moreRating = response.data;
     });
@@ -4701,7 +4700,6 @@ __webpack_require__.r(__webpack_exports__);
       fetch(url).then(function (data) {
         return data.json();
       }).then(function (books) {
-        // sessionStorage.setItem('mostview', JSON.stringify(books.bestsellers))
         books.bestsellers.forEach(function (book) {
           var bookData = {
             title: book.title,
@@ -5135,17 +5133,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "bestseller",
   data: function data() {
     return {
-      moreSeller: {}
+      moreSeller: JSON.parse(sessionStorage.getItem('mostview'))
     };
   },
   mounted: function mounted() {
     this.moreSeller = JSON.parse(sessionStorage.getItem('mostview'));
-    window.scrollTo(0, 0);
   },
+  // mounted(){
+  //   window.scrollTo(0,0);
+  // },
   methods: {
     BookInformation: function BookInformation(isbn) {
       this.$router.push("/agarcia/LiberLogin/public/book/" + isbn);
@@ -37145,7 +37148,7 @@ var render = function() {
                 staticClass: "mx-auto",
                 attrs: {
                   src:
-                    "https://dawjavi.insjoaquimmir.cat/agarcia/LiberLogin/resources/js/img/Logo_White.png",
+                    "https://dawjavi.insjoaquimmir.cat//agarcia/LiberLogin/resources/js/img/Logo_White.png",
                   alt: "Logo Liber en blanco"
                 }
               })
@@ -37962,7 +37965,7 @@ var render = function() {
         staticClass:
           "px-2 text-xl font-bold flex justify-center text-center text-3xl"
       },
-      [_vm._v("¡Lo más vendido en amazon!")]
+      [_vm._v("!Lo más vendido en Amazon!")]
     ),
     _vm._v(" "),
     _c(
@@ -37971,81 +37974,43 @@ var render = function() {
         staticClass:
           "grid grid-cols-1 mx-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:mx-2"
       },
-      _vm._l(_vm.moreSeller, function(b) {
-        return _c(
-          "li",
-          {
-            key: b.isbn,
-            staticClass:
-              "relative flex flex-col border hover:border-blue-900 border-white hover:bg-opacity-30 bg-white shadow-md bg-opacity-50 h-80  ",
-            attrs: { id: b.isbn }
-          },
-          [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "flex items-center h-full px-1 justify-center has-tooltip"
-              },
-              [
-                _c("img", {
-                  staticClass: "w-40 py-6 cursor-pointer max-h-72",
-                  attrs: {
-                    id: "portada",
-                    src: b.cover,
-                    "aria-label": "más información de" + b.title
-                  },
-                  on: {
-                    click: function($event) {
-                      return _vm.BookInformation(b.isbn)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass:
-                      "opacity-60 md:opacity-0 hover:opacity-100 absolute -top-1 w-full focus:outline-none focus:opacity-100",
-                    attrs: {
-                      href: b.link,
-                      target: "_blank",
-                      rel: "noopener noreferrer"
-                    }
-                  },
-                  [_vm._m(0, true)]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "w-full h-1/5 py-1 border-t border-blue-900 bg-blue-300 bg-opacity-40",
-                attrs: { id: "titulo" }
-              },
-              [
-                _c(
-                  "p",
-                  {
-                    staticClass:
-                      "text-center justify-self-center hover:font-bold font-sants cursor-pointer sm:text-base lg:text-lg px-2 pl-2",
-                    attrs: { "aria-label": "más información de" + b.title },
-                    on: {
-                      click: function($event) {
-                        return _vm.BookInformation(b.isbn)
-                      }
-                    }
-                  },
-                  [_vm._v("\n          " + _vm._s(b.title) + "\n        ")]
-                )
-              ]
-            )
-          ]
-        )
-      }),
-      0
+      [
+        _vm._v("\n    " + _vm._s(_vm.moreSeller[10].title) + "\n    "),
+        _vm._l(50, function(a) {
+          return _c(
+            "li",
+            {
+              key: a,
+              staticClass:
+                "relative flex flex-col border hover:border-blue-900 border-white hover:bg-opacity-30 bg-white shadow-md bg-opacity-50 h-80  ",
+              attrs: { id: a }
+            },
+            [
+              _vm._m(0, true),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "w-full h-1/5 py-1 border-t border-blue-900 bg-blue-300 bg-opacity-40",
+                  attrs: { id: "titulo" }
+                },
+                [
+                  _c(
+                    "p",
+                    {
+                      staticClass:
+                        "text-center justify-self-center hover:font-bold font-sants cursor-pointer sm:text-base lg:text-lg px-2 pl-2"
+                    },
+                    [_vm._v("\n          " + _vm._s(a) + "\n        ")]
+                  )
+                ]
+              )
+            ]
+          )
+        })
+      ],
+      2
     )
   ])
 }
@@ -38057,21 +38022,46 @@ var staticRenderFns = [
     return _c(
       "div",
       {
-        staticClass: "mt-1 border flex flex-row items-center",
-        attrs: { id: "amazonButton" }
+        staticClass: "flex items-center h-full px-1 justify-center has-tooltip"
       },
       [
-        _c("i", { staticClass: "p-1 fab fa-amazon flex justify-start" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "w-full" }, [
-          _c(
-            "p",
-            {
-              staticClass: "flex justify-center py-2 cursor-pointer font-bold"
-            },
-            [_vm._v("\n                Comprar en Amazon\n              ")]
-          )
-        ])
+        _c(
+          "a",
+          {
+            staticClass:
+              "opacity-60 md:opacity-0 hover:opacity-100 absolute -top-1 w-full focus:outline-none focus:opacity-100",
+            attrs: { target: "_blank", rel: "noopener noreferrer" }
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass: "mt-1 border flex flex-row items-center",
+                attrs: { id: "amazonButton" }
+              },
+              [
+                _c("i", {
+                  staticClass: "p-1 fab fa-amazon flex justify-start"
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-full" }, [
+                  _c(
+                    "p",
+                    {
+                      staticClass:
+                        "flex justify-center py-2 cursor-pointer font-bold"
+                    },
+                    [
+                      _vm._v(
+                        "\n                Comprar en Amazon\n              "
+                      )
+                    ]
+                  )
+                ])
+              ]
+            )
+          ]
+        )
       ]
     )
   }

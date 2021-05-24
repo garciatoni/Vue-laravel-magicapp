@@ -4,7 +4,7 @@
 
   <div class="flex flex-col-reverse">
     <router-link :to="{ name: 'home' }" class="nav-link" aria-label="pagina principal">
-      <img class="mx-auto" src="https://dawjavi.insjoaquimmir.cat/agarcia/LiberLogin/resources/js/img/Logo_White.png" alt="Logo Liber en blanco" />
+      <img class="mx-auto" src="https://dawjavi.insjoaquimmir.cat//agarcia/LiberLogin/resources/js/img/Logo_White.png" alt="Logo Liber en blanco" />
     </router-link>
 
     <div class="flex justify-center text-lg">

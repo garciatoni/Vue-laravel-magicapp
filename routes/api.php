@@ -61,21 +61,3 @@ Route::middleware(['throttle:rainforest'])->group(function () {
     Route::post('/newBook', [BookController::class, 'create']); //RUTA PARA INTRODUCIR UN LIBRO A LA BASE DE DATOS
 
 });//GRUPO (rainforest) DE APIS CON CON EL LIMITADOR ESTABLECIDO
-
-
-// Route::get('/users/{id}', function ($id) {
-//     return User::findOrFail($id);
-// });
-
-
-// Route::post('/forgotPassword', function (Request $request) {
-//     $request->validate(['email' => 'required|email']);
-
-//     $status = Password::sendResetLink(
-//         $request->only('email')
-//     );
-
-//     return $status === Password::RESET_LINK_SENT
-//                 ? back()->with(['status' => __($status)])
-//                 : back()->withErrors(['email' => __($status)]);
-// });
