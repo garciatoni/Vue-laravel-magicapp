@@ -7,9 +7,7 @@ Liber es un espacio dedicado a los lectores que quieran compartir opiniones de s
 ## Instalar liber
 
 El proceso de instalación de liber es muy sencillo, solo hay que seguir los siguientes pasos.
-- **git clone**
-    Clona el repositorio https://github.com/garciatoni/LiberLogin.git en tu area de trabajo.
-    'git clone https://github.com/garciatoni/LiberLogin.git'
+- **git clone**: git clone https://github.com/garciatoni/LiberLogin.git, \nClona el repositorio https://github.com/garciatoni/LiberLogin.git en tu area de trabajo.
 - 
 
 
