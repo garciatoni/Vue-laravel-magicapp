@@ -133,7 +133,7 @@ export default {
         .then(() => {
           this.$store.commit("SET_USER", null, false);
           sessionStorage.removeItem("token");
-          
+
         if(localStorage.getItem('token') != null){
           localStorage.removeItem("token");
         }
@@ -141,7 +141,7 @@ export default {
           this.$router.push("/agarcia/LiberLogin/public/");
           this.$swal( {
             toast: true,
-            position: 'top-end',
+            position: 'center',
             showConfirmButton: false,
             timer: 2000,
             title: 'Te echaremos de menos',

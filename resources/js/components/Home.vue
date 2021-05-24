@@ -1,6 +1,8 @@
 <template>
   <div class="pt-5">
 
+    <!--<div v-if="loading" class="loader w-full mx-auto"></div>-->
+
     <div class="mx-2">
       <form @submit.prevent="SearchBooks(search)" class="w-full flex justify-center" aria-label="Buscar libro">
         <input class="w-full sm:w-1/2 focus:placeholder-gray-300 focus:border-blue-500 placeholder-gray-600 focus:outline-none py-2 px-10 border border-blue-200" type="text" v-model="search" name="search" placeholder="Encuentra tu siguiente lectura." aria-label="buscar libro"/>
@@ -29,7 +31,7 @@
         </div>
         <carousel class="my-4 z-0 hidden sm:flex" :merge="true" :autoplay="true" :loop="true" :dots="true" :items=6 :nav="false" :autoplayTimeout="4000" :autoplayHoverPause="true" :responsive = "{640:{items:3},768:{items:4},1024:{items:5},	1280:{items:6}}">
         <div class="content-between border shadow-md mx-1 bg-blue-100 bg-opacity-30 flex-col-reverse items-center border-blue-900 h-80 md:h-80 2xl:h-96 flex p-2" v-for="a of 20" :key="a" :id="a">
-            <img  class="px-1 w-10 max-h-72 my-auto flex items-center" @dblclick="BookInformation(moreSeller[a-1].isbn)" :src="moreSeller[a-1].cover">
+            <img  class="cursor-pointer px-1 w-10 max-h-72 my-auto flex items-center" @dblclick="BookInformation(moreSeller[a-1].isbn)" :src="moreSeller[a-1].cover">
             <p id="tituloCarousel" class="">{{moreSeller[a-1].title}}</p>
         </div>
         </carousel>
@@ -83,7 +85,8 @@ export default {
       search: '',
       books: {},
       moreRating: {},
-      moreSeller: {}
+      moreSeller: {},
+      loading: false
     };
   },
   computed: {
@@ -100,6 +103,8 @@ export default {
     });
 
     if(sessionStorage.getItem('mostview') == null){
+        this.loading = true;
+
         let masVendidos = [];
         const url = new URL('https://api.rainforestapi.com/request');
         const params = {
@@ -125,15 +130,16 @@ export default {
               asin: book.asin,
               link: book.link,
             }
-            axios.post('/api/newBook', bookData).then((resp)=>{ 
+            axios.post('/api/newBook', bookData).then((resp)=>{
               masVendidos.push(resp.data[0])
             }).then(() =>{
-              sessionStorage.setItem('mostview', JSON.stringify(masVendidos)) 
+              sessionStorage.setItem('mostview', JSON.stringify(masVendidos))
               this.moreSeller = JSON.parse(sessionStorage.getItem('mostview'));
+              this.loading = false;
             })
           })
         });
-    }else{  
+    }else{
       this.moreSeller = JSON.parse(sessionStorage.getItem('mostview'));
     }
 
@@ -214,5 +220,23 @@ export default {
   line-height: 1;
   margin: 2rem auto;
   cursor: pointer;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #3498db;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>

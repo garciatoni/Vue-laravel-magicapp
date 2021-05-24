@@ -58,8 +58,9 @@ class PuntosController extends Controller
             $total++;
         }
         $media = $suma / $total;
-        $data['media'] = $media;
-        $book = DB::table('books')->where('isbn', '=', $request->id_libro)->update(['rating' => $media]);
+
+        $data['media'] = round($media, 2);
+        $book = DB::table('books')->where('isbn', '=', $request->id_libro)->update(['rating' => round($media, 2)]);
         return $data;
     }
 
@@ -85,7 +86,7 @@ class PuntosController extends Controller
         if (sizeof($puntoexist) != 0) {
             $data['puntosUser'] = $puntoexist[0]->puntos;
             $book = DB::table('books')->where('isbn', '=', $request->id_libro)->get();
-            $data['rating' ] = $book[0]->rating;  
+            $data['rating' ] = $book[0]->rating;
             return $data;
         }else{
             return 0;

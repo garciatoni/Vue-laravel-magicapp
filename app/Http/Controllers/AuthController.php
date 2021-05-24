@@ -19,9 +19,12 @@ use App\Mail\email;
 
 //CONTROLADOR DE AUTENTIFICACIÓN Y GESTIÓN DE USUARIO
 //SE USA LARAVEL SANCTUM PARA LA AUTENTICACIÓN, MÁS INFORMACIÓN EN: https://laravel.com/docs/8.x/sanctum
+//SE USA LARAVEL FORTIFY PARA LA RECUPERACIÓN DE CONTRASEÑA, MÁS INFORMACIÓN EN: https://laravel.com/docs/8.x/fortify
 
 class AuthController extends Controller
 {
+
+    //Metodo de registro de usuario
     public function register(Request $request)
     {
         $request->validate([
@@ -40,6 +43,7 @@ class AuthController extends Controller
         return response()->json(['msg' => 'Registro satisfactorio.']);
     }
 
+    //Metodo para realizar el login
     public function login(Request $request)
     {
         $request->validate([
@@ -59,12 +63,14 @@ class AuthController extends Controller
         return $user->createToken($request->device_name)->plainTextToken;
     }
 
+    //Metodo para cerrar la sessón
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
         return response()->json(['msg' => 'Logout Successfull']);
     }
 
+    //Metodo  para editar el usuario.
     public function edit(Request $request, $id)
     {
         $request->validate([
@@ -87,6 +93,8 @@ class AuthController extends Controller
         }
         // $user = DB::table('users')->where('id', '=', $id)->get();
     }
+
+    //Metodo para enviar un correo de restablecimiento de contraseña
     public function forgot(Request $request)
     {
 
@@ -96,24 +104,19 @@ class AuthController extends Controller
 
         ]);
 
-
-
         $email['email'] = $request->email;
 
         Log::info(Password::sendResetLink($email));
 
         $status = Password::sendResetLink($email);
 
-
-
-        // $name = 'test 123';
-        // Mail::to('garciabarreratoni@gmail.com')->send(new email($name));
-        // return 'Email sent Successfully';
-
         return $status === Password::RESET_LINK_SENT
             ? back()->with(['status' => __($status)])
             : back()->withErrors(['email' => __($status)]);
     }
+
+
+    //Metodo para eliminar una cuenta.
     public function delete(Request $request, $id){
         $request->validate([
             'password'              => ['required', 'min:8'],

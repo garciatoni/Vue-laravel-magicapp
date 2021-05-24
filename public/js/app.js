@@ -4069,7 +4069,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.$swal({
           toast: true,
-          position: 'top-end',
+          position: 'center',
           showConfirmButton: false,
           timer: 2000,
           didOpen: function didOpen(toast) {
@@ -4113,7 +4113,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this2.$swal({
           toast: true,
-          position: 'top-end',
+          position: 'center',
           showConfirmButton: false,
           timer: 2000,
           title: 'Algo salió mal.',
@@ -4252,6 +4252,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['isbn'],
@@ -4274,7 +4276,9 @@ __webpack_require__.r(__webpack_exports__);
       id_libro: {
         'id_libro': ''
       },
-      puntuacion: 0
+      puntuacion: 0,
+      loading: false,
+      breadCrum: ""
     };
   },
   methods: {
@@ -4302,7 +4306,6 @@ __webpack_require__.r(__webpack_exports__);
           _this2.rating.puntos = _this2.puntuacion;
         } else {
           _this2.puntuacion = response.data.media;
-          _this2.rating.puntos = response.data.media;
         }
       })["catch"](function (errors) {});
     },
@@ -4367,6 +4370,7 @@ __webpack_require__.r(__webpack_exports__);
       _this4.rating.id_libro = response.data.book[0].isbn;
 
       if (informacion.author == null && informacion.sinopsis == null) {
+        _this4.loading = true;
         var url = new URL('https://api.rainforestapi.com/request');
         var params = {
           api_key: "F5FA69E2271C49858CDC658BA456FB1C",
@@ -4390,14 +4394,28 @@ __webpack_require__.r(__webpack_exports__);
             asin: product.asin,
             link: product.link,
             author: product.authors[0].name,
-            sinopsis: product.book_description
+            sinopsis: product.book_description.substring(0, product.book_description.length - 20)
           };
           axios.post('/api/newBook', bookData).then(function (resp) {
             _this4.book = resp.data[0];
+
+            if (_this4.book.title.length > 30) {
+              _this4.breadCrum = _this4.book.title.slice(0, 30) + "...";
+            } else {
+              _this4.breadCrum = _this4.book.title;
+            }
+
+            _this4.loading = false;
           });
         });
       } else {
         _this4.book = informacion;
+
+        if (_this4.book.title.length > 30) {
+          _this4.breadCrum = _this4.book.title.slice(0, 30) + "...";
+        } else {
+          _this4.breadCrum = _this4.book.title;
+        }
       }
     })["catch"](function (errors) {
       console.log(errors);
@@ -4548,7 +4566,7 @@ __webpack_require__.r(__webpack_exports__);
 
               _this2.$swal({
                 toast: true,
-                position: 'top-end',
+                position: 'center',
                 showConfirmButton: false,
                 timer: 2000,
                 title: 'Cuenta eliminada.',
@@ -4658,6 +4676,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -4671,7 +4691,8 @@ __webpack_require__.r(__webpack_exports__);
       search: '',
       books: {},
       moreRating: {},
-      moreSeller: {}
+      moreSeller: {},
+      loading: false
     };
   },
   computed: {},
@@ -4685,6 +4706,7 @@ __webpack_require__.r(__webpack_exports__);
     });
 
     if (sessionStorage.getItem('mostview') == null) {
+      this.loading = true;
       var masVendidos = [];
       var url = new URL('https://api.rainforestapi.com/request');
       var params = {
@@ -4713,6 +4735,7 @@ __webpack_require__.r(__webpack_exports__);
           }).then(function () {
             sessionStorage.setItem('mostview', JSON.stringify(masVendidos));
             _this.moreSeller = JSON.parse(sessionStorage.getItem('mostview'));
+            _this.loading = false;
           });
         });
       });
@@ -4941,7 +4964,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.$swal({
           toast: true,
-          position: 'top-end',
+          position: 'center',
           showConfirmButton: false,
           timer: 2000,
           title: 'Te echaremos de menos'
@@ -5342,6 +5365,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'search',
   props: ['campo'],
@@ -5352,7 +5377,8 @@ __webpack_require__.r(__webpack_exports__);
       books: {},
       formData: {
         search: ''
-      }
+      },
+      loading: false
     };
   },
   methods: {
@@ -5365,6 +5391,7 @@ __webpack_require__.r(__webpack_exports__);
       };
       axios.post("api/search", data).then(function (response) {
         var info = response.data;
+        _this.loading = true;
         var url = new URL('https://api.rainforestapi.com/request');
         var params = {
           api_key: "F5FA69E2271C49858CDC658BA456FB1C",
@@ -5392,18 +5419,11 @@ __webpack_require__.r(__webpack_exports__);
               link: book.link
             };
             axios.post('/api/newBook', bookData).then(function (resp) {});
-          }); // infoApi.forEach(book => {
-          // for(let i=0; i<info.length; i++){
-          //     if(book.asin != info[i].asin){
-          //         info.push(book);
-          //     }
-          // }
-          // });
-          //retocar
-
+          });
           var busqueda = info.concat(infoApi);
           console.log(busqueda);
           _this.books = busqueda;
+          _this.loading = false;
         });
       });
     },
@@ -6629,7 +6649,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "#amazonButton{\n  background: rgb(255,158,0);\n  background: linear-gradient(0deg, rgba(255,158,0,1) 21%, rgba(247,255,79,1) 100%);\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "#amazonButton{\n  background: rgb(255,158,0);\n  background: linear-gradient(0deg, rgba(255,158,0,1) 21%, rgba(247,255,79,1) 100%);\n}\n.loader {\n  border: 16px solid #f3f3f3;\n  border-top: 16px solid #3498db;\n  border-radius: 50%;\n  width: 100px;\n  height: 100px;\n  -webkit-animation: spin 2s linear infinite;\n          animation: spin 2s linear infinite;\n}\n@-webkit-keyframes spin {\n0% {\n    transform: rotate(0deg);\n}\n100% {\n    transform: rotate(360deg);\n}\n}\n@keyframes spin {\n0% {\n    transform: rotate(0deg);\n}\n100% {\n    transform: rotate(360deg);\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -6653,7 +6673,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "@media (max-width: 640px) and (min-width: 0px) {\n#titulo {\n    display: -webkit-box;\n    -webkit-line-clamp: 2;\n    -webkit-box-orient: vertical;\n    overflow: hidden;\n}\n}\n#titulo {\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n}\n#tituloCarousel{\n  display: -webkit-box;\n  -webkit-line-clamp: 1;\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n}\n#icono {\n  color: rgb(192, 240, 255);\n}\n#amazonButton {\n  background: rgb(255, 158, 0);\n  background: linear-gradient(\n    0deg,\n    rgba(255, 158, 0, 1) 21%,\n    rgba(247, 255, 79, 1) 100%\n  );\n}\n.tooltip {\n  visibility: hidden;\n  position: absolute;\n  cursor: default;\n}\n.has-tooltip:hover .tooltip {\n  visibility: visible;\n  z-index: 100;\n  left: 75px;\n}\n.owl-dot:focus  {\n  opacity: 30%;\n  outline: none;\n}\n.top-button {\n  text-decoration: none;\n  font-size: 24px;\n  font-weight: 700;\n  text-transform: uppercase;\n  line-height: 1;\n  margin: 2rem auto;\n  cursor: pointer;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "@media (max-width: 640px) and (min-width: 0px) {\n#titulo {\n    display: -webkit-box;\n    -webkit-line-clamp: 2;\n    -webkit-box-orient: vertical;\n    overflow: hidden;\n}\n}\n#titulo {\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n}\n#tituloCarousel{\n  display: -webkit-box;\n  -webkit-line-clamp: 1;\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n}\n#icono {\n  color: rgb(192, 240, 255);\n}\n#amazonButton {\n  background: rgb(255, 158, 0);\n  background: linear-gradient(\n    0deg,\n    rgba(255, 158, 0, 1) 21%,\n    rgba(247, 255, 79, 1) 100%\n  );\n}\n.tooltip {\n  visibility: hidden;\n  position: absolute;\n  cursor: default;\n}\n.has-tooltip:hover .tooltip {\n  visibility: visible;\n  z-index: 100;\n  left: 75px;\n}\n.owl-dot:focus  {\n  opacity: 30%;\n  outline: none;\n}\n.top-button {\n  text-decoration: none;\n  font-size: 24px;\n  font-weight: 700;\n  text-transform: uppercase;\n  line-height: 1;\n  margin: 2rem auto;\n  cursor: pointer;\n}\n.loader {\n  border: 16px solid #f3f3f3;\n  border-top: 16px solid #3498db;\n  border-radius: 50%;\n  width: 100px;\n  height: 100px;\n  -webkit-animation: spin 2s linear infinite;\n          animation: spin 2s linear infinite;\n}\n@-webkit-keyframes spin {\n0% {\n    transform: rotate(0deg);\n}\n100% {\n    transform: rotate(360deg);\n}\n}\n@keyframes spin {\n0% {\n    transform: rotate(0deg);\n}\n100% {\n    transform: rotate(360deg);\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -6725,7 +6745,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".sinopsis[data-v-4d55b89a] {\n  display: -webkit-box;\n  -webkit-line-clamp: 4;\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".sinopsis[data-v-4d55b89a] {\n  display: -webkit-box;\n  -webkit-line-clamp: 4;\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n}\n.loader[data-v-4d55b89a] {\n  border: 16px solid #f3f3f3;\n  border-top: 16px solid #3498db;\n  border-radius: 50%;\n  width: 100px;\n  height: 100px;\n  -webkit-animation: spin-data-v-4d55b89a 2s linear infinite;\n          animation: spin-data-v-4d55b89a 2s linear infinite;\n}\n@-webkit-keyframes spin-data-v-4d55b89a {\n0% {\n    transform: rotate(0deg);\n}\n100% {\n    transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-4d55b89a {\n0% {\n    transform: rotate(0deg);\n}\n100% {\n    transform: rotate(360deg);\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -35342,6 +35362,7 @@ var render = function() {
           !_vm.politica ? _c("cookie", { staticClass: "z-10" }) : _vm._e(),
           _vm._v(" "),
           _c("go-top", {
+            staticClass: "focus:opacity-50 focus:outline-none",
             attrs: { bottom: 20, right: 20, "bg-color": "#47b3ff" }
           })
         ],
@@ -36127,10 +36148,14 @@ var render = function() {
             attrs: { alt: "Flecha" }
           }),
           _vm._v(" "),
-          _c("p", [_vm._v(_vm._s(_vm.book.title))])
+          _c("p", [_vm._v(_vm._s(_vm.breadCrum))])
         ],
         1
       ),
+      _vm._v(" "),
+      _vm.loading
+        ? _c("div", { staticClass: "loader w-full mx-auto" })
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "div",
@@ -36348,7 +36373,8 @@ var render = function() {
                     _c(
                       "router-link",
                       {
-                        staticClass: "font-bold",
+                        staticClass:
+                          "font-bold focus:text-blue-500 focus:outline-none",
                         attrs: { to: { name: "login" } }
                       },
                       [_vm._v("iniciar sesión.")]
@@ -36942,7 +36968,7 @@ var render = function() {
                   [
                     _c("img", {
                       staticClass:
-                        "px-1 w-10 max-h-72 my-auto flex items-center",
+                        "cursor-pointer px-1 w-10 max-h-72 my-auto flex items-center",
                       attrs: { src: _vm.moreSeller[a - 1].cover },
                       on: {
                         dblclick: function($event) {
@@ -38388,6 +38414,10 @@ var render = function() {
           ]
         )
       ]),
+      _vm._v(" "),
+      _vm.loading
+        ? _c("div", { staticClass: "loader w-full mx-auto" })
+        : _vm._e(),
       _vm._v(" "),
       _vm._l(_vm.books, function(b) {
         return _c(

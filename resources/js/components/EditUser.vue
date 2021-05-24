@@ -119,7 +119,7 @@ export default {
                             this.$router.push("/agarcia/LiberLogin/public/");
                             this.$swal( {
                                 toast: true,
-                                position: 'top-end',
+                                position: 'center',
                                 showConfirmButton: false,
                                 timer: 2000,
                                 title: 'Cuenta eliminada.',

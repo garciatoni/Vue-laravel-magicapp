@@ -6,8 +6,10 @@
             <i class="fas fa-caret-right fa-2x m-4" alt="Flecha" />
             <p>Libro</p>
             <i class="fas fa-caret-right fa-2x m-4" alt="Flecha" />
-            <p>{{book.title}}</p>
+            <p>{{breadCrum}}</p>
         </div>
+
+        <div v-if="loading" class="loader w-full mx-auto"></div>
 
         <div :id="book.isbn" class="flex flex-col-reverse md:flex-row bg-white bg-opacity-25 md:border md:border-blue-200 md:p-1">
             <div class="w-full md:w-4/12 lg:w-3/12  flex flex-col-reverse md:flex-col items-center md:items-start">
@@ -29,19 +31,19 @@
                 <p class="text-xl text-justify">{{book.sinopsis}}</p>
             </div>
         </div>
-    
+
 
         <div class="flex flex-col bg-white bg-opacity-25 border border-blue-200 p-1 space-y-2">
             <div class="w-full flex flex-col md:flex-row md:justify-between">
                 <button class="w-full md:w-4/12 lg:w-3/12 bg-blue-600 text-white p-2 border hover:bg-yellow-100 hover:text-black hover:border-black focus:outline-none focus:bg-yellow-100 focus:text-black focus:border-black" v-if="vuex.auth" @click="SetFavorito" aria-label="añadir a deseados"><i class="fas fa-star p-1"></i>Añadir a deseados</button>
 
                 <p v-if="puntuacion != 0" class="text-xl text-center flex items-center">{{puntuacion}}/5 según la comunidad de Liber.</p>
-                
+
                 <p v-else class="text-xl text-center flex items-center">{{book.rating}}/5 según la comunidad de Liber.</p>
-                
+
                 <star-rating v-if="puntuacion == 0 && this.$store.state.auth" @rating-selected ="setRating" class="flex justify-center" :star-size="40" :read-only="false" v-bind:show-rating="false"></star-rating>
 
-                <star-rating v-if="this.$store.state.auth && puntuacion != 0" @rating-selected ="setRating" class="flex justify-center" :star-size="40" :read-only="true" v-model="rating.puntos" v-bind:show-rating="false"></star-rating>         
+                <star-rating v-if="this.$store.state.auth && puntuacion != 0" @rating-selected ="setRating" class="flex justify-center" :star-size="40" :read-only="true" v-model="rating.puntos" v-bind:show-rating="false"></star-rating>
             </div>
 
             <div v-if="vuex.auth" id="Comentario">
@@ -53,7 +55,7 @@
 
 
             <div v-else id="Comentarios">
-                <p class="pl-1" > Si quieres participar en la maravillosa comunidad de Liber primero debes <router-link class="font-bold" :to="{ name: 'login' }">iniciar sesión.</router-link></p>
+                <p class="pl-1" > Si quieres participar en la maravillosa comunidad de Liber primero debes <router-link class="font-bold focus:text-blue-500 focus:outline-none" :to="{ name: 'login' }">iniciar sesión.</router-link></p>
             </div>
 
             <ul id="ComentaryList" class="space-y-3">
@@ -62,8 +64,8 @@
                         <p class="px-3 ">{{coment.name}}</p>
                     </div>
                     <div class="">
-                        <p class="px-3 py-1 text-justify">{{coment.texto_reseña}}</p>    
-                    </div>  
+                        <p class="px-3 py-1 text-justify">{{coment.texto_reseña}}</p>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -95,6 +97,8 @@ export default {
                 'id_libro': '',
             },
             puntuacion: 0,
+            loading: false,
+            breadCrum: ""
         };
     },
     methods: {
@@ -105,7 +109,7 @@ export default {
                     this.comentarios = response.data
                 })
             }).catch((errors) => {
-                
+
             })
             this.formData.texto_reseña  = "";
         },
@@ -113,21 +117,19 @@ export default {
             let vuestore = this.$store.state;
             (this.rating).puntos= rating;
             axios.post('api/SetPuntos/' + vuestore.user.id, this.rating).then((response) => {
-                
+
                 this.puntuacion = response.data.media;
                 if(response.data.existe != undefined){
                     this.puntuacion = response.data.existe;
-                    
+
                     this.rating.puntos = this.puntuacion;
                 }else{
                     this.puntuacion = response.data.media;
-                    
-                    this.rating.puntos = response.data.media;
                 }
-                
-                
+
+
             }).catch((errors) => {
-                
+
             })
         },
 
@@ -168,7 +170,7 @@ export default {
     created(){
         window.scrollTo(0,0);
         window.axios.defaults.headers.common['Authorization'] = `Bearer ${this.$store.state.token}`
-        axios.get('/api/user').then((res) => {   
+        axios.get('/api/user').then((res) => {
             var userId = res.data.id;
             let request = {
                 'id_libro': this.$route.params.isbn,
@@ -188,6 +190,8 @@ export default {
             this.rating.id_libro = response.data.book[0].isbn;
 
             if(informacion.author == null && informacion.sinopsis == null){
+                this.loading = true;
+
                 const url = new URL('https://api.rainforestapi.com/request');
 
                 const params = {
@@ -206,7 +210,7 @@ export default {
                 fetch(url)
                     .then(data => data.json())
                     .then(book => {
-                     
+
                         const product = book.product;
 
                         const bookData = {
@@ -216,22 +220,32 @@ export default {
                             asin: product.asin,
                             link: product.link,
                             author: product.authors[0].name,
-                            sinopsis: product.book_description
+                            sinopsis: (product.book_description).substring(0, (product.book_description).length - 20)
                         }
 
                         axios.post('/api/newBook', bookData).then((resp)=>{
                             this.book = resp.data[0];
-                         
+                            if(this.book.title.length > 30){
+                                this.breadCrum = this.book.title.slice(0, 30) + "...";
+                            } else {
+                                this.breadCrum = this.book.title;
+                            }
+                            this.loading = false;
                         })
                     });
 
             } else {
                 this.book = informacion;
+                if(this.book.title.length > 30){
+                    this.breadCrum = this.book.title.slice(0, 30) + "...";
+                } else {
+                    this.breadCrum = this.book.title;
+                }
             }
         }).catch((errors) =>{
             console.log(errors)
         })
-    
+
     }
 };
 </script>
@@ -241,5 +255,23 @@ export default {
 #amazonButton{
     background: rgb(255,158,0);
     background: linear-gradient(0deg, rgba(255,158,0,1) 21%, rgba(247,255,79,1) 100%);
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #3498db;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>

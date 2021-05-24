@@ -8,6 +8,8 @@
       </form>
     </div>
 
+    <div v-if="loading" class="loader w-full mx-auto"></div>
+
     <ul v-for="b in books" :key="b.isbn" class="flex justify-center px-2 pt-5 space-y-1 p md:px-0">
 
         <li class="flex flex-col md:flex-row space-x-2 sm:w-9/12 md:w-11/12 lg:w-3/4  border border-blue-300 bg-white p-1 bg-opacity-30" :id="b.isbn">
@@ -51,7 +53,7 @@ props: ['campo'],
             formData:{
                 search: '',
             },
-
+            loading: false
         };
     },
     methods: {
@@ -61,9 +63,10 @@ props: ['campo'],
                 search: (this.$route.params.campo).toLowerCase()
             }
 
-    
+
             axios.post("api/search", data).then((response) => {
                 var info = response.data;
+                this.loading = true;
 
                 const url = new URL('https://api.rainforestapi.com/request');
                 const params = {
@@ -93,20 +96,10 @@ props: ['campo'],
                             axios.post('/api/newBook', bookData).then((resp)=>{
                             })
                         })
-
-                        // infoApi.forEach(book => {
-                        // for(let i=0; i<info.length; i++){
-                        //     if(book.asin != info[i].asin){
-                        //         info.push(book);
-                        //     }
-                        // }
-                        // });
-
-                        //retocar
-
                         const busqueda = info.concat(infoApi);
                         console.log(busqueda)
                         this.books = busqueda;
+                        this.loading = false;
                     });
 
             });
@@ -132,5 +125,23 @@ props: ['campo'],
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #3498db;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>

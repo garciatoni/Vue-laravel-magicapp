@@ -6,7 +6,7 @@
         <div id="contentbg">
             <router-view id="Content" class="z-0"></router-view>
             <cookie v-if="!politica" class="z-10"></cookie>
-            <go-top :bottom="20" :right="20"  bg-color="#47b3ff"></go-top>
+            <go-top :bottom="20" :right="20"  bg-color="#47b3ff" class="focus:opacity-50 focus:outline-none"></go-top>
         </div>
 
         <footervue id="Footer" class="z-0"></footervue>

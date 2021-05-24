@@ -127,7 +127,7 @@ export default {
                 }
                 this.$swal( {
                     toast: true,
-                    position: 'top-end',
+                    position: 'center',
                     showConfirmButton: false,
                     timer: 2000,
                     didOpen: (toast) => {
@@ -167,7 +167,7 @@ export default {
                 this.formDataRegister
                 this.$swal( {
                     toast: true,
-                    position: 'top-end',
+                    position: 'center',
                     showConfirmButton: false,
                     timer: 2000,
                     title: 'Algo salió mal.',
