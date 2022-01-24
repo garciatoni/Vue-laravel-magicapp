@@ -1,10 +1,21 @@
 module.exports = {
+    content: ['./resources/js/components/**/*.{html,js,vue}', './resources/js/views/**/*.{html,js,vue}', './resources/js/**/*.{html,js,vue}'],
     purge: [],
-    darkMode: false, // or 'media' or 'class'
     theme: {
+        borderRadius: {
+            'none': '0',
+            'sm': '0.125rem',
+            DEFAULT: '0.25rem',
+            DEFAULT: '4px',
+            'md': '0.375rem',
+            'lg': '0.5rem',
+            // 'carta': '10px',
+            'full': '9999px',
+            'large': '12px',
+        },
         extend: {
             spacing: {
-                '80': '24rem',
+                '80': '300rem',
                 '100': '28em',
 
             },
@@ -14,12 +25,8 @@ module.exports = {
             }
         },
     },
-    variants: {
-        extend: {
-            opacity: ['disabled'],
-            cursor: ['disabled'],
-        },
-    },
+
     plugins: [],
 
 }
+

@@ -13,7 +13,7 @@
 
           <div class="">
             <input placeholder="Contraseña" type="password" id="password" v-model="password" class="focus:placeholder-gray-300 shadow-md border-b border-blue-400 focus:outline-none block w-full py-2 px-4" aria-label="contraseña"/>
-            <span v-if="errors.password" class="text-red-500 font-bold">*{{errors.password[0]}}</span> 
+            <span v-if="errors.password" class="text-red-500 font-bold">*{{errors.password[0]}}</span>
           </div>
 
           <div class="">
@@ -41,7 +41,7 @@ export default {
       email: null,
       password: null,
       passwordConfirm: null,
-      
+
       vuex: this.$store.state,
       errors:{},
 
@@ -56,13 +56,13 @@ export default {
         token: this.$route.query.token,
       };
       AuthService.resetPassword(payload).then((response) => (
-        
+
         this.$swal( {
           title: '!Contraseña reestablecida!',
           showConfirmButton: true,
           icon: 'success',
         }),
-        this.$router.push("/agarcia/LiberLogin/public/auth")
+        this.$router.push("/auth")
 
       )).catch((error) => (
         this.errors = error.response.data.errors,

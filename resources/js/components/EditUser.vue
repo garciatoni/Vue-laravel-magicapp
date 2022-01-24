@@ -43,7 +43,6 @@
 
 <script>
 import axios from 'axios';
-axios.defaults.baseURL = '/agarcia/LiberLogin/public';
 export default {
 
     data(){

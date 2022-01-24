@@ -3,7 +3,7 @@
         <h2 class="text-lg lg:text-xl mb-4 block font-bold leading-tight text-black">Politica de cookies</h2>
         <div class="lg:flex lg:space-x-5">
             <p class="mb-5 text-lg font-medium text-black">
-                Con su acuerdo, en Liber usamos cookies o tecnologías similares para almacenar, acceder y procesar datos personales como su visita en este sitio web.
+                Con su acuerdo, en usamos cookies o tecnologías similares para almacenar, acceder y procesar datos personales como su visita en este sitio web.
             </p>
             <button
             class="w-full py-5  lg:w-48 px-2 lg:py-1 bg-blue-700 bg-opacity-70 focus:outline-none hover:text-white hover:bg-opacity-100 hover:bg-blue-900 hover:text-xl text-black uppercase text-xs font-bold shadow-md" @click="aceptar">

@@ -1,15 +1,12 @@
 <template>
     <div class="contenedor">
+    <headervue id="Header" class="z-10 sticky top-0"></headervue>
 
-    <!-- Componente Header -->
-        <headervue id="Header" class="z-10 sticky top-0"></headervue>
-        <div id="contentbg">
-            <router-view id="Content" class="z-0"></router-view>
-            <cookie v-if="!politica" class="z-10"></cookie>
-            <go-top :bottom="20" :right="20"  bg-color="#47b3ff" class="focus:opacity-50 focus:outline-none"></go-top>
-        </div>
 
-        <footervue id="Footer" class="z-0"></footervue>
+    <router-view id="fondo" class="z-0"></router-view>
+    <cookie v-if="!politica" class="z-10"></cookie>
+    <go-top :bottom="20" :right="20"  bg-color="#1A024E" class="focus:opacity-50 focus:outline-none"></go-top>
+    <footervue id="Footer" class="z-0"></footervue>
 
     </div>
 </template>
@@ -45,41 +42,72 @@ export default {
 
         if(localStorage.getItem('politica') == null){
             this.politica = false;
-           
+
         }
 
     },
     methods: {
+
     }
 }
-
-
-
-
-
 
 </script>
 
 <style>
-    #Content{
-        min-height: calc(100vh - 4em - 4em);
+
+
+
+
+    #fondo{
+        min-height: calc(100vh - 110px);
+
+        /* position: relative; */
+    }
+    /* #Footer {
+
+
+        bottom: 0;
+        width: 100%;
+        height: 40px;
+        color: white;
     }
 
-    #contentbg{
-        background: rgb(0,106,255);
-        background: linear-gradient(340deg, rgba(0,106,255,1) 0%, rgba(94,161,255,1) 16%, rgba(116,174,255,1) 17%, rgba(150,195,255,1) 33%, rgba(150,195,255,1) 33%, rgba(164,203,255,1) 34%, rgba(213,231,255,1) 47%, rgba(219,234,255,1) 47%, rgba(235,243,255,1) 55%, rgba(236,243,255,1) 55%, rgba(244,248,254,1) 78%, rgba(255,255,255,1) 100%);
-    }
-    ::-webkit-scrollbar {
-        width: 10px;
-        background: rgba(255, 255, 255, 0);
-    }
-    ::-webkit-scrollbar-track{
-        width: 8px;
-        background: rgba(255, 255, 255, 0);
-    }
-    ::-webkit-scrollbar-thumb {
-        width: 8px;
-    
-        background: rgba(0, 99, 237, 0.301);
-    }
+
+    .contenedor{
+        background: rgba(23, 22, 44, 0.746);
+    } */
+
+::-webkit-scrollbar{
+    width: 10px;
+    background: rgba(23, 22, 44, 0.746);
+}
+::-webkit-scrollbar-track{
+    background: rgba(23, 22, 44, 0.746);
+}
+::-webkit-scrollbar-thumb{
+    background-color: rgb(60, 0, 255);
+    border-radius: 1rem;
+}
+::-webkit-scrollbar-thumb:hover{
+    background-color: rgb(0, 255, 21);
+}
+
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #0c0029;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 </style>
