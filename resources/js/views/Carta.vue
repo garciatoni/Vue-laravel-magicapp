@@ -33,7 +33,7 @@ export default {
     },
     data() {
         return {
-            // vuex: this.$store.state,
+            // vuex: this.$store.state, adasd
             Carta: '',
             loading: false,
         };
